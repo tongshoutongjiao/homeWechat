@@ -1,0 +1,1653 @@
+<template>
+  <view class="header" id="header">
+    <view class="dataSelect">
+      <view class="swiper-tab">
+        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" catchtap="swichNav">
+         按日
+         <view class="borderBtm" wx:if="{{currentTab==0}}"></view>
+        </view>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" catchtap="swichNav">
+          按周
+          <view class="borderBtm" wx:if="{{currentTab==1}}"></view>
+        </view>
+        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" catchtap="swichNav">
+          按月
+          <view class="borderBtm" wx:if="{{currentTab==2}}"></view>
+        </view>
+        <view class="leftData">
+          <!--<view  wx:if="{{currentTab==0}}" class="timeData">2018/02/05</view>-->
+          <view wx:if="{{currentTab==0}}" class="timeData">
+            <picker mode="date" value="{{selectDate}}" start="2015-09-01" end="{{initDate}}" bindchange="bindDateChange">
+              <view class="picker">
+                {{selectDate}}
+              </view>
+            </picker>
+          </view>
+          <!--<view  wx:if="{{currentTab==1}}" class="timeData">第一周</view>-->
+          <view wx:if="{{currentTab==1}}" class="timeData">
+            <picker bindchange="bindWeekChange" value="{{weekIndex}}" range="{{pickerWeekArr}}" data-id="{{weekIdArr}}">
+              <view class="picker">
+                {{str}}
+                <!--{{weekIndex}}-->
+                <!--{{pickerWeekArr[weekIndex]}}-->
+              </view>
+            </picker>
+          </view>
+          <!--<view wx:if="{{currentTab==2}}" class="timeData">2月</view>-->
+          <view wx:if="{{currentTab==2}}" class="timeData">
+            <picker mode="date" fields="month" bindchange="bindMonthChange" value="{{monthInit}}" start="2015-09" end="{{monthEndTime}}">
+              <view class="picker">
+                {{monthInit}}
+                <!--{{  monthPickArr[monthIndex]}}-->
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <!--三种排序方式-->
+      <view class="filterConditions">
+        <!--综合排序选择器-->
+        <view class="multipleRank">
+          <picker bindchange="bindSortChange" value="{{sortIndex}}" range="{{pickSortTypeArr}}">
+            <view class="picker">
+             {{pickSortTypeArr[sortIndex]}}
+            </view>
+          </picker>
+          <view class="triangle-down"></view>
+        </view>
+        <!--学校排序选择器-->
+        <view class="searchSchool" catchtap="searchSchoo">
+           <view>搜索学校</view>
+           <icon class="search" type="{{iconType}}" size="14" color="{{iconColor}}"/>
+        </view>
+        <!--筛选按钮-->
+        <view class="filter" catchtap="filter">
+          <view class="filterWord">筛选</view>
+          <image class="filterImg" src="/images/filterPic.png"></image>
+        </view>
+      </view>
+      <view class="listTitle">
+        <view class="listTitleChild">学校名称</view>
+        <view class="listTitleChild">学校总人数</view>
+        <view class="listTitleChild">开通率</view>
+        <view class="listTitleChild">净增用户数</view>
+      </view>
+    </view>
+  </view>
+
+  <!--滑动的三个页面-->
+  <swiper current="{{currentTab}}" class="swiper-box stuList" duration="300" bindchange="bindChange">
+    <!-- 按日 -->
+    <swiper-item style="overflow-y:auto;">
+      <view wx:if="{{getDayList==''}}" class="noData">暂无数据</view>
+      <scroll-view class="scroll-viewWrap">
+        <view wx:for="{{getDayList}}" wx:key="schoolId" wx:for-index="index" class="itemSchool" style="margin-bottom:{{getDayList.length ==index+1 ? '30rpx':'70rpx' }}" data-id="{{item.schoolId}}" catchtap="toDetial">
+            <view class="schoolName" style="text-align: left">{{item.schoolName}}</view>
+            <view class="detileNum">
+              <!--<radio value="{{item.schoolId}}" checked="{{item.checked}}"/>-->
+              <!--<icon wx:if="{{item.checked}}" type="success" size="15"/>-->
+              <!--<icon wx:else type="circle" size="15"/>-->
+              <view class="leftIcon"></view>
+              <view class="studentNum">{{item.studentNum}}</view>
+              <view class="openRate">{{item.busspsnper}}%</view>
+              <view class="addUserNum">{{item.adduserNum}}</view>
+            </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- 按周 -->
+    <swiper-item style="overflow-y:auto;">
+      <view wx:if="{{getWeekList==''}}" class="noData">暂无数据</view>
+      <scroll-view class="scroll-viewWrap">
+        <view wx:for="{{getWeekList}}" wx:key="schoolId" wx:for-index="index" class="itemSchool" style="margin-bottom:{{getWeekList.length ==index+1 ? '30rpx':'70rpx' }}" data-id="{{item.schoolId}}" catchtap="toDetial">
+          <view class="schoolName" style="text-align: left">{{item.schoolName}}</view>
+          <view class="detileNum">
+            <view class="leftIcon"></view>
+            <view class="studentNum">{{item.studentNum}}</view>
+            <view class="openRate">{{item.busspsnper}}%</view>
+            <view class="addUserNum">{{item.adduserNum}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- 按月 -->
+    <swiper-item style="overflow-y:auto;">
+      <view wx:if="{{getMonthList==''}}" class="noData">暂无数据</view>
+      <scroll-view class="scroll-viewWrap">
+        <view wx:for="{{getMonthList}}" wx:key="schoolId" wx:for-index="index" class="itemSchool" style="margin-bottom:{{getMonthList.length ==index+1 ? '30rpx':'70rpx' }}"  data-id="{{item.schoolId}}" catchtap="toDetial">
+          <view class="schoolName" style="text-align: left">{{item.schoolName}}</view>
+          <view class="detileNum">
+            <view class="leftIcon"></view>
+            <view class="studentNum">{{item.studentNum}}</view>
+            <view class="openRate">{{item.busspsnper}}%</view>
+            <view class="addUserNum">{{item.adduserNum}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <view class="btomView" wx:if="{{currentTab==0}}">
+      <view class="btomViewItem">共 {{btomSchollNum}} 所</view>
+      <view class="btomViewItem">{{btomStudentNum}}</view>
+      <view class="btomViewItem">{{btomPassNum}}</view>
+      <view class="btomViewItem">{{btomUserNum}}</view>
+    </view>
+    <view class="btomView" wx:if="{{currentTab==1}}">
+      <view class="btomViewItem">共 {{btmWeekSchollNum}} 所</view>
+      <view class="btomViewItem">{{btmWeekStudentNum}}</view>
+      <view class="btomViewItem">{{btmWeekPassNum}}</view>
+      <view class="btomViewItem">{{btmWeekUserNum}}</view>
+    </view>
+    <view class="btomView" wx:if="{{currentTab==2}}">
+      <view class="btomViewItem">共 {{btmMonSchollNum}} 所</view>
+      <view class="btomViewItem">{{btmMonStudentNum}}</view>
+      <view class="btomViewItem">{{btmMonPassNum}}</view>
+      <view class="btomViewItem">{{btmMonUserNum}}</view>
+    </view>
+
+  <!--筛选方式template-->
+  <view class='animation' animation="{{animationData}}" style="height:100%;position:fixed;visibility:{{show ? 'visible':'hidden'}}">
+    <view class='animation-content'>
+      <view class='filterType'>
+        <view class='pztitle'>
+          <text>筛选方式</text>
+        </view>
+        <view class='selectType'>
+           <view class="{{selecHeadPeo == true ? 'selectThis':'noSelect'}}" catchtap="selectHeadPeople">
+             <view class="{{selecHeadPeo == true ? 'textBlue':'textBlack'}}">按负责人</view>
+             <image class="deletePic"  wx:if="{{selecHeadPeo}}" src="/images/delete_icon.png"></image>
+           </view>
+          <view class="{{selecTakeArea == true ? 'selectThis':'noSelect'}}" catchtap="selectTakeAreas">
+            <view class="{{selecTakeArea == true ? 'textBlue':'textBlack'}}">按区域</view>
+            <image class="deletePic" wx:if="{{selecTakeArea}}" src="/images/delete_icon.png"></image>
+          </view>
+        </view>
+        <view class="cardsWrap">
+          <view class="topCardsWrap" wx:if="{{areaManagerShow}}">
+             <view class="typeTitle">
+               按区域经理
+             </view>
+            <view class="innerCards">
+              <view wx:for="{{areaManagerList}}"  wx:key="gradeId" wx:for-index="index"  class="childCards">
+                <view class="{{item.status==0 ? 'noSelect':'selectThis'}}" catchtap="seleOnePeo" data-id="{{item.regionId}}" data-user="{{item.userId}}" data-status="{{item.status}}"  data-index="{{index}}">
+                  <view class="{{item.status==0 ? 'textBlack':'textBlue'}}">{{item.userName}}</view>
+                  <image class="deletePic" wx:if="{{item.status==1}}" src="/images/delete_icon.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="btomCardsWrap" wx:if="{{busiManager}}">
+            <view class="typeTitle">
+              按业务经理
+            </view>
+            <view class="bottomCards">
+              <view wx:for="{{busiPeoList}}"  wx:key="busiPeoId" wx:for-index="index" class="childCards">
+                <view class="{{item.status==0 ? 'noSelect':'selectThis'}}" catchtap="seleBusiPeo" data-id="{{item.userId}}" data-status="{{item.status}}"  data-index="{{index}}">
+                  <view class="{{item.status==0 ? 'textBlack':'textBlue'}}">{{item.userName}}</view>
+                  <image class="deletePic" wx:if="{{item.status==1}}" src="/images/delete_icon.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="btomCardsWrap" wx:if="{{cityShow}}">
+            <view class="typeTitle">
+              城市选择
+            </view>
+            <view class="bottomCards">
+              <view wx:for="{{cityList}}"  wx:key="cityId" wx:for-index="index" class="childCards">
+                <view class="{{item.status==0 ? 'noSelect':'selectThis'}}" catchtap="seleCity" data-id="{{item.id}}" data-status="{{item.status}}"  data-index="{{index}}">
+                  <view class="{{item.status==0 ? 'textBlack':'textBlue'}}">{{item.text}}</view>
+                  <image class="deletePic" wx:if="{{item.status==1}}" src="/images/delete_icon.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="btomCardsWrap" wx:if="{{cityChose}}">
+            <view class="typeTitle">
+              县区选择
+            </view>
+            <view class="bottomCards">
+              <view wx:for="{{areaList}}"  wx:key="areaId" wx:for-index="index" class="childCards">
+                <view class="{{item.status==0 ? 'noSelect':'selectThis'}}" catchtap="selectArea" data-id="{{item.id}}" data-status="{{item.status}}"  data-index="{{index}}">
+                  <view class="{{item.status==0 ? 'textBlack':'textBlue'}}">{{item.text}}</view>
+                  <image class="deletePic" wx:if="{{item.status==1}}" src="/images/delete_icon.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="botmButton">
+        <view class="cancel" catchtap="cancelBton">取消</view>
+        <view class="sure" catchtap="sureBton">确认</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import api from '../api'
+  import util from '../utils/util'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '学校列表'
+    }
+    data = {
+      toCurrentTab: '0',
+      a: [],
+      isFilter: false,
+      useAreaManagerFilter: false,
+      regionLevel: 0,
+      postCityId: [],
+      postAreaId: [],
+      postAreaManagerId: [],
+      postBusiManagerId: [],
+      str: '0',
+      currentTime: '0',
+      monthEndTime: '0',
+      btomSchollNum: 0,
+      btomStudentNum: 0,
+      btomPassNum: '0%',
+      btomUserNum: 0,
+      getDayList: [],
+      getWeekList: [],
+      getMonthList: [],
+      winWidth: 0,
+      winHeight: 0,
+      currentTab: 0,
+      iconSize: 28,
+      iconColor: '#8e8e92',
+      iconType: 'search',
+      sortIndex: 0,
+      pickSortTypeArr: [],
+      sortIdArr: [],
+      monthPickArr: [],
+      monthIdArr: [],
+      monthIndex: 0,
+      monthInit: '20l-5',
+      nimationData: '',
+      busiManager: false,
+      show: false,
+      selecHeadPeo: true,
+      selecTakeArea: false,
+      initDate: '2018-02-05',
+      selectDate: '0',
+      areaManagerList: [],
+      busiPeoList: [],
+      cityList: [],
+      areaList: [],
+      cityChose: false,
+      pickerWeekArr: [],//picker中range属性值
+      weekIndex: 0,//picker中value属性值
+      weekIdArr: [],//存储id数组
+      saveDayList: [],
+      saveWeekList: [],
+      saveMonthList: [],
+      btmWeekSchollNum: '0',
+      btmWeekStudentNum: '0',
+      btmWeekPassNum: '0',
+      btmWeekUserNum: '0',
+      btmMonSchollNum: '0',
+      btmMonStudentNum: '0',
+      btmMonPassNum: '0',
+      btmMonUserNum: '0',
+      btomDaySchollNum: '0',
+      btomDayStudentNum: '0',
+      btomDayPassNum: '0',
+      btomDayUserNum: '0',
+      getWeekData: [],
+      getMonthData: [],
+      afterRload: false,
+      schoolId: '',
+      areaManagerShow: false,
+      cityShow: false
+    }
+    async onLoad(e) {
+      if (e.toCurrentTab === undefined) {
+      } else {
+        this.currentTab = e.toCurrentTab
+        if (e.toCurrentTab === '0') {
+        }
+      }
+      if (e.id === undefined) {
+        this.schoolId = ''
+      } else {
+        this.schoolId = e.id
+      }
+      let info = wepy.getSystemInfo()
+      // 调用函数时，传入new Date()参数，返回值是日期和时间
+      let time = util.getCurrentTime(new Date());
+      // 再通过setData更改Page()里面的data，动态更新页面的数据
+      // console.log(time);
+      this.currentTime = time
+      // 获取上一月的日期
+      // console.log(util.getCurrentMonth(new Date()));
+      this.monthEndTime = util.getCurrentMonth(new Date())
+      this.monthInit = util.getCurrentMonth(new Date());
+      // 获取当天的上一天的日期
+      // console.log(util.getBeforDay(new Date()));
+      let getBeforDay = util.getBeforDay(new Date())
+      this.initDate = util.getBeforDay(new Date())
+      this.selectDate = util.getBeforDay(new Date())
+      this.winWidth = info._value.windowWidth;
+      this.winHeight = info._value.windowHeight;
+      // 排序选择器
+      let pickSortTypeArr = []
+      let sortIdArr = []
+      let sortType = [{
+        "id": "0",
+        "name": "综合排序"
+      }, {
+        "id": "1",
+        "name": "学校总人数"
+      }, {
+        "id": "2",
+        "name": "开通率"
+      }, {
+        "id": "3",
+        "name": "净增用户数"
+      }]
+      sortType.forEach(function (e) {
+        pickSortTypeArr.push(e.name)
+        sortIdArr.push(e.id)
+      })
+      this.pickSortTypeArr = pickSortTypeArr
+      this.sortIdArr = sortIdArr
+      // 获取周
+      let getWeekItem = await api.getWeekItem()
+      // 选择器按周进行选择
+      let pickerWeekArr = [],
+        weekIdArr = [],
+        showWeekArr = getWeekItem.data
+        showWeekArr = getWeekItem.data
+        showWeekArr = getWeekItem.data
+      showWeekArr.forEach(function(e) {
+        pickerWeekArr.push(e.name)
+        weekIdArr.push(e.id)
+      })
+      this.pickerWeekArr = pickerWeekArr
+      this.weekIdArr = weekIdArr
+      for (let i = 0; i < this.pickerWeekArr.length; i++) {
+        if (i == '0') {
+          var str = this.pickerWeekArr[i].split('@')
+        }
+      }
+      this.str = str[1]
+      // 默认获取按日的学校数据
+      let dayParams = {}
+      dayParams.userId = wepy.getStorageSync('userId')
+      dayParams.reportType = '1'
+      dayParams.regionManager = ''
+      dayParams.regionId = ''
+      dayParams.regionLevel = ''
+      dayParams.schoolId = this.schoolId
+      dayParams.logdate = util.getBeforDay(new Date())
+      let getSchoolList = await api.getSchoolList({method: 'POST',data:dayParams})
+      this.getDayList = getSchoolList.data.dataList
+      this.btomSchollNum = getSchoolList.data.schoolNum
+      this.btomStudentNum = getSchoolList.data.studentNum
+      this.btomPassNum = getSchoolList.data.openRate
+      this.btomUserNum = getSchoolList.data.adduserNum
+      let userId = wepy.getStorageSync('userId')
+      let getAreaManager = await api.getAreaManager({
+        data: {
+          userId: userId
+        }
+      })
+      this.areaManagerList = getAreaManager.data.regionManager
+      if (this.areaManagerList.length == 0) {
+         this.areaManagerShow = false
+      } else {
+         this.areaManagerShow = true
+      }
+      for (var i = 0; i < this.areaManagerList.length; i++) {
+        this.areaManagerList[i].status = 0
+      }
+      this.$apply()
+    }
+    sortTypeFilter(sortType,schoolListArr) {
+      let getSchoolInfo
+      function compare(property){
+        return function(obj1,obj2){
+          let value1 = obj1[property]
+          let value2 = obj2[property]
+          return value2 - value1    // 升序
+        }
+      }
+      // 综合排序
+      if (sortType == 0) {
+        if (this.currentTab == '0') {
+            this.getDayList = schoolListArr
+            this.$apply()
+          } else if (this.currentTab == '1') {
+            this.getWeekList = schoolListArr
+            this.$apply()
+        } else if (this.currentTab == '2') {
+          this.getMonthList = schoolListArr
+          this.$apply()
+        }
+      } else if (sortType == 1) {
+      // 学校总人数排序
+        if (this.currentTab == '0') {
+          getSchoolInfo = this.getDayList
+          this.getDayList = getSchoolInfo.sort(compare('studentNum'))
+        } else if (this.currentTab == '1') {
+          getSchoolInfo = this.getWeekList
+          this.getWeekList = getSchoolInfo.sort(compare('studentNum'))
+        } else if (this.currentTab == '2') {
+          getSchoolInfo = this.getMonthList
+          this.getMonthList = getSchoolInfo.sort(compare('studentNum'))
+        }
+      } else if (e.detail.value == 2) {
+      //开通率排序
+        if (this.currentTab == '0') {
+          getSchoolInfo = this.getDayList
+          this.getDayList = getSchoolInfo.sort(compare('busspsnper'))
+        } else if(this.currentTab == '1') {
+          getSchoolInfo = this.getWeekList
+          this.getWeekList = getSchoolInfo.sort(compare('busspsnper'))
+        } else if (this.currentTab == '2') {
+          getSchoolInfo = this.getMonthList
+          this.getMonthList = getSchoolInfo.sort(compare('busspsnper'))
+        }
+      } else if (e.detail.value == 3){
+      //新增用户排序
+        if (this.currentTab == '0'){
+          getSchoolInfo = this.getDayList
+          this.getDayList = getSchoolInfo.sort(compare('addNewUser'));
+        } else if (this.currentTab == '1'){
+          getSchoolInfo = this.getWeekList
+          this.getWeekList = getSchoolInfo.sort(compare('addNewUser'));
+        } else if (this.currentTab == '2'){
+          getSchoolInfo = this.getMonthList
+          this.getMonthList = getSchoolInfo.sort(compare('addNewUser'));
+        }
+      }
+    }
+    methods = {
+      async swichNav(e) {
+        if( this.currentTab === e.target.dataset.current ) {
+          return false
+        } else {
+          this.schoolId = ''
+          this.currentTab = e.target.dataset.current
+          if (this.currentTab == '0') {
+            let dayParams = {}
+            dayParams.schoolId = this.schoolId
+            dayParams.userId = wepy.getStorageSync('userId')
+            dayParams.reportType = '1'
+            dayParams.logdate = this.selectDate
+            if (this.a.length > 0 && this.selecTakeArea == true){
+              dayParams.regionId = this.a
+              dayParams.regionLevel = this.regionLevel
+              dayParams.regionManager = ''
+            } else if(this.a.length >0 && this.selecHeadPeo == true){
+              dayParams.regionManager = this.a
+              dayParams.regionId = ''
+              dayParams.regionLevel = ''
+            } else if (this.a.length == 0) {
+              dayParams.regionId = ''
+              dayParams.regionLevel = ''
+              dayParams.regionManager = ''
+            }
+            this.getDayList = []
+            this.getWeekList = []
+            this.getMonthList = []
+            let getSchoolList = await api.getSchoolList({method: 'POST',data:dayParams})
+            this.getDayList = getSchoolList.data.dataList
+            this.sortTypeFilter(this.sortIndex,this.getDayList)
+            this.btomSchollNum = getSchoolList.data.schoolNum
+            this.btomStudentNum = getSchoolList.data.studentNum
+            this.btomPassNum = getSchoolList.data.openRate
+            this.btomUserNum = getSchoolList.data.adduserNum
+            this.$apply()
+          } else if (this.currentTab == '1') {
+            let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
+            let weekParams = {}
+            weekParams.schoolId = this.schoolId
+            weekParams.userId = wepy.getStorageSync('userId')
+            weekParams.reportType = '2'
+            weekParams.logdate = splitWeek[0]
+             if (this.a.length > 0 && this.selecTakeArea == true){
+                weekParams.regionId = this.a
+                weekParams.regionLevel = this.regionLevel
+                weekParams.regionManager = ''
+             } else if(this.a.length > 0 && this.selecHeadPeo == true){
+                weekParams.regionManager = this.a
+                weekParams.regionId = ''
+                weekParams.regionLevel = ''
+             } else if(this.a.length == 0){
+                weekParams.regionId = ''
+                weekParams.regionLevel = ''
+                weekParams.regionManager = ''
+             }
+            this.getDayList = []
+            this.getWeekList = []
+            this.getMonthList = []
+            let getWeekSchoolList = await api.getSchoolList({method:'POST',data:weekParams})
+            this.getWeekList = getWeekSchoolList.data.dataList
+            this.sortTypeFilter(this.sortIndex,this.getWeekList)
+            this.btmWeekSchollNum = getWeekSchoolList.data.schoolNum
+            this.btmWeekStudentNum = getWeekSchoolList.data.studentNum
+            this.btmWeekPassNum = getWeekSchoolList.data.openRate
+            this.btmWeekUserNum = getWeekSchoolList.data.adduserNum
+            this.$apply()
+          } else if (this.currentTab == '2'){
+            let time = util.getCurrentMonth(new Date())
+            let splitMonth = this.monthInit.split('-')
+            let monthParams = {}
+            monthParams.schoolId = this.schoolId
+            monthParams.userId = wepy.getStorageSync('userId')
+            monthParams.reportType = '3'
+            if (this.a.length > 0 && this.selecTakeArea == true) {
+              monthParams.regionId = this.a
+              monthParams.regionLevel = this.regionLevel
+              monthParams.regionManager = ''
+            } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+              monthParams.regionManager = this.a
+              monthParams.regionId = ''
+              monthParams.regionLevel = ''
+            } else if (this.a.length == 0){
+              monthParams.regionId = ''
+              monthParams.regionLevel = ''
+              monthParams.regionManager = ''
+            }
+            if (this.monthInit == time) {
+              monthParams.logdate = util.getBeforDay(new Date())
+              console.log(monthParams.logdate)
+            } else if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
+              monthParams.logdate = this.monthInit + '-31'
+            } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
+              monthParams.logdate = this.monthInit + '-30'
+              console.log(monthParams.logdate)
+            } else if (splitMonth[1] == '02') {
+              if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+                monthParams.logdate = this.monthInit + '-29'
+              } else {
+                monthParams.logdate = this.monthInit + '-28'
+              }
+            }
+            this.getDayList = []
+            this.getWeekList = []
+            this.getMonthList = []
+            let getMonthSchoolList = await api.getSchoolList({method: 'POST', data: monthParams})
+            this.getMonthList = getMonthSchoolList.data.dataList
+            this.sortTypeFilter(this.sortIndex, this.getMonthList)
+            this.btmMonSchollNum = getMonthSchoolList.data.schoolNum
+            this.btmMonStudentNum = getMonthSchoolList.data.studentNum
+            this.btmMonPassNum = getMonthSchoolList.data.openRate
+            this.btmMonUserNum = getMonthSchoolList.data.adduserNum
+            this.$apply()
+          }
+        }
+      },
+      bindChange(e) {
+        this.currentTab = e.detail.current
+      },
+      async bindSortChange(e) {
+        this.sortIndex = e.detail.value
+        let getSchoolInfo
+        function compare(property) {
+          return function(obj1, obj2) {
+            let value1 = obj1[property]
+            let value2 = obj2[property]
+            return value2 - value1    // 升序
+          }
+        }
+        // 综合排序
+        if (e.detail.value == 0) {
+          if (this.currentTab == '0') {
+            let params = {}
+            params.schoolId = this.schoolId
+            params.userId = wepy.getStorageSync('userId')
+            params.reportType = '1'
+            params.logdate = this.selectDate
+            if (this.a.length > 0 && this.selecTakeArea == true) {
+              params.regionId = this.a
+              params.regionLevel = this.regionLevel
+              params.regionManager = ''
+            } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+              params.regionManager = this.a
+              params.regionId = ''
+              params.regionLevel = ''
+            } else if (this.a.length == 0) {
+              params.regionId = ''
+              params.regionLevel = ''
+              params.regionManager = ''
+            }
+            let getSchoolList = await api.getAfterFilterList({method: 'POST', data: params})
+            this.getDayList = getSchoolList.data.dataList
+            this.$apply()
+          } else if (this.currentTab == '1') {
+            let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
+            let params = {}
+            params.schoolId = this.schoolId
+            params.userId = wepy.getStorageSync('userId')
+            params.reportType = '2'
+            params.logdate = splitWeek[0]
+            if (this.a.length > 0 && this.selecTakeArea == true) {
+              params.regionId = this.a
+              params.regionLevel = this.regionLevel
+              params.regionManager = ''
+            } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+              params.regionManager = this.a
+              params.regionId = ''
+              params.regionLevel = ''
+            } else if (this.a.length == 0) {
+              params.regionId = ''
+              params.regionLevel = ''
+              params.regionManager = ''
+            }
+            let getSchoolList = await api.getAfterFilterList({method: 'POST', data: params})
+            this.getWeekList = getSchoolList.data.dataList
+            this.$apply()
+          } else if (this.currentTab == '2') {
+            let time = util.getCurrentMonth(new Date())
+            if (this.monthInit == time) {
+              let params = {}
+              params.schoolId = this.schoolId
+              params.userId = wepy.getStorageSync('userId')
+              params.reportType = '3'
+              params.logdate = util.getBeforDay(new Date())
+              if (this.a.length > 0 && this.selecTakeArea == true) {
+                params.regionId = this.a
+                params.regionLevel = this.regionLevel
+                params.regionManager = ''
+              } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+                params.regionManager = this.a
+                params.regionId = ''
+                params.regionLevel = ''
+              } else if (this.a.length == 0) {
+                params.regionId = ''
+                params.regionLevel = ''
+                params.regionManager = ''
+              }
+              let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+              this.getMonthList = getSchoolList.data.dataList
+              this.$apply()
+            } else {
+              let params = {}
+              params.schoolId = this.schoolId
+              params.userId = wepy.getStorageSync('userId')
+              params.reportType = '3'
+              let splitMonth = this.monthInit.split('-')
+              if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
+                params.logdate = this.monthInit + '-31'
+              } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
+                params.logdate = this.monthInit + '-30'
+              } else if (splitMonth[1] == '02') {
+                if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+                  params.logdate = this.monthInit + '-29'
+                } else {
+                  params.logdate = this.monthInit + '-28'
+                }
+              }
+              if (this.a.length > 0 && this.selecTakeArea == true) {
+                params.regionId = this.a
+                params.regionLevel = this.regionLevel
+                params.regionManager = ''
+              } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+                params.regionManager = this.a
+                params.regionId = ''
+                params.regionLevel = ''
+              } else if (this.a.length == 0) {
+                params.regionId = ''
+                params.regionLevel = ''
+                params.regionManager = ''
+              }
+              let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+              this.getMonthList = getSchoolList.data.dataList
+              this.$apply()
+            }
+          }
+        } else if (e.detail.value == 1) {
+        // 学校总人数排序
+          if (this.currentTab == '0') {
+            getSchoolInfo = this.getDayList
+            this.getDayList = getSchoolInfo.sort(compare('studentNum'))
+          } else if (this.currentTab == '1') {
+            getSchoolInfo = this.getWeekList
+            this.getWeekList = getSchoolInfo.sort(compare('studentNum'))
+          } else if (this.currentTab == '2') {
+            getSchoolInfo = this.getMonthList
+            this.getMonthList = getSchoolInfo.sort(compare('studentNum'))
+          }
+        } else if (e.detail.value == 2) {
+          // 开通率排序
+          if (this.currentTab == '0') {
+            getSchoolInfo = this.getDayList
+            this.getDayList = getSchoolInfo.sort(compare('busspsnper'))
+          } else if (this.currentTab == '1') {
+            getSchoolInfo = this.getWeekList
+            this.getWeekList = getSchoolInfo.sort(compare('busspsnper'))
+          } else if (this.currentTab == '2') {
+            getSchoolInfo = this.getMonthList
+            this.getMonthList = getSchoolInfo.sort(compare('busspsnper'))
+          }
+        } else if (e.detail.value == 3) {
+          // 新增用户排序
+          if (this.currentTab == '0') {
+            getSchoolInfo = this.getDayList
+            this.getDayList = getSchoolInfo.sort(compare('addNewUser'))
+          } else if (this.currentTab == '1') {
+            getSchoolInfo = this.getWeekList
+            this.getWeekList = getSchoolInfo.sort(compare('addNewUser'))
+          } else if (this.currentTab == '2') {
+            getSchoolInfo = this.getMonthList
+            this.getMonthList = getSchoolInfo.sort(compare('addNewUser'))
+          }
+        }
+      },
+      searchSchoo() {
+        this.toCurrentTab = this.currentTab
+        wepy.navigateTo({url: '../pages/search?page=2&toCurrentTab=' + this.toCurrentTab})
+      },
+      async bindDateChange(e) {
+        this.selectDate = e.detail.value
+        let params = {}
+        params.schoolId = this.schoolId
+        params.userId = wepy.getStorageSync('userId')
+        params.reportType = '1'
+        params.logdate = this.selectDate
+        if (this.a.length > 0 && this.selecTakeArea == true) {
+          params.regionId = this.a
+          params.regionLevel = this.regionLevel
+          params.regionManager = ''
+        } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+          params.regionManager = this.a
+          params.regionId = ''
+          params.regionLevel = ''
+        } else if (this.a.length == 0) {
+          params.regionId = ''
+          params.regionLevel = ''
+          params.regionManager = ''
+        }
+        //  请求数据
+        let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+        this.getDayList = []
+        this.getWeekList = []
+        this.getMonthList = []
+        this.getDayList = getSchoolList.data.dataList
+        this.btomSchollNum = getSchoolList.data.schoolNum
+        this.btomStudentNum = getSchoolList.data.studentNum
+        this.btomPassNum = getSchoolList.data.openRate
+        this.btomUserNum = getSchoolList.data.adduserNum
+        this.$apply()
+      },
+      async bindWeekChange(e) {
+        this.weekIndex = e.detail.value
+        for (let i = 0; i < this.pickerWeekArr.length; i++) {
+          if (i == e.detail.value) {
+            var str = this.pickerWeekArr[i].split('@')
+          }
+        }
+        // 被选后显示的数据
+        this.str = str[1]
+        // 获取按周的学校数据
+        let params = {}
+        params.schoolId = this.schoolId
+        params.userId = wepy.getStorageSync('userId')
+        params.reportType = '2'
+        params.logdate = str[0]
+        if (this.a.length > 0 && this.selecTakeArea == true) {
+          params.regionId = this.a
+          params.regionLevel = this.regionLevel
+          params.regionManager = ''
+        } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+          params.regionManager = this.a
+          params.regionId = ''
+          params.regionLevel = ''
+        } else if (this.a.length == 0) {
+          params.regionId = ''
+          params.regionLevel = ''
+          params.regionManager = ''
+        }
+        let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+        this.getWeekList = getSchoolList.data.dataList
+        this.btmWeekSchollNum = getSchoolList.data.schoolNum
+        this.btmWeekStudentNum = getSchoolList.data.studentNum
+        this.btmWeekPassNum = getSchoolList.data.openRate
+        this.btmWeekUserNum = getSchoolList.data.adduserNum
+        this.$apply()
+      },
+      async bindMonthChange(e) {
+        // 要传给后台的参数值
+        let params = {}
+        params.schoolId = this.schoolId
+        params.userId = wepy.getStorageSync('userId')
+        params.reportType = '3'
+        if (this.a.length > 0 && this.selecTakeArea == true) {
+          params.regionId = this.a
+          params.regionLevel = this.regionLevel
+          params.regionManager = ''
+        } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+          params.regionManager = this.a
+          params.regionId = ''
+          params.regionLevel = ''
+        } else if (this.a.length == 0) {
+          params.regionId = ''
+          params.regionLevel = ''
+          params.regionManager = ''
+        }
+        // 被选后显示的月份日期
+        this.monthInit = e.detail.value
+        // 获取当前月份
+        let time = util.getCurrentMonth(new Date())
+        // 如果当前月份等于被选的月份，那么传给后台的日期就是当前日期的前一天日期
+        if (this.monthInit == time) {
+          params.logdate = util.getBeforDay(new Date())
+          // 获取按月的学校数据
+          let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+          this.getMonthList = getSchoolList.data.dataList
+          this.btmMonSchollNum = getSchoolList.data.schoolNum
+          this.btmMonStudentNum = getSchoolList.data.studentNum
+          this.btmMonPassNum = getSchoolList.data.openRate
+          this.btmMonUserNum = getSchoolList.data.adduserNum
+          this.$apply()
+        } else {
+          let splitMonth = this.monthInit.split('-')
+          if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
+            params.logdate = this.monthInit + '-31'
+          } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
+            params.logdate = this.monthInit + '-30'
+          } else if (splitMonth[1] == '02') {
+            if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+              params.logdate = this.monthInit + '-29'
+            } else {
+              params.logdate = this.monthInit + '-28'
+            }
+          }
+          if (this.a.length > 0 && this.selecTakeArea == true) {
+            params.regionId = this.a
+            params.regionLevel = this.regionLevel
+            params.regionManager = ''
+          } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+            params.regionManager = this.a
+            params.regionId = ''
+            params.regionLevel = ''
+          } else if (this.a.length == 0) {
+            params.regionId = ''
+            params.regionLevel = ''
+            params.regionManager = ''
+          }
+          // 获取按月的学校数据
+          let getSchoolList = await api.getSchoolList({method: 'POST', data: params})
+          this.getMonthList = getSchoolList.data.dataList
+          this.btmMonSchollNum = getSchoolList.data.schoolNum
+          this.btmMonStudentNum = getSchoolList.data.studentNum
+          this.btmMonPassNum = getSchoolList.data.openRate
+          this.btmMonUserNum = getSchoolList.data.adduserNum
+          this.$apply()
+        }
+      },
+      filter(e) { // 点击筛选事件
+        let animation = wepy.createAnimation({// 创建动画
+          duration: 1000,
+          timingFunction: 'ease',
+          width: 300,
+          height: 800,
+          top: 0,
+          bottom: 0,
+          right: 0,
+          backgroundColor: '#fff',
+          opcity: 0.5
+        })
+        this.animation = animation
+        animation.translateX(-100 + 'vh').step()
+        this.nimationData = animation.export()
+        this.show = true
+      },
+      selectHeadPeople() {
+        this.selecTakeArea = false
+        this.cityChose = false
+        if (this.selecHeadPeo == true) {
+            // this.busiManager = true
+        } else {
+          this.selecHeadPeo = true
+          // 判断区域经理是否有数据
+          if (this.areaManagerList.length > 0) {
+            this.areaManagerShow = true
+            // 判断业务经理是否有数据
+            if (this.busiPeoList.length > 0) {
+              this.busiManager = true
+            } else {
+              this.busiManager = false
+            }
+          } else {
+            this.areaManagerShow = false
+          }
+        }
+      },
+      async selectTakeAreas() {
+        this.selecHeadPeo = false
+        this.busiManager = false
+        if (this.selecTakeArea == false) {
+          this.selecTakeArea = true
+          let userId = wepy.getStorageSync('userId')
+          let getCity = await api.getCity({
+            data: {
+              userId: userId
+            }
+          })
+          this.cityList = getCity.data.regionList
+          for (var i = 0; i < this.cityList.length; i++) {
+            this.cityList[i].status = 0
+          }
+          let cityList = this.cityList
+          this.$apply()
+          // 判断城市列表是否有数据，有数据就设置 this.cityShow=true;
+          if (cityList.length > 0) {
+            this.cityShow = true
+            // 判断数据中是否有status == '1'的，如果有，就要显示县区列表
+            let that = this
+            cityList.forEach(function (e) {
+              if (e.status == '1') {
+                that.cityChose = true
+              }
+            })
+          } else {
+            this.cityShow = false
+          }
+        }
+      },
+      async seleOnePeo(e) {
+        this.postAreaManagerId = []
+        if (e.currentTarget.dataset.status == '0') {
+          for (let i = 0; i < this.areaManagerList.length; i++) {
+            this.areaManagerList[i].status = 0
+          }
+          this.busiPeoList = []
+          this.areaManagerList[e.currentTarget.dataset.index].status = '1'
+          this.postAreaManagerId.push(e.currentTarget.dataset.user)
+          // 拿到被点击的id请求业务经理的数据，如果获取到有数据设置 this.busiManager=true;
+          let getBusiManager = await api.getBusiManager({
+            data: {
+              regionId: e.currentTarget.dataset.id
+            }
+          })
+          let getBusiManagerArr = getBusiManager.data.data
+          if (getBusiManagerArr.length > 0) {
+            this.busiManager = true
+          } else {
+            this.busiManager = false
+          }
+          let that = this
+          getBusiManagerArr.forEach(function (e) {
+            that.busiPeoList.push(e)
+          })
+          for (let i = 0; i < this.busiPeoList.length; i++) {
+            that.busiPeoList[i].status = 0
+          }
+          this.$apply()
+        } else {
+          this.areaManagerList[e.currentTarget.dataset.index].status = '0'
+          this.postAreaManagerId = []
+          this.postBusiManagerId = []
+          this.busiManager = false
+          this.$apply()
+        }
+      },
+      seleBusiPeo(e) {
+        this.postBusiManagerId = []
+        if (e.currentTarget.dataset.status == '0') {
+          for (var i = 0; i < this.busiPeoList.length; i++) {
+            this.busiPeoList[i].status = 0
+          }
+          this.busiPeoList[e.currentTarget.dataset.index].status = '1'
+          this.postBusiManagerId.push(e.currentTarget.dataset.id)
+          console.log(this.postBusiManagerId)
+          this.$apply()
+        } else {
+          this.busiPeoList[e.currentTarget.dataset.index].status = '0'
+          this.postBusiManagerId = []
+          this.$apply()
+        }
+      },
+      seleCity(e) {
+        if (e.currentTarget.dataset.status == '0') {
+          let that = this
+          this.cityList[e.currentTarget.dataset.index].status = '1'
+          this.postCityId.push(e.currentTarget.dataset.id)
+          console.log(this.postCityId)
+          // console.log(e.currentTarget.dataset.id)
+          // 拿到对应的县区数据
+
+          let cityListArr = this.cityList
+          // console.log(cityListArr)
+
+          let city
+          for (let i in cityListArr) {
+            if (cityListArr[i].id == e.currentTarget.dataset.id) {
+              city = cityListArr[i]
+              break
+            }
+          }
+          // console.log(city)
+          let getAreaList = city.children
+          this.getAreaList = city.children
+          if (this.getAreaList.length > 0) {
+            this.cityChose = true
+          } else {
+            this.cityChose = false
+          }
+          for (var i = 0; i < this.getAreaList.length; i++) {
+            this.getAreaList[i].status = 0
+          }
+          getAreaList.forEach(function (e) {
+            that.areaList.push(e)
+          })
+          this.$apply()
+        } else {
+          let that = this
+          this.cityList[e.currentTarget.dataset.index].status = '0'
+          // 拿到被点击数据遍历总数组，从中去掉
+          Array.prototype.aindexOf = function(val) {
+            for (var i = 0; i < this.length; i++) {
+              if (this[i] == val) return i
+            }
+            return -1
+          }
+          Array.prototype.remove = function(val) {
+            let index = this.aindexOf(val)
+            if (index > -1) {
+              this.splice(index, 1)
+            }
+          }
+          this.postCityId.remove(e.currentTarget.dataset.id)
+          console.log(this.postCityId)
+
+          let cityListArr = this.cityList
+          let city
+          for (let i in cityListArr) {
+            if (cityListArr[i].id == e.currentTarget.dataset.id) {
+              city = cityListArr[i]
+              break
+            }
+          }
+          // console.log(city)
+          let getAreaList = city.children
+          getAreaList.forEach(function (e) {
+            // console.log(e.busiPeoId)
+            let id = e.id
+            that.areaList = that.areaList.filter(function (obj) {
+              return id !== obj.id
+            })
+          })
+          if (this.areaList.length < 1) {
+            that.cityChose = false
+          } else {
+            that.cityChose = true
+          }
+          this.$apply()
+        }
+      },
+      selectArea(e) {
+        if (e.currentTarget.dataset.status == '0') {
+          this.areaList[e.currentTarget.dataset.index].status = '1'
+          this.postAreaId.push(e.currentTarget.dataset.id)
+          console.log(this.postAreaId)
+          this.$apply()
+        } else {
+          Array.prototype.aindexOf = function(val) {
+            for (var i = 0; i < this.length; i++) {
+              if (this[i] == val) return i
+            }
+            return -1
+          }
+          Array.prototype.remove = function(val) {
+            let index = this.aindexOf(val)
+            if (index > -1) {
+              this.splice(index, 1)
+            }
+          }
+          this.postAreaId.remove(e.currentTarget.dataset.id)
+          // console.log(this.postAreaId)
+
+          this.areaList[e.currentTarget.dataset.index].status = '0'
+          this.$apply()
+        }
+      },
+      cancelBton () {
+        this.show = false
+      },
+      async sureBton() {
+        let params = {}
+        params.schoolId = this.schoolId
+        params.userId = wepy.getStorageSync('userId')
+        if (this.currentTab == '0') {
+          params.reportType = '1'
+          params.logdate = this.selectDate
+        } else if (this.currentTab == '1') {
+          let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
+          params.reportType = '2'
+          params.logdate = splitWeek[0]
+        } else if (this.currentTab == '2') {
+          params.reportType = '3'
+          let time = util.getCurrentMonth(new Date())
+          if (this.monthInit == time) {
+            params.logdate = util.getBeforDay(new Date())
+            console.log(params.logdate)
+          } else {
+            let splitMonth = this.monthInit.split('-')
+            if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
+              params.logdate = this.monthInit + '-31'
+              // console.log(params.logdate)
+            } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
+              params.logdate = this.monthInit + '-30'
+              console.log(params.logdate)
+            } else if (splitMonth[1] == '02') {
+              if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+                params.logdate = this.monthInit + '-29'
+              } else {
+                params.logdate = this.monthInit + '-28'
+              }
+              console.log(params.logdate)
+            }
+          }
+        }
+        if (this.selecTakeArea == true) {
+          if (this.postCityId.length <= 0) {
+            this.a = []
+            this.isFilter = false
+            this.show = false
+            params.regionId = ''
+            params.regionLevel = ''
+            params.regionManager = ''
+            let afterFiterList = await api.getSchoolList({method: 'POST', data: params})
+            if (this.currentTab == '0') {
+              this.getDayList = afterFiterList.data.dataList
+              this.show = false
+              this.btomSchollNum = afterFiterList.data.schoolNum
+              this.btomStudentNum = afterFiterList.data.studentNum
+              this.btomPassNum = afterFiterList.data.openRate
+              this.btomUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterFiterList.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterFiterList.data.schoolNum
+              this.btmWeekStudentNum = afterFiterList.data.studentNum
+              this.btmWeekPassNum = afterFiterList.data.openRate
+              this.btmWeekUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterFiterList.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterFiterList.data.schoolNum
+              this.btmMonStudentNum = afterFiterList.data.studentNum
+              this.btmMonPassNum = afterFiterList.data.openRate
+              this.btmMonUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            }
+            this.$apply()
+          } else if (this.postCityId.length > 0 && this.postAreaId.length > 0) {
+            this.a = this.postAreaId
+            this.isFilter = true
+            this.regionLevel = 3
+            params.regionId = this.postAreaId
+            params.regionLevel = this.regionLevel
+            params.regionManager = ''
+            let afterFiterList = await api.getAfterFilterList({method: 'POST', data: params})
+            if (this.currentTab == '0') {
+              this.getDayList = afterFiterList.data.dataList
+              this.show = false
+              this.btomSchollNum = afterFiterList.data.schoolNum
+              this.btomStudentNum = afterFiterList.data.studentNum
+              this.btomPassNum = afterFiterList.data.openRate
+              this.btomUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterFiterList.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterFiterList.data.schoolNum
+              this.btmWeekStudentNum = afterFiterList.data.studentNum
+              this.btmWeekPassNum = afterFiterList.data.openRate
+              this.btmWeekUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterFiterList.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterFiterList.data.schoolNum
+              this.btmMonStudentNum = afterFiterList.data.studentNum
+              this.btmMonPassNum = afterFiterList.data.openRate
+              this.btmMonUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            }
+          } else if (this.postCityId.length > 0 && this.postAreaId.length <= 0) {
+            this.a = this.postCityId
+            this.isFilter = true
+            this.regionLevel = 2
+            params.regionId = this.postCityId
+            params.regionLevel = this.regionLevel
+            params.regionManager = ''
+            let afterFiterList = await api.getAfterFilterList({method: 'POST', data: params})
+            if (this.currentTab == '0') {
+              this.getDayList = afterFiterList.data.dataList
+              this.show = false
+              this.btomSchollNum = afterFiterList.data.schoolNum
+              this.btomStudentNum = afterFiterList.data.studentNum
+              this.btomPassNum = afterFiterList.data.openRate
+              this.btomUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterFiterList.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterFiterList.data.schoolNum
+              this.btmWeekStudentNum = afterFiterList.data.studentNum
+              this.btmWeekPassNum = afterFiterList.data.openRate
+              this.btmWeekUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterFiterList.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterFiterList.data.schoolNum
+              this.btmMonStudentNum = afterFiterList.data.studentNum
+              this.btmMonPassNum = afterFiterList.data.openRate
+              this.btmMonUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            }
+          }
+        } else if (this.selecHeadPeo == true) {
+          if (this.postAreaManagerId.length <= 0) {
+            this.a = []
+            this.show = false
+            params.regionId = ''
+            params.regionLevel = ''
+            params.regionManager = ''
+            let afterFiterList = await api.getSchoolList({method: 'POST', data: params})
+            if (this.currentTab == '0') {
+              this.getDayList = afterFiterList.data.dataList
+              this.show = false
+              this.btomSchollNum = afterFiterList.data.schoolNum
+              this.btomStudentNum = afterFiterList.data.studentNum
+              this.btomPassNum = afterFiterList.data.openRate
+              this.btomUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterFiterList.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterFiterList.data.schoolNum
+              this.btmWeekStudentNum = afterFiterList.data.studentNum
+              this.btmWeekPassNum = afterFiterList.data.openRate
+              this.btmWeekUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterFiterList.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterFiterList.data.schoolNum
+              this.btmMonStudentNum = afterFiterList.data.studentNum
+              this.btmMonPassNum = afterFiterList.data.openRate
+              this.btmMonUserNum = afterFiterList.data.adduserNum
+              this.$apply()
+            }
+          } else if (this.postAreaManagerId.length > 0 && this.postBusiManagerId.length > 0) {
+            // this.useAreaManagerFilter = true
+            this.a = this.postBusiManagerId
+            params.regionManager = this.postBusiManagerId
+            params.regionId = ''
+            params.regionLevel = ''
+            let afterManagerFiter = await api.getAfterManagerFiter({method: 'POST', data: params})
+            console.log(afterManagerFiter)
+            if (this.currentTab == '0') {
+              this.getDayList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btomSchollNum = afterManagerFiter.data.schoolNum
+              this.btomStudentNum = afterManagerFiter.data.studentNum
+              this.btomPassNum = afterManagerFiter.data.openRate
+              this.btomUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterManagerFiter.data.schoolNum
+              this.btmWeekStudentNum = afterManagerFiter.data.studentNum
+              this.btmWeekPassNum = afterManagerFiter.data.openRate
+              this.btmWeekUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterManagerFiter.data.schoolNum
+              this.btmMonStudentNum = afterManagerFiter.data.studentNum
+              this.btmMonPassNum = afterManagerFiter.data.openRate
+              this.btmMonUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            }
+          } else if (this.postAreaManagerId.length > 0 && this.postBusiManagerId.length <= 0) {
+            // this.useAreaManagerFilter=true
+            this.a = this.postAreaManagerId
+            params.regionManager = this.postAreaManagerId
+            params.regionId = ''
+            params.regionLevel = ''
+            let afterManagerFiter = await api.getAfterManagerFiter({method: 'POST', data: params})
+            if (this.currentTab == '0') {
+              this.getDayList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btomSchollNum = afterManagerFiter.data.schoolNum
+              this.btomStudentNum = afterManagerFiter.data.studentNum
+              this.btomPassNum = afterManagerFiter.data.openRate
+              this.btomUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '1') {
+              this.getWeekList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btmWeekSchollNum = afterManagerFiter.data.schoolNum
+              this.btmWeekStudentNum = afterManagerFiter.data.studentNum
+              this.btmWeekPassNum = afterManagerFiter.data.openRate
+              this.btmWeekUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            } else if (this.currentTab == '2') {
+              this.getMonthList = afterManagerFiter.data.dataList
+              this.show = false
+              this.btmMonSchollNum = afterManagerFiter.data.schoolNum
+              this.btmMonStudentNum = afterManagerFiter.data.studentNum
+              this.btmMonPassNum = afterManagerFiter.data.openRate
+              this.btmMonUserNum = afterManagerFiter.data.adduserNum
+              this.$apply()
+            }
+          }
+        }
+      },
+      async toDetial(e) {
+        let reportType = ''
+        let logdate = ''
+        if (this.currentTab == '0') {
+          reportType = 1
+          logdate = this.selectDate
+        } else if (this.currentTab == '1') {
+          reportType = 2
+          logdate = this.weekIndex
+        } else if (this.currentTab == '2') {
+          reportType = 3
+          logdate = this.monthInit
+        }
+        await wepy.navigateTo({url: '../pages/schoolDetail?id=' + e.currentTarget.dataset.id + '&reportType=' + reportType + '&logdate=' + logdate})
+      }
+    }
+  }
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+  }
+  /*<!--tabView容器css-->*/
+  .swiper-tab {
+    width: 100%;
+    text-align: center;
+    line-height: 65rpx;
+    margin-bottom: 23rpx;
+    padding-right: 20rpx;
+  }
+  /*左侧日期div*/
+  .leftData {
+    display: inline-block;
+    width: 25%;
+  }
+  .timeData {
+    font-size: 14px;
+    color: #358DFF;
+  }
+  .searchSchool {
+    display: flex;
+  }
+  .search {
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+  }
+  /*日期左侧竖线分割线*/
+  .timeData::before {
+    position: absolute;
+    content: '';
+    height: 30rpx;
+    display: inline-block;
+    margin-top: 18rpx;
+    right: 200rpx;
+    border-right: 5rpx solid #d0d0d4;
+  }
+  /*tablist-----css*/
+  .swiper-tab-list {
+    font-size: 32rpx;
+    display: inline-block;
+    width: 25%;
+    color: #8E8E93;
+    font-weight: 500;
+  }
+  /*点击tab切换时改变tabcss*/
+  .on {
+    color: #181818;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  /*容器css*/
+  .swiper-box {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 40rpx;
+    padding-left: 48rpx;
+    position: absolute;
+  }
+  .swiper-box view {
+    text-align: center;
+  }
+  /*过滤条件*/
+  .filterConditions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    color: #575759;
+  }
+  /*综合过滤*/
+  .multipleRank {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  /*三角形*/
+  .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 8rpx solid transparent;
+    border-right: 8rpx solid transparent;
+    border-top: 16rpx solid #D0D0D4;
+    margin-left: 10rpx;
+  }
+  .borderBtm {
+    width: 20rpx;
+    border: 1rpx solid #348cff;
+    margin: 0 auto;
+  }
+  .filter{
+    display:flex;
+    justify-content:space-around;
+    align-content: center;
+  }
+  .filterWord{
+    margin-right: 8rpx;
+  }
+  .filterImg{
+    width:28rpx;
+    height:28rpx;
+    align-self: center;
+  }
+  /*----筛选view动画CSS-----*/
+  .animation{
+    background: rgba(0,0,0,0.2);
+    z-index: 999;
+    float: left;
+    right: -100vh;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .animation-content{
+    width: 83%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    overflow-y:auto;
+  }
+  .filterType{
+    padding-bottom: 85rpx;
+  }
+  .filterType text{
+    color:#8e8e93;
+    font-size:28rpx;
+    padding-left:20rpx;
+  }
+  .selectType{
+    display:flex;
+    padding:10rpx 20rpx
+  }
+  .selectThis{
+    position:relative;
+    margin-right:24rpx;
+    height:80rpx;
+    width:180rpx;
+    border-radius:10rpx;
+    line-height:2.8;
+    text-align:center;
+    background:#dff2ff;
+  }
+  .noSelect{
+    position:relative;
+    margin-right:24rpx;
+    height:80rpx;
+    width:180rpx;
+    border-radius:10rpx;
+    line-height:2.8;
+    text-align:center;
+    background:#f7f7f7;
+  }
+  .textBlue{
+    font-size: 30rpx;
+    color:#358dff;
+  }
+  .textBlack{
+    color:#181818;
+    font-size: 30rpx;
+  }
+  .deletePic{
+    width:30rpx;
+    height:30rpx;
+    position:absolute;
+    bottom:0rpx;
+    right:0rpx;
+  }
+  .bottomCards,.innerCards{
+    display: flex;
+    flex-flow: wrap;
+    flex-pack:justify;
+  }
+  .typeTitle{
+   color:#8e8e93;
+   font-size:28rpx;
+   margin-bottom:32rpx;
+  }
+  .topCardsWrap{
+    margin-bottom:20rpx;
+  }
+  .childCards{
+    width: 33%;
+    margin-bottom: 20rpx;
+  }
+  .cardsWrap{
+    padding-top: 40rpx;
+    padding-left: 20rpx;
+  }
+  .listTitle{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    height: 100rpx;
+    background: rgb(247,247,247);
+    margin-top: 40rpx;
+  }
+  .listTitleChild{
+    font-size: 28rpx;
+    color:rgb(87,87,89);
+  }
+  .btomView{
+    display:flex;
+    justify-content:space-around;
+    z-index:888;
+    background:rgb(52,140,255);
+    height:100rpx;
+    align-items:center;
+    position:fixed;
+    width: 100%;
+    bottom:0rpx;
+    font-size: 28rpx;
+    color: rgb(255,255,255);
+  }
+  .pztitle{
+    margin-bottom:20rpx;
+  }
+  .botmButton{
+    display: flex;
+    justify-content: space-around;
+    height: 80rpx;
+    position: fixed;
+    bottom: 0;
+    width:83%;
+  }
+  .botmButton view{
+    width:50%;
+    height:100%;
+    text-align:center;
+    line-height:3;
+    font-size: 30rpx;
+    color: rgb(255,255,255);
+  }
+  .cancel{
+    background:rgb(208,208,212);
+  }
+  .sure{
+    background:rgb(52,140,255);
+  }
+  .schoolName{
+    color: rgb(89,120,190);
+    font-size: 28rpx;
+    text-align: left;
+    margin-bottom:30rpx;
+  }
+  .detileNum{
+    display: flex;
+    font-size: 28rpx;
+    color:rgb(142,142,147);
+    justify-content: space-around;
+    align-items: center;
+    padding-right:80rpx;
+  }
+  .leftIcon{
+    width: 20rpx;
+    height: 20rpx;
+    border:2rpx solid rgb(208,208,212);
+    border-right: transparent;
+    border-top:transparent;
+  }
+  .stuList{
+    height: calc(100% - 180rpx);
+    top:calc(100% - 1080rpx);
+  }
+  .scroll-viewWrap{
+    position: relative;
+    top:calc(100% - 880rpx);
+    margin-bottom:80rpx;
+  }
+  .dataSelect{
+    background: white;
+  }
+  .noData{
+    font-size: 28rpx;
+    margin-top:250rpx;
+    margin-right:107rpx;
+  }
+</style>

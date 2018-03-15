@@ -1,0 +1,21 @@
+<template name="main">
+	<!-- header bar -->
+	<view class="header-bar flex">
+		<view class="flex-item">
+			<text>公司所有学校统计</text>
+		</view>
+		<view class="filter">
+			<button class="btn-filter" size="mini" bindtap="handleOpenFilter" >筛选</button>
+		</view>
+	</view>
+	<!-- Tabs -->
+	<view class="tabs flex">
+		<view class="flex-item" wx:for="{{tabs}}"  wx:key="{{item.id}}">
+			<text bindtap="handleSwitchTabs" data-id="{{item.id}}" >{{item.name}}</text>
+		</view> 
+	</view>
+	<!-- main -->
+	<scroll-view scroll-y>
+		{{pageActive}}
+	</scroll-view>
+</template>

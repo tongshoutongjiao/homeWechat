@@ -1,0 +1,4 @@
+<view class="filter-slider-bg" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}" wx:if="{{boolViewFilter}}" ></view>
+<view class="filter-slider {{boolViewFilter ? 'no-translate' : ''}}" >
+  <text>filter-slider</text>
+</view>

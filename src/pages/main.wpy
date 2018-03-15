@@ -1,0 +1,113 @@
+<template>
+  <view class="icon-box">
+    <view class="icon-list" bindtap="toPage" data-page="businessOpen">
+      <image src="../images/business_open.png" class="main-icon"></image>
+      <view class="icon-title">业务开通</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="schoolList">
+      <image src="../images/school_list.png" class="main-icon"></image>
+      <view class="icon-title">学校列表</view>
+    </view>
+  </view>
+  <view class="log-out" catchtap="logOut">
+    <image src="../images/quit_icon.png" alt="注销登录"></image>
+  </view>
+  <toast />
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import api from '../api.js'
+  import Toast from 'wepy-com-toast'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '首页'
+    }
+    components = {
+      toast: Toast
+    }
+    async onLoad() {
+      let userId = wepy.getStorageSync('userId')
+      let getTypeInfo = await api.getType({method: 'POST', data: {userId: userId}})
+      wepy.setStorageSync('userType', getTypeInfo.data.userType)
+    }
+    methods = {
+      toPage(e) {
+        let _page = e.currentTarget.dataset.page
+        wepy.navigateTo({url: _page})
+      }
+    }
+    async logOut(e) {
+      var _this = this
+      let res = await wepy.showModal({
+         content: '确定注销登录？'
+      })
+      if (res.confirm) {
+        _this.sureLogOut()
+      }
+    }
+    async sureLogOut() {
+      let result = await api.logout({
+        method: 'POST',
+        data: {
+          userId: wepy.getStorageSync('userId')
+        }
+      })
+      console.log(result)
+      if (result.data.result === 200) {
+        wepy.removeStorageSync('token')
+        wepy.removeStorageSync('userId')
+        wepy.removeStorageSync('noticeTimeStamp')
+        wepy.redirectTo({url: 'login'})
+      } else {
+        this.$invoke('toast', 'show', {
+          title: result.data.message || result.data.msg
+        })
+      }
+    }
+  }
+</script>
+
+<style>
+  .icon-box {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: wrap;
+  }
+  .icon-list {
+    width: 33.3%;
+    text-align: center;
+    color: #181818;
+    font-size: 15px;
+  }
+  .main-icon {
+    width: 84rpx;
+    height: 72rpx;
+    display: block;
+    margin: 0 auto;
+    margin-top: 60rpx;
+  }
+  .icon-title {
+    line-height: 68rpx;
+    color: #575759;
+    font-size: 14px;
+  }
+  /*--------------------- 注销登录 -----------------------------*/
+  .log-out {
+    display: flex;
+    position: fixed;
+    bottom: 80rpx;
+    right: 30rpx;
+    width: 100rpx;
+    height: 100rpx;
+    background: rgba(52,140,255,.8);
+    border-radius: 100%;
+    align-items: center;
+    box-shadow:0 4px 10px rgba(52,141,255,.81);
+  }
+  .log-out image {
+    width: 60rpx;
+    height: 54rpx;
+    margin-left: 16rpx;
+  }
+</style>
