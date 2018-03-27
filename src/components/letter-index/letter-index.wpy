@@ -1,0 +1,55 @@
+<template>
+  <view class="letter-index-wrap">
+    <view wx:for="{{letters}}" wx:for-index="index" wx:for-item="letter" wx:key="index" class="letter-item" bindtap="handleTapLetter" data-index="{{letter}}" >{{letter}}</view>
+  </view>
+</template>
+
+<style>
+.letter-index-wrap {
+  position: fixed;
+  width: 50rpx;
+  font-size: 24rpx;
+  display: flex;
+  top: 150rpx;
+  right: 20rpx;
+  z-index: 2;
+  flex-direction: column;
+}
+
+.letter-item {
+  flex: 1;
+  height: 3.3vh;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+</style>
+
+<script>
+import wepy from 'wepy';
+
+export default class LetterIndexCom extends wepy.component {
+  $isComponent = true;
+  
+  props = {
+    letters : {
+      defalut: [],
+      type: Array,
+    }
+  }
+
+  methods = {
+    handleTapLetter(e){
+      console.log(e);
+      this.$emit('letter-index', e, e.target.dataset.index);
+    }
+  }
+
+  onLoad() {
+    this.letters = 'abcdefghijklmnopqrstuvwxyz'.split('').map(item => item.toUpperCase()) ;
+    this.$apply();
+  }
+
+}
+
+</script>

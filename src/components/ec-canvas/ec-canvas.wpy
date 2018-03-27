@@ -1,0 +1,90 @@
+<template>
+  <view wx:for="{{charts}}" wx:for-index="index" wx:for-item="item" wx:key="index" class="charts-item">
+    <view class="charts-title">{{item.title}}</view>
+    <canvas canvas-id="{{item.canvasId}}"  id="{{item.canvasId}}"  class="ec-canvas" hidden="{{!boolCanvasShow}}"  />
+    <image style="width: 700rpx;height: 300rpx;" hidden="{{!boolImageShow}}" mode="scaleToFill" src="{{item.src}}"></image>
+  </view>
+</template>
+
+<style>
+.charts-item {
+  height: 
+}
+</style>
+
+<script>
+import wepy from 'wepy';
+import wxCharts from '../../utils/wxcharts'
+
+export default class ECanvas extends wepy.component {
+  $isComponent = true;
+  constructor(...args) {
+    super();
+    console.log('construction :', this.$index, this.hidden)
+  }
+  data = {
+    hidden: false,
+  };
+  props = {
+    charts: Array,
+    index: String,
+    boolCanvasShow: Boolean,
+    boolImageShow: Boolean,
+  }
+  createSimulationData () {
+    let categories = []
+    let data = []
+    for (let i = 0; i < 31; i++) {
+      categories.push('12-' + (i + 1))
+      data.push(Math.random() * 10 + 10)
+    }
+    return {
+      categories: categories,
+      data: data
+    }
+  }
+  onLoad() {
+    console.log('canvas onload.');
+    
+      this.charts.forEach(chart =>{
+      let simulationData = this.createSimulationData();
+      console.log(chart.canvasId, simulationData.data.join('/'))
+      new wxCharts({
+          canvasId: chart.canvasId,
+          type: 'line',
+          categories: simulationData.categories,
+          animation: false,
+          series: [{
+            name: '人数',
+            data: simulationData.data,
+            format: function (val, name) {
+              return val.toFixed(2)
+            }
+          }],
+          xAxis: {
+            disableGrid: true
+          },
+          yAxis: {
+            // title: '成交金额',
+            format: function (val) {
+              return val.toFixed(2)
+            },
+            min: 0
+          },
+          width: 350,
+          height: 150,
+          dataLabel: true,
+          dataPointShape: true,
+          enableScroll: true,
+          extra: {
+            lineStyle: 'curve'
+          }
+        }
+      )
+
+
+      } );
+      
+  }
+}
+</script>

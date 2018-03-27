@@ -13,11 +13,15 @@ export default class extends wepy.app {
      // 'pages/forgetPassword',
      // 'pages/login',
      // 'pages/main',
-     // 'pages/search',
+      'pages/search',
      // 'pages/businessOpen',
      // 'pages/schoolList',
      // 'pages/schoolDetail'
-     'pages/performance'
+     // 'pages/performance',
+     // 'pages/myAchievement',
+     // 'pages/takePhoto',
+        'pages/chooseSchoolAlbum',
+     //   'pages/schoolSearch',
     ],
     window: {
       backgroundTextStyle: 'light',

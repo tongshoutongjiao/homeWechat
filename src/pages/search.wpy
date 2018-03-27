@@ -1,7 +1,7 @@
 <template>
   <view class="search-content">
     <image class="search-icon" src="/images/search_icon.png"></image>
-    <input class="search-title" placeholder="请输入学校名字搜索" value="{{searchValue}}" bindinput="searchValueInput" focus="true"/>
+    <input class="search-title" placeholder="请输入学校名字搜索" value="{{searchValue}}" bindinput="searchValueInput"  focus="true"/>
   </view>
   <view class="empty" hidden="{{!empty}}">暂无学校相关数据</view>
   <view class="school-list" hidden="{{empty}}">
