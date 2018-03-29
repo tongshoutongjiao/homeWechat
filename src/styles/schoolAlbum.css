@@ -1,0 +1,44 @@
+
+.flex {
+  display: flex;
+}
+.flex-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.class-picker {
+  font-size: 34rpx;
+  color: rgb(24,24,24);
+}
+
+.student-item {
+  font-size: 28rpx;
+  margin: 30rpx 30rpx;
+}
+.student-item .name {
+  color: rgb(24,24,24);
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+
+.students {
+  margin-top: 50rpx;
+}
+.student-item .icon-camera {
+  width: 36rpx;
+}
+.student-item .photo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50% 50%;
+}
+.student-item .upload {
+  color: rgb(53,141,255);
+}
+.student-item .uploaded {
+  color: rgb(208,208,212);
+}

@@ -31,23 +31,28 @@ import wepy from 'wepy';
 export default class LetterIndexCom extends wepy.component {
   $isComponent = true;
   
-  props = {
-    letters : {
-      defalut: [],
-      type: Array,
-    }
+  data = {
+    letters :[]
   }
 
+  events = {
+  }
   methods = {
     handleTapLetter(e){
       console.log(e);
       this.$emit('letter-index', e, e.target.dataset.index);
+    },
+    'set-indexs': indexs => {
+      console.log('set indexs :', indexs);
+      this.letters = indexs;
+      this.$apply();
     }
   }
 
   onLoad() {
-    this.letters = 'abcdefghijklmnopqrstuvwxyz'.split('').map(item => item.toUpperCase()) ;
-    this.$apply();
+    console.log('com ', this.constructor.name ,' load..', this)
+    //this.letters = 'abcdefghijklmnopqrstuvwxyz'.split('').map(item => item.toUpperCase()) ;
+    //this.$apply();
   }
 
 }

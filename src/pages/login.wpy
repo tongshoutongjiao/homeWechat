@@ -31,7 +31,7 @@
   <!-- 登录btn -->
   <view class="btn-default {{btnStatus}}" bindtap="login">登录</view>
   <!-- 忘记密码 -->
-  <view class="forget-password" bindtap="forgetPassword">忘记密码？</view>
+  <!--<view class="forget-password" bindtap="forgetPassword">忘记密码？</view>-->
   <!-- 提示信息 -->
   <toast />
 </template>
@@ -92,7 +92,6 @@
     }
     // 输入框输入事件
     async inputInput(e) {
-      console.log(e);
       // 判断是手机号输入框还是密码输入框
       if (e.currentTarget.dataset.type === 'phone') {
         this.phone = e.detail.value // 给手机号赋值
@@ -267,7 +266,7 @@
     font-size: 12px;
   }
   /*清除icon*/
-  .login-close{
+  .login-close {
     position: absolute;
     right: 40rpx;
     top: 26rpx;

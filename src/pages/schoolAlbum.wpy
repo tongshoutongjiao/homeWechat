@@ -1,0 +1,42 @@
+<template>
+  <view class="school-album">
+    <view class="class-picker flex">
+      <view class="flex-item">
+        <picker bindchange="handleGradeChange" range-key="gradeName" value="{{gradeActiveIndex}}" range="{{grades}}">
+          <view class="picker">{{gradeName}}</view>
+        </picker>
+      </view>
+      <view class="flex-item">
+        <picker bindchange="handleClassChange" range-key="className" value="{{classActiveIndex}}" range="{{classes}}">
+          <view class="picker">{{className}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="students" >
+      <!--
+      <view class="school-list" wx:for="{{schoolSets}}" wx:item="item"  wx:key="index" id="letter_{{item.label}}" >
+        <view class="letter-label">{{item.label}}</view>
+        <view class="school-sets">
+          <view class="school-item" wx:for="{{item.list}}" wx:item="item"  wx:key="{{item.id}}">{{item.name}}</view>
+        </view>
+      </view>
+      -->
+      <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
+        <navigator class="student-item flex"  wx:for="{{item.list}}" wx:item="item"  wx:key="{{item.studentId}}" url="/pages/takePhoto?className={{className}}&students={{studentsjson}}&index={{index}}">
+          <view class="flex-item">
+            <image class="photo" src="{{item.studentImg}}"  mode="aspectFill"></image>
+            <view class="name">{{item.studentName}}</view>
+          </view>
+          <view class="flex-item">
+            <image class="icon-camera" src="{{item.studentImg ? '../asset/aupd_icon.png' : '../asset/upd_icon.png'}}"  mode="widthFix"></image>
+          </view>
+          <view class="flex-item {{item.studentImg ? 'uploaded' : 'upload'}}">{{item.studentImg ? "你已上传" : "点击上传"}}</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <letter-index></letter-index>
+</template>
+
+<script src="../scripts/schoolAlbum/index.js"></script>
+<style src="../styles/schoolAlbum.css"></style>

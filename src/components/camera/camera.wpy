@@ -50,6 +50,7 @@ button.btn-takephoto {
 
 <script>
 import wepy from 'wepy';
+import api from '../../api';
 export default class CameraCom extends wepy.component {
   $isComponent = true;
   data = {
@@ -83,7 +84,7 @@ export default class CameraCom extends wepy.component {
     },
     handleTakePhoto(ret) {
       wx.createCameraContext().takePhoto({
-          quality: 'high',
+          quality: 'low',
           success: (res) => {
             this.$emit('take-photo', {
               src: res.tempImagePath

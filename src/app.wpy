@@ -11,17 +11,17 @@ export default class extends wepy.app {
   config = {
     pages: [
      // 'pages/forgetPassword',
-     // 'pages/login',
-     // 'pages/main',
+      'pages/login',
+      'pages/main',
       'pages/search',
      // 'pages/businessOpen',
-     // 'pages/schoolList',
-     // 'pages/schoolDetail'
+        'pages/schoolList',
+        'pages/schoolDetail',
      // 'pages/performance',
      // 'pages/myAchievement',
-     // 'pages/takePhoto',
-        'pages/chooseSchoolAlbum',
-     //   'pages/schoolSearch',
+        'pages/takePhoto',
+        'pages/chooseSchool',
+        'pages/schoolAlbum',
     ],
     window: {
       backgroundTextStyle: 'light',

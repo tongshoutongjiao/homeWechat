@@ -396,14 +396,6 @@
         this.$apply()
       }
     }
-    onUnload() {
-      let pageInstance = getCurrentPages().length
-      if (pageInstance > 1) {
-        wepy.navigateBack({
-          delta: pageInstance - 1
-        })
-      }
-    }
     async onLoad(e) {
       if (e.id) {
         this.schoolId = e.id
@@ -485,6 +477,14 @@
         this.$apply()
       }
     }
+    async onUnload() {
+      let pageInstance = getCurrentPages().length
+      if (pageInstance > 1) {
+        wepy.navigateBack({
+          delta: pageInstance - 1
+        })
+      }
+    }
     async changeGrade(e) {
       this.isClass = false
       this.gradeIndex = e.detail.value
@@ -504,7 +504,7 @@
           className: '全部班级',
           gradeId: data.gradeId
         })
-        if (this.gradeIndex != 0 && this.gradeIndex != '0') {
+        if (this.gradeIndex !== 0 && this.gradeIndex !== '0') {
           for (var i = 0; i < classes.data.classList.length; i++) {
             this.classObj.push(classes.data.classList[i])
           }
@@ -515,7 +515,7 @@
       this.initData(data)
       this.$apply()
     }
-    changeClass(e) {
+    async changeClass(e) {
       this.classIndex = e.detail.value
       var data = {}
       if (this.classIndex === '0' || this.classIndex === 0) {
@@ -610,7 +610,6 @@
           }
         }
       }
-      console.log(phoneNumType, productId, classIds)
       let openResult = await api.openProduct({
         showLoading: true,
         method: 'POST',
@@ -639,7 +638,6 @@
       }
     }
     async selectBusinessType(e) {
-      console.log(this.studentList)
       var productId = this.businessType[e.detail.value].productId
       var ids = ''
       var tels = ''
@@ -674,7 +672,6 @@
           }
         }
       }
-      console.log(ids, tels, codes)
       let openResult = await api.openProduct({
         showLoading: true,
         method: 'POST',
@@ -688,7 +685,6 @@
           phoneTypes: phoneTypes
         }
       })
-      console.log(openResult)
       this.$invoke('toast', 'show', {
         title: openResult.data.message || openResult.data.msg
       })

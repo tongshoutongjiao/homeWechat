@@ -5,6 +5,10 @@
   padding: 40rpx 0;
 }
 
+.school-sets {
+  flex: 1;
+}
+
 .letter-label {
   font-size: 30rpx;
   color: rgb(87,87,89);

@@ -13,14 +13,13 @@
       <view class="borderBtm" wx:if="{{currentTab == 2}}"></view>
     </view>
   </view>
-  <view class="occupied"></view>
   <!-- 基本情况 -->
   <view class="basic-situation" wx:if="{{currentTab == 0}}">
     <view class="empty" hidden="{{!baseEmpty}}">暂无学校基本情况</view>
     <view hidden="{{baseEmpty}}">
       <view class="basic-option">
         <text class="basic-label">集团ID</text>
-        <text class="basic-content" hidden="{{!baseInfo.groupId}}">{{baseInfo.groupId}}</text>
+        <text class="basic-content">{{baseInfo.groupId || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">签约日期</text>
@@ -28,77 +27,79 @@
       </view>
       <view class="basic-option">
         <text class="basic-label">学段</text>
-        <text class="basic-content" hidden="{{!baseInfo.schoolType}}">{{baseInfo.schoolType}}</text>
+        <text class="basic-content">{{baseInfo.schoolType || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">是否纳入卡库管理</text>
-        <text class="basic-content" hidden="{{!baseInfo.isManager}}">{{baseInfo.isManager}}</text>
+        <text class="basic-content">{{baseInfo.isManager || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">白名单标志</text>
-        <text class="basic-content" hidden="{{!baseInfo.isWhite}}">{{baseInfo.isWhite}}</text>
+        <text class="basic-content">{{baseInfo.isWhite || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">学校所在区域</text>
-        <text class="basic-content" hidden="{{!baseInfo.region}}">{{baseInfo.region}}</text>
+        <text class="basic-content">{{baseInfo.region || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">短信端口号</text>
-        <text class="basic-content" hidden="{{!baseInfo.msgPort}}">{{baseInfo.msgPort}}</text>
+        <text class="basic-content">{{baseInfo.msgPort || '暂无'}}</text>
       </view>
       <repeat for="{{baseInfo.customerManager}}" index="index1" item="item">
         <view class="basic-option">
           <text class="basic-label {{index1 != 0 ? 'visibility' : ''}}">移动客户经理</text>
-          <text class="basic-content" hidden="{{!item}}">{{item}}</text>
+          <text class="basic-content">{{item || '暂无'}}</text>
         </view>
       </repeat>
       <view class="basic-option">
         <text class="basic-label">学校主管理员</text>
         <text class="basic-content" hidden="{{!baseInfo.school_manager_name}}">{{baseInfo.school_manager_name}}:{{baseInfo.school_manager_phone}}</text>
+        <text class="basic-content" hidden="{{baseInfo.school_manager_name}}">暂无</text>
       </view>
       <repeat for="{{baseInfo.marketManager}}" index="index" item="item">
         <view class="basic-option">
           <text class="basic-label {{index != 0 ? 'visibility' : ''}}">公司业务经理</text>
           <text class="basic-content" hidden="{{!baseInfo.marketTelnum[index]}}">{{item}}:{{baseInfo.marketTelnum[index]}}</text>
+          <text class="basic-content" hidden="{{baseInfo.marketTelnum[index]}}">暂无</text>
         </view>
       </repeat>
       <repeat for="{{baseInfo.regionManager}}" index="index" item="item">
         <view class="basic-option">
           <text class="basic-label {{index != 0 ? 'visibility' : ''}}">区域经理</text>
-          <text class="basic-content" hidden="{{!item}}">{{item}}</text>
+          <text class="basic-content">{{item || '暂无'}}</text>
         </view>
       </repeat>
       <view class="basic-option">
         <text class="basic-label">可开业务</text>
-        <text class="basic-content" hidden="{{!baseInfo.business}}">{{baseInfo.business}}</text>
+        <text class="basic-content">{{baseInfo.business || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">班主任积分公式</text>
-        <text class="basic-content" hidden="{{!baseInfo.expression1}}">{{baseInfo.expression1}}</text>
+        <text class="basic-content">{{baseInfo.expression1 || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">学校积分公式</text>
-        <text class="basic-content" hidden="{{!baseInfo.expression2}}">{{baseInfo.expression2}}</text>
+        <text class="basic-content">{{baseInfo.expression2 || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">积分余额</text>
-        <text class="basic-content" hidden="{{!baseInfo.accountBalance}}">{{baseInfo.accountBalance}}</text>
+        <text class="basic-content">{{baseInfo.accountBalance || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">业务标识</text>
-        <text class="basic-content" hidden="{{!baseInfo.businesFlag}}">{{baseInfo.businesFlag}}</text>
+        <text class="basic-content">{{baseInfo.businesFlag || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">客户等级</text>
-        <text class="basic-content" hidden="{{!baseInfo.customLevel}}">{{baseInfo.customLevel}}</text>
+        <text class="basic-content">{{baseInfo.customLevel || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">硬件类型</text>
-        <text class="basic-content" hidden="{{!baseInfo.cardHardtype}}">{{baseInfo.cardHardtype}}</text>
+        <text class="basic-content">{{baseInfo.cardHardtype || '暂无'}}</text>
       </view>
       <view class="basic-option">
         <text class="basic-label">无SIM(SIM卡全1数量)</text>
-        <text class="basic-content" hidden="{{!baseInfo.noSimNum}}">{{baseInfo.noSimNum}}</text>
+        <text class="basic-content">{{baseInfo.noSimNum || '暂无'}}</text>
       </view>
       <view class="basic-footer">#含泪播种的人必须能含笑收获#</view>
     </view>
@@ -271,7 +272,7 @@
       <view class="search-wrapper">
         <view class="search-content">
           <image class="search-icon" src="/images/search_icon.png"></image>
-          <input class="search-title" placeholder="请输入老师的姓名或手机号" value="{{searchValue}}" bindblur="searchValue"/>
+          <input class="search-title" placeholder="请输入老师的姓名或手机号" value="{{searchValue}}" bindinput="searchInput"/>
         </view>
         <view class="search-btn" catchtap="searchTeacher">搜索</view>
       </view>
@@ -309,6 +310,9 @@
     components = {
       toast: Toast
     }
+    async searchValue(e) {
+      this.searchValue = e.detail.value
+    }
     data = {
       currentTab: 0,
       modeIndex: 0,
@@ -327,9 +331,11 @@
         phoneNum: 0,
         phoneOnline: 0,
         phoneOnlineRate: '0.00',
+        phoneOnlineRateNum: '0.00%',
         swipeNum: 0,
         swipeOnline: 0,
-        swipeOnlineRate: '0.00'
+        swipeOnlineRate: '0.00',
+        swipeOnlineRateNum: '0.00%'
       },
       integralDetails: [],
       searchValue: '',
@@ -348,29 +354,29 @@
           scrollTop: 0,
           duration: 0
         })
-      },
-      searchValue(e) {
-        this.searchValue = e.detail.value
       }
+    }
+    async searchInput(e) {
+      this.searchValue = e.detail.value
     }
     async initData() {
       // 根据学校ID获取学校业务情况
       var logdate
-      if (this.modeIndex == 0) {
+      if (this.modeIndex === 0 || this.modeIndex === '0') {
         logdate = this.currentDate
-      } else if (this.modeIndex == 1) {
+      } else if (this.modeIndex === 1 || this.modeIndex === '1') {
         logdate = this.pickerWeekArr[this.weekIndex].name.substring(0, 10)
       } else {
-        if (this.currentMonth == this.endMonth) {
+        if (this.currentMonth.toString() === this.endMonth.toString()) {
           logdate = util.getBeforDay()
         } else {
           let splitMonth = this.currentMonth.split('-')
-          if(splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12'){
+          if (splitMonth[1].toString() === '01' || splitMonth[1].toString() === '03' || splitMonth[1].toString() === '05' || splitMonth[1].toString() === '07' || splitMonth[1].toString() === '08' || splitMonth[1].toString() === '10' || splitMonth[1].toString() === '12') {
             logdate = this.currentMonth + '-31'
-          }else if(splitMonth[1] == '04'|| splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11'){
+          } else if (splitMonth[1].toString() === '04' || splitMonth[1].toString() === '06' || splitMonth[1].toString() === '09' || splitMonth[1].toString() === '11') {
             logdate = this.currentMonth + '-30'
-          }else if(splitMonth[1] == '02'){
-            if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+          } else if (splitMonth[1].toString() === '02') {
+            if ((parseInt(splitMonth[0]) % 4 === 0) && (parseInt(splitMonth[0]) % 100 !== 0 || parseInt(splitMonth[0]) % 400 === 0)) {
               logdate = this.currentMonth + '-29'
             } else {
               logdate = this.currentMonth + '-28'
@@ -389,7 +395,7 @@
         }
       })
       if (business.data.result === 200) {
-        if (business.data.businessInfo == null) {
+        if (business.data.businessInfo === null || business.data.businessInfo === 'null') {
           this.businessEmpty = true
           this.business = []
         } else {
@@ -401,15 +407,15 @@
           this.business.flscrdpsnperNum = parseInt(this.business.flscrdpsnper.substring(0, this.business.flscrdpsnper.length - 1)) // 总体刷卡率
           this.business.bussflscrdtalkpsnperNum = parseInt(this.business.bussflscrdtalkpsnper.substring(0, this.business.bussflscrdtalkpsnper.length - 1)) // 开通人使用率
           this.business.flscrdtalkpsnperNum = parseInt(this.business.flscrdtalkpsnper.substring(0, this.business.flscrdtalkpsnper.length - 1)) // 总体使用率
-          if (!this.business.notdormflscrdper) {
+          if (!this.business.notdormflscrdper || this.business.notdormflscrdper === 'null') {
             this.business.notdormflscrdper = '0.00%'
           }
           this.business.notdormflscrdperNum = parseInt(this.business.notdormflscrdper.substring(0, this.business.notdormflscrdper.length - 1)) // 走读生考勤点刷卡率
-          if (!this.business.dormflscrdper) {
+          if (!this.business.dormflscrdper || this.business.notdormflscrdper === 'null') {
             this.business.dormflscrdper = '0.00%'
           }
           this.business.dormflscrdperNum = parseInt(this.business.dormflscrdper.substring(0, this.business.dormflscrdper.length - 1)) // 住宿生考勤点刷卡率
-          if (!this.business.flscrdpsnper1) {
+          if (!this.business.flscrdpsnper1 || this.business.notdormflscrdper === 'null') {
             this.business.flscrdpsnper1 = '0.00%'
           }
           this.business.flscrdpsnper1Num = parseInt(this.business.flscrdpsnper1.substring(0, this.business.flscrdpsnper1.length - 1)) // 总考勤点刷卡率
@@ -424,21 +430,45 @@
       let device = await api.getBusinessDeviceInfo({
         method: 'POST',
         data: {
-          schoolId: this.schoolId
+          schoolId: this.schoolId,
+          sumType: 1,
+          reportType: parseInt(this.modeIndex) + 1,
+          logdate: logdate
         }
       })
-      if (device.data.phoneOnlineRate) {
-        this.device = device.data
-        this.device.swipeOnlineRateNum = parseInt(this.device.swipeOnlineRate)
-        this.device.swipeOnlineRate = this.device.swipeOnlineRate + '%'
-        this.device.phoneOnlineRateNum = parseInt(this.device.phoneOnlineRate)
-        this.device.phoneOnlineRate = this.device.phoneOnlineRate + '%'
+      // 先置空，判断后在赋值
+      this.device.swipeNum = 0
+      this.device.phoneNum = 0
+      this.device.phoneOnline = 0
+      this.device.swipeOnline = 0
+      this.device.swipeOnlineRate = '0.00'
+      this.device.swipeOnlineRateNum = '0.00%'
+      this.device.phoneOnlineRate = '0.00'
+      this.device.phoneOnlineRateNum = '0.00%'
+      if (device.data.swipeOnlineRate && device.data.swipeOnlineRate.toString() !== '' && device.data.swipeOnlineRate.toString() !== 'null') {
+        this.device.swipeOnlineRateNum = parseInt(device.data.swipeOnlineRate)
+        this.device.swipeOnlineRate = device.data.swipeOnlineRate + '%'
+      }
+      if (device.data.phoneOnlineRate && device.data.phoneOnlineRate.toString() !== '' && device.data.phoneOnlineRate.toString() !== 'null') {
+        this.device.phoneOnlineRateNum = parseInt(device.data.phoneOnlineRate)
+        this.device.phoneOnlineRate = device.data.phoneOnlineRate + '%'
+      }
+      if (device.data.phoneNum && device.data.phoneNum.toString() !== '' && device.data.phoneNum.toString() !== 'null') {
+        this.device.phoneNum = device.data.phoneNum
+      }
+      if (device.data.phoneOnline && device.data.phoneOnline.toString() !== '' && device.data.phoneOnline.toString() !== 'null') {
+        this.device.phoneOnline = device.data.phoneOnline
+      }
+      if (device.data.swipeNum && device.data.swipeNum.toString() !== '' && device.data.swipeNum.toString() !== 'null') {
+        this.device.swipeNum = device.data.swipeNum
+      }
+      if (device.data.swipeOnline && device.data.swipeOnline.toString() !== '' && device.data.swipeOnline.toString() !== 'null') {
+        this.device.swipeOnline = device.data.swipeOnline
       }
       this.$apply()
     }
     async onLoad(e) {
       this.schoolId = e.id
-      console.log(e.reportType, e.logdate)
       this.modeIndex = parseInt(e.reportType) - 1
       let today = new Date()
       let myYear = today.getFullYear()
@@ -453,11 +483,11 @@
       // 当前日期
       var currntDate = util.getBeforDay()
       this.currentDate = currntDate
-      this.startDate = myYear-3 + '-' + myMonth + '-' + myDate
+      this.startDate = myYear - 3 + '-' + myMonth + '-' + myDate
       this.endDate = currntDate
       // 当前月
       this.currentMonth = myYear + '-' + myMonth
-      this.startMonth = myYear-3 + '-' + myMonth
+      this.startMonth = myYear - 3 + '-' + myMonth
       this.endMonth = myYear + '-' + myMonth
       // 获取周
       let getWeekItem = await api.getWeekItem()
@@ -540,13 +570,13 @@
       this.initData()
     }
     changeMode(e) {
-      if (this.modeIndex == e.detail.value) {
+      if (this.modeIndex.toString() === e.detail.value) {
         return false
       }
       this.modeIndex = e.detail.value
-      if (this.modeIndex == 0) {
+      if (this.modeIndex === 0 || this.modeIndex === '0') {
         this.currentDate = this.endDate
-      } else if (this.modeIndex == 1) {
+      } else if (this.modeIndex === 1 || this.modeIndex === '1') {
         this.weekIndex = 0
       } else {
         this.currentMonth = this.endMonth
@@ -599,6 +629,7 @@
     top: 0;
     z-index: 100;
     width: 100%;
+    height: 96rpx;
     background: #FFF;
   }
   .tab-list {
@@ -617,22 +648,18 @@
     margin: 0 auto;
     background: #348CFF;
   }
-  .occupied{
-    width: 100%;
-    height: 96rpx;
-  }
   /*--------------------- container -----------------------------*/
   .basic-situation {
-    margin-top: 16rpx;
+    margin-top: 108rpx;
     padding: 0 30rpx;
     line-height: 80rpx;
     font-size: 15px;
   }
   .business-conditions {
-    margin-top: 92rpx;
+    margin-top: 200rpx;
   }
   .integral-content {
-    margin-top: 276rpx;
+    margin-top: 372rpx;
   }
   .basic-option {
     display: flex;
