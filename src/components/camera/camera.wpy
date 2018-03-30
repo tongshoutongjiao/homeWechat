@@ -83,14 +83,29 @@ export default class CameraCom extends wepy.component {
       this.methods.handleSwitch.call(this, e);
     },
     handleTakePhoto(ret) {
-      wx.createCameraContext().takePhoto({
-          quality: 'low',
-          success: (res) => {
-            this.$emit('take-photo', {
-              src: res.tempImagePath
-            });
-          }
-      })
+
+        wx.createCameraContext().takePhoto({
+            quality: 'low',
+            success: (res) => {
+              this.$emit('take-photo', {
+                src: res.tempImagePath
+              });
+            }
+        })
+      if(false){
+              wx.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        sourceType: ['camera'],
+        success: (res) => {
+          console.log(res)
+          this.$emit('take-photo', {
+            src: res.tempFilePaths[0]
+          });
+        }
+      });
+
+      }
     }
   }
   onLoad() {

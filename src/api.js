@@ -35,7 +35,7 @@ const wxRequest = async (params = {}, url) => {
       content: '您的账号已在其他设备登录，请重新登录',
       showCancel: false
     });
-    
+
     if (ret) {
       await wepy.redirectTo({url: 'login'});
     }
@@ -55,8 +55,8 @@ const wxRequest = async (params = {}, url) => {
 }
 //const apiMall = 'http://192.168.5.125:8380' // 开发（晨宇）
 // const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
-const apiMall = 'http://192.168.5.131:8380';
-// const apiMall = 'https://api.967111.com' // 正式
+//const apiMall = 'http://192.168.5.131:8380';
+ const apiMall = 'https://api.967111.com' // 正式
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')

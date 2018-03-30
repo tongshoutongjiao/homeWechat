@@ -3,13 +3,13 @@
   <view class="class-name">{{className}}</view>
   <view class="flex">
     <view class="flex-item" catchtap="handlePrev" data-index="{{prevIndex}}">
-      <image src="../asset/left_icon.png" mode="widthFix" style="width:20rpx" bindtap="handlePrev"></image>
+      <image src="../asset/left_icon.png" mode="widthFix" style="width:20rpx" bindtap="handlePrev" data-index="{{prevIndex}}"></image>
     </view>
     <view class="flex-item photo-view">
       <image src="{{studentPhoto}}"  mode="widthFix"></image>
     </view>
     <view class="flex-item" catchtap="handleNext" data-index="{{nextIndex}}">
-      <image src="../asset/right_icon.png" mode="widthFix" style="width:20rpx" bindtap="handleNext"></image>
+      <image src="../asset/right_icon.png" mode="widthFix" style="width:20rpx" bindtap="handleNext" data-index="{{prevIndex}}"></image>
     </view>
   </view>
   <view>

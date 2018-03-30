@@ -3,6 +3,8 @@ import Toast from 'wepy-com-toast';
 import CameraCom from '../components/camera/camera';
 import api from '../api'
 
+const defaultPhoto = '../asset/pe_icon.png';
+
 export default class TakePhoto extends wepy.page {
   config = {
     navigationBarTitleText: '拍照上传'
@@ -13,7 +15,7 @@ export default class TakePhoto extends wepy.page {
     className: '',
     classId: '',
     boolDemoHidden: true,
-    studentPhoto: '../asset/pe_icon.png',
+    studentPhoto: defaultPhoto,
     students: [],
     activeIndex: 0,
     prevIndex: 0,
@@ -36,6 +38,7 @@ export default class TakePhoto extends wepy.page {
       });
       const photoRes = JSON.parse(uploadRes.data);
       this.studentPhoto = photoRes.data[0].imgUrl;
+      this.students[this.activeIndex].studentImg = this.studentPhoto;
       this.$apply();
     }
   }
@@ -69,7 +72,7 @@ export default class TakePhoto extends wepy.page {
     this.nextIndex = index + 1;
     this.studentId = currStudent.studentId;
     this.studentName = currStudent.studentName;
-    this.studentPhoto = currStudent.studentImg;
+    this.studentPhoto = currStudent.studentImg || defaultPhoto;
     this.$apply();
   }
   onLoad(e) {
@@ -77,9 +80,15 @@ export default class TakePhoto extends wepy.page {
     this.className = e.className;
     this.classId = e.classId;
     this.students = JSON.parse(e.students);
+    let student;
+    while(student = this.students[this.activeIndex]){
+      if(String(student.studentId) === String(e.id)){
+        break;
+      }
+      this.activeIndex ++;
+    }
     console.log(this.students)
-    debugger
-    this.switchStudent(Number(e.index));
+    this.switchStudent(Number(this.activeIndex));
     if(Number(wx.getStorageSync('puppylove_takephoto')) !== 1){
       wx.setStorageSync('puppylove_takephoto', 1);
       this.boolDemoHidden = false;

@@ -3,6 +3,7 @@ import querystring from 'querystring';
 import LetterIndex from '../components/letter-index/letter-index';
 import api from '../api';
 import * as Toolkit from '../utils/toolkit';
+const defaultPhoto = '../asset/hp_icon.png';
 export default class Index extends wepy.page {
   components = {
     'letter-index': LetterIndex
@@ -13,6 +14,7 @@ export default class Index extends wepy.page {
   }
 
   data = {
+    defaultPhoto,
     students: [],
     grades: [],
     gradeName: '',
@@ -104,7 +106,7 @@ export default class Index extends wepy.page {
     console.log('load..', e);
     
     wx.setNavigationBarTitle({
-      title: unescape(e.name)
+      title: decodeURI(e.name)
     });
     this.init(e.id);
   }

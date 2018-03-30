@@ -42,3 +42,7 @@
 .student-item .uploaded {
   color: rgb(208,208,212);
 }
+.student-item .student-info {
+  justify-content: left;
+
+}

@@ -24,7 +24,7 @@
       <image src="../images/student_check.png" class="main-icon"></image>
       <view class="icon-title">学生考勤</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="businessOpen">
+    <view class="icon-list" bindtap="toPage" data-page="/pages/businessOpen">
       <image src="../images/business_open.png" class="main-icon"></image>
       <view class="icon-title">业务开通</view>
     </view>

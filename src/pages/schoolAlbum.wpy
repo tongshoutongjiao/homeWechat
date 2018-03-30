@@ -22,9 +22,9 @@
       </view>
       -->
       <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
-        <navigator class="student-item flex"  wx:for="{{item.list}}" wx:item="item"  wx:key="{{item.studentId}}" url="/pages/takePhoto?className={{className}}&students={{studentsjson}}&index={{index}}">
-          <view class="flex-item">
-            <image class="photo" src="{{item.studentImg}}"  mode="aspectFill"></image>
+        <navigator class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" url="/pages/takePhoto?className={{className}}&students={{studentsjson}}&id={{item.studentId}}">
+          <view class="flex-item student-info">
+            <image class="photo" src="{{item.studentImg || defaultPhoto}}"  mode="aspectFill"></image>
             <view class="name">{{item.studentName}}</view>
           </view>
           <view class="flex-item">
