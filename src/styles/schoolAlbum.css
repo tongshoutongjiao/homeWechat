@@ -46,3 +46,12 @@
   justify-content: left;
 
 }
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 16rpx solid #D0D0D4;
+  margin-left: 10rpx;
+}

@@ -1,6 +1,6 @@
 <template>
   <view class="search-wrapper">
-    <navigator class="search-content" open-type="navigateTo"  url="/pages/search?page=1">
+    <navigator class="search-content" open-type="navigateTo"  url="/pages/search?page=1&page_url=/pages/businessOpen">
       <image class="search-icon" src="/images/search_icon.png"></image>
       <view class="search-title">{{schoolName}}</view>
     </navigator>
@@ -399,7 +399,7 @@
     async onLoad(e) {
       if (e.id) {
         this.schoolId = e.id
-        this.schoolName = e.name
+        this.schoolName = decodeURI(e.name)
       }
       if (this.schoolId !== undefined && this.schoolId !== '') {
         let garde = await api.queryGrade({

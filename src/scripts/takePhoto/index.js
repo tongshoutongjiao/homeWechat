@@ -18,8 +18,8 @@ export default class TakePhoto extends wepy.page {
     studentPhoto: defaultPhoto,
     students: [],
     activeIndex: 0,
-    prevIndex: 0,
-    nextIndex: 0,
+    prevIndex: -1,
+    nextIndex: 1,
   }
   components = {
     "camera-com": CameraCom
@@ -87,12 +87,12 @@ export default class TakePhoto extends wepy.page {
       }
       this.activeIndex ++;
     }
-    console.log(this.students)
-    this.switchStudent(Number(this.activeIndex));
     if(Number(wx.getStorageSync('puppylove_takephoto')) !== 1){
       wx.setStorageSync('puppylove_takephoto', 1);
       this.boolDemoHidden = false;
     }
+    setTimeout(e => this.switchStudent(Number(this.activeIndex)),500);
+    
     this.$apply();
     
   }

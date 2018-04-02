@@ -7,11 +7,11 @@
 <style>
 .letter-index-wrap {
   position: fixed;
-  width: 50rpx;
-  font-size: 24rpx;
+  width: 70rpx;
+  font-size: 28rpx;
   display: flex;
   top: 150rpx;
-  right: 20rpx;
+  right: 10rpx;
   z-index: 2;
   flex-direction: column;
 }

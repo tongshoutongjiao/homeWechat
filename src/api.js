@@ -94,7 +94,8 @@ const getClassByGradeId = params => wxRequest(params, apiMall + '/photoGraphCont
 const getStudentsByClassId = params => wxRequest(params, apiMall + '/photoGraphController/getStudentsByClass.do');
 const uploadStudentPhoto = async (params) => {
   wepy.showLoading({
-    title: '正在上传..'
+    title: '正在上传..',
+    mask: true
   });
   
   const defaultParams = {
@@ -102,7 +103,7 @@ const uploadStudentPhoto = async (params) => {
     version: '1.0.0',
     preHand: 1
   }
-
+  
   const ret = await wepy.uploadFile({
     url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')), 
     ...params,

@@ -10,7 +10,7 @@ export default class Index extends wepy.page {
   }
 
   config = {
-    navigationBarTitleText: '批量上传-选择学校'
+    navigationBarTitleText: '批量拍照-选择学校'
   }
 
   data = {

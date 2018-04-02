@@ -5,11 +5,13 @@
         <picker bindchange="handleGradeChange" range-key="gradeName" value="{{gradeActiveIndex}}" range="{{grades}}">
           <view class="picker">{{gradeName}}</view>
         </picker>
+        <view class="triangle-down"></view>
       </view>
       <view class="flex-item">
         <picker bindchange="handleClassChange" range-key="className" value="{{classActiveIndex}}" range="{{classes}}">
           <view class="picker">{{className}}</view>
         </picker>
+        <view class="triangle-down"></view>
       </view>
     </view>
     <view class="students" >
