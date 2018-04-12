@@ -1,10 +1,10 @@
 <template>
   <view class="icon-box">
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/contribution_rank.png" class="main-icon"></image>
-      <view class="icon-title">贡献排名</view>
+      <image src="../images/contribution_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">贡献排名</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
+    <view class="icon-list" bindtap="toPage" data-page="/pages/performance">
       <image src="../images/my_performance.png" class="main-icon"></image>
       <view class="icon-title">我的业绩</view>
     </view>
@@ -13,44 +13,44 @@
       <view class="icon-title">学校列表</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/school_card.png" class="main-icon"></image>
-      <view class="icon-title">学校发卡</view>
+      <image src="../images/school_card_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学校发卡</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/student_manage.png" class="main-icon"></image>
-      <view class="icon-title">学生管理</view>
+      <image src="../images/student_manage_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学生管理</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/student_check.png" class="main-icon"></image>
-      <view class="icon-title">学生考勤</view>
+      <image src="../images/student_check_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学生考勤</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="/pages/businessOpen">
       <image src="../images/business_open.png" class="main-icon"></image>
       <view class="icon-title">业务开通</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/market_rank.png" class="main-icon"></image>
-      <view class="icon-title">销售排名</view>
+      <image src="../images/market_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">销售排名</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/maintain_rank.png" class="main-icon"></image>
-      <view class="icon-title">运维排名</view>
+      <image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">运维排名</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/equipment_manage.png" class="main-icon"></image>
-      <view class="icon-title">设备管理</view>
+      <image src="../images/equipment_manage_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">设备管理</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="/pages/chooseSchool">
       <image src="../images/batch_photo.png" class="main-icon"></image>
       <view class="icon-title">批量拍照</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/repository.png" class="main-icon"></image>
-      <view class="icon-title">知识库</view>
+      <image src="../images/repository_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">知识库</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/school_implement.png" class="main-icon"></image>
-      <view class="icon-title">新校实施</view>
+      <image src="../images/school_implement_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">新校实施</view>
     </view>
   </view>
   <view class="log-out" catchtap="logOut">
@@ -168,5 +168,8 @@
   /*提示信息标题*/
   .wetoast__bd__title {
     font-size: 14px;
+  }
+  .disabled {
+    color: #8e8e93;
   }
 </style>

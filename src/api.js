@@ -92,6 +92,15 @@ const getSchoolsByUserId = params => wxRequest(params, apiMall + '/photoGraphCon
 const getGradeBySchoolId = params => wxRequest(params, apiMall + '/photoGraphController/getGradeBySchoolId.do');
 const getClassByGradeId = params => wxRequest(params, apiMall + '/photoGraphController/getClassByGradeId.do');
 const getStudentsByClassId = params => wxRequest(params, apiMall + '/photoGraphController/getStudentsByClass.do');
+
+const getPerformanceForEquipment = params => wxRequest(params, apiMall + '/myPerformance/equipmentPerformance.do');
+const getPerformanceForSchool = params => wxRequest(params, apiMall + '/myPerformance/schoolPerformance.do');
+const getPerformanceForCardHoding = params => wxRequest(params, apiMall + '/myPerformance/queryReportDeatail.do');
+const getPerformanceForOrders = params => wxRequest(params, apiMall + '/myPerformance/queryProductCodeSum.do');
+const getPerformanceForOrderPeoples = params => wxRequest(params, apiMall + '/myPerformance/queryProductPersonRunChart.do');
+const getPerformanceForTrend = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChart.do');
+const getPerformanceForApp = params => wxRequest(params, apiMall + '/myPerformance/queryAppUseRunChart.do');
+
 const uploadStudentPhoto = async (params) => {
   wepy.showLoading({
     title: '正在上传..',
@@ -153,5 +162,13 @@ module.exports = {
   getGradeBySchoolId,
   getClassByGradeId,
   uploadStudentPhoto,
-  getStudentsByClassId
+  getStudentsByClassId,
+  getPerformanceForEquipment,
+  getPerformanceForSchool,
+  getPerformanceForCardHoding,
+  getPerformanceForOrders,
+  getPerformanceForOrderPeoples,
+  getPerformanceForTrend,
+  getPerformanceForApp,
+
 }

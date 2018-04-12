@@ -1,24 +1,15 @@
 <view class="filter-slider-bg" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}" wx:if="{{boolViewFilter}}" ></view>
 <view class="filter-slider {{boolViewFilter ? 'no-translate' : ''}} flex">
   <scroll-view scroll-y >
-    <view class="filter-title">筛选方式</view>
-    <view class="filter-category filter-category">
-      <view class="filter-item" wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}"  wx:key="index" wx:for-index="index" >
-        <text>薛道灵</text>
+    <block wx:for="{{filterList}}"  wx:key="index" wx:for-index="index" wx:for-item="item">
+      <view class="filter-title">筛选方式</view>
+      <view class="filter-category filter-category">
+        <view class="filter-item"  wx:for="{{item.children}}"  wx:key="index" wx:for-index="index"  wx:for-item="child" data-id=""  catchtap="handleChooseFilter">
+          <view class="filter-item-name">{{child.name}}</view>
+          <view class="filter-item-sub" wx:if="{{child.sub}}">{{child.sub}}</view>
+        </view>
       </view>
-    </view>
-    <view class="filter-title">按区域经理</view>
-    <view class="filter-category">
-      <view class="filter-item" wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}"  wx:key="index" wx:for-index="index" >
-        <text>薛道灵</text>
-      </view>
-    </view>
-    <view class="filter-title">按业务经理</view>
-    <view class="filter-category">
-      <view class="filter-item" wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}"  wx:key="index" wx:for-index="index" >
-        <text>薛道灵</text>
-      </view>
-    </view>
+    </block>
   </scroll-view>
   <view class="button-group">
     <view class="btn btn-cancel" bindtap="handleFilterCancel" >取消</view>

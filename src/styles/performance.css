@@ -46,7 +46,8 @@
 }
 
 .date-picker {
-  width: 200rpx;
+  width: 220rpx;
+  text-align: right;
 }
 .performance {
   width: 100%;
@@ -86,81 +87,3 @@ canvas {
   width: 200rpx;
   text-align: right;
 }
-
-.filter-slider {
-  position: fixed;
-  width: 620rpx;
-  height: 100%;
-  top: 0px;
-  right: 0px;
-  background-color: #fff;
-  transform: translateX(100%);
-  transition-duration: .3s;
-  transition-property: transform;
-  z-index: 9;
-  font-size: 28rpx;
-}
-
-.filter-slider.no-translate {
-  transform: translateX(0);
-}
-
-.filter-slider-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .3);
-  left: 0;
-  top: 0;
-  z-index: 8;
-}
-
-.filter-category {
-  display: flex;
-  flex-flow: wrap;
-  flex-pack: justify;
-
-}
-
-.filter-title {
-  padding: 20rpx;
-}
-
-.filter-item {
-  width: 180rpx;
-  border-radius: 5px 5px;
-  background-color: rgb(247,247,247);
-  padding: 24rpx 0;
-  text-align: center;
-  margin-left: 20rpx;
-  margin-bottom: 20rpx;
-}
-
-.button-group {
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: 80rpx;
-  bottom: 0px;
-  right: 0px;
-  background-color: #fff;
-}
-
-.button-group .btn {
-  display: flex;
-  flex: 1;
-  height: 80rpx;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: rgb(255,255,255);
-}
-
-.btn-confirm {
-  background-color: rgb(52,140,255);
-}
-
-.btn-cancel {
-  background-color: rgb(215,215,215);
-}
-

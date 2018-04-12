@@ -177,6 +177,7 @@
         if (result.data.result === 200) {
           wepy.setStorageSync('token', result.data.token)
           wepy.setStorageSync('userId', result.data.userId)
+          wepy.setStorageSync('userName', result.data.userName)
           wepy.setStorageSync('noticeTimeStamp', new Date().getTime())
           await wepy.redirectTo({url: 'main'})
         } else {

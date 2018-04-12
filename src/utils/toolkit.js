@@ -1,3 +1,4 @@
+import moment from 'moment';
 export function groupByFirstLetter(list, groupKey){
   const temp = {};
   if(Object.prototype.toString.call(list) !== "[object Array]"){
@@ -25,4 +26,12 @@ export function groupByFirstLetter(list, groupKey){
   }
 
   return indexs.map(key => ({label: key, list: temp[key]}));
+}
+
+export function fillNumber(number, format = 'd.00') {
+  return String(number)
+}
+
+export function dateFormat(date, format = 'YYYY-MM-DD') {
+ return moment(date).format(format)
 }

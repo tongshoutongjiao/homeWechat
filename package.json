@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.22.0",
     "querystring": "^0.2.0",
     "wepy": "^1.7.1",
     "wepy-async-function": "^1.4.4",

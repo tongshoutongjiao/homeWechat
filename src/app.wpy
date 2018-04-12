@@ -17,7 +17,7 @@ export default class extends wepy.app {
       'pages/businessOpen',
         'pages/schoolList',
         'pages/schoolDetail',
-     // 'pages/performance',
+      'pages/performance',
         'pages/takePhoto',
         'pages/chooseSchool',
         'pages/schoolAlbum',
