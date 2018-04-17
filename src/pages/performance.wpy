@@ -6,7 +6,7 @@
         <text class="username">{{operaname || username}}</text><text>名下所有学校统计</text>
       </view>
       <view class="filter">
-        <button class="btn-filter" size="mini" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}" >筛选</button>
+        <button class="btn-filter" size="mini" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}"   wx:if="{{userType !== '4'}}">筛选</button>
       </view>
     </view>
     <!-- Tabs date-picker -->
@@ -35,11 +35,12 @@
       </view> 
     </view>
     <!-- main -->
+    <view class="no-data" wx:if="{{userType === '5'}}">暂无权限</view>
     <view class="container-charts">
       <echarts :charts.sync="charts" :boolCanvasShow.sync="boolCanvasShow" :boolImageShow.sync="boolImageShow" ></echarts>
     </view>
     <!-- filter slider -->
-    <filter-slider></filter-slider>
+    <filter-slider ></filter-slider>
   </view>
 </template>
 <script src="../scripts/performance/index.js" ></script>

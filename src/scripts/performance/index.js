@@ -24,8 +24,8 @@ export default class Index extends wepy.page {
     charts: [],
     boolCanvasShow: true,
     boolImageShow: false,
-    userId: wepy.getStorageSync('userId'),
-    userType: wepy.getStorageSync('userType'),
+    userId: '',
+    userType: '',
     reportType: 1,
     operaType: 6,
     logdate: '',
@@ -44,6 +44,7 @@ export default class Index extends wepy.page {
       this.operaType = ret.selectedItems.length ? ret.type : 6;
       this.userId = ret.userId || wepy.getStorageSync('userId'); 
       this.username = ret.userName ||  wepy.getStorageSync('userName'); 
+      this.$apply();
       this.getPageData();
       
     },
@@ -55,12 +56,18 @@ export default class Index extends wepy.page {
   methods = {
     handleSwitchTabs(e) {
       console.log('switch tabs ..', e);
+      if(this.userType === '5'){
+        return;
+      }
       this.pageActive = e.currentTarget.dataset.id;
-      this.getPageData();
       this.$apply();
+      this.getPageData();
     },
     async handleOpenFilter(e) {
       console.log('filter ..', e);
+      if(this.userType === '5' || this.userType === '4'){
+        return;
+      }
       if(e.currentTarget.dataset.boolViewFilter){
         return this.toggleFilterShow(e);
       }
@@ -75,7 +82,11 @@ export default class Index extends wepy.page {
     },
     handleSwitchTimeout(e) {
       console.log('switch time ..', e);
+      if(this.userType === '5'){
+        return;
+      }
       this.switchTimeout(e.currentTarget.dataset.id);
+      this.$apply();
       this.getPageData();
     }, 
     handleDateChange(e) {
@@ -85,6 +96,7 @@ export default class Index extends wepy.page {
       } else {
         this.logdate = e.detail.value;
       }
+      this.$apply();
       this.getPageData();
     }
   }
@@ -114,7 +126,7 @@ export default class Index extends wepy.page {
       index ++;
     }
   }
-  chartsFactory(id = '', title = '', type = 'line', series = [], categories = []) {
+  chartsFactory(id = '', title = '', type = 'line', series = [], categories = [], legend = false) {
     let ret = {
       title,
       type,
@@ -123,9 +135,7 @@ export default class Index extends wepy.page {
       canvasId: `canvas_${id}`, 
       yAxis: {
         title: '个',
-        format: function (val) {
-          return ''
-        },
+        format: e => '',
         min: 0
       },
       width: 350,
@@ -134,6 +144,9 @@ export default class Index extends wepy.page {
       dataLabel: true,
       dataPointShape: true,
       enableScroll: true,
+      legend: legend || type === 'pie',
+      dataLabe: true,
+      disablePieStroke: true,
       extra: {
         // lineStyle: 'curve'
       }
@@ -182,8 +195,11 @@ export default class Index extends wepy.page {
     this.$apply();
   }
   async getPageData() {
-    let {userId, userType, reportType, operaType, logdate, regionId, regionLevel} = this;
+    let {userId = we, userType, reportType, operaType, logdate, regionId, regionLevel} = this;
     let params = {userId, userType, reportType, operaType, logdate, regionId, regionLevel};
+    if(userType === '5'){
+      return;
+    }
     if(reportType === 3){
       logdate = logdate.split('-').map(d => Number(d));
       params.logdate = toolkit.dateFormat(new Date(logdate[0], logdate[1], 0), 'YYYY-MM-DD');
@@ -235,7 +251,7 @@ export default class Index extends wepy.page {
     this.$invoke('echarts', 'redraw', this.charts);
   }
   async getPerformanceForEquipment(params) {
-    const ret = await api.getPerformanceForEquipment({data: params});
+    const ret = await api.getPerformanceForEquipment({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
       return;
@@ -247,31 +263,37 @@ export default class Index extends wepy.page {
     const swiperAndTelNumberSeries = [
       {
         name: '在线数量',
-        data: retData.useOnline || 0
+        data: retData.useOnline || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.useOnline}`
       },
       {
         name: '掉线数量',
-        data: retData.useDropped || 0
+        data: retData.useDropped || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.useDropped}`
       }
     ];
     const swiperNumberSeries = [
       {
         name: '在线数量',
-        data: retData.swipeOnline || 0
+        data: retData.swipeOnline || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.swipeOnline}`
       },
       {
         name: '掉线数量',
-        data: retData.swipeDropped || 0
+        data: retData.swipeDropped || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.swipeDropped}`
       }
     ];
     const telNumberSeries = [
       {
         name: '在线数量',
-        data: retData.phoneOnline || 0
+        data: retData.phoneOnline || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.phoneOnline}`
       },
       {
         name: '掉线数量',
-        data: retData.phoneDropped || 0
+        data: retData.phoneDropped || 0,
+        format: num => `${(num * 100).toFixed(0)}% ${retData.phoneDropped}`
       }
     ];
     console.log(swiperAndTelNumberSeries,swiperNumberSeries,telNumberSeries )
@@ -282,37 +304,44 @@ export default class Index extends wepy.page {
     
   }
   async getPerformanceForSchool(params) {
-    const ret = await api.getPerformanceForSchool({data: params});
+    const ret = await api.getPerformanceForSchool({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
       return;``
     }
     const schools = ret.data.data[0];
     const categories = ['幼儿园', '小学', '初中', '高中', '复合', '其他'];
+    const total = Object.keys(schools).reduce((a, b) => a + Number(schools[b]), 0);
     const series = [
       {
         name: '幼儿园',
-        data: schools.kindergartenSchool
+        data: schools.kindergartenSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.kindergartenSchool}`
       },
       {
         name: '小学',
-        data: schools.primarySchool
+        data: schools.primarySchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.primarySchool}`
       },
       {
         name: '初中',
-        data: schools.middleSchool
+        data: schools.middleSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.middleSchool}`
       },
       {
         name: '高中',
-        data: schools.highSchool
+        data: schools.highSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.highSchool}`
       },
       {
         name: '复合',
-        data: schools.mixtureSchool
+        data: schools.mixtureSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.mixtureSchool}`
       },
       {
         name: '其他',
-        data: schools.ortherSchool
+        data: schools.ortherSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${schools.ortherSchool}`
       }
     ];
     let currIndex = this.charts.length;
@@ -321,21 +350,36 @@ export default class Index extends wepy.page {
   }
   // 持卡
   async getPerformanceForCardHoding(params) {
-    const ret = await api.getPerformanceForCardHoding({data: params});
+    const ret = await api.getPerformanceForCardHoding({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
       return;
     }
     const {bussnesCount, bussnesCountPercent, bussnessSum, bussnessSumPercent, handleCardNum, handleCardNumPercent, studentSum} = ret.data.data[0];
     const categories = ['学生总数', '持卡总数', '订购人数', '订购数量'];
+    const dataList = [studentSum, handleCardNum, bussnesCount, bussnessSum];
     const series = [{
-      data: [studentSum, handleCardNum, bussnesCount, bussnessSum]
+      data: dataList,
+      format: ((list) => {
+        let index = 0;
+        return num => {
+          let ret = String(num);
+          if(index){
+            ret = `${list[index]} ${num}`
+          }
+          index ++;
+          if(index === 4){
+            index = 0;
+          }
+          return ret;
+        };
+      })(['', handleCardNumPercent, bussnessSumPercent, bussnesCountPercent])
     }];
     let currIndex = this.charts.length;
     currIndex = this.charts.push(this.chartsFactory(currIndex, '持卡情况', 'column', series, categories));
   }
   async getPerformanceForOrders(params) {
-    const ret = await api.getPerformanceForOrders({data: params});
+    const ret = await api.getPerformanceForOrders({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
       return;
@@ -343,17 +387,30 @@ export default class Index extends wepy.page {
     const {resNumber, resPerson} = ret.data;
     let currIndex = this.charts.length;
     const categories = ['三元套餐', '五元套餐', '七元套餐', '十元套餐'];
+    const dataList = [resPerson[0].sanSum, resPerson[0].wuSum, resPerson[0].qiSum, resPerson[0].shiSum ];
+    const total = dataList.reduce((a, b) => a + Number(b), 0);
     const peopleSeries = [{
-      data: [resPerson[0].sanSum, resPerson[0].wuSum, resPerson[0].qiSum, resPerson[0].shiSum ]
+      data: dataList,
+      // format: ((list) => {
+      //   let index = 0;
+      //   return num => `${((num / total * 100) || 0).toFixed(0)}% ${list[index ++]}`;
+      // })(dataList)
     }];
+    
+    const peopleDataList = [resNumber[0].sanSum, resNumber[0].wuSum, resNumber[0].qiSum, resNumber[0].shiSum ];
+    const peopelTotal = peopleDataList.reduce((a, b) => a + b, 0);
     const countSeries = [{
-      data: [resNumber[0].sanSum, resNumber[0].wuSum, resNumber[0].qiSum, resNumber[0].shiSum ]
+      data: peopleDataList,
+      // format: ((list) => {
+      //   let index = 0;
+      //   return num => `${((num / peopelTotal * 100) || 0).toFixed(0)}% ${list[index ++]}`;
+      // })(dataList)
     }];
     currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购人数', 'column', peopleSeries, categories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购数量', 'column', countSeries, categories));
   }
   async getPerformanceForOrderPeoples(params) {
-    const ret = await api.getPerformanceForOrderPeoples({data: params});
+    const ret = await api.getPerformanceForOrderPeoples({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
     }
@@ -361,7 +418,7 @@ export default class Index extends wepy.page {
     const { resPerson } = ret.data;
     const categories = resPerson.map(item => item.statusTime);
     const series = [{
-      data: resPerson.map(item => item.managerSum)
+      data: resPerson.map(item => item.managerSum),
     }];
     let currIndex = this.charts.length;
     currIndex = this.charts.push(this.chartsFactory(currIndex, '订购人数走势图', 'line', series, categories));
@@ -369,7 +426,7 @@ export default class Index extends wepy.page {
 
   }
   async getPerformanceForTrend(params) {
-    const ret = await api.getPerformanceForTrend({data: params});
+    const ret = await api.getPerformanceForTrend({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
     }
@@ -378,15 +435,15 @@ export default class Index extends wepy.page {
     const { resAdd, resCut, resUp } = ret.data;
     const addCategories = resAdd.map(item => item.statusTime);
     const addSeries = [{
-      data: resAdd.map(item => item.managerSum)
+      data: resAdd.map(item => item.managerSum),
     }];
     const cutCategories = resCut.map(item => item.statusTime);
     const cutSeries = [{
-      data: resCut.map(item => item.managerSum)
+      data: resCut.map(item => item.managerSum),
     }];
     const upCategories = resUp.map(item => item.statusTime);
     const upSeries = [{
-      data: resUp.map(item => item.managerSum)
+      data: resUp.map(item => item.managerSum),
     }];
     currIndex = this.charts.push(this.chartsFactory(currIndex, '净增数量走势图', 'line', upSeries, upCategories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '新增数量走势图', 'line', addSeries, addCategories));
@@ -394,7 +451,7 @@ export default class Index extends wepy.page {
 
   }
   async getPerformanceForApp(params) {
-    const ret = await api.getPerformanceForApp({data: params});
+    const ret = await api.getPerformanceForApp({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
     } 
@@ -402,30 +459,52 @@ export default class Index extends wepy.page {
     const data = ret.data.resApp;
     const categories = data.map(item => item.statusTime);
     const teacherAppSeries = [{
-      data: data.map(item => item.activedtnum)
+      data: data.map(item => item.activedtnum),
     }];
+
+    const teacherActiveCount = data[data.length - 1].activedtnum;
+    const teacherNonActiveCount = data[data.length - 1].nonActivedtnum;
     const teacherAppPieSeries = [
       {
         name: '激活用户数',
-        data: data.reduce((a, b) => a + Number(b.activedtnum), 0)
+        data: teacherActiveCount,
+        format: num => `${(num * 100).toFixed(0)}% ${teacherActiveCount}`
       },
       {
         name: '未激活用户数',
-        data: data.reduce((a, b) => a + Number(b.nonActivedtnum), 0)
+        data: teacherNonActiveCount,
+        format: num => `${(num * 100).toFixed(0)}% ${teacherNonActiveCount}`
       }
     ];
     const parentAppSeries = [{
-      data: data.map(item => item.activedpnum)
+      data: data.map(item => item.activedpnum),
     }];
+
+    
+    const parentActiveCount = data[data.length - 1].activedpnum;
+    const parentNonActiveCount = data[data.length - 1].nonActivedpnum;
     const parentAppPieSeries = [
       {
         name: '激活用户数',
-        data: data.reduce((a, b) => a + Number(b.activedpnum), 0)
+        data: parentActiveCount,
+        format: num => `${(num * 100).toFixed(0)}% ${parentActiveCount}`
       },
       {
         name: '未激活用户数',
-        data: data.reduce((a, b) => a + Number(b.nonActivedpnum), 0)
+        data: parentNonActiveCount,
+        format: num => `${(num * 100).toFixed(0)}% ${parentNonActiveCount}`
       }
+    ];
+
+    const tendencySeries = [
+      {
+        name: '家长',
+        data: data.map(item => item.acttnum),
+      },
+      {
+        name: '教师',
+        data: data.map(item => item.actpnum),
+      },
     ];
     
     let currIndex = this.charts.length;
@@ -433,6 +512,7 @@ export default class Index extends wepy.page {
     currIndex = this.charts.push(this.chartsFactory(currIndex, '教师端激活用户走势图', 'line', teacherAppSeries, categories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, 'APP家长端', 'pie', parentAppPieSeries));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '家长端激活用户走势图', 'line', parentAppSeries, categories));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '活跃用户走势图', 'line', tendencySeries, categories, true));
 
   }
   canvasToTempFile(index) {
@@ -456,26 +536,29 @@ export default class Index extends wepy.page {
     });
     
   }
-  onLoad() {
-    console.log(this);
-    this.setData('username', wepy.getStorageSync('userName')  || '');
-    this.setData('tabs', [
+  initData() {
+    this.tabs = [
       {id: 1, name: '人员业绩'},
       {id: 2, name: '学校业绩'},
       {id: 3, name: 'APP业绩'},
-      {id: 4, name: '设备业绩'}]);
-    this.setData('timeouts', [
+      {id: 4, name: '设备业绩'}];
+    this.timeouts = [
       {id: 1, name: '按日'},
       {id: 3, name: '按月'},
-      {id: 4, name: '按季'}]);
+      {id: 4, name: '按季'}];
+    this.username = wepy.getStorageSync('userName')  || '';
+    this.userId = wepy.getStorageSync('userId')  || '';
+    this.userType = String(wepy.getStorageSync('userType'))  || '';
     this.quarters = this.getQuarters(4);
     this.switchTimeout(1);
     this.getPageData();
-      
+  }
+  onLoad() {
+    console.log('load..');
+    setTimeout(e => this.initData());
   }
   onReady() {
     console.log('ready..');
-
   }
   onShow() {
     console.log('show !');

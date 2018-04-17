@@ -16,6 +16,12 @@
   justify-content: left;
 }
 
+.no-data {
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 250rpx;
+  color: rgb(24,24,24);
+}
 .username {
   color: rgb(53,141,255);
   padding-right: 10rpx;

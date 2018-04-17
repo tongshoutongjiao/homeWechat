@@ -3,8 +3,9 @@ import querystring from 'querystring'
 
 const wxRequest = async (params = {}, url) => {
   if (true) {
-    wepy.showLoading({
-      title: '加载中'
+    wx.showLoading({
+      title: '加载中',
+      mask: params.mask || false,
     })
   }
   if (!params.data) {
@@ -23,7 +24,7 @@ const wxRequest = async (params = {}, url) => {
     }
   })
   if (true) {
-    wepy.hideLoading()
+    wx.hideLoading()
   }
   if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
     wepy.removeStorageSync('token')

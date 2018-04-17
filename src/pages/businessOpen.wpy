@@ -1,9 +1,9 @@
 <template>
   <view class="search-wrapper">
-    <navigator class="search-content" open-type="navigateTo"  url="/pages/search?page=1&page_url=/pages/businessOpen">
+    <view class="search-content" bindtap="handleSearch">
       <image class="search-icon" src="/images/search_icon.png"></image>
       <view class="search-title">{{schoolName}}</view>
-    </navigator>
+    </view>
   </view>
   <view class="nav-wrapper" hidden="{{empty}}">
     <view class="nav">
@@ -164,6 +164,11 @@
       businessAble: true
     }
     methods = {
+      handleSearch() {
+        wx[this.schoolId ? 'redirectTo' : 'navigateTo']({
+          url: "/pages/search?page=1&page_url=/pages/businessOpen"
+        })
+      },
       openBusiness() {
         if (this.modeAble === true) {
           this.$invoke('toast', 'show', {
@@ -478,12 +483,12 @@
       }
     }
     async onUnload() {
-      let pageInstance = getCurrentPages().length
-      if (pageInstance > 1) {
-        wepy.navigateBack({
-          delta: pageInstance - 1
-        })
-      }
+      //let pageInstance = getCurrentPages().length
+      //if (pageInstance > 1) {
+      //  wepy.navigateBack({
+      //    delta: pageInstance - 1
+      //  })
+      //}
     }
     async changeGrade(e) {
       this.isClass = false

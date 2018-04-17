@@ -17,7 +17,7 @@
         <block wx:for="{{filterList}}"  wx:key="index" wx:for-index="index" wx:for-item="item" wx:if="{{filterList.length > 0}}">
           <view class="filter-title">{{item.label}}</view>
           <view class="filter-category filter-category">
-            <view wx:for="{{item.list}}" wx:for-index="order" wx:for-item="child" class="filter-item {{child.selected ? 'active' : ''}} bb"  wx:key="order" data-opera-type="{{child.operaType}}" data-selected="{{child.selected}}" data-order="{{index}}" data-user-id="{{child.userId}}" data-action="{{item.action}}" data-user-level="{{child.userLevel}}" data-region-id="{{child.regionId}}" data-region-level="{{child.regionLevel}}"  catchtap="handleChooseFilter">
+            <view wx:for="{{item.list}}" wx:for-index="order" wx:for-item="child" class="filter-item {{child.selected ? 'active' : ''}} bb"  wx:key="order" data-opera-type="{{child.operaType}}" data-selected="{{child.selected}}" data-order="{{index}}" data-user-id="{{child.userId}}" data-action="{{item.action}}" data-user-level="{{child.userLevel}}" data-region-id="{{child.regionId}}" data-id="{{child.id}}" data-region-level="{{child.regionLevel}}"  catchtap="handleChooseFilter">
               <view class="filter-item-name">{{child.name}}</view>
               <view class="filter-item-sub" wx:if="{{child.sub}}">{{child.sub}}</view>
               <image class="active-icon" wx:if="{{child.selected}}" src="/images/delete_icon.png"></image>
@@ -112,6 +112,7 @@ export default class LetterIndexCom extends wepy.component {
       data: {
         userId : wepy.getStorageSync('userId'),
         userType : wepy.getStorageSync('userType'),
+        
       }
     };
     if(this.activeType === 'manager'){
@@ -122,15 +123,15 @@ export default class LetterIndexCom extends wepy.component {
     this.$apply();
   }
   selectedItem(e){
-    const {regionId, order} = e.currentTarget.dataset;
+    const {id, order} = e.currentTarget.dataset;
     const currentList = this.filterList[Number(order)];
     if(currentList){
       const isCheckbox = currentList.type === 'checkbox';
       currentList.list = currentList.list.map(item => {
         if(isCheckbox){
-          item.selected = item.regionId === regionId ? !item.selected : item.selected;
+          item.selected = item.id === id ? !item.selected : item.selected;
         }else{
-          item.selected = item.regionId === regionId ? !item.selected : false;
+          item.selected = item.id === id ? !item.selected : false;
         }
         return item;
       });
@@ -148,6 +149,7 @@ export default class LetterIndexCom extends wepy.component {
           userName: item.userName,
           userId: item.userId,
           name: item.userName,
+          id: item.userId + item.regionId,
           sub: item.regionName,
           regionId: item.regionId,
           regionLevel: item.regionLevel,
@@ -173,6 +175,7 @@ export default class LetterIndexCom extends wepy.component {
         return {
           userName: item.userName,
           name: item.userName,
+          id: item.userId + item.regionId,
           userId: item.userId,
           regionId: item.regionId,
           regionLevel: item.regionLevel,
@@ -194,6 +197,7 @@ export default class LetterIndexCom extends wepy.component {
       list: ret.data.data.map(item => {
         return {
           name: item.regionName,
+          id: item.userId + item.regionId,
           regionId: item.regionId,
           regionLevel: item.regionLevel,
           operaType: 3,
@@ -219,6 +223,7 @@ export default class LetterIndexCom extends wepy.component {
     const addList = ret.data.data.map(item => {
       return {
         name: item.regionName,
+        id: item.userId + item.regionId,
         regionId: item.regionId,
         regionLevel: item.regionLevel,
         operaType: 4,
