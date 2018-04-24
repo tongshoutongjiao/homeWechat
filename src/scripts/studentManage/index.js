@@ -120,8 +120,8 @@ export default class Index extends wepy.page {
         })
     }
 
-    onLoad() {
-        console.log('学生管理页面')
+    onLoad(e) {
+        console.log(e)
 
         // 初始化页面数据
         setTimeout(e => this.initData());
