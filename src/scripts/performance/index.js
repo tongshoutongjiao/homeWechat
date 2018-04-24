@@ -34,6 +34,7 @@ export default class Index extends wepy.page {
     startdate: null,
     enddate: null,
     quarters: [],
+    viewportRect: {}
   }
   events = {
     'filter-confirm': (e, ret) => {
@@ -51,6 +52,16 @@ export default class Index extends wepy.page {
     'filter-cancel': e => {
       console.log(e);
       this.toggleFilterShow(e);
+    },
+    'chart-complete': charts => {
+      charts.forEach(chart => {
+        console.log(chart.opts.type)
+        if(chart.opts.type === 'line'){
+          setTimeout(e => chart.scrollStart({touches: [{x: 9999}]}));
+          setTimeout(e => chart.scroll({touches: [{x: 0}]}));
+          setTimeout(e => chart.scrollEnd());
+        }
+      });
     }
   }
   methods = {
@@ -127,6 +138,9 @@ export default class Index extends wepy.page {
     }
   }
   chartsFactory(id = '', title = '', type = 'line', series = [], categories = [], legend = false) {
+    const viewportRect = this.viewportRect;
+    const width = this.viewportRect.width / 750 * 700;
+    const height = width / 700 * (type === "pie" ? 400 : 300);
     let ret = {
       title,
       type,
@@ -138,8 +152,8 @@ export default class Index extends wepy.page {
         format: e => '',
         min: 0
       },
-      width: 350,
-      height: 150,
+      width,
+      height,
       animation: false,
       dataLabel: true,
       dataPointShape: true,
@@ -151,6 +165,9 @@ export default class Index extends wepy.page {
         // lineStyle: 'curve'
       }
     };
+    if(type === 'line'){
+      ret.yAxis.min = series[0].data.slice(0).sort((a, b) => a - b)[0];
+    }
     return ret;
   }
   getQuarters(len) {
@@ -298,9 +315,9 @@ export default class Index extends wepy.page {
     ];
     console.log(swiperAndTelNumberSeries,swiperNumberSeries,telNumberSeries )
     let currIndex = this.charts.length;
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器+电话机数量/个', 'pie', swiperAndTelNumberSeries ));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器数量/个', 'pie', swiperNumberSeries));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '电话机数量/个', 'pie', telNumberSeries ));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器+电话机数量/部', 'pie', swiperAndTelNumberSeries ));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器数量/部', 'pie', swiperNumberSeries));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '电话机数量/部', 'pie', telNumberSeries ));
     
   }
   async getPerformanceForSchool(params) {
@@ -363,6 +380,10 @@ export default class Index extends wepy.page {
       format: ((list) => {
         let index = 0;
         return num => {
+          num = Number(num);
+          if(num > 10000) {
+            num = Number(num / 10000).toFixed(1) + '万';
+          }
           let ret = String(num);
           if(index){
             ret = `${list[index]} ${num}`
@@ -373,7 +394,7 @@ export default class Index extends wepy.page {
           }
           return ret;
         };
-      })(['', handleCardNumPercent, bussnessSumPercent, bussnesCountPercent])
+      })(['', handleCardNumPercent, bussnesCountPercent, bussnessSumPercent])
     }];
     let currIndex = this.charts.length;
     currIndex = this.charts.push(this.chartsFactory(currIndex, '持卡情况', 'column', series, categories));
@@ -388,26 +409,32 @@ export default class Index extends wepy.page {
     let currIndex = this.charts.length;
     const categories = ['三元套餐', '五元套餐', '七元套餐', '十元套餐'];
     const dataList = [resPerson[0].sanSum, resPerson[0].wuSum, resPerson[0].qiSum, resPerson[0].shiSum ];
-    const total = dataList.reduce((a, b) => a + Number(b), 0);
-    const peopleSeries = [{
-      data: dataList,
-      // format: ((list) => {
-      //   let index = 0;
-      //   return num => `${((num / total * 100) || 0).toFixed(0)}% ${list[index ++]}`;
-      // })(dataList)
-    }];
-    
     const peopleDataList = [resNumber[0].sanSum, resNumber[0].wuSum, resNumber[0].qiSum, resNumber[0].shiSum ];
-    const peopelTotal = peopleDataList.reduce((a, b) => a + b, 0);
-    const countSeries = [{
-      data: peopleDataList,
-      // format: ((list) => {
-      //   let index = 0;
-      //   return num => `${((num / peopelTotal * 100) || 0).toFixed(0)}% ${list[index ++]}`;
-      // })(dataList)
-    }];
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购人数', 'column', peopleSeries, categories));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购数量', 'column', countSeries, categories));
+    const peopleSeries = [
+      {
+        name: '套餐订购人数',
+        data: dataList,
+        format: (num) => {
+          num = Number(num);
+          if(num > 10000) {
+            num = Number(num / 10000).toFixed(1) + '万';
+          }
+          return String(num);
+        }
+      },
+      {
+        name: '套餐订购数量',
+        data: peopleDataList,
+        format: (num) => {
+          num = Number(num);
+          if(num > 10000) {
+            num = Number(num / 10000).toFixed(1) + '万';
+          }
+          return String(num);
+        }
+      },
+    ];
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购', 'column', peopleSeries, categories, true));
   }
   async getPerformanceForOrderPeoples(params) {
     const ret = await api.getPerformanceForOrderPeoples({mask: true, data: params});
@@ -421,7 +448,7 @@ export default class Index extends wepy.page {
       data: resPerson.map(item => item.managerSum),
     }];
     let currIndex = this.charts.length;
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '订购人数走势图', 'line', series, categories));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '订购数量走势图', 'line', series, categories));
 
 
   }
@@ -499,11 +526,11 @@ export default class Index extends wepy.page {
     const tendencySeries = [
       {
         name: '家长',
-        data: data.map(item => item.acttnum),
+        data: data.map(item => item.actpnum),
       },
       {
         name: '教师',
-        data: data.map(item => item.actpnum),
+        data: data.map(item => item.acttnum),
       },
     ];
     
@@ -516,16 +543,16 @@ export default class Index extends wepy.page {
 
   }
   canvasToTempFile(index) {
-    console.log(this.charts[index].canvasId)
+    const chart = this.charts[index];
     return new Promise((resolve, reject) => {
       wx.canvasToTempFilePath({
         x: 0,
         y: 0,
-        width: 350,
-        height: 150,
-        destWidth: 300,
-        destHeight: 150,
-        canvasId: this.charts[index].canvasId,
+        width: chart.width,
+        height: chart.height,
+        destWidth: chart.width,
+        destHeight: chart.height,
+        canvasId: chart.canvasId,
         success: (res) => {
           resolve(res)
           console.log(res.tempFilePath)
@@ -535,6 +562,11 @@ export default class Index extends wepy.page {
       })
     });
     
+  }
+  getViewportRect (cb) {
+    wx.createSelectorQuery().selectViewport().boundingClientRect(ret => {
+      cb(this.viewportRect = ret);
+    }).exec();
   }
   initData() {
     this.tabs = [
@@ -555,7 +587,11 @@ export default class Index extends wepy.page {
   }
   onLoad() {
     console.log('load..');
-    setTimeout(e => this.initData());
+    wx.createSelectorQuery().selectViewport().boundingClientRect(ret => {
+      this.viewportRect = ret;
+      this.$apply();
+      setTimeout(e => this.initData());
+    }).exec();
   }
   onReady() {
     console.log('ready..');

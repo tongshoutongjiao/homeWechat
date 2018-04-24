@@ -14,15 +14,7 @@
         <view class="triangle-down"></view>
       </view>
     </view>
-    <view class="students" >
-      <!--
-      <view class="school-list" wx:for="{{schoolSets}}" wx:item="item"  wx:key="index" id="letter_{{item.label}}" >
-        <view class="letter-label">{{item.label}}</view>
-        <view class="school-sets">
-          <view class="school-item" wx:for="{{item.list}}" wx:item="item"  wx:key="{{item.id}}">{{item.name}}</view>
-        </view>
-      </view>
-      -->
+    <scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
       <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
         <navigator class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" url="/pages/takePhoto?className={{className}}&students={{studentsjson}}&id={{item.studentId}}">
           <view class="flex-item student-info">
@@ -35,7 +27,7 @@
           <view class="flex-item {{item.studentImg ? 'uploaded' : 'upload'}}">{{item.studentImg ? "你已上传" : "点击上传"}}</view>
         </navigator>
       </view>
-    </view>
+    </scroll-view>
   </view>
   <letter-index></letter-index>
 </template>

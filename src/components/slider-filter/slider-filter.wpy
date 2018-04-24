@@ -85,12 +85,21 @@ export default class LetterIndexCom extends wepy.component {
           selectedItems = filters;
         }
       }
-      this.$emit('filter-confirm', e, {
+      const params = {
         type: this.operaType,
-        userId: selectedItems[0] ? selectedItems[0].userId : '',
-        userName: selectedItems[0] ? selectedItems[0].userName : '',
+        userId: '',
+        userName: '',
         selectedItems,
-      });
+      };
+      const defaultItem = selectedItems[0];
+      if(defaultItem){
+        params.userId = defaultItem.userId;
+        params.userName = defaultItem.userName || '';
+        if(defaultItem.sub) {
+          params.userName = params.userName + `(${defaultItem.sub.length > 3 ? (defaultItem.sub.substring(0, 3) + '...') : defaultItem.sub})`
+        }
+      }
+      this.$emit('filter-confirm', e, params);
       this.close();
     },
   }

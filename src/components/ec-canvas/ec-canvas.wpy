@@ -1,8 +1,8 @@
 <template>
-  <view wx:for="{{charts}}" wx:for-index="index" wx:for-item="item" wx:key="index" class="charts-item">
+  <view wx:for="{{charts}}" wx:for-index="index" wx:for-item="item" wx:key="index" class="charts-item chart-{{item.type}}">
     <view class="charts-title">{{item.title}}</view>
-    <canvas canvas-id="{{item.canvasId}}" data-index="{{index}}"  id="{{item.canvasId}}"  class="ec-canvas" hidden="{{!boolCanvasShow}}" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd"  />
-    <image style="width: 700rpx;height: 300rpx;" hidden="{{!boolImageShow}}" mode="scaleToFill" src="{{item.src}}"></image>
+    <canvas canvas-id="{{item.canvasId}}" data-index="{{index}}"  id="{{item.canvasId}}" class="ec-canvas" hidden="{{!boolCanvasShow}}" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd" style="width: {{item.width}}px; height: {{item.height}}px;" />
+    <image style="width: {{item.width}}px; height: {{item.height}}px;" hidden="{{!boolImageShow}}" mode="scaleToFill" src="{{item.src}}"></image>
   </view>
 </template>
 
@@ -54,7 +54,10 @@ export default class ECanvas extends wepy.component {
       this.charts = charts;
       this.instances.splice(0);
       this.$apply();
-      setTimeout(e => charts.forEach(chart => this.instances.push(new wxCharts(chart))), 100);
+      setTimeout(e => {
+        charts.forEach(chart => this.instances.push(new wxCharts(chart)));
+        Promise.all(this.instances.map(ins => new Promise((resolve, reject) => ins.addEventListener('renderComplete', resolve)))).then(e => this.$emit('chart-complete', this.instances))
+      }, 100);
      
     }
   }

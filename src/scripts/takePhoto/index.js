@@ -37,6 +37,17 @@ export default class TakePhoto extends wepy.page {
         },
       });
       const photoRes = JSON.parse(uploadRes.data);
+      if(!photoRes.data || !photoRes.data[0]){
+        wx.showToast({
+          title: '上传失败',
+          icon: 'none',
+        });
+        return;
+      }
+      wx.showToast({
+        title: '上传成功',
+        icon: 'success',
+      });
       this.studentPhoto = photoRes.data[0].imgUrl;
       this.students[this.activeIndex].studentImg = this.studentPhoto;
       this.$apply();

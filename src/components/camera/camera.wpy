@@ -14,10 +14,11 @@
 
 <style>
 camera {
-  width: 642rpx;
-  height: 884rpx;
-  margin-left: 54rpx;
-  margin-right: 54rpx;
+  width: 480rpx;
+  height: 660rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 110rpx
 }
 .camera-wrap {
   position: fixed;

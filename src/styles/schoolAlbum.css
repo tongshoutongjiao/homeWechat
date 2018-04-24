@@ -13,6 +13,7 @@
 .class-picker {
   font-size: 34rpx;
   color: rgb(24,24,24);
+  height: 100rpx;
 }
 
 .student-item {
@@ -54,4 +55,12 @@
   border-right: 8rpx solid transparent;
   border-top: 16rpx solid #D0D0D4;
   margin-left: 10rpx;
+}
+.school-album {
+  height: 100vh;
+  width: 100%;
+}
+
+.scroll-view {
+  height: calc(100% - 100rpx);
 }

@@ -23,6 +23,7 @@ export default class Index extends wepy.page {
     classActiveIndex: 0,
     gradeActiveIndex: 0,
     studentsjson:'0',
+    scrollTop: 0,
   }
   
   methods = {
@@ -43,16 +44,18 @@ export default class Index extends wepy.page {
 
   events = {
     'letter-index': (e, letter) => {
-      console.log(letter)
-
+      if(letter === '#'){
+        letter = '';
+      }
+      
       const query = wx.createSelectorQuery();
-      wx.createSelectorQuery().selectViewport().scrollOffset(scroll => {
-        wx.createSelectorQuery().select(`#letter_${letter}`).boundingClientRect(ret => {
-          wx.pageScrollTo({
-            scrollTop: scroll.scrollTop + ret.top
-          });
-        }).exec();
-      }).exec();
+      query.select('.scroll-view').scrollOffset();
+      query.select('.scroll-view').boundingClientRect();
+      query.select(`#letter_${letter}`).boundingClientRect();
+      query.exec(([scroll, rect, dom]) => {
+        this.scrollTop = scroll.scrollTop - rect.top + dom.top;
+        this.$apply();
+      });
     }
   }
   async getGradeBySchoolId(id) {
