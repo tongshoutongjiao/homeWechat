@@ -23,6 +23,7 @@ export default class extends wepy.app {
         'pages/takePhoto',
         'pages/schools',
         'pages/schoolAlbum',
+        'pages/studentManage',
     ],
     window: {
       backgroundTextStyle: 'light',

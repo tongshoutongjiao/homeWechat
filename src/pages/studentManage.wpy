@@ -1,0 +1,61 @@
+<template>
+    <view class="container">
+        <view class="search-wrapper">
+            <view class="search-content" bindtap="handleSearch">
+                <image class="search-icon" src="/images/search_icon.png"></image>
+                <view class="search-title">{{studentName}}</view>
+            </view>
+        </view>
+        <scroll-view scroll-X="true" class="grade-tab ">
+            <view wx:for="{{gradesInfo}}" class="grade-info {{selected == item.id ? 'actived' : ''}}"
+                  data-id="{{item.id}}" bindtap="selectGrade">{{item.gradeName}}
+                <text class="btm"></text>
+            </view>
+        </scroll-view>
+        <view class="grade-list">
+            <view class="spec-grade" wx:for="{{classInfo}}" wx:key="{{item.gradeId}}">
+                <view class="grade-name"  bindtap="toggleTrangle" data-index="{{item.index}}">
+                    <view>{{item.gradeName}}</view>
+                    <view>{{item.percentage}}
+                        <block wx:if="{{item.flag}}">
+                            <text class="down"></text>
+                            <text class="hidePartDown"></text>
+                        </block>
+                        <block wx:else>
+                            <text class="up"></text>
+                            <text class="hidePartUp"></text>
+                        </block>
+                    </view>
+                </view>
+
+                <block wx:if="{{item.flag&&item.studentList}}">
+                    <view class="student-list"  wx:for="{{item.studentList}}" wx:for-item="it"  >
+                        <view class="student-info">
+                            <view class="nick-photo" >
+                                <image src="{{it.headImg}}"/>
+                            </view>
+                            <view class="nick-wrapper">
+                                <view class="nickname">
+                                    <text>{{it.studentName}}</text>
+                                    <text>#{{it.isResidence?'走读':'住校'}}#</text>
+                                    <text>{{it.status?'已开通':'未开通'}}</text>
+                                </view>
+                                <view class="telNumber">
+                                    {{it.tel}}
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+
+
+            </view>
+        </view>
+    </view>
+</template>
+<script src="../scripts/studentManage/index.js"></script>
+<style src="../styles/studentManage/index.css"></style>
+
+
+
+

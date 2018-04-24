@@ -1,0 +1,55 @@
+
+.icon-box {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: wrap;
+}
+.icon-list {
+    width: 33.3%;
+    text-align: center;
+    color: #181818;
+    font-size: 15px;
+}
+.main-icon {
+    width: 84rpx;
+    height: 72rpx;
+    display: block;
+    margin: 0 auto;
+    margin-top: 60rpx;
+}
+.icon-title {
+    line-height: 68rpx;
+    color: #575759;
+    font-size: 14px;
+}
+/*--------------------- 注销登录 -----------------------------*/
+.log-out {
+    display: flex;
+    position: fixed;
+    bottom: 80rpx;
+    right: 30rpx;
+    width: 100rpx;
+    height: 100rpx;
+    background: rgba(52,140,255,.8);
+    border-radius: 100%;
+    align-items: center;
+    box-shadow:0 4px 10px rgba(52,141,255,.81);
+}
+.log-out image {
+    width: 60rpx;
+    height: 54rpx;
+    margin-left: 16rpx;
+}
+/*提示信息*/
+.wetoast__bd {
+    min-width: 200px;
+    min-height: 0;
+    padding: 10px;
+}
+/*提示信息标题*/
+.wetoast__bd__title {
+    font-size: 14px;
+}
+.disabled {
+    color: #8e8e93;
+}
