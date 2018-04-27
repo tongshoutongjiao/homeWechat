@@ -33,5 +33,10 @@ export function fillNumber(number, format = 'd.00') {
 }
 
 export function dateFormat(date, format = 'YYYY-MM-DD') {
- return moment(date).format(format)
-}
+  return moment(date).format(format)
+ }
+
+
+ export function numberFormat(num) {
+  return (Number(num) || 0).toLocaleString();
+ }

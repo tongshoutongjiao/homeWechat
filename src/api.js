@@ -1,7 +1,11 @@
 import wepy from 'wepy'
 import querystring from 'querystring'
 
+let requestLength = 0;
+
 const wxRequest = async (params = {}, url) => {
+  requestLength ++ ;
+  
   if (true) {
     wx.showLoading({
       title: '加载中',
@@ -22,8 +26,8 @@ const wxRequest = async (params = {}, url) => {
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
     }
-  })
-  if (true) {
+  });
+  if (--requestLength <= 0) {
     wx.hideLoading()
   }
   if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
@@ -100,6 +104,9 @@ const getPerformanceForCardHoding = params => wxRequest(params, apiMall + '/myPe
 const getPerformanceForOrders = params => wxRequest(params, apiMall + '/myPerformance/queryProductCodeSum.do');
 const getPerformanceForOrderPeoples = params => wxRequest(params, apiMall + '/myPerformance/queryProductPersonRunChart.do');
 const getPerformanceForTrend = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChart.do');
+const getPerformanceForTrendAdd = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartAdd.do');
+const getPerformanceForTrendCut = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartCut.do');
+const getPerformanceForTrendUp = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartUp.do');
 const getPerformanceForApp = params => wxRequest(params, apiMall + '/myPerformance/queryAppUseRunChart.do');
 
 const uploadStudentPhoto = async (params) => {
@@ -170,6 +177,9 @@ module.exports = {
   getPerformanceForOrders,
   getPerformanceForOrderPeoples,
   getPerformanceForTrend,
+  getPerformanceForTrendAdd,
+  getPerformanceForTrendCut,
+  getPerformanceForTrendUp,
   getPerformanceForApp,
 
 }

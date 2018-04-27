@@ -16,16 +16,16 @@
     </view>
     <scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
       <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
-        <navigator class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" url="/pages/takePhoto?className={{className}}&students={{studentsjson}}&id={{item.studentId}}">
+        <view class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" data-class-name="{{className}}" data-id="{{item.studentId}}" catchtap="handleNavigateTo">
           <view class="flex-item student-info">
-            <image class="photo" src="{{item.studentImg || defaultPhoto}}"  mode="aspectFill"></image>
+            <image class="photo" src="{{item.studentImg || defaultPhoto}}?imageView2/2/w/100/h/138/q/50|imageslim"  mode="aspectFill"></image>
             <view class="name">{{item.studentName}}</view>
           </view>
           <view class="flex-item">
             <image class="icon-camera" src="{{item.studentImg ? '../asset/aupd_icon.png' : '../asset/upd_icon.png'}}"  mode="widthFix"></image>
           </view>
           <view class="flex-item {{item.studentImg ? 'uploaded' : 'upload'}}">{{item.studentImg ? "你已上传" : "点击上传"}}</view>
-        </navigator>
+        </view>
       </view>
     </scroll-view>
   </view>

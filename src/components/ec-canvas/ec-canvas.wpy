@@ -3,6 +3,7 @@
     <view class="charts-title">{{item.title}}</view>
     <canvas canvas-id="{{item.canvasId}}" data-index="{{index}}"  id="{{item.canvasId}}" class="ec-canvas" hidden="{{!boolCanvasShow}}" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd" style="width: {{item.width}}px; height: {{item.height}}px;" />
     <image style="width: {{item.width}}px; height: {{item.height}}px;" hidden="{{!boolImageShow}}" mode="scaleToFill" src="{{item.src}}"></image>
+    <view class="charts-sub-title" wx:if="{{item.subTitle}}">{{item.subTitle}}</view>
   </view>
 </template>
 

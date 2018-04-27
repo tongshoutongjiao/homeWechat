@@ -137,12 +137,14 @@ export default class Index extends wepy.page {
       index ++;
     }
   }
-  chartsFactory(id = '', title = '', type = 'line', series = [], categories = [], legend = false) {
+  chartsFactory(id = '', title = '', type = 'line', series = [], categories = [], legend = false, subTitle = "") {
     const viewportRect = this.viewportRect;
     const width = this.viewportRect.width / 750 * 700;
     const height = width / 700 * (type === "pie" ? 400 : 300);
+    console.log(subTitle);
     let ret = {
       title,
+      subTitle,
       type,
       categories,
       series,
@@ -248,12 +250,19 @@ export default class Index extends wepy.page {
   }
   async getPersonPerformance(params) {
     this.charts = [];
-    await this.getPerformanceForCardHoding(params);
-    await this.getPerformanceForOrders(params);
-    await this.getPerformanceForOrderPeoples(params);
-    await this.getPerformanceForTrend(params);
+    const requests = [];
+    requests.push(this.getPerformanceForCardHoding(params, 0));
+    requests.push(this.getPerformanceForOrders(params, 1));
+    requests.push(this.getPerformanceForOrderPeoples(params, 2));
+    // this.getPerformanceForTrend(params, 3);
+    requests.push(this.getPerformanceForTrendUp(params, 3));
+    requests.push(this.getPerformanceForTrendAdd(params, 4));
+    requests.push(this.getPerformanceForTrendCut(params, 5));
+    await Promise.all(requests).then(e => console.log(e));
+    this.charts.filter(e => e);
     this.$apply();
     this.$invoke('echarts', 'redraw', this.charts);
+
   }
   async getSchoolPerformance(params){
     this.charts = [];
@@ -267,7 +276,7 @@ export default class Index extends wepy.page {
     this.$apply();
     this.$invoke('echarts', 'redraw', this.charts);
   }
-  async getPerformanceForEquipment(params) {
+  async getPerformanceForEquipment(params, currIndex = 0) {
     const ret = await api.getPerformanceForEquipment({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
@@ -281,46 +290,45 @@ export default class Index extends wepy.page {
       {
         name: '在线数量',
         data: retData.useOnline || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.useOnline}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.useOnline)}`
       },
       {
         name: '掉线数量',
         data: retData.useDropped || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.useDropped}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.useDropped)}`
       }
     ];
     const swiperNumberSeries = [
       {
         name: '在线数量',
         data: retData.swipeOnline || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.swipeOnline}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.swipeOnline)}`
       },
       {
         name: '掉线数量',
         data: retData.swipeDropped || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.swipeDropped}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.swipeDropped)}`
       }
     ];
     const telNumberSeries = [
       {
         name: '在线数量',
         data: retData.phoneOnline || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.phoneOnline}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.phoneOnline)}`
       },
       {
         name: '掉线数量',
         data: retData.phoneDropped || 0,
-        format: num => `${(num * 100).toFixed(0)}% ${retData.phoneDropped}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(retData.phoneDropped)}`
       }
     ];
     console.log(swiperAndTelNumberSeries,swiperNumberSeries,telNumberSeries )
-    let currIndex = this.charts.length;
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器+电话机数量/部', 'pie', swiperAndTelNumberSeries ));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器数量/部', 'pie', swiperNumberSeries));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '电话机数量/部', 'pie', telNumberSeries ));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器+电话机数量/部', 'pie', swiperAndTelNumberSeries, [], true, `无SIM卡数量 ${toolkit.numberFormat(retData.useSimNum)}`));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '刷卡器数量/部', 'pie', swiperNumberSeries, [], true, `无SIM卡数量 ${toolkit.numberFormat(retData.swipeSimNum)}`));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '电话机数量/部', 'pie', telNumberSeries, [], true, `无SIM卡数量 ${toolkit.numberFormat(retData.phoneSimNum)}`));
     
   }
-  async getPerformanceForSchool(params) {
+  async getPerformanceForSchool(params, currIndex = 0) {
     const ret = await api.getPerformanceForSchool({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
@@ -333,40 +341,53 @@ export default class Index extends wepy.page {
       {
         name: '幼儿园',
         data: schools.kindergartenSchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.kindergartenSchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.kindergartenSchool)}所`
       },
       {
         name: '小学',
         data: schools.primarySchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.primarySchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.primarySchool)}所`
       },
       {
         name: '初中',
         data: schools.middleSchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.middleSchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.middleSchool)}所`
       },
       {
         name: '高中',
         data: schools.highSchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.highSchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.highSchool)}所`
       },
       {
         name: '复合',
         data: schools.mixtureSchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.mixtureSchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.mixtureSchool)}所`
       },
       {
         name: '其他',
         data: schools.ortherSchool,
-        format: num => `${(num * 100).toFixed(0)}% ${schools.ortherSchool}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.ortherSchool)}所`
       }
     ];
-    let currIndex = this.charts.length;
+    const unsignedSchool  = schools.totalNum - schools.sumSchool;
+    const totalSeries = [
+      {
+        name: '未签约学校数',
+        data: unsignedSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(unsignedSchool)}所`
+      },
+      {
+        name: '已签约学校数',
+        data: schools.sumSchool,
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(schools.sumSchool)}所`
+      },
+    ];
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '学校总数/所', 'pie', totalSeries));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '截止今日凌晨已签约学校/所', 'pie', series));
 
   }
   // 持卡
-  async getPerformanceForCardHoding(params) {
+  async getPerformanceForCardHoding(params, currIndex = 0) {
     const ret = await api.getPerformanceForCardHoding({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
@@ -396,17 +417,15 @@ export default class Index extends wepy.page {
         };
       })(['', handleCardNumPercent, bussnesCountPercent, bussnessSumPercent])
     }];
-    let currIndex = this.charts.length;
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '持卡情况', 'column', series, categories));
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '持卡情况', 'column', series, categories);
   }
-  async getPerformanceForOrders(params) {
+  async getPerformanceForOrders(params, currIndex = 0) {
     const ret = await api.getPerformanceForOrders({mask: true, data: params});
     console.log(ret);
     if(ret.data.result !== 200){
       return;
     }
     const {resNumber, resPerson} = ret.data;
-    let currIndex = this.charts.length;
     const categories = ['三元套餐', '五元套餐', '七元套餐', '十元套餐'];
     const dataList = [resPerson[0].sanSum, resPerson[0].wuSum, resPerson[0].qiSum, resPerson[0].shiSum ];
     const peopleDataList = [resNumber[0].sanSum, resNumber[0].wuSum, resNumber[0].qiSum, resNumber[0].shiSum ];
@@ -434,9 +453,9 @@ export default class Index extends wepy.page {
         }
       },
     ];
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '套餐订购', 'column', peopleSeries, categories, true));
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '套餐订购', 'column', peopleSeries, categories, true);
   }
-  async getPerformanceForOrderPeoples(params) {
+  async getPerformanceForOrderPeoples(params, currIndex = 0) {
     const ret = await api.getPerformanceForOrderPeoples({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
@@ -446,38 +465,88 @@ export default class Index extends wepy.page {
     const categories = resPerson.map(item => item.statusTime);
     const series = [{
       data: resPerson.map(item => item.managerSum),
+      format: toolkit.numberFormat,
     }];
-    let currIndex = this.charts.length;
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '订购数量走势图', 'line', series, categories));
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '订购数量走势图', 'line', series, categories);
 
 
   }
-  async getPerformanceForTrend(params) {
+  async getPerformanceForTrend(params, currIndex = 0) {
     const ret = await api.getPerformanceForTrend({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
     }
     console.log(ret);
-    let currIndex = this.charts.length;
     const { resAdd, resCut, resUp } = ret.data;
     const addCategories = resAdd.map(item => item.statusTime);
     const addSeries = [{
       data: resAdd.map(item => item.managerSum),
+      format: toolkit.numberFormat,
     }];
     const cutCategories = resCut.map(item => item.statusTime);
     const cutSeries = [{
       data: resCut.map(item => item.managerSum),
+      format: toolkit.numberFormat,
     }];
     const upCategories = resUp.map(item => item.statusTime);
     const upSeries = [{
       data: resUp.map(item => item.managerSum),
+      format: toolkit.numberFormat,
     }];
     currIndex = this.charts.push(this.chartsFactory(currIndex, '净增数量走势图', 'line', upSeries, upCategories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '新增数量走势图', 'line', addSeries, addCategories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '流失数量走势图', 'line', cutSeries, cutCategories));
 
   }
-  async getPerformanceForApp(params) {
+  
+  async getPerformanceForTrendUp(params, currIndex = 0) {
+    const ret = await api.getPerformanceForTrendUp({mask: true, data: params});
+    if(ret.data.result !== 200){
+      return;
+    }
+    console.log(ret);
+    const { resAdd, resCut, resUp } = ret.data;
+    const upCategories = resUp.map(item => item.statusTime);
+    const upSeries = [{
+      data: resUp.map(item => item.managerSum),
+      format: toolkit.numberFormat,
+    }];
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '净增数量走势图', 'line', upSeries, upCategories);
+
+  }
+  
+  async getPerformanceForTrendAdd(params, currIndex = 0) {
+    const ret = await api.getPerformanceForTrendAdd({mask: true, data: params});
+    if(ret.data.result !== 200){
+      return;
+    }
+    console.log(ret);
+    const { resAdd, resCut, resUp } = ret.data;
+    const addCategories = resAdd.map(item => item.statusTime);
+    const addSeries = [{
+      data: resAdd.map(item => item.managerSum),
+      format: toolkit.numberFormat,
+    }];
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '新增数量走势图', 'line', addSeries, addCategories);
+
+  }
+  
+  async getPerformanceForTrendCut(params, currIndex = 0) {
+    const ret = await api.getPerformanceForTrendCut({mask: true, data: params});
+    if(ret.data.result !== 200){
+      return;
+    }
+    console.log(ret);
+    const { resAdd, resCut, resUp } = ret.data;
+    const cutCategories = resCut.map(item => item.statusTime);
+    const cutSeries = [{
+      data: resCut.map(item => item.managerSum),
+      format: toolkit.numberFormat,
+    }];
+    this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '流失数量走势图', 'line', cutSeries, cutCategories);
+
+  }
+  async getPerformanceForApp(params, currIndex = 0) {
     const ret = await api.getPerformanceForApp({mask: true, data: params});
     if(ret.data.result !== 200){
       return;
@@ -487,6 +556,7 @@ export default class Index extends wepy.page {
     const categories = data.map(item => item.statusTime);
     const teacherAppSeries = [{
       data: data.map(item => item.activedtnum),
+      format: toolkit.numberFormat,
     }];
 
     const teacherActiveCount = data[data.length - 1].activedtnum;
@@ -495,16 +565,17 @@ export default class Index extends wepy.page {
       {
         name: '激活用户数',
         data: teacherActiveCount,
-        format: num => `${(num * 100).toFixed(0)}% ${teacherActiveCount}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(teacherActiveCount)}`
       },
       {
         name: '未激活用户数',
         data: teacherNonActiveCount,
-        format: num => `${(num * 100).toFixed(0)}% ${teacherNonActiveCount}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(teacherNonActiveCount)}`
       }
     ];
     const parentAppSeries = [{
       data: data.map(item => item.activedpnum),
+      format: toolkit.numberFormat,
     }];
 
     
@@ -514,12 +585,12 @@ export default class Index extends wepy.page {
       {
         name: '激活用户数',
         data: parentActiveCount,
-        format: num => `${(num * 100).toFixed(0)}% ${parentActiveCount}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(parentActiveCount)}`
       },
       {
         name: '未激活用户数',
         data: parentNonActiveCount,
-        format: num => `${(num * 100).toFixed(0)}% ${parentNonActiveCount}`
+        format: num => `${(num * 100).toFixed(0)}% ${toolkit.numberFormat(parentNonActiveCount)}`
       }
     ];
 
@@ -527,14 +598,15 @@ export default class Index extends wepy.page {
       {
         name: '家长',
         data: data.map(item => item.actpnum),
+        format: toolkit.numberFormat,
       },
       {
         name: '教师',
         data: data.map(item => item.acttnum),
+        format: toolkit.numberFormat,
       },
     ];
     
-    let currIndex = this.charts.length;
     currIndex = this.charts.push(this.chartsFactory(currIndex, 'APP教师端', 'pie', teacherAppPieSeries));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '教师端激活用户走势图', 'line', teacherAppSeries, categories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, 'APP家长端', 'pie', parentAppPieSeries));
