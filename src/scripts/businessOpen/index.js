@@ -501,6 +501,8 @@ export default class Index extends wepy.page {
                 classIds: classIds
             }
         })
+        console.log('openResult')
+        console.log(openResult)
         this.$invoke('toast', 'show', {
             title: openResult.data.message || openResult.data.msg
         })

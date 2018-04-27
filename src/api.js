@@ -129,7 +129,6 @@ const uploadStudentPhoto = async (params) => {
 
 
 
-
 module.exports = {
   login,
   searchSchool,

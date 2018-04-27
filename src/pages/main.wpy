@@ -59,6 +59,7 @@
   <toast />
 </template>
 
+
 <script>
   import wepy from 'wepy'
   import api from '../api.js'
@@ -84,6 +85,7 @@
           })
           return false
         }
+        console.log(_page);
         wepy.navigateTo({url: _page})
       }
     }

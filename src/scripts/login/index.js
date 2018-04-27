@@ -27,7 +27,6 @@ export default class Index extends wepy.page {
     // onload函数
     async onLoad() {
         console.log('login')
-        console.log('loadbfdf....vvsdv...')
         var curTimeStamp = new Date().getTime() // 获取当前时间
         var noticeTimeStamp = wepy.getStorageSync('noticeTimeStamp') // 获取存储token的时间
         // 判断存储的时间是否存在和是否过期，存在和没有过期的话，跳转到主界面

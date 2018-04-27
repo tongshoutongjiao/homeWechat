@@ -1,0 +1,148 @@
+
+    <template>
+        <view class="container">
+            <view class="photo">
+                <view>头像</view>
+                <image src="{{defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+            </view>
+            <view class="class-name">
+                <view>班级</view>
+                <view>
+                    <picker mode="multiSelector" bindchange="bindMultiPickerChange"
+                            bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}"
+                            range="{{multiArray}}">
+                        <block wx:if="{{pickerFlag}}">
+                            <view class="picker">
+                                {{multiArray[0][multiIndex[0]]}},{{multiArray[1][multiIndex[1]]}}
+                            </view>
+                        </block>
+                        <block wx:else>
+                            <view class="picker">
+                                请输入班级
+                            </view>
+                        </block>
+
+                    </picker>
+                </view>
+                <view class="right-icon"></view>
+                <view class="right-hide"></view>
+            </view>
+            <view class="student-name">
+                <view>姓名</view>
+                <text class="star-icon">*</text>
+                <view>李子玉</view>
+            </view>
+            <view class="sex">
+                <view>性别</view>
+                <text class="star-icon">*</text>
+                <view class="wrapper">
+                    <view class="sex-wrapper" bindtap="clickSelectItem" data-sex="man" data-classic="sex">
+                        <block wx:if="{{studentInfo.sex==='man'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"/>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"/>
+                        </block>
+                        <view class="man">男</view>
+                    </view>
+                    <view class="sex-wrapper" bindtap="clickSelectItem" data-sex="woman" data-classic="sex">
+                        <block wx:if="{{studentInfo.sex=='woman'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"/>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"></image>
+                        </block>
+                        <view class="woman">女</view>
+                    </view>
+                </view>
+
+            </view>
+            <view class="student-type">
+                <view>学生类型</view>
+                <text class="star-icon">*</text>
+                <view class="wrapper">
+                    <view class="sex-wrapper" bindtap="clickSelectItem" data-is-dom="dom" data-classic="dom">
+                        <block wx:if="{{studentInfo.isDom=='dom'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"></image>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"></image>
+                        </block>
+                        <view>住校</view>
+                    </view>
+                    <view class="sex-wrapper" bindtap="clickSelectItem" data-is-dom="undom" data-classic="dom">
+                        <block wx:if="{{studentInfo.isDom=='undom'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"></image>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"></image>
+                        </block>
+                        <view>走读</view>
+                    </view>
+                </view>
+
+            </view>
+            <view class="input-type">
+                <view>主号码</view>
+                <input type="text" placeholder="请输入手机号码" placeholder-class="placeholder-style">
+            </view>
+            <view class="input-type">
+                <view>亲情号码2</view>
+                <input type="text" placeholder="请输入亲情号码2" placeholder-class="placeholder-style">
+            </view>
+            <view class="input-type">
+                <view>亲情号码3</view>
+                <input type="text" placeholder="请输入亲情号码3" placeholder-class="placeholder-style">
+            </view>
+            <view class="input-type">
+                <view>学号</view>
+                <input type="text" placeholder="请输入学号" placeholder-class="placeholder-style">
+            </view>
+            <view class="input-type">
+                <view>卡号</view>
+                <input type="text" placeholder="请输入卡号" placeholder-class="placeholder-style">
+            </view>
+            <view class="is-drop">
+                <view>是否挂失</view>
+                <view class="wrapper">
+                    <view bindtap="clickSelectItem" data-is-drop="reDrop" data-classic="drop">
+                        <block wx:if="{{studentInfo.isDrop=='reDrop'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"></image>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"></image>
+                        </block>
+                        <view>是</view>
+                    </view>
+                    <view bindtap="clickSelectItem" data-is-drop="unDrop" data-classic="drop">
+                        <block wx:if="{{studentInfo.isDrop=='unDrop'?true:false}}">
+                            <image class="all-default" src="/images/float_icon_a.png"></image>
+                        </block>
+                        <block wx:else>
+                            <image class="all-default" src="/images/float_icon_d.png"></image>
+                        </block>
+                        <view>否</view>
+                    </view>
+                </view>
+            </view>
+            <view class="input-type">
+                <view>身份证号</view>
+                <input type="text" placeholder="请输入身份证号" placeholder-class="placeholder-style">
+            </view>
+            <view class="input-type">
+                <view>籍贯</view>
+                <input type="text" placeholder="请输入籍贯" placeholder-class="placeholder-style">
+            </view>
+            <view class="class-name" bindtap="clickSelectPosition">
+                <view>户口所在地</view>
+                <view>请输入户口所在地</view>
+                <view class="right-icon"></view>
+                <view class="right-hide"></view>
+            </view>
+            <view class="save-info">
+                <view> 保存</view>
+            </view>
+        </view>
+    </template>
+    <script src="../scripts/addStudent/index.js"></script>
+    <style src="../styles/addStudent/index.css"></style>

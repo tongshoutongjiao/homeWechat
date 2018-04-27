@@ -1,0 +1,81 @@
+<template>
+    <view class="container">
+        <view class="search-content">
+            <image class="search-icon" src="/images/search_icon.png"></image>
+            <input class="search-title" placeholder="请输入学生名字搜索" value="{{searchValue}}" bindinput="searchValueInput" focus="true"/>
+        </view>
+        <view class="grade-list">
+            <view class="wrapper">
+                <view class="grade-name">
+                    <view>1年级1.01班</view>
+                </view>
+                <view class="student-list" >
+                    <view class="student-info">
+                        <view class="nick-photo">
+                            <image src="{{it.studentImg}}" mode="aspectFill"/>
+                        </view>
+                        <view class="nick-wrapper">
+                            <view class="nickname">
+                                <text>{{it.studentName}}1111</text>
+                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
+                                <text>{{it.openStatusName}}222</text>
+                            </view>
+                            <view class="telNumber">
+                                {{it.phone1}}2222
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wrapper">
+                <view class="grade-name">
+                    <view>1年级1.01班</view>
+                </view>
+                <view class="student-list" >
+                    <view class="student-info">
+                        <view class="nick-photo">
+                            <image src="{{it.studentImg}}" mode="aspectFill"/>
+                        </view>
+                        <view class="nick-wrapper">
+                            <view class="nickname">
+                                <text>{{it.studentName}}1111</text>
+                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
+                                <text>{{it.openStatusName}}222</text>
+                            </view>
+                            <view class="telNumber">
+                                {{it.phone1}}2222
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wrapper">
+                <view class="grade-name">
+                    <view>1年级1.01班</view>
+                </view>
+                <view class="student-list" >
+                    <view class="student-info">
+                        <view class="nick-photo">
+                            <image src="{{it.studentImg}}" mode="aspectFill"/>
+                        </view>
+                        <view class="nick-wrapper">
+                            <view class="nickname">
+                                <text>{{it.studentName}}1111</text>
+                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
+                                <text>{{it.openStatusName}}222</text>
+                            </view>
+                            <view class="telNumber">
+                                {{it.phone1}}2222
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+
+</template>
+<script src="../scripts/searchStudent/index.js"></script>
+<style src="../styles/searchStudent/index.css"></style>
