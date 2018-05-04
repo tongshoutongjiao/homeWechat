@@ -34,7 +34,9 @@ export default class Index extends wepy.page {
     startdate: null,
     enddate: null,
     quarters: [],
-    viewportRect: {}
+    viewportRect: {},
+    boolTipsShow: false,
+    animationData: {}
   }
   events = {
     'filter-confirm': (e, ret) => {
@@ -110,6 +112,29 @@ export default class Index extends wepy.page {
       this.$apply();
       this.getPageData();
     }
+  }
+  showTips(tips){
+    this.boolTipsShow = true;
+    var animation = wx.createAnimation({
+      duration: 1000,
+        timingFunction: 'ease',
+    });
+    this.animation = animation;
+
+    animation.height('80rpx').step();
+    this.animationData = animation.export();
+    this.$apply();
+
+    setTimeout(function() {
+      animation.height(0).step();
+      this.animationData = animation.export();
+      this.$apply();
+      setTimeout(e => {
+        this.boolTipsShow = false;
+        this.$apply();
+      }, 1000);
+      
+    }.bind(this), 3000);
   }
 
   toggleFilterShow(e){
@@ -282,6 +307,7 @@ export default class Index extends wepy.page {
     if(ret.data.result !== 200){
       return;
     }
+    this.showTips();
     const retData = ret.data.data[0];
     const categories = ['无SIM卡', '在线数量', '掉线数量'];
     const columnCategories = ['有线身份识别', '免刷卡', '普通刷卡器'];
@@ -395,7 +421,7 @@ export default class Index extends wepy.page {
     }
     const {bussnesCount, bussnesCountPercent, bussnessSum, bussnessSumPercent, handleCardNum, handleCardNumPercent, studentSum} = ret.data.data[0];
     const categories = ['学生总数', '持卡总数', '订购人数', '订购数量'];
-    const dataList = [studentSum, handleCardNum, bussnesCount, bussnessSum];
+    const dataList = [studentSum, handleCardNum, bussnessSum, bussnesCount];
     const series = [{
       data: dataList,
       format: ((list) => {
@@ -415,7 +441,7 @@ export default class Index extends wepy.page {
           }
           return ret;
         };
-      })(['', handleCardNumPercent, bussnesCountPercent, bussnessSumPercent])
+      })(['', handleCardNumPercent, bussnessSumPercent, bussnesCountPercent])
     }];
     this.charts[ currIndex++ ] = this.chartsFactory(currIndex, '持卡情况', 'column', series, categories);
   }
@@ -611,7 +637,7 @@ export default class Index extends wepy.page {
     currIndex = this.charts.push(this.chartsFactory(currIndex, '教师端激活用户走势图', 'line', teacherAppSeries, categories));
     currIndex = this.charts.push(this.chartsFactory(currIndex, 'APP家长端', 'pie', parentAppPieSeries));
     currIndex = this.charts.push(this.chartsFactory(currIndex, '家长端激活用户走势图', 'line', parentAppSeries, categories));
-    currIndex = this.charts.push(this.chartsFactory(currIndex, '活跃用户走势图', 'line', tendencySeries, categories, true));
+    currIndex = this.charts.push(this.chartsFactory(currIndex, '激活用户对比图', 'line', tendencySeries, categories, true));
 
   }
   canvasToTempFile(index) {

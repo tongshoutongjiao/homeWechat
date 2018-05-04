@@ -37,6 +37,11 @@
     <!-- main -->
     <view class="no-data" wx:if="{{userType === '5'}}">暂无权限</view>
     <view class="container-charts">
+      <view class="tips" wx:if="{{boolTipsShow}}" animation="{{animationData}}" >
+        <text>此界面仅统计使用状态为“</text>
+        <text class="strong">在使用</text>
+        <text>”的设备</text>
+      </view>
       <echarts :charts.sync="charts" :boolCanvasShow.sync="boolCanvasShow" :boolImageShow.sync="boolImageShow" ></echarts>
     </view>
     <!-- filter slider -->

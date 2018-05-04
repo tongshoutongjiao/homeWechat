@@ -92,9 +92,10 @@
     }
     // 输入框输入事件
     async inputInput(e) {
+      const value = (e.detail.value || "").replace(/\s/g, '');
       // 判断是手机号输入框还是密码输入框
       if (e.currentTarget.dataset.type === 'phone') {
-        this.phone = e.detail.value // 给手机号赋值
+        this.phone = value // 给手机号赋值
         // 判断手机号是否为空，如果不为空，隐藏placeholder，显示清除图标，否则显示placehoder，隐藏清除图标
         if (!e.detail.value) {
           this.phoneModel = 'block'
@@ -110,10 +111,10 @@
           this.btnStatus = ''
         }
       } else {
-        this.password = e.detail.value // 给密码赋值
+        this.password = value // 给密码赋值
 
         // 判断密码是否为空，如果不为空，隐藏placeholder，显示清除图标，否则显示placehoder，隐藏清除图标
-        if (!e.detail.value) {
+        if (!value) {
           this.passwordModel = 'block'
           this.passwordIcon = 'none'
         } else {

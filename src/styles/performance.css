@@ -75,12 +75,12 @@
 .charts-title {
   color: rgb(53,141,255);
   font-size: 30rpx;
-  padding-bottom: 20rpx;
+  padding-bottom: 15rpx;
 }
 .charts-sub-title {
-  font-size: rgb(142,142,147);
-  font-size: 20rpx;
-  text-align: center;
+  color: rgb(53,141,255);
+  font-size: 24rpx;
+  padding-bottom: 20rpx;
 }
 .charts-item {
   height: 400rpx;
@@ -89,6 +89,20 @@
   padding-left: 25rpx;
   padding-right: 25rpx;
   padding-top: 40rpx;
+}
+
+.tips {
+  font-size: 28rpx;
+  color: #8e8e93;
+  background-color: #e7e7e7;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+}
+
+.strong {
+  color: #181818;
 }
 
 .chart-pie {
