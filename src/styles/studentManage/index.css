@@ -39,7 +39,6 @@
 }
 .grade-tab .grade-info {
   position: relative;
-  font-weight: bold;
   display: inline-block;
   fontFamily: PingFangSC-Medium;
   font-size: 32rpx ;
@@ -153,20 +152,28 @@
   font-family: PingFangSC-Regular;
   vertical-align: top;
 }
-.grade-list .nickname text:nth-child(1) {
-  margin-right: 10rpx;
+.grade-list .nickname .blueStyle {
+  color: #358dff;
 }
-.grade-list .nickname text:nth-last-child(2) {
+.grade-list .nickname .redStyle {
   color: #ff7996;
   font-size: 28rpx;
 }
-.grade-list .nickname text:nth-last-child(1) {
+.grade-list .nickname .grayStyle {
+  float: right;
+  color: #d0d0d4;
+}
+.grade-list .nickname .normal {
   float: right;
   color: #575759;
+}
+.grade-list .nickname text:nth-child(1) {
+  margin-right: 10rpx;
 }
 .grade-list .telNumber {
   font-size: 28rpx;
   color: #8e8e93;
+  height: 30rpx;
 }
 .grade-name view {
   display: inline-block;
@@ -174,7 +181,6 @@
   line-height: 92rpx;
 }
 .grade-name view:nth-child(1) {
-  font-weight: bold;
   font-family: PingFangSC-Regular;
 }
 .grade-name .trangle-icon {
@@ -239,6 +245,7 @@
   height: 100rpx;
   border-radius: 50%;
   background-color: #0077ff;
+  opacity: .7;
 }
 .edit view {
   position: absolute;

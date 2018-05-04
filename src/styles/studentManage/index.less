@@ -41,7 +41,6 @@
   white-space: nowrap;
 .grade-info{
   position: relative;
-  font-weight: bold;
   display: inline-block;
   fontFamily: PingFangSC-Medium;
   font-size:32rpx ;
@@ -92,6 +91,7 @@
     padding: 0 30rpx;
     background: #f7f7f7;
   }
+
   .spec-grade{
     width: 100%;
   }
@@ -158,17 +158,24 @@
     width: 100%;
     font-family: PingFangSC-Regular;
     vertical-align: top;
+    .blueStyle{
+      color: #358dff;
+    }
+    .redStyle{
+      color: #ff7996;
+      font-size: 28rpx;
+    }
+    .grayStyle{
+      float: right;
+      color: #d0d0d4;
+    }
+    .normal{
+      float: right;
+      color: #575759;
+    }
     text{
       &:nth-child(1){
         margin-right: 10rpx;
-      }
-      &:nth-last-child(2){
-        color: #ff7996;
-        font-size: 28rpx;
-      }
-      &:nth-last-child(1){
-        float: right;
-        color: #575759;
       }
     }
 
@@ -176,6 +183,7 @@
   .telNumber{
     font-size: 28rpx;
     color: #8e8e93;
+    height: 30rpx;
   }
 }
 .grade-name{
@@ -184,7 +192,6 @@
     font-size: 32rpx;
     line-height: 92rpx;
     &:nth-child(1){
-      font-weight: bold;
       font-family: PingFangSC-Regular;
     }
 
@@ -255,6 +262,7 @@
   height: 100rpx;
   border-radius: 50%;
   background-color: #0077ff;
+  opacity: .7;
   view {
     position: absolute;
     top: 50%;

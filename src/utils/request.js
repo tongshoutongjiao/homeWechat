@@ -27,8 +27,6 @@ module.exports = {
     wxRequest
 }
 
-
-
 export async function request(url = '', params = {}){
   const defaults = {
     data: '',

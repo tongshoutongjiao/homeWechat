@@ -1,7 +1,10 @@
 import wepy from 'wepy'
 import querystring from 'querystring'
 
+let requestLength = 0;
+
 const wxRequest = async (params = {}, url) => {
+  requestLength++;
   if (true) {
     wx.showLoading({
       title: '加载中',
@@ -11,10 +14,12 @@ const wxRequest = async (params = {}, url) => {
   if (!params.data) {
     params.data = {}
   }
-  params.data.platformType = 3
-  params.data.version = '1.0.0'
-  params.data.token = encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')
-  params.data.preHand = 1
+  params.data.platformType = 3;
+  params.data.version = '1.0.0';
+  params.data.token = encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B');
+  // params.data.userTelNum = encodeURI(wepy.getStorageSync('userTelNum')).replace(/\+/g, '%2B');
+  // params.data.userName = wepy.getStorageSync('userName');
+  params.data.preHand = 1;
   let res = await wepy.request({
     url: url,
     method: params.method || 'GET',
@@ -22,8 +27,8 @@ const wxRequest = async (params = {}, url) => {
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
     }
-  })
-  if (true) {
+  });
+  if (--requestLength <= 0) {
     wx.hideLoading()
   }
   if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
@@ -53,11 +58,12 @@ const wxRequest = async (params = {}, url) => {
     })
   } */
   return res
-}
+};
 //const apiMall = 'http://192.168.5.125:8380' // 开发（晨宇）
 // const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
 //const apiMall = 'http://192.168.5.131:8380';
- const apiMall = 'https://api.967111.com' // 正式
+       const apiMall = 'https://api.967111.com'; // 正式
+      // const apiMall = 'http://192.168.5.122:8080'; // 广越
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
@@ -100,32 +106,65 @@ const getPerformanceForCardHoding = params => wxRequest(params, apiMall + '/myPe
 const getPerformanceForOrders = params => wxRequest(params, apiMall + '/myPerformance/queryProductCodeSum.do');
 const getPerformanceForOrderPeoples = params => wxRequest(params, apiMall + '/myPerformance/queryProductPersonRunChart.do');
 const getPerformanceForTrend = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChart.do');
+const getPerformanceForTrendAdd = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartAdd.do');
+const getPerformanceForTrendCut = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartCut.do');
+const getPerformanceForTrendUp = params => wxRequest(params, apiMall + '/myPerformance/queryProductRunChartUp.do');
 const getPerformanceForApp = params => wxRequest(params, apiMall + '/myPerformance/queryAppUseRunChart.do');
+const getStudentsInfoById = params => wxRequest(params, apiMall + '/teacher/student/queryStudent.do');
+const updateStudentsInfo = params => wxRequest(params, apiMall + '/manageHelper/updateStudent.do');
+const searchStudentsInfoBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/listStudentNew.do');
+const getlistProductSchool = params => wxRequest(params, apiMall + '/teacher/business/listProductSchool.do');
+const addNewStudent = params => wxRequest(params, apiMall + '/manageHelper/addStudent.do');
+const getRegionProvince = params => wxRequest(params, apiMall + '/region/listProvince.do');
+const getRegionCity = params => wxRequest(params, apiMall + '/region/listCity.do');
+const getRegionCounty = params => wxRequest(params, apiMall + '/region/listRegion.do');
+const addStudentPhoto= async (params) => {
+  wepy.showLoading({
+    title: '正在上传..',
+    mask: true
+  });
 
+  const defaultParams = {
+    platformType: 3,
+    version: '1.0.0',
+    preHand: 1
+  };
+
+  const ret = await wepy.uploadFile({
+    url: apiMall + '/photoGraphController/uploadPhotoToQiNiu.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
+    ...params,
+    success: function (res) {
+      console.log('upload success', res);
+    }
+  });
+
+  wepy.hideLoading();
+  return ret;
+};
 const uploadStudentPhoto = async (params) => {
   wepy.showLoading({
     title: '正在上传..',
     mask: true
   });
-  
+
   const defaultParams = {
     platformType: 3,
     version: '1.0.0',
     preHand: 1
-  }
-  
+  };
+
   const ret = await wepy.uploadFile({
-    url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')), 
+    url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
     ...params,
-    success: function(res){
+    success: function (res) {
       console.log('upload success', res);
     }
   });
-  
+
 
   wepy.hideLoading();
   return ret;
-}
+};
 
 
 
@@ -169,6 +208,17 @@ module.exports = {
   getPerformanceForOrders,
   getPerformanceForOrderPeoples,
   getPerformanceForTrend,
+  getPerformanceForTrendAdd,
+  getPerformanceForTrendCut,
+  getPerformanceForTrendUp,
   getPerformanceForApp,
-
+  getStudentsInfoById,
+  updateStudentsInfo,
+  searchStudentsInfoBySchoolId,
+  getlistProductSchool,
+  getRegionProvince,
+  getRegionCity,
+  getRegionCounty,
+  addNewStudent,
+  addStudentPhoto
 }

@@ -72,3 +72,13 @@
 .demo-modal .description {
   color: #fff;
 }
+
+button.btn-takephoto {
+  background-color: rgb(52,140,255);
+  width: 560rpx;
+  height: 80rpx;
+  border-radius: 40rpx 40rpx 40rpx 40rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-top: 60rpx;
+}

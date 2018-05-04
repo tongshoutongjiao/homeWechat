@@ -16,9 +16,9 @@
       <image src="../images/school_card_disabled.png" class="main-icon"></image>
       <view class="icon-title disabled">学校发卡</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生管理&page_url=/pages/studentManage">
-      <image src="../images/student_manage.png" class="main-icon"></image>
-      <view class="icon-title">学生管理</view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/student_manage_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学生管理</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="">
       <image src="../images/student_check_disabled.png" class="main-icon"></image>
@@ -59,7 +59,6 @@
   <toast />
 </template>
 
-
 <script>
   import wepy from 'wepy'
   import api from '../api.js'
@@ -85,7 +84,6 @@
           })
           return false
         }
-        console.log(_page);
         wepy.navigateTo({url: _page})
       }
     }

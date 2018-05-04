@@ -26,7 +26,7 @@ export default class TakePhoto extends wepy.page {
   }
   events = {
     'take-photo' : async (ret) => {
-      this.$invoke('camera-com', 'handleSwitch', {target: {dataset: {hidden: false}}});
+      this.$invoke('camera-com', 'toggle', false);
       const studentId = this.studentId;
       const uploadRes = await api.uploadStudentPhoto({
         filePath: ret.src,
@@ -56,15 +56,18 @@ export default class TakePhoto extends wepy.page {
   methods = {
     handlePrev(e) {
       console.log(e);
-      this.switchStudent(e.target.dataset.index);
+      this.switchStudent(e.currentTarget.dataset.index);
     },
     handleNext(e) {
       console.log(e);
-      this.switchStudent(e.target.dataset.index);
+      this.switchStudent(e.currentTarget.dataset.index);
     },
     handleToggleViewDemo(e) {
       this.boolDemoHidden = !this.boolDemoHidden;
       this.$apply();
+    },
+    handleCameraToggle(e) {
+      this.$invoke('camera-com', 'toggle', true);
     }
   }
   switchStudent(index){
@@ -88,9 +91,9 @@ export default class TakePhoto extends wepy.page {
   }
   onLoad(e) {
     console.log('load..', e);
-    this.className = e.className;
+    this.className = decodeURI(e.className);
     this.classId = e.classId;
-    this.students = JSON.parse(e.students);
+    this.students = JSON.parse(wx.getStorageSync('puppylove_students'));
     let student;
     while(student = this.students[this.activeIndex]){
       if(String(student.studentId) === String(e.id)){

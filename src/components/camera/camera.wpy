@@ -1,5 +1,4 @@
 <template>
-  <button type="primary" bindtap="handleSwitch" data-hidden="{{hidden}}" class="btn-takephoto">拍照</button>
   <view class="camera-wrap flex" hidden="{{hidden}}">
     <camera device-position="{{devicePosition}}" flash="off" binderror="error" hidden="{{hidden}}" >
       <cover-image class="camera-mast" src="/asset/pe_icon.png"></cover-image>
@@ -38,15 +37,6 @@ camera {
 .camera-controls {
   width: 100%;
 }
-button.btn-takephoto {
-  background-color: rgb(52,140,255);
-  width: 560rpx;
-  height: 80rpx;
-  border-radius: 40rpx 40rpx 40rpx 40rpx;
-  color: #fff;
-  font-size: 30rpx;
-  margin-top: 60rpx;
-}
 </style>
 
 <script>
@@ -69,9 +59,8 @@ export default class CameraCom extends wepy.component {
     }
   }
   methods = {
-    handleSwitch(e) {
-      console.log(e);
-      this.hidden = !e.target.dataset.hidden;
+    toggle(show) {
+      this.hidden = !show;
       this.$apply();
     },
     handleSwitchCamera(e) {
@@ -81,32 +70,17 @@ export default class CameraCom extends wepy.component {
     },
     handleCancel(e) {
       console.log(e);
-      this.methods.handleSwitch.call(this, e);
+      this.methods.toggle.call(this, false);
     },
     handleTakePhoto(ret) {
-
-        wx.createCameraContext().takePhoto({
-            quality: 'low',
-            success: (res) => {
-              this.$emit('take-photo', {
-                src: res.tempImagePath
-              });
-            }
-        })
-      if(false){
-              wx.chooseImage({
-        count: 1,
-        sizeType: ['compressed'],
-        sourceType: ['camera'],
-        success: (res) => {
-          console.log(res)
-          this.$emit('take-photo', {
-            src: res.tempFilePaths[0]
-          });
-        }
+      wx.createCameraContext().takePhoto({
+          quality: 'low',
+          success: (res) => {
+            this.$emit('take-photo', {
+              src: res.tempImagePath
+            });
+          }
       });
-
-      }
     }
   }
   onLoad() {

@@ -22,7 +22,7 @@ export default class Index extends wepy.page {
     className: '',
     classActiveIndex: 0,
     gradeActiveIndex: 0,
-    studentsjson:'0',
+    studentsjson:'',
     scrollTop: 0,
   }
   
@@ -39,6 +39,16 @@ export default class Index extends wepy.page {
       this.classActiveIndex = e.detail.value;
       this.getStudentsByClassId(this.classes[this.classActiveIndex].id);
       this.setGradeAndClassName();
+    },
+    handleNavigateTo(e){
+      try{
+        wx.setStorageSync('puppylove_students', this.studentsjson);
+        wx.navigateTo({
+          url: `/pages/takePhoto?${querystring.stringify(e.currentTarget.dataset)}`
+        });
+      }catch(e) {
+        throw e;
+      }
     }
   }
 

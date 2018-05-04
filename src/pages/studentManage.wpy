@@ -1,7 +1,7 @@
 <template>
     <view class="container">
         <view class="search-wrapper">
-            <view class="search-content" bindtap="handleSearch">
+            <view class="search-content" bindtap="handleSearch" data-grade-id="{{searchGradeId}}" data-school-id="{{schoolId}}">
                 <image class="search-icon" src="/images/search_icon.png"></image>
                 <view class="search-title">{{studentName}}</view>
             </view>
@@ -40,7 +40,7 @@
                         </view>
                     </view>
                     <block wx:if="{{item.flag&&studentList}}">
-                        <view class="student-list"  wx:for="{{studentList}}" wx:for-item="it" data-id="{{it.studentId}}"  >
+                        <view class="student-list"  wx:for="{{studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo">
                             <view class="student-info">
                                 <view class="nick-photo" >
                                     <image src="{{it.studentImg}}" mode="aspectFill"/>
@@ -48,11 +48,11 @@
                                 <view class="nick-wrapper">
                                     <view class="nickname">
                                         <text>{{it.studentName}}</text>
-                                        <text>#{{it.isdorm?'住校':'走读'}}#</text>
-                                        <text>{{it.openStatusName}}</text>
+                                        <text class="{{it.isdorm? 'redStyle':'blueStyle'}}">#{{it.isdorm?'住校':'走读'}}#</text>
+                                        <text class="{{it.openStatusName==='已开通'?'normal':'grayStyle'}}">{{it.openStatusName}}</text>
                                     </view>
-                                    <view class="telNumber">
-                                        {{it.phone1}}
+                                    <view class="telNumber" wx:if="{{it.phone1!==' '}}">
+                                       Tel: {{it.phone1}}
                                     </view>
                                 </view>
                             </view>
@@ -61,9 +61,7 @@
                 </view>
             </block>
         </view>
-
-
-        <view class="edit" bindtap="navigateToaddStudent">
+        <view class="edit" bindtap="navigateToaddStudent" data-grade-name="{{gradeName}}" data-school-id="{{schoolId}}">
             <view class="row"></view>
             <view class="col"></view>
         </view>
@@ -71,7 +69,3 @@
 </template>
 <script src="../scripts/studentManage/index.js"></script>
 <style src="../styles/studentManage/index.css"></style>
-
-
-
-

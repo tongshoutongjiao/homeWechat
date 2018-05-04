@@ -23,7 +23,7 @@ export default class Index extends wepy.page {
   methods = {
     handleSearchSchool() {
       wx.navigateTo({
-        url: `/pages/search?${querystring.stringify({page_url: '/pages/schoolAlbum'})}`,
+        url: `/pages/search?${querystring.stringify({page_url: this.page_url})}`,
       });
     },
     handleChooseSchool(e) {

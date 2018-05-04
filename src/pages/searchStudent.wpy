@@ -4,75 +4,35 @@
             <image class="search-icon" src="/images/search_icon.png"></image>
             <input class="search-title" placeholder="请输入学生名字搜索" value="{{searchValue}}" bindinput="searchValueInput" focus="true"/>
         </view>
-        <view class="grade-list">
-            <view class="wrapper">
-                <view class="grade-name">
-                    <view>1年级1.01班</view>
-                </view>
-                <view class="student-list" >
-                    <view class="student-info">
-                        <view class="nick-photo">
-                            <image src="{{it.studentImg}}" mode="aspectFill"/>
-                        </view>
-                        <view class="nick-wrapper">
-                            <view class="nickname">
-                                <text>{{it.studentName}}1111</text>
-                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
-                                <text>{{it.openStatusName}}222</text>
+        <block wx:if="{{!empty}}">
+            <view class="grade-list">
+                <view class="wrapper" wx:for="{{studentsList}}">
+                    <view class="grade-name">
+                        <view>{{item.className}}</view>
+                    </view>
+                    <view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student" bindtap="navigatorToEditStudentInfo"  data-id="{{student.studentId}}"  data-school-id="{{schoolId}}" data-class-name="{{item.className}}">
+                        <view class="student-info">
+                            <view class="nick-photo">
+                                <image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
                             </view>
-                            <view class="telNumber">
-                                {{it.phone1}}2222
+                            <view class="nick-wrapper">
+                                <view class="nickname">
+                                    <text>{{student.studentName}}</text>
+                                    <text>#{{student.isdorm?'住校':'走读'}}</text>
+                                    <text>{{student.openStatusName}}</text>
+                                </view>
+                                <view class="telNumber">
+                                    {{student.phone1}}
+                                </view>
                             </view>
                         </view>
                     </view>
                 </view>
             </view>
-            <view class="wrapper">
-                <view class="grade-name">
-                    <view>1年级1.01班</view>
-                </view>
-                <view class="student-list" >
-                    <view class="student-info">
-                        <view class="nick-photo">
-                            <image src="{{it.studentImg}}" mode="aspectFill"/>
-                        </view>
-                        <view class="nick-wrapper">
-                            <view class="nickname">
-                                <text>{{it.studentName}}1111</text>
-                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
-                                <text>{{it.openStatusName}}222</text>
-                            </view>
-                            <view class="telNumber">
-                                {{it.phone1}}2222
-                            </view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-            <view class="wrapper">
-                <view class="grade-name">
-                    <view>1年级1.01班</view>
-                </view>
-                <view class="student-list" >
-                    <view class="student-info">
-                        <view class="nick-photo">
-                            <image src="{{it.studentImg}}" mode="aspectFill"/>
-                        </view>
-                        <view class="nick-wrapper">
-                            <view class="nickname">
-                                <text>{{it.studentName}}1111</text>
-                                <text>#{{it.isdorm?'住校':'走读'}}222#</text>
-                                <text>{{it.openStatusName}}222</text>
-                            </view>
-                            <view class="telNumber">
-                                {{it.phone1}}2222
-                            </view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </view>
-
+        </block>
+        <block wx:else>
+            <view class="empty">暂无学生相关数据</view>
+        </block>
     </view>
 
 
