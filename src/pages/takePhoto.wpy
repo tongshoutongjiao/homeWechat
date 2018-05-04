@@ -13,7 +13,8 @@
     </view>
   </view>
   <view>
-    <camera-com :boolCameraHidden="boolCameraHidden"></camera-com>
+    <button type="primary" bindtap="handleCameraToggle" data-hidden="{{boolCameraHidden}}" class="btn-takephoto">拍照</button>
+    <camera-com></camera-com>
   </view>
   <view class="title">照片要求</view>
   <view class="description">

@@ -26,7 +26,7 @@ export default class TakePhoto extends wepy.page {
   }
   events = {
     'take-photo' : async (ret) => {
-      this.$invoke('camera-com', 'handleSwitch', {target: {dataset: {hidden: false}}});
+      this.$invoke('camera-com', 'toggle', false);
       const studentId = this.studentId;
       const uploadRes = await api.uploadStudentPhoto({
         filePath: ret.src,
@@ -65,6 +65,9 @@ export default class TakePhoto extends wepy.page {
     handleToggleViewDemo(e) {
       this.boolDemoHidden = !this.boolDemoHidden;
       this.$apply();
+    },
+    handleCameraToggle(e) {
+      this.$invoke('camera-com', 'toggle', true);
     }
   }
   switchStudent(index){
