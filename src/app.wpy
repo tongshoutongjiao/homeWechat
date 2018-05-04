@@ -1,7 +1,38 @@
 <style lang="less">
+<<<<<<< Updated upstream
 	.hide {
 		display: none;
 	}
+=======
+  .hide {
+    display: none;
+  }
+  page{
+      width: 100%;
+      height: 100%;
+  }
+  .container{
+      position: relative;
+      box-sizing: border-box;
+      padding-top: 120rpx;
+      width: 100%;
+      height: 100%;
+  }
+  /*清除icon*/
+  .login-close {
+    position: absolute;
+    right: 40rpx;
+    top: 26rpx;
+    width: 32rpx;
+    height: 32rpx;
+    z-index: 10;
+  }
+    image{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+>>>>>>> Stashed changes
 </style>
 
 <script>
@@ -23,6 +54,7 @@
         'pages/takePhoto',
         'pages/schools',
         'pages/schoolAlbum',
+<<<<<<< Updated upstream
       ],
       window: {
         backgroundTextStyle: 'light',
@@ -34,16 +66,41 @@
         request: 100000,
         downloadFile: 100000
       }
+=======
+        'pages/studentManage',
+        'pages/searchStudent',
+        'pages/addStudent',
+      'pages/editStuInfo'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#FFF',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    },
+    networkTimeout: {
+      request: 100000,
+      downloadFile: 100000
+>>>>>>> Stashed changes
     }
 
     globalData = {
       userInfo: null,
     }
 
+<<<<<<< Updated upstream
     constructor () {
       super()
       this.use('requestfix')
       this.use('promisify')
+=======
+  constructor () {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+
+  }
+>>>>>>> Stashed changes
 
     }
 

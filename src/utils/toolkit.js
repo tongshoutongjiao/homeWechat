@@ -48,4 +48,8 @@ export function jsonToParam(json) {
     param.push(i + '=' + (typeof json[i] === 'object' ? JSON.stringify(json[i]) : json[i]));
   }
   return param.join('&');
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
