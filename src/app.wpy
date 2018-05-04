@@ -98,6 +98,11 @@
     super()
     this.use('requestfix')
     this.use('promisify')
+<<<<<<< Updated upstream
+=======
+
+  }
+>>>>>>> Stashed changes
 
   }
 >>>>>>> Stashed changes

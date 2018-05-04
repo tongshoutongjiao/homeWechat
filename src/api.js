@@ -165,10 +165,6 @@ const uploadStudentPhoto = async (params) => {
   wepy.hideLoading();
   return ret;
 };
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 
 module.exports = {
