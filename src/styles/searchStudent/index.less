@@ -51,6 +51,7 @@
   -webkit-overflow-scrolling: touch;
   .wrapper{
     margin-bottom: 10rpx;
+    
   }
 
   .student-list{
@@ -67,6 +68,59 @@
     height: 90rpx;
     box-sizing: border-box;
     padding:0rpx 30rpx;
+    .trangle-icon{
+      position: relative;
+      float: right;
+      margin-right: 48rpx;
+      text.down{
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: -67rpx;
+        top: 53rpx;
+        transform: translateX(-50%);
+        border-top: 10rpx solid #d0d0d4;
+        border-right: 14rpx solid transparent;
+        border-left: 14rpx solid transparent;
+        z-index: 1;
+      }
+      text.up{
+        position:absolute;
+        width:0;
+        height:0;
+        right:-67rpx;
+        top:45rpx;
+        transform:translateX(-50%);
+        border-bottom:10rpx solid #d0d0d4;
+        border-right:14rpx solid transparent;
+        border-left:14rpx solid transparent;
+        z-index:1;
+      }
+      text.hidePartDown{
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: -67rpx;
+        top: 48rpx;
+        transform: translateX(-50%);
+        border-top: 10rpx solid #fff;
+        border-right: 14rpx solid transparent;
+        border-left: 14rpx solid transparent;
+        z-index: 100;
+      }
+      text.hidePartUp{
+        position:absolute;
+        width:0;
+        height:0;
+        right:-67rpx;
+        top:48rpx;
+        transform:translateX(-50%);
+        border-bottom:10rpx solid #fff;
+        border-right:14rpx solid transparent;
+        border-left:14rpx solid transparent;
+        z-index:100;
+      }
+    }
   }
   .student-info{
     width: 100%;
@@ -82,7 +136,6 @@
     width: 80rpx;
     height: 80rpx;
     border-radius: 50%;
-    background: #358DFF;
     background-size: cover;
     image{
       display: inline-block;
@@ -103,17 +156,24 @@
     width: 100%;
     font-family: PingFangSC-Regular;
     vertical-align: top;
+    .blueStyle{
+      color: #358dff;
+    }
+    .redStyle{
+      color: #ff7996;
+      font-size: 28rpx;
+    }
+    .grayStyle{
+      float: right;
+      color: #d0d0d4;
+    }
+    .normal{
+      float: right;
+      color: #575759;
+    }
     text{
       &:nth-child(1){
         margin-right: 10rpx;
-      }
-      &:nth-last-child(2){
-        color: #ff7996;
-        font-size: 28rpx;
-      }
-      &:nth-last-child(1){
-        float: right;
-        color: #575759;
       }
     }
 

@@ -4,7 +4,7 @@ import ECharts from '../components/ec-canvas/ec-canvas';
 import FilterSlider from '../components/slider-filter/slider-filter';
 import * as Toolkit from '../utils/toolkit';
 
-
+const defaultPhoto = '../asset/hp_icon.png';
 export default class Index extends wepy.page {
   components = {
     echarts: ECharts,
@@ -25,7 +25,8 @@ export default class Index extends wepy.page {
     studentList: [],
     gradeFlag: true,
     gradesList: [],
-    gradeName:'all'
+    gradeName:'all',
+		defaultPhoto:defaultPhoto
 
   };
   events = {};
@@ -53,7 +54,7 @@ export default class Index extends wepy.page {
       let index = e.currentTarget.dataset.index,
         classId = e.currentTarget.dataset.classId;
       console.log('this.classInfo');
-      console.log(this.classInfo)
+      console.log(this.classInfo);
       this.classInfo[index].flag = !this.classInfo[index].flag;
       this.trangleDown = !this.trangleDown;
       this.getStudentsByClassId(classId);
@@ -76,9 +77,8 @@ export default class Index extends wepy.page {
 
   async selectSpecGrade(parm) {
     let index = parm.currentTarget.dataset.gradeId,
-      gradName = parm.currentTarget.dataset.graName,
-      self = this;
-    this.gradeName=gradName;
+      gradName = parm.currentTarget.dataset.graName;
+    this.gradeName = gradName;
     if (gradName === 'all') {
       this.gradeFlag = true;
       this.selected = index;
@@ -86,12 +86,13 @@ export default class Index extends wepy.page {
     } else {
       this.gradeFlag = false;
       let gradeData = this.gradesList;
-      gradeData.forEach(function (item) {
+			this.classInfo = [];
+      gradeData.forEach((item) => {
         if (item.gradeName === gradName) {
-          self.classInfo = item.list
+					this.classInfo = item.list
         }
       });
-      this.classInfo.forEach(function (item, index) {
+      this.classInfo.forEach((item, index) => {
         item.flag = false;
         item.index = index;
         item.gradeName=gradName;
@@ -103,9 +104,13 @@ export default class Index extends wepy.page {
   }
 
   async getStudentsByClassId(id) {
+		let classInfo= this.classInfo;
     const studentsRes = await api.getStudentsByClassId({data: {classId: id}});
-
-    this.studentList = studentsRes.data.data;
+		classInfo.forEach(function (item,index) {
+		  if(item.classId===id){
+				item.studentList=studentsRes.data.data;
+      }
+		});
     this.$apply();
   }
 
@@ -164,41 +169,7 @@ export default class Index extends wepy.page {
 
   async initData() {
     this.studentName = '请输入学生姓名';
-    this.classInfo = [
-      {
-        gradeName: '1.01班',
-        percentage: '20/50',
-        gradeId: '1',
-        index: '0',
-        id: '',
-        studentList: [
-          {
-            studentName: '何小炅',
-            isResidence: false,
-            status: true,
-            tel: '15329507348',
-            id: '1',
-            headImg: 'https://www.baidu.com/img/bd_logo1.png'
-          }
-        ]
-      },
-      {
-        gradeName: '1.01班',
-        percentage: '10/50',
-        gradeId: '1',
-        index: '1',
-        studentList: [
-          {
-            studentName: '何小炅',
-            isResidence: 'false',
-            status: 'true',
-            tel: '15329507348',
-            id: '1',
-            headImg: 'https://cdn2.jianshu.io/assets/default_avatar/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png'
-          }
-        ]
-      },
-    ];
+    this.classInfo = [];
 
     // 列表信息
     this.getBussinessList();
@@ -223,7 +194,10 @@ export default class Index extends wepy.page {
     console.log('ready..');
   }
 
-  onShow() {
+  onShow(e) {
     console.log('show !');
+		// 初始化页面数据
+
+
   }
 }

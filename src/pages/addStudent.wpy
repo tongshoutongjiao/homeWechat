@@ -11,17 +11,9 @@
         <picker mode="multiSelector" bindchange="bindMultiPickerChange"
                 bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}"
                 range="{{multiArray}}" range-key="{{'className'}}" >
-          <block wx:if="{{pickerFlag}}">
-            <view class="picker">
-              {{multiArray[1][multiIndex[1]].className}}
-            </view>
-          </block>
-          <block wx:else>
-            <view class="picker">
-              请输入班级
-            </view>
-          </block>
-
+          <view class="picker">
+            {{selectClassName?selectClassName:'请选择班级'}}
+          </view>
         </picker>
       </view>
       <view class="right-icon"></view>
@@ -95,10 +87,10 @@
       <view>亲情号码3</view>
       <input type="text" bindinput="searchValueInput" data-input-type="qinPhone3" placeholder="请输入亲情号码3" placeholder-class="placeholder-style">
     </view>
-    <view class="input-type" >
-      <view>学号</view>
-      <input type="text" bindinput="searchValueInput" data-input-type="studentCode" placeholder="请输入学号" placeholder-class="placeholder-style">
-    </view>
+    <!--<view class="input-type" >-->
+      <!--<view>学号</view>-->
+      <!--<input type="text" bindinput="searchValueInput" data-input-type="studentCode" placeholder="请输入学号" placeholder-class="placeholder-style">-->
+    <!--</view>-->
     <view class="input-type" >
       <view>卡号</view>
       <input type="text" bindinput="searchValueInput" data-input-type="cardCode" placeholder="请输入卡号" placeholder-class="placeholder-style">
@@ -160,7 +152,7 @@
     <view class="class-name" bindtap="clickSelectPosition">
       <view>户口所在地</view>
       <block wx:if={{selectAddressFlag}}>
-        <view class="user-position">{{province}}{{city}}{{county}}</view>
+        <view class="user-position">{{pro}}{{cit}}{{cou}}</view>
       </block>
       <block wx:else>
         <view class="user-position">{{studentInfo.regionStr?studentInfo.regionStr:'请选择地址'}}</view>
@@ -175,14 +167,14 @@
   </view>
 
   <!--底部弹出框-->
-  <view class="animation-element-wrapper" style="visibility:{{show ? 'visible':'hidden'}}"
-        bindtap="hiddenFloatView" data-id="444">
-    <view class="animation-element" catchtap="nono">
-      <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
-      <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+  <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}"
+        bindtap="hiddenFloatView">
+    <view class="animation-element">
+      <text class="left-bt" catchtap="hiddenFloatView" data-click-type="cancel">取消</text>
+      <text class="right-bt" catchtap="hiddenFloatView" data-click-type="sure">确定</text>
       <view class="line"></view>
 
-      <picker-view indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+      <picker-view indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" >
         <!--省-->
         <picker-view-column style="width:250rpx;line-height: 50px" >
           <view wx:for="{{provinces}}" wx:for-item="sheng" wx:key="">
@@ -204,6 +196,19 @@
       </picker-view>
     </view>
   </view>
+
+  <!--选择拍照功能框-->
+  <view class="animation-element-wrapper" style="visibility:{{showPhoto ? 'visible':'hidden'}}">
+    <view class="animation-element photo-style">
+      <view class="camera text-c" data-photo-type="camera" bindtap="chooseUploadStyle" >
+        <view>拍摄</view>
+      </view>
+      <view class="line photo-line"></view>
+      <view class="album text-c" data-photo-type="album" bindtap="chooseUploadStyle">从手机相册选择</view>
+      <view class="cancel-style text-c" data-photo-type="cancel" bindtap="chooseUploadStyle"  >取消</view>
+    </view>
+  </view>
+  <camera-com></camera-com>
 </template>
 <script src="../scripts/addStudent/index.js"></script>
 <style src="../styles/addStudent/index.css"></style>

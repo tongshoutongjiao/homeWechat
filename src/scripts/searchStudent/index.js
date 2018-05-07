@@ -5,6 +5,7 @@ import FilterSlider from '../components/slider-filter/slider-filter';
 import * as Toolkit from '../utils/toolkit';
 
 
+const defaultPhoto = '../asset/hp_icon.png';
 export default class Index extends wepy.page {
   components = {
     echarts: ECharts,
@@ -24,6 +25,7 @@ export default class Index extends wepy.page {
     schoolName: '',
     studentsList: [],
     empty: '',
+    defaultPhoto:defaultPhoto
 
 
   };
@@ -43,12 +45,19 @@ export default class Index extends wepy.page {
       wx.navigateTo({
         url: "/pages/editStuInfo?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
-    }
+    },
 
+  //   点击展开改班级下的学生列表
+		toggleStudentList:function (e) {
+      let index=e.currentTarget.dataset.index;
+      console.log('展开学生信息列表');
+      console.log(e);
+      console.log(this.studentInfo);
+      this.studentsList[index].extendFlag=!this.studentsList[index].extendFlag;
+		}
   };
 
   async search(e) {
-
     let result = await api.searchStudentsInfoBySchoolId({
       method: 'POST',
       data: {
@@ -63,6 +72,11 @@ export default class Index extends wepy.page {
       console.log(result.data.classList);
       if (result.data.classList.length > 0) {
         this.empty = false;
+        result.data.classList.forEach(function (item,index) {
+					item.index=index;
+					index===0?item.extendFlag=true:item.extendFlag=false;
+				});
+
         this.studentsList = result.data.classList;
       } else {
         this.empty = true

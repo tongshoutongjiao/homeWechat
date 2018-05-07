@@ -7,26 +7,43 @@
         <block wx:if="{{!empty}}">
             <view class="grade-list">
                 <view class="wrapper" wx:for="{{studentsList}}">
-                    <view class="grade-name">
-                        <view>{{item.className}}</view>
+                    <view class="grade-name" bindtap="toggleStudentList" data-index="{{item.index}}">
+                        <view>{{item.gradeName}}{{item.className}}</view>
+                        <view class="trangle-icon">
+                            <block wx:if="{{item.extendFlag}}">
+                                <text class="down"></text>
+                                <text class="hidePartDown"></text>
+                            </block>
+                            <block wx:else>
+                                <text class="up"></text>
+                                <text class="hidePartUp"></text>
+                            </block>
+                        </view>
                     </view>
-                    <view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student" bindtap="navigatorToEditStudentInfo"  data-id="{{student.studentId}}"  data-school-id="{{schoolId}}" data-class-name="{{item.className}}">
-                        <view class="student-info">
-                            <view class="nick-photo">
-                                <image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
-                            </view>
-                            <view class="nick-wrapper">
-                                <view class="nickname">
-                                    <text>{{student.studentName}}</text>
-                                    <text>#{{student.isdorm?'住校':'走读'}}</text>
-                                    <text>{{student.openStatusName}}</text>
+                    <block wx:if="{{item.extendFlag}}" >
+                        <view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student" bindtap="navigatorToEditStudentInfo"  data-id="{{student.studentId}}"  data-school-id="{{schoolId}}" data-class-name="{{item.className}}">
+                            <view class="student-info">
+                                <view class="nick-photo">
+                                    <block wx:if="{{student.bulkPasteImg!==' '}}">
+                                        <image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
+                                    </block>
+                                    <block wx:else>
+                                        <image src="{{defaultPhoto}}" mode="aspectFill"/>
+                                    </block>
                                 </view>
-                                <view class="telNumber">
-                                    {{student.phone1}}
+                                <view class="nick-wrapper">
+                                    <view class="nickname">
+                                        <text>{{student.studentName}}</text>
+                                        <text class="{{student.isdorm? 'redStyle':'blueStyle'}}">#{{student.isdorm?'住校':'走读'}}#</text>
+                                        <text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}</text>
+                                    </view>
+                                    <view class="telNumber" wx:if="{{student.phone1!==' '}}">
+                                        Tel: {{student.phone1}}
+                                    </view>
                                 </view>
                             </view>
                         </view>
-                    </view>
+                    </block>
                 </view>
             </view>
         </block>

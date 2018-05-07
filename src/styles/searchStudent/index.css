@@ -64,6 +64,59 @@
   box-sizing: border-box;
   padding: 0rpx 30rpx;
 }
+.grade-list .grade-name .trangle-icon {
+  position: relative;
+  float: right;
+  margin-right: 48rpx;
+}
+.grade-list .grade-name .trangle-icon text.down {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 53rpx;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .grade-name .trangle-icon text.up {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 45rpx;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .grade-name .trangle-icon text.hidePartDown {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 48rpx;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
+.grade-list .grade-name .trangle-icon text.hidePartUp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 48rpx;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
 .grade-list .student-info {
   width: 100%;
   box-sizing: border-box;
@@ -77,7 +130,6 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-  background: #358DFF;
   background-size: cover;
 }
 .grade-list .nick-photo image {
@@ -98,16 +150,23 @@
   font-family: PingFangSC-Regular;
   vertical-align: top;
 }
-.grade-list .nickname text:nth-child(1) {
-  margin-right: 10rpx;
+.grade-list .nickname .blueStyle {
+  color: #358dff;
 }
-.grade-list .nickname text:nth-last-child(2) {
+.grade-list .nickname .redStyle {
   color: #ff7996;
   font-size: 28rpx;
 }
-.grade-list .nickname text:nth-last-child(1) {
+.grade-list .nickname .grayStyle {
+  float: right;
+  color: #d0d0d4;
+}
+.grade-list .nickname .normal {
   float: right;
   color: #575759;
+}
+.grade-list .nickname text:nth-child(1) {
+  margin-right: 10rpx;
 }
 .grade-list .telNumber {
   font-size: 28rpx;
