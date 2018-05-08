@@ -18,7 +18,6 @@ export default class Index extends wepy.page {
     selected: '0',// 默认选中的年级样式,
     gradesInfo: [],
     trangleDown: true,
-    classData: [],
     classInfo: [],// 班级列表信息
     schoolId: '',
     schoolName: '',
@@ -132,7 +131,7 @@ export default class Index extends wepy.page {
 				 graName: 'all',
 				 id: 0
 			 });
-			 for (var b = 0; b < garde.data.gradeList.length; b++) {
+			 for (let b = 0; b < garde.data.gradeList.length; b++) {
 				 this.gradesInfo.push(garde.data.gradeList[b])
 			 }
 			 this.$apply();
@@ -152,7 +151,6 @@ export default class Index extends wepy.page {
         item.index = index;
       });
       this.classInfo = classes.data.classList;
-      this.classData = classes.data.classList;
       this.$apply();
     }
   }
@@ -178,7 +176,7 @@ export default class Index extends wepy.page {
     // 获取所有年级信息
     this.getBussinessList();
 
-    // 年级信息
+    // 各个年级信息
     this.getGradeBySchoolId();
 
     // 班级信息
@@ -190,6 +188,7 @@ export default class Index extends wepy.page {
     this.schoolId = e.id;
     this.schoolName = e.name;
 	wepy.setStorageSync('schoolId',this.schoolId);
+		setTimeout(e => this.initData());
 
 
   }
@@ -200,6 +199,5 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-		setTimeout(e => this.initData());
   }
 }

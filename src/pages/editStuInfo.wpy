@@ -125,10 +125,6 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
-
-
-
-
 		<block wx:if="{{studentInfo.qin2Flag}}">
 			<view class="input-type">
 				<view>亲情号码1</view>
@@ -164,15 +160,8 @@
 						   data-tels="{{studentInfo.qinPhone2}}">立即开通
 					</view>
 				</block>
-
-
-
 			</view>
-
-
 		</block>
-
-
 		<block wx:else>
 			<view class="input-type">
 				<view>亲情号码1</view>
@@ -180,10 +169,6 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
-
-
-
-
 		<block wx:if="{{studentInfo.qin3Flag}}">
 			<view class="input-type">
 				<view>亲情号码2</view>
@@ -219,11 +204,6 @@
 					</view>
 				</block>
 
-
-
-
-
-
 			</view>
 		</block>
 		<block wx:else>
@@ -233,9 +213,6 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
-
-
-
 
 		<view class="input-type">
 			<view>学号</view>

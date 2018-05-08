@@ -452,7 +452,6 @@ export default class Index extends wepy.page {
 			if(key==='qinPhone3'){
 				this.studentInfo['qin3Flag']= res.data[key]!==''? true:false
 			}
-			console.log(res.data[key]);
 			this.studentInfo[key] = res.data[key];
 		}
 		this.$apply();
@@ -539,14 +538,12 @@ export default class Index extends wepy.page {
 
 
 		}else {
-			console.log(res.data);
 			wx.showToast({
 				title: res.data.message,
 				icon: 'none',
 				duration: 2000
 			});
 		}
-		console.log(res);
 		this.$apply();
 	}
 
@@ -564,8 +561,6 @@ export default class Index extends wepy.page {
 	}
 
 	async uploadImg(paths) {
-		console.log('上传图片');
-		console.log(paths);
 		let studentId=this.studentInfo.studentId;
 		const uploadRes = await api.uploadStudentPhoto({
 			filePath: paths[0],
@@ -586,7 +581,6 @@ export default class Index extends wepy.page {
 			title: '上传成功',
 			icon: 'success',
 		});
-		console.log(uploadRes);
 		this.studentInfo.studentImg=photoRes.data[0].imgUrl;
 		this.$apply();
 	}
@@ -617,7 +611,6 @@ export default class Index extends wepy.page {
 
 	// 动画事件
 	animationEvents(that, moveY, show) {
-		console.log("moveY:" + moveY + "\nshow:" + show);
 		that.animation = wx.createAnimation({
 				transformOrigin: "50% 50%",
 				duration: 500,
@@ -651,7 +644,6 @@ export default class Index extends wepy.page {
 
 	async onLoad(option) {
 		console.log('页面信息');
-		console.log(option);
 		this.schoolId=option.schoolId;
 		this.gradeName = option.gradeName;
 		this.studentInfo.studentId=option.id;
