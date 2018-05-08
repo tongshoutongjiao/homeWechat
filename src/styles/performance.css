@@ -82,6 +82,11 @@
   font-size: 24rpx;
   padding-bottom: 20rpx;
 }
+.charts-sub-title {
+  font-size: rgb(142,142,147);
+  font-size: 20rpx;
+  text-align: center;
+}
 .charts-item {
   height: 400rpx;
   border-top: 2rpx solid rgb(230,230,230);

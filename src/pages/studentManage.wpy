@@ -1,0 +1,71 @@
+<template>
+    <view class="container">
+        <view class="search-wrapper">
+            <view class="search-content" bindtap="handleSearch" data-grade-id="{{searchGradeId}}" data-school-id="{{schoolId}}">
+                <image class="search-icon" src="/images/search_icon.png"></image>
+                <view class="search-title">{{studentName}}</view>
+            </view>
+        </view>
+        <scroll-view scroll-X="true" class="grade-tab ">
+            <view wx:for="{{gradesInfo}}" class="grade-info {{selected == item.id ? 'actived' : ''}}"
+                  data-grade-id="{{item.id}} " data-gra-name="{{item.gradeName}}" bindtap="selectGrade">{{item.gradeName}}
+                <text class="btm"></text>
+            </view>
+        </scroll-view>
+
+        <view class="grade-list">
+            <block wx:if="{{gradeFlag}}">
+                <view class="spec-grade" >
+                    <view class="grade-name" wx:for="{{gradesList}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
+                        <view>{{item.gradeName}}</view>
+                        <view class="open-num" >{{item.gradeOpen}}/{{item.gradeUnOpen}}</view>
+                        <view class="right-icon"></view>
+                        <view class="right-hide"></view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="spec-grade" wx:for="{{classInfo}}" wx:key="{{item.classId}}">
+                    <view class="grade-name"  bindtap="toggleTrangle" data-index="{{item.index}}" data-class-id="{{item.classId}}">
+                        <view>{{item.className}}</view>
+                        <view class="trangle-icon">{{item.openNum}}{{'/'+item.unOpenNum}}
+                            <block wx:if="{{item.flag}}">
+                                <text class="down"></text>
+                                <text class="hidePartDown"></text>
+                            </block>
+                            <block wx:else>
+                                <text class="up"></text>
+                                <text class="hidePartUp"></text>
+                            </block>
+                        </view>
+                    </view>
+                    <block wx:if="{{item.flag&&studentList}}">
+                        <view class="student-list"  wx:for="{{item.studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo">
+                            <view class="student-info">
+                                <view class="nick-photo" >
+                                    <image src="{{it.studentImg||defaultPhoto}}" mode="aspectFill"/>
+                                </view>
+                                <view class="nick-wrapper">
+                                    <view class="nickname">
+                                        <text>{{it.studentName}}</text>
+                                        <text class="{{it.isdorm? 'redStyle':'blueStyle'}}">({{it.isdorm?'住校':'走读'}})</text>
+                                        <text class="{{it.openStatusName==='已开通'?'normal':'grayStyle'}}">{{it.openStatusName}}</text>
+                                    </view>
+                                    <view class="telNumber" wx:if="{{it.phone1!==' '}}">
+                                       Tel: {{it.phone1}}
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </block>
+        </view>
+        <view class="edit" bindtap="navigateToaddStudent" data-grade-name="{{gradeName}}" data-school-id="{{schoolId}}">
+            <view class="row"></view>
+            <view class="col"></view>
+        </view>
+    </view>
+</template>
+<script src="../scripts/studentManage/index.js"></script>
+<style src="../styles/studentManage/index.css"></style>
