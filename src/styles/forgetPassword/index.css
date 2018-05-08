@@ -1,0 +1,109 @@
+
+    /*输入框外围*/
+.reset-box {
+    position: relative;
+    width: 560rpx;
+    height: 84rpx;
+    margin: 0 auto;
+    border: 1rpx solid #E7E7E7;
+    border-radius: 40rpx;
+    overflow: hidden;
+}
+/*输入框选中状态*/
+.reset-box.active {
+    border: 1rpx solid #358DFF;
+}
+/*手机号输入框*/
+.reset-phone {
+    margin-top: 100rpx;
+}
+/*验证码外围*/
+.reset-wrapper {
+    margin-top: 50rpx;
+    overflow: hidden;
+}
+/*验证码输入框*/
+.reset-vcode {
+    float: left;
+    width: 300rpx;
+    margin-right: 0;
+    margin-left: 95rpx;
+}
+/*密码输入框*/
+.reset-password {
+    margin-top: 50rpx;
+}
+/*输入框*/
+.reset-input {
+    float: left;
+    width: 364rpx;
+    height: 36rpx;
+    min-height: 0;
+    margin-top: 24rpx;
+    margin-left: 40rpx;
+    line-height: 36rpx;
+    color: #358DFF;
+    font-size: 14px;
+}
+.reset-vcode .reset-input {
+    width: 177rpx;
+}
+/*palcehoder*/
+.placeholder-model {
+    position: absolute;
+    top: 24rpx;
+    left: 40rpx;
+    line-height: 36rpx;
+    color: #D0D0D4;
+    font-size: 14px;
+}
+/*字号12*/
+.font12 {
+    font-size: 12px;
+}
+/*清除icon*/
+.reset-close {
+    position: absolute;
+    right: 40rpx;
+    top: 26rpx;
+    width: 32rpx;
+    height: 32rpx;
+    z-index: 10;
+}
+/*默认按钮*/
+.btn-default{
+    display: flex;
+    position: relative;
+    width: 560rpx;
+    height: 88rpx;
+    margin: 0 auto;
+    margin-top: 70rpx;
+    border-radius: 40rpx;
+    background: #C2DDFF;
+    color: #FFF;
+    font-size: 15px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+/*获取验证码按钮*/
+.vcode-default {
+    float: right;
+    width: 230rpx;
+    margin-top: 0;
+    margin-right: 95rpx;
+}
+/*按钮可点击状态*/
+.btn-default.active{
+    background: #358DFF;
+}
+/*提示信息*/
+.wetoast__bd {
+    min-width: 200px;
+    min-height: 0;
+    padding: 10px;
+}
+/*提示信息标题*/
+.wetoast__bd__title {
+    font-size: 14px;
+}

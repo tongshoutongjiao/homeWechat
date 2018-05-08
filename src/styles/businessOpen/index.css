@@ -1,0 +1,216 @@
+
+    /*--------------------- empty -----------------------------*/
+.empty {
+    position: absolute;
+    top: 446rpx;
+    width: 100%;
+    color: #D0D0D4;
+    font-size: 14px;
+    text-align: center;
+}
+/*--------------------- search -----------------------------*/
+.search-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 120rpx;
+    background: #FFF;
+    z-index: 100;
+}
+.search-content {
+    display: flex;
+    width: 690rpx;
+    height: 80rpx;
+    margin: 20rpx 30rpx;
+    border-radius: 40rpx;
+    box-shadow:0 1px 10px rgba(142, 142, 147, 0.15);
+    justify-content: center;
+    align-items: center;
+}
+.search-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: 5rpx;
+    margin-right: 10rpx;
+}
+.search-title {
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 15px;
+    color: #8E8E93;
+}
+/*--------------------- nav样式 -----------------------------*/
+.nav-wrapper {
+    position: fixed;
+    top: 120rpx;
+    width: 100%;
+    background: #FFF;
+    z-index: 100;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grade,.grade-class {
+    display: flex;
+    height: 94rpx;
+    padding-bottom: 20rpx;
+    color: #181818;
+    font-size: 17px;
+    justify-content: center;
+    align-items: center;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 8rpx solid transparent;
+    border-right: 8rpx solid transparent;
+    border-top: 12rpx solid #d0d0d4;
+    margin-left: 10rpx;
+}
+picker {
+    width: 50%;
+    display: flex;
+    justify-content:center;
+}
+/* -------------- footer样式 ----------*/
+.footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 690rpx;
+    height: 100rpx;
+    padding: 0 30rpx;
+    border-top: 1rpx solid #E7E7E7;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.9);
+    z-index: 1;
+}
+.footer-left {
+    display: flex;
+    font-size: 15px;
+    color: #151515;
+    flex-direction: row;
+}
+.all-default {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+.footer-middle {
+    color: #358DFF;
+    font-size: 12px;
+    transform: translateX(30rpx);
+}
+.footer-right {
+    display: flex;
+    width: 186rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+    background: #358DFF;
+    color: #FFF;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.list-wraper {
+    padding-top: 234rpx;
+    padding-bottom: 102rpx;
+}
+/* -------------- container 班级列表---------- */
+.list-option {
+    display: flex;
+    width: 690rpx;
+    height: 100rpx;
+    padding: 0 30rpx;
+    background: #F7F7F7;
+    justify-content: space-between;
+    align-items: center;
+}
+.class-option {
+    background: #FFF;
+}
+.list-left {
+    display: flex;
+    color: #181818;
+    font-size: 16px;
+    flex-direction: row;
+}
+.list-right {
+    display: flex;
+    color: #575759;
+    font-size: 14px;
+    flex-direction: row;
+}
+.icon-up {
+    width: 30rpx;
+    height: 16rpx;
+    margin-top: 10rpx;
+    margin-left: 20rpx;
+}
+.open-num {
+    margin-right: 20rpx;
+    color: #8E8E93;
+}
+/* -------------- container 学生列表---------- */
+.student-box {
+    margin-bottom: 40rpx;
+}
+.student-info {
+    display: flex;
+    width: 690rpx;
+    height: 80rpx;
+    padding: 0 30rpx;
+    color: #181818;
+    font-size: 16px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.student-photo {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+    border-radius: 50%;
+    background: #D0D0D4;
+}
+.phone-box {
+    margin-left: 70rpx;
+    border-bottom: 2px solid #F7F7F7;
+}
+.student-option {
+    width: auto;
+    height: 88rpx;
+    background: #FFF;
+}
+.student-option .list-left {
+    font-size: 15px;
+}
+.student-option .list-right {
+    font-size: 14px;
+}
+.has-open .list-left,
+.has-open .list-right {
+    color: #8E8E93;
+}
+.list-right input {
+    width: 168rpx;
+    color: #358DFF;
+    text-align: right;
+}
+.select-type {
+    width: 186rpx;
+}
+.no-phone {
+    color: #8E8E93;
+    font-size: 14px;
+}
+.wetoast__bd {
+    min-width: 200px;
+    min-height: 0;
+    padding: 10px;
+}
+.wetoast__bd__title {
+    font-size: 14px;
+}
