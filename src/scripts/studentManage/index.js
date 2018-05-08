@@ -39,14 +39,19 @@ export default class Index extends wepy.page {
       });
     },
 
-    // 选择年级
+    // 横向选择年级
     selectGrade: function (e) {
-      this.selectSpecGrade(e)
+			let index = e.currentTarget.dataset.gradeId,
+				gradName = e.currentTarget.dataset.graName;
+			console.log(gradName);
+      this.selectSpecGrade(gradName,index);
     },
 
     // 点击全部下边年级列表，显示对应信息
     switchGrade: function (e) {
-      this.selectSpecGrade(e)
+			let index = e.currentTarget.dataset.gradeId,
+				gradName = e.currentTarget.dataset.graName;
+      this.selectSpecGrade(gradName,index);
     },
 
     // 点击展开年级列表及学生信息
@@ -75,11 +80,9 @@ export default class Index extends wepy.page {
     }
   };
 
-  async selectSpecGrade(parm) {
-    let index = parm.currentTarget.dataset.gradeId,
-      gradName = parm.currentTarget.dataset.graName;
+  async selectSpecGrade(gradName,index) {
     this.gradeName = gradName;
-    if (gradName === 'all') {
+    if (gradName === '全部') {
       this.gradeFlag = true;
       this.selected = index;
       return;
@@ -122,18 +125,18 @@ export default class Index extends wepy.page {
         schoolId: this.schoolId
       }
     });
-    if (garde.data.result === 200) {
-      this.gradesInfo.push({
-        gradeName: '全部',
-        schoolId: this.schoolId,
-        graName: 'all',
-        id: 0
-      })
-      for (var b = 0; b < garde.data.gradeList.length; b++) {
-        this.gradesInfo.push(garde.data.gradeList[b])
-      }
-      this.$apply();
-    }
+		 if (garde.data.result === 200) {
+			 this.gradesInfo.push({
+				 gradeName: '全部',
+				 schoolId: this.schoolId,
+				 graName: 'all',
+				 id: 0
+			 });
+			 for (var b = 0; b < garde.data.gradeList.length; b++) {
+				 this.gradesInfo.push(garde.data.gradeList[b])
+			 }
+			 this.$apply();
+		 }
   }
 
   async getClassBySchoolId() {
@@ -142,18 +145,19 @@ export default class Index extends wepy.page {
       data: {
         schoolId: this.schoolId
       }
-    })
+    });
     if (classes.data.result === 200) {
       classes.data.classList.forEach(function (item, index) {
         item.flag = false;
         item.index = index;
-      })
+      });
       this.classInfo = classes.data.classList;
       this.classData = classes.data.classList;
       this.$apply();
     }
   }
 
+  //
   async getBussinessList() {
     let list = await api.schoolBusinessList({
       showLoading: true,
@@ -162,8 +166,8 @@ export default class Index extends wepy.page {
         schoolId: this.schoolId
       }
     });
-    list.data.result == '200' ? this.gradesList = list.data.schoolBusinessList : [];
-    this.gradesList.reverse();
+    console.log(this.gradesList);
+    list.data.result ===200 ? this.gradesList = list.data.schoolBusinessList : [];
     this.$apply();
   }
 
@@ -171,7 +175,7 @@ export default class Index extends wepy.page {
     this.studentName = '请输入学生姓名';
     this.classInfo = [];
 
-    // 列表信息
+    // 获取所有年级信息
     this.getBussinessList();
 
     // 年级信息
@@ -185,9 +189,9 @@ export default class Index extends wepy.page {
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
+	wepy.setStorageSync('schoolId',this.schoolId);
 
-    // 初始化页面数据
-    setTimeout(e => this.initData());
+
   }
 
   onReady() {
@@ -196,8 +200,6 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-		// 初始化页面数据
-
-
+		setTimeout(e => this.initData());
   }
 }

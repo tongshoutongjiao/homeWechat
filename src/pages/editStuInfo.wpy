@@ -83,11 +83,6 @@
 
 		</view>
 
-
-
-
-
-
 		<block wx:if="{{studentInfo.qin1Flag}}">
 			<view class="input-type">
 				<view>主号码</view>
@@ -96,19 +91,30 @@
 			</view>
 			<view class="input-type">
 				<view>业务状态</view>
-				<block wx:if={{!studentInfo.qin0}}>
-					<block wx:if="{{!studentInfo.openClickStatus1&&studentInfo.qin0}}">
+				<block wx:if="{{studentInfo.qin0 == '未开通'}}">
+					<block wx:if="{{!studentInfo.openClickStatus1}}">
 						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
-					<view wx:if="{{!studentInfo.qin0}}" style="color: #8e8e93" class="open-status"  data-phone-types="1"
-						  data-tels="{{studentInfo.qinPhone1}}">办理中
-					</view>
-					<view wx:else class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
 						  data-tels="{{studentInfo.qinPhone1}}">立即开通
 					</view>
 				</block>
-				<block wx:else>
+				<block wx:if="{{studentInfo.qin0 == '办理中'}}">
+					<view style="color: #8e8e93" class="open-status"  data-phone-types="1"
+						  data-tels="{{studentInfo.qinPhone1}}">办理中
+					</view>
+				</block>
+
+				<block wx:if="{{studentInfo.qin0 == '已开通'}}">
 					<view class="open-status" style="color: #8e8e93">已开通</view>
+				</block>
+				<block wx:if="{{studentInfo.qin0 == '试用开通'}}">
+					<block wx:if="{{!studentInfo.openClickStatus1}}">
+						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+					</block>
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
+						   data-tels="{{studentInfo.qinPhone1}}">立即开通
+					</view>
 				</block>
 			</view>
 		</block>
@@ -131,21 +137,42 @@
 			</view>
 			<view class="input-type">
 				<view>业务状态</view>
-				<block wx:if={{!studentInfo.qin1}}>
+
+				<block wx:if="{{studentInfo.qin1 == '未开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus2}}">
 						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
-					<view class="open-status" bindtap="{{studentInfo.openClickStatus2?'':'clickOpenStatus'}}"   data-phone-types="2"
-						  data-tels="{{studentInfo.qinPhone2}}">{{studentInfo.openClickStatus2?'开通中':'立即开通'}}
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus2?'':'clickOpenStatus'}}"  data-phone-types="2"
+						   data-tels="{{studentInfo.qinPhone2}}">立即开通
 					</view>
 				</block>
-				<block wx:else>
+
+				<block wx:if="{{studentInfo.qin1 == '办理中'}}">
+					<view style="color: #8e8e93" class="open-status"  data-phone-types="2"
+						  data-tels="{{studentInfo.qinPhone2}}">办理中
+					</view>
+				</block>
+
+				<block wx:if="{{studentInfo.qin1 == '已开通'}}">
 					<view class="open-status" style="color: #8e8e93">已开通</view>
 				</block>
+				<block wx:if="{{studentInfo.qin1 == '试用开通'}}">
+					<block wx:if="{{!studentInfo.openClickStatus2}}">
+						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+					</block>
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus2?'':'clickOpenStatus'}}"  data-phone-types="2"
+						   data-tels="{{studentInfo.qinPhone2}}">立即开通
+					</view>
+				</block>
+
+
 
 			</view>
 
+
 		</block>
+
+
 		<block wx:else>
 			<view class="input-type">
 				<view>亲情号码1</view>
@@ -153,11 +180,6 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
-
-
-
-
-
 
 
 
@@ -170,17 +192,38 @@
 			</view>
 			<view class="input-type">
 				<view>业务状态</view>
-				<block wx:if={{!studentInfo.qin2}}>
+				<block wx:if="{{studentInfo.qin2 == '未开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus3}}">
 						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
-					<view class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="3"
-						  data-tels="{{studentInfo.qinPhone3}}">{{studentInfo.openClickStatus3?'开通中':'立即开通'}}
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="2"
+						   data-tels="{{studentInfo.qinPhone2}}">立即开通
 					</view>
 				</block>
-				<block wx:else>
+
+				<block wx:if="{{studentInfo.qin2 == '办理中'}}">
+					<view style="color: #8e8e93" class="open-status"  data-phone-types="3"
+						  data-tels="{{studentInfo.qinPhone3}}">办理中
+					</view>
+				</block>
+
+				<block wx:if="{{studentInfo.qin2 == '已开通'}}">
 					<view class="open-status" style="color: #8e8e93">已开通</view>
 				</block>
+				<block wx:if="{{studentInfo.qin2 == '试用开通'}}">
+					<block wx:if="{{!studentInfo.openClickStatus3}}">
+						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+					</block>
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="2"
+						   data-tels="{{studentInfo.qinPhone2}}">立即开通
+					</view>
+				</block>
+
+
+
+
+
+
 			</view>
 		</block>
 		<block wx:else>

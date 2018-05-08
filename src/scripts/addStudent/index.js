@@ -47,6 +47,7 @@ export default class Index extends wepy.page {
 
 		// 相册弹出框
 		showPhoto:false,
+		savingFlag:false,
 
 		//  省市县三级联动
 		animation:[],
@@ -78,16 +79,17 @@ export default class Index extends wepy.page {
 		// picker多项选择器
 		bindMultiPickerChange: function (e) {
 			this.multiIndex = e.detail.value;
-
 			this.selectClassName=this.multiArray[1][this.multiIndex[1]].className;
 			console.log('点击确定时执行该方法');
 			console.log(this.multiArray[1][this.multiIndex[1]]);
 			this.selectClassId=this.multiArray[1][this.multiIndex[1]].classId;
 			console.log(this.selectClassId);
-			console.log(this.$apply())
+			this.$apply()
 
 		},
 		bindMultiPickerColumnChange: function (e) {
+
+
 			// 滑动左边时，判断班级数是否为1，如果为1，则将改班级id设为默认值
 			let gradeData=this.multiArray[0];
 			let value = e.detail.value;
@@ -97,10 +99,11 @@ export default class Index extends wepy.page {
 				for (let i = 0; i < gradeData.length;i++) {
 					if(i===value){
 						this.multiArray[1]=gradeData[i].list;
-						if(gradeData[i].list.length=='1'){
 							this.selectClassId=gradeData[i].list[0].classId;
-						}
+							console.log('lalla');
+							console.log(this.selectClassId);
 						this.multiIndex[1]=0;
+
 					}
 				}
 			} else {
@@ -262,10 +265,10 @@ export default class Index extends wepy.page {
 					break;
 				case'sure':
 					console.log('sure');
+					this.selectAddressFlag=true;
 					this.pro=this.province;
 					this.cit=this.city;
 					this.cou=this.county;
-
 					this.moveY = 200;
 					this.show = false;
 					this.t = 0;
@@ -274,7 +277,6 @@ export default class Index extends wepy.page {
 					break;
 
 			}
-
 
 		},
 
@@ -463,8 +465,10 @@ export default class Index extends wepy.page {
 	}
 
 	async addNewStudent() {
-		// 班级 姓名 性别 学生类型
-
+		if(this.savingFlag){
+			return;
+		}
+		this.savingFlag=true;
 		let data = this.studentInfo;
 
 		data.userTelNum = userTelNum;
@@ -484,9 +488,13 @@ export default class Index extends wepy.page {
 		    icon: 'success',
 		    duration: 2000
 		  });
-		  wx.navigateBack({
-		    delta: 1
-		  })
+		  setTimeout(()=>{
+				this.savingFlag=false;
+				wx.navigateBack({
+					delta: `1?id=${this.schoolId}`
+				})
+			},1000)
+
 		}else {
 			console.log(res.data);
 			wx.showToast({

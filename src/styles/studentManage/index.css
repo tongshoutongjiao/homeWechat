@@ -125,6 +125,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 30rpx 0rpx;
+  height: 120rpx;
 }
 .grade-list .nick-photo {
   float: left;

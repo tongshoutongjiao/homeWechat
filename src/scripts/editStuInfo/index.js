@@ -36,6 +36,7 @@ export default class Index extends wepy.page {
 		productList:[],
 		selectClassName:'',
 		showPhoto:false,
+		savingFlag:false,
 
 
 		//  省市县三级联动
@@ -71,6 +72,8 @@ export default class Index extends wepy.page {
 			this.pickerFlag = true;
 			this.multiIndex = e.detail.value;
 			this.selectClassName=this.multiArray[1][this.multiIndex[1]].className;
+			this.studentInfo.classId=this.multiArray[1][this.multiIndex[1]].classId;
+
 			this.studentInfo.className='';
 		},
 
@@ -84,6 +87,7 @@ export default class Index extends wepy.page {
 				for (let i = 0; i < gradeData.length;i++) {
 					if(i===value){
 						this.multiArray[1]=gradeData[i].list;
+						this.studentInfo.classId=gradeData[i].list[0].classId;
 						this.multiIndex[1]=0;
 					}
 				}
@@ -197,8 +201,6 @@ export default class Index extends wepy.page {
 			console.log('提交后台数据');
 
 
-
-
 			this.updateStudentsInfo();
 			this.$apply();
 
@@ -237,6 +239,7 @@ export default class Index extends wepy.page {
 					this.pro=this.province;
 					this.cit=this.city;
 					this.cou=this.county;
+					this.selectAddressFlag=true;
 					this.moveY = 200;
 					this.show = false;
 					this.t = 0;
@@ -353,7 +356,7 @@ export default class Index extends wepy.page {
 		if(res.data.result===200){
 			this.countys = res.data.data;
 			defaultCounty=res.data.data[countryIndex];
-			regionId=defaultCounty.regionId;
+			regionId=defaultCounty.otherid;
 			this.county = defaultCounty.regionName;
 			this.studentInfo.regionId=regionId;
 			this.$apply();
@@ -430,6 +433,9 @@ export default class Index extends wepy.page {
 						case '办理中':
 							res.data[`qin${index}`]='办理中';
 							break;
+						case '试用开通':
+							res.data[`qin${index}`]='试用开通';
+							break;
 					}
 				});
 				break;
@@ -453,6 +459,10 @@ export default class Index extends wepy.page {
 	}
 
 	async updateStudentsInfo() {
+		if(this.savingFlag){
+			return;
+		}
+		this.savingFlag=true;
 		let ajaxData={
 			studentImg:'',
 			name:'',
@@ -520,7 +530,8 @@ export default class Index extends wepy.page {
 				icon: 'success',
 				duration: 2000
 			});
-			setTimeout(function () {
+			setTimeout( () => {
+				this.savingFlag = false;
 				wx.navigateBack({
 					delta: 1
 				})
