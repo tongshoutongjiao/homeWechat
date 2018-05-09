@@ -4,7 +4,7 @@ import querystring from 'querystring'
 let requestLength = 0;
 
 const wxRequest = async (params = {}, url) => {
-  requestLength++;
+  requestLength ++ ;
   if (true) {
     wx.showLoading({
       title: '加载中',
