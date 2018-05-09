@@ -86,9 +86,6 @@ export default class Index extends wepy.page {
   }
 
 
-  async initData() {
-
-  }
 
   async onLoad(e) {
     console.log('页面参数');

@@ -1,5 +1,6 @@
 <template>
   <view class="container">
+
     <view class="photo">
       <view>头像</view>
       <image src="{{studentInfo.studentImg||defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
@@ -23,7 +24,8 @@
       <view>姓名</view>
       <text class="star-icon">*</text>
       <input type="text" data-input-type="name" bindinput="searchValueInput" placeholder="请输入名字"
-             placeholder-class="placeholder-style" value="{{}}">
+                   placeholder-class="placeholder-style" value="{{studentInfo.name}}" bindblur="judgeValueInput">
+
     </view>
     <view class="sex">
       <view>性别</view>
@@ -77,7 +79,7 @@
     </view>
     <view class="input-type" >
       <view>主号码</view>
-      <input type="text" bindinput="searchValueInput" data-input-type="qinPhone1" placeholder="请输入手机号码" placeholder-class="placeholder-style">
+     <input type="text" bindinput="searchValueInput" data-input-type="qinPhone1" placeholder="请输入手机号码" placeholder-class="placeholder-style">
     </view>
     <view class="input-type" >
       <view>亲情号码2</view>
@@ -85,7 +87,7 @@
     </view>
     <view class="input-type" >
       <view>亲情号码3</view>
-      <input type="text" bindinput="searchValueInput" data-input-type="qinPhone3" placeholder="请输入亲情号码3" placeholder-class="placeholder-style">
+    <input type="text" bindinput="searchValueInput" data-input-type="qinPhone3" placeholder="请输入亲情号码3" placeholder-class="placeholder-style">
     </view>
     <!--<view class="input-type" >-->
       <!--<view>学号</view>-->
@@ -93,7 +95,7 @@
     <!--</view>-->
     <view class="input-type" >
       <view>卡号</view>
-      <input type="text" bindinput="searchValueInput" data-input-type="cardCode" placeholder="请输入卡号" placeholder-class="placeholder-style">
+     <input type="text" bindinput="searchValueInput" data-input-type="cardCode" placeholder="请输入卡号" placeholder-class="placeholder-style">
     </view>
     <view class="is-drop"  >
       <view>是否挂失</view>
@@ -208,7 +210,10 @@
       <view class="cancel-style text-c" data-photo-type="cancel" bindtap="chooseUploadStyle"  >取消</view>
     </view>
   </view>
-  <camera-com></camera-com>
+  <block wx:if="{{cameraFlag}}">
+    <camera-com></camera-com>
+  </block>
+
 </template>
 <script src="../scripts/addStudent/index.js"></script>
 <style src="../styles/addStudent/index.css"></style>

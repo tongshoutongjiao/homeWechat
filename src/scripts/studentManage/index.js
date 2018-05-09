@@ -9,7 +9,7 @@ export default class Index extends wepy.page {
   components = {
     echarts: ECharts,
     'filter-slider': FilterSlider,
-  }
+  };
   config = {
     navigationBarTitleText: '学生管理'
   };
@@ -24,8 +24,12 @@ export default class Index extends wepy.page {
     studentList: [],
     gradeFlag: true,
     gradesList: [],
-    gradeName:'all',
-		defaultPhoto:defaultPhoto
+    gradeName: 'all',
+    scrollLeft: 0,
+    defaultPhoto: defaultPhoto,
+    gradeId: '',
+    slideIndex: null,
+    storageFlag: false
 
   };
   events = {};
@@ -40,17 +44,18 @@ export default class Index extends wepy.page {
 
     // 横向选择年级
     selectGrade: function (e) {
-			let index = e.currentTarget.dataset.gradeId,
-				gradName = e.currentTarget.dataset.graName;
-			console.log(gradName);
-      this.selectSpecGrade(gradName,index);
+      let index = e.currentTarget.dataset.gradeId,
+        slideIndex = e.currentTarget.dataset.slideIndex,
+        gradName = e.currentTarget.dataset.graName;
+      this.selectSpecGrade(gradName, index, slideIndex);
     },
 
     // 点击全部下边年级列表，显示对应信息
     switchGrade: function (e) {
-			let index = e.currentTarget.dataset.gradeId,
-				gradName = e.currentTarget.dataset.graName;
-      this.selectSpecGrade(gradName,index);
+      let index = e.currentTarget.dataset.gradeId,
+        slideIndex = e.currentTarget.dataset.slideIndex,
+        gradName = e.currentTarget.dataset.graName;
+      this.selectSpecGrade(gradName, index, slideIndex);
     },
 
     // 点击展开年级列表及学生信息
@@ -66,6 +71,8 @@ export default class Index extends wepy.page {
 
     // 跳转到新增学生页面
     navigateToaddStudent: function (e) {
+      console.log('新增学生页面');
+      console.log(e);
       wepy.navigateTo({
         url: "/pages/addStudent?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -73,14 +80,21 @@ export default class Index extends wepy.page {
 
     // 跳转到修改编辑学生界面
     navigateToEditStuInfo: function (e) {
+      console.log('编辑学生页面');
       wx.navigateTo({
         url: "/pages/editStuInfo?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
     }
   };
 
-  async selectSpecGrade(gradName,index) {
-    this.gradeName = gradName;
+  async selectSpecGrade(gradName, index, slideIndex) {
+    gradName = gradName || '全部';
+    index = index || 0;
+    slideIndex = slideIndex || null;
+    let n = slideIndex / 3;
+    n ? this.scrollLeft = n * 200 : this.scrollLeft = 0;
+
+
     if (gradName === '全部') {
       this.gradeFlag = true;
       this.selected = index;
@@ -88,55 +102,56 @@ export default class Index extends wepy.page {
     } else {
       this.gradeFlag = false;
       let gradeData = this.gradesList;
-			this.classInfo = [];
+      this.classInfo = [];
       gradeData.forEach((item) => {
         if (item.gradeName === gradName) {
-					this.classInfo = item.list
+          this.classInfo = item.list
         }
       });
       this.classInfo.forEach((item, index) => {
         item.flag = false;
         item.index = index;
-        item.gradeName=gradName;
+        item.gradeName = gradName;
       });
-      console.log(this.classInfo)
     }
     this.selected = index;
 
   }
 
   async getStudentsByClassId(id) {
-		let classInfo= this.classInfo;
+    let classInfo = this.classInfo;
     const studentsRes = await api.getStudentsByClassId({data: {classId: id}});
-		classInfo.forEach(function (item,index) {
-		  if(item.classId===id){
-				item.studentList=studentsRes.data.data;
-      }
-		});
+    // 结果按照姓氏排序
+    if (studentsRes.statusCode === 200) {
+      let data = studentsRes.data.data.sort(function (a, b) {
+        let s=a.studentNameQp;
+        let e=b.studentNameQp;
+        if(s>e){
+          return 1
+        }else if(s<e){
+          return -1;
+        }else{
+          return 0;
+        }
+      });
+      classInfo.forEach(function (item, index) {
+        if (item.classId === id) {
+          item.studentList = studentsRes.data.data;
+        }
+      });
+
+    } else {
+      wx.showToast({
+        title: '学生信息请求失败',
+        icon: 'none',
+        duration: 1000
+      });
+
+    }
     this.$apply();
+
   }
 
-  async getGradeBySchoolId() {
-    // 年级信息
-    let garde = await api.queryGrade({
-      method: 'POST',
-      data: {
-        schoolId: this.schoolId
-      }
-    });
-		 if (garde.data.result === 200) {
-			 this.gradesInfo.push({
-				 gradeName: '全部',
-				 schoolId: this.schoolId,
-				 graName: 'all',
-				 id: 0
-			 });
-			 for (let b = 0; b < garde.data.gradeList.length; b++) {
-				 this.gradesInfo.push(garde.data.gradeList[b])
-			 }
-			 this.$apply();
-		 }
-  }
 
   async getClassBySchoolId() {
     let classes = await api.queryClass({
@@ -164,9 +179,28 @@ export default class Index extends wepy.page {
         schoolId: this.schoolId
       }
     });
-    console.log(this.gradesList);
-    list.data.result ===200 ? this.gradesList = list.data.schoolBusinessList : [];
+    if (list.data.result === 200) {
+      list.data.schoolBusinessList.forEach(function (item, index) {
+        item.index = index;
+      });
+
+      let tempData = list.data.schoolBusinessList.concat();
+      this.gradesList = list.data.schoolBusinessList;
+      this.handleGradesInfoData(tempData);
+      this.$apply();
+    }
+  }
+
+
+  // 处理横向显示的年级信息
+  async handleGradesInfoData(data) {
+    data.unshift({
+      gradeName: '全部',
+      gradeId: '0'
+    });
+    this.gradesInfo = data;
     this.$apply();
+
   }
 
   async initData() {
@@ -176,21 +210,20 @@ export default class Index extends wepy.page {
     // 获取所有年级信息
     this.getBussinessList();
 
-    // 各个年级信息
-    this.getGradeBySchoolId();
-
     // 班级信息
     this.getClassBySchoolId();
 
+    // 初始化信息
+    this.selectSpecGrade();
   }
 
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
-	wepy.setStorageSync('schoolId',this.schoolId);
-		setTimeout(e => this.initData());
-
-
+    //  设置标题
+    wx.setNavigationBarTitle({
+      title: decodeURI(this.schoolName)
+    });
   }
 
   onReady() {
@@ -199,5 +232,6 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
+    setTimeout(e => this.initData());
   }
 }

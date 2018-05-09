@@ -6,17 +6,17 @@
                 <view class="search-title">{{studentName}}</view>
             </view>
         </view>
-        <scroll-view scroll-X="true" class="grade-tab ">
-            <view wx:for="{{gradesInfo}}" class="grade-info {{selected == item.id ? 'actived' : ''}}"
-                  data-grade-id="{{item.id}} " data-gra-name="{{item.gradeName}}" bindtap="selectGrade">{{item.gradeName}}
+        <scroll-view scroll-X="true" class="grade-tab" scroll-left="{{scrollLeft}}">
+            <view wx:for="{{gradesInfo}}" class="grade-info {{selected == item.gradeId ? 'actived' : ''}}"
+                  data-grade-id="{{item.gradeId}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" bindtap="selectGrade">{{item.gradeName}}
                 <text class="btm"></text>
             </view>
         </scroll-view>
 
         <view class="grade-list">
             <block wx:if="{{gradeFlag}}">
-                <view class="spec-grade" >
-                    <view class="grade-name" wx:for="{{gradesList}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
+                <view class="spec-grade">
+                    <view class="grade-name" wx:for="{{gradesList}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
                         <view>{{item.gradeName}}</view>
                         <view class="open-num" >{{item.gradeOpen}}/{{item.gradeUnOpen}}</view>
                         <view class="right-icon"></view>
@@ -61,7 +61,7 @@
                 </view>
             </block>
         </view>
-        <view class="edit" bindtap="navigateToaddStudent" data-grade-name="{{gradeName}}" data-school-id="{{schoolId}}">
+        <view class="edit" bindtap="navigateToaddStudent" data-slide-index="{{slideIndex}}" data-grade-name="{{gradeName}}" data-grade-id="{{gradeId}}" data-school-id="{{schoolId}}">
             <view class="row"></view>
             <view class="col"></view>
         </view>
