@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="photo" >
 			<view>头像</view>
-			<image src="{{studentInfo.studentImg||defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+			<image src="{{studentInfo.studentImg?studentInfo.studentImg:defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
 		</view>
 		<view class="class-name">
 			<view>班级</view>
@@ -30,7 +30,7 @@
 			<view>姓名</view>
 			<text class="star-icon">*</text>
 			<input type="text" data-input-type="name" bindinput="searchValueInput" placeholder="请输入姓名"
-				   placeholder-class="placeholder-style"  value="{{studentInfo.name?studentInfo.name:''}}">
+				   placeholder-class="placeholder-style"  value="{{studentInfo.name?studentInfo.name:''}}" bindblur="judgeValueInput">
 		</view>
 		<view class="sex">
 			<view>性别</view>
@@ -93,7 +93,7 @@
 				<view>业务状态</view>
 				<block wx:if="{{studentInfo.qin0 == '未开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus1}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text" bindblur="judgeValueInput" value="{{studentInfo.codes}}" bindinput="searchValueInput" data-input-type="codes" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
 						  data-tels="{{studentInfo.qinPhone1}}">立即开通
@@ -110,7 +110,7 @@
 				</block>
 				<block wx:if="{{studentInfo.qin0 == '试用开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus1}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text" placeholder="请输入验证码" value="{{studentInfo.codes}}" value="{{studentInfo.codes}}" bindinput="searchValueInput" bindblur="judgeValueInput" data-input-type="codes" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
 						   data-tels="{{studentInfo.qinPhone1}}">立即开通
@@ -125,6 +125,9 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
+
+
+
 		<block wx:if="{{studentInfo.qin2Flag}}">
 			<view class="input-type">
 				<view>亲情号码1</view>
@@ -136,7 +139,7 @@
 
 				<block wx:if="{{studentInfo.qin1 == '未开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus2}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text"  data-input-type="codes" value="{{studentInfo.codes}}" bindblur="judgeValueInput" placeholder="请输入验证码" bindinput="searchValueInput"  placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus2?'':'clickOpenStatus'}}"  data-phone-types="2"
 						   data-tels="{{studentInfo.qinPhone2}}">立即开通
@@ -154,7 +157,7 @@
 				</block>
 				<block wx:if="{{studentInfo.qin1 == '试用开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus2}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text" bindinput="searchValueInput" value="{{studentInfo.codes}}" bindblur="judgeValueInput" data-input-type="codes" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus2?'':'clickOpenStatus'}}"  data-phone-types="2"
 						   data-tels="{{studentInfo.qinPhone2}}">立即开通
@@ -162,6 +165,7 @@
 				</block>
 			</view>
 		</block>
+
 		<block wx:else>
 			<view class="input-type">
 				<view>亲情号码1</view>
@@ -169,6 +173,10 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
+
+
+
+
 		<block wx:if="{{studentInfo.qin3Flag}}">
 			<view class="input-type">
 				<view>亲情号码2</view>
@@ -179,10 +187,10 @@
 				<view>业务状态</view>
 				<block wx:if="{{studentInfo.qin2 == '未开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus3}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text" placeholder="请输入验证码" bindblur="judgeValueInput" value="{{studentInfo.codes}}" placeholder-class="placeholder-style" style="margin-right: 150rpx" bindinput="searchValueInput" data-input-type="codes">
 					</block>
-					<view  class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="2"
-						   data-tels="{{studentInfo.qinPhone2}}">立即开通
+					<view  class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="3"
+						   data-tels="{{studentInfo.qinPhone3}}">立即开通
 					</view>
 				</block>
 
@@ -197,7 +205,7 @@
 				</block>
 				<block wx:if="{{studentInfo.qin2 == '试用开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus3}}">
-						<input type="text" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input type="text" bindinput="searchValueInput" value="{{studentInfo.codes}}" bindblur="judgeValueInput" data-input-type="codes" placeholder="请输入验证码" placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus3?'':'clickOpenStatus'}}"  data-phone-types="2"
 						   data-tels="{{studentInfo.qinPhone2}}">立即开通
@@ -213,6 +221,8 @@
 					   bindinput="searchValueInput">
 			</view>
 		</block>
+
+
 
 		<view class="input-type">
 			<view>学号</view>
@@ -312,13 +322,13 @@
 				<view class="type-list">
 					<view class="type-item" wx:for="{{productList}}" bindtap="selectOrderType"
 						  data-product-id="{{item.productId}}" data-active="{{item.active}}">
+						<text class="order-name">{{item.productFee}}</text>
 						<block wx:if="{{studentInfo.productId===item.productId?true:false}}">
 							<image class="all-default" src="/images/float_icon_a.png"/>
 						</block>
 						<block wx:else>
 							<image class="all-default" src="/images/float_icon_d.png"/>
 						</block>
-						<text>{{item.productFee}}（{{item.productName}}）</text>
 					</view>
 				</view>
 				<view class="dialog-foot">温馨提示：若取消业务或者更改业务请联系客服 967111</view>
@@ -371,7 +381,10 @@
 			<view class="cancel-style text-c" data-photo-type="cancel" bindtap="chooseUploadStyle"  >取消</view>
 		</view>
 	</view>
-	<camera-com></camera-com>
+	<block wx:if="cameraFlag">
+		<camera-com></camera-com>
+	</block>
+
 </template>
 <script src="../scripts/editStuInfo/index.js"></script>
 <style src="../styles/editStuInfo/index.css"></style>

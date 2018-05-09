@@ -44,6 +44,7 @@ export default class Index extends wepy.page {
 
 		},
 		gradeName: '',
+		cameraFlag:false,
 
 		// 相册弹出框
 		showPhoto:false,
@@ -180,6 +181,7 @@ export default class Index extends wepy.page {
 		// 点击上传图片
 		clickUploadImg: function () {
 			this.showPhoto=true;
+			this.cameraFlag=true;
 		},
 
 		// 点击保存新增学生信息
@@ -214,6 +216,16 @@ export default class Index extends wepy.page {
 				});
 				return;
 			}
+			if(this.studentInfo.qinPhone1&&this.studentInfo.qinPhone2&&this.studentInfo.qinPhone3){
+				if(this.studentInfo.qinPhone1===this.studentInfo.qinPhone2||this.studentInfo.qinPhone1===this.studentInfo.qinPhone3||this.studentInfo.qinPhone2===this.studentInfo.qinPhone3){
+					wx.showToast({
+						title: '手机号不能重复',
+						icon: 'none',
+					});
+					return;
+				}
+			}
+
 		console.log(this.studentInfo);
 			this.addNewStudent();
 		},
@@ -226,8 +238,8 @@ export default class Index extends wepy.page {
 			console.log(inputType);
 			switch (inputType) {
 				case 'name':
-					this.studentInfo.name = value;
-					break;
+            this.studentInfo.name = value;
+          break;
 				case 'qinPhone1':
 					this.studentInfo.qinPhone1 = value;
 					break;
@@ -247,6 +259,33 @@ export default class Index extends wepy.page {
 					this.studentInfo.address = value;
 					break;
 			}
+
+		},
+
+		// 失去焦点姓名 code 是否正确
+		judgeValueInput:function(e){
+      let inputType = e.currentTarget.dataset.inputType,
+        value = e.detail.value;
+      switch (inputType){
+        case 'name':
+          let regName=/^(\w|[\u4e00-\u9fa5]){1,6}$/g;
+          if(value===''){
+          	break;
+          }
+          if(regName.test(value)){
+            this.studentInfo.name = value;
+          }else {
+            wx.showToast({
+              title: '请输入1到6位汉字',
+              icon: 'none',
+            });
+            value='';
+            this.studentInfo.name='';
+          }
+          break;
+      }
+
+
 
 		},
 
@@ -348,9 +387,10 @@ export default class Index extends wepy.page {
 
 
 	async uploadImg(paths, callback, imgs) {
+		let localSrc=typeof paths=='object'?paths[0]:paths;
 
 		const uploadRes = await api.addStudentPhoto({
-			filePath: paths[0],
+			filePath: localSrc,
 			name: 'imgfile',
 			formData: {},
 		});
@@ -497,6 +537,7 @@ export default class Index extends wepy.page {
 
 		}else {
 			console.log(res.data);
+			this.savingFlag=false;
 			wx.showToast({
 				title: res.data.message,
 				icon: 'none',

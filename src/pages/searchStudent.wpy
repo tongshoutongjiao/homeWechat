@@ -34,7 +34,7 @@
                                 <view class="nick-wrapper">
                                     <view class="nickname">
                                         <text>{{student.studentName}}</text>
-                                        <text class="{{student.isdorm? 'redStyle':'blueStyle'}}">#{{student.isdorm?'住校':'走读'}}#</text>
+                                        <text class="{{student.isdorm? 'redStyle':'blueStyle'}}">({{student.isdorm?'住校':'走读'}})</text>
                                         <text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}</text>
                                     </view>
                                     <view class="telNumber" wx:if="{{student.phone1!==' '}}">
