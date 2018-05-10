@@ -62,8 +62,6 @@ export default class Index extends wepy.page {
     toggleTrangle: function (e) {
       let index = e.currentTarget.dataset.index,
         classId = e.currentTarget.dataset.classId;
-      console.log('this.classInfo');
-      console.log(this.classInfo);
       this.classInfo[index].flag = !this.classInfo[index].flag;
       this.trangleDown = !this.trangleDown;
       this.getStudentsByClassId(classId);
@@ -72,7 +70,6 @@ export default class Index extends wepy.page {
     // 跳转到新增学生页面
     navigateToaddStudent: function (e) {
       console.log('新增学生页面');
-      console.log(e);
       wepy.navigateTo({
         url: "/pages/addStudent?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -88,12 +85,14 @@ export default class Index extends wepy.page {
   };
 
   async selectSpecGrade(gradName, index, slideIndex) {
-    gradName = gradName || '全部';
-    index = index || 0;
-    slideIndex = slideIndex || null;
+
+    gradName = gradName  || '全部';
+    index = index ||  0;
+      slideIndex = slideIndex || null;
+    this.gradeId=index;
+    this.slideIndex=slideIndex;
     let n = slideIndex / 3;
     n ? this.scrollLeft = n * 200 : this.scrollLeft = 0;
-
 
     if (gradName === '全部') {
       this.gradeFlag = true;
@@ -115,7 +114,6 @@ export default class Index extends wepy.page {
       });
     }
     this.selected = index;
-
   }
 
   async getStudentsByClassId(id) {
@@ -124,13 +122,13 @@ export default class Index extends wepy.page {
     // 结果按照姓氏排序
     if (studentsRes.statusCode === 200) {
       let data = studentsRes.data.data.sort(function (a, b) {
-        let s=a.studentNameQp;
-        let e=b.studentNameQp;
-        if(s>e){
+        let s = a.studentNameQp;
+        let e = b.studentNameQp;
+        if (s > e) {
           return 1
-        }else if(s<e){
+        } else if (s < e) {
           return -1;
-        }else{
+        } else {
           return 0;
         }
       });
@@ -224,6 +222,7 @@ export default class Index extends wepy.page {
     wx.setNavigationBarTitle({
       title: decodeURI(this.schoolName)
     });
+    setTimeout(e => this.initData());
   }
 
   onReady() {
@@ -232,6 +231,12 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-    setTimeout(e => this.initData());
+    // 初始化信息
+    // wx.showToast({
+    //   title: '加载中',
+    //   icon: 'loading',
+    //   duration: 1000
+    // });
+    this.selectSpecGrade();
   }
 }
