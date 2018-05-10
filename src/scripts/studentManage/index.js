@@ -111,6 +111,7 @@ export default class Index extends wepy.page {
         item.flag = false;
         item.index = index;
         item.gradeName = gradName;
+        item.allNum=item.openNum*1+item.unOpenNum*1;
       });
     }
     this.selected = index;
@@ -180,6 +181,7 @@ export default class Index extends wepy.page {
     if (list.data.result === 200) {
       list.data.schoolBusinessList.forEach(function (item, index) {
         item.index = index;
+        item.allNum=item.gradeOpen*1+item.gradeUnOpen*1
       });
 
       let tempData = list.data.schoolBusinessList.concat();
@@ -218,6 +220,11 @@ export default class Index extends wepy.page {
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
+    console.log('llalal');
+    const app = getApp();
+    console.log(this.$wxapp);
+    console.log(this);
+   console.log(app);
     //  设置标题
     wx.setNavigationBarTitle({
       title: decodeURI(this.schoolName)
@@ -231,12 +238,6 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-    // 初始化信息
-    // wx.showToast({
-    //   title: '加载中',
-    //   icon: 'loading',
-    //   duration: 1000
-    // });
     this.selectSpecGrade();
   }
 }

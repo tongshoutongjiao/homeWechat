@@ -110,7 +110,7 @@
 				</block>
 				<block wx:if="{{studentInfo.qin0 == '试用开通'}}">
 					<block wx:if="{{!studentInfo.openClickStatus1}}">
-						<input type="text" placeholder="请输入验证码" maxlength="6" type="number" value="" data-code-type="1"  bindinput="searchValueInput"  placeholder-class="placeholder-style" style="margin-right: 150rpx">
+						<input  data-input-type="codes" placeholder="请输入验证码" maxlength="6" bindblur="judgeValueInput"  type="number" value="" data-code-type="1"  bindinput="searchValueInput"  placeholder-class="placeholder-style" style="margin-right: 150rpx">
 					</block>
 					<view  class="open-status" bindtap="{{studentInfo.openClickStatus1?'':'clickOpenStatus'}}"  data-phone-types="1"
 						   data-tels="{{studentInfo.qinPhone1}}">立即开通

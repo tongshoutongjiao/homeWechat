@@ -18,7 +18,7 @@
                 <view class="spec-grade">
                     <view class="grade-name" wx:for="{{gradesList}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
                         <view>{{item.gradeName}}</view>
-                        <view class="open-num" >{{item.gradeOpen}}/{{item.gradeUnOpen}}</view>
+                        <view class="open-num" >{{item.gradeOpen}}/{{item.allNum}}</view>
                         <view class="right-icon"></view>
                         <view class="right-hide"></view>
                     </view>
@@ -28,7 +28,7 @@
                 <view class="spec-grade" wx:for="{{classInfo}}" wx:key="{{item.classId}}">
                     <view class="grade-name"  bindtap="toggleTrangle" data-index="{{item.index}}" data-class-id="{{item.classId}}">
                         <view>{{item.className}}</view>
-                        <view class="trangle-icon">{{item.openNum}}{{'/'+item.unOpenNum}}
+                        <view class="trangle-icon">{{item.openNum}}{{'/'+item.allNum}}
                             <block wx:if="{{item.flag}}">
                                 <text class="down"></text>
                                 <text class="hidePartDown"></text>

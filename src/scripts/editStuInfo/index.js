@@ -132,11 +132,27 @@ export default class Index extends wepy.page {
       console.log('点击弹框显示选择开通套餐');
       let tels = e.currentTarget.dataset.tels,
         phoneTypes = e.currentTarget.dataset.phoneTypes;
-      console.log(tels);
-      this.studentInfo.tels = tels;
-      this.studentInfo.phoneTypes = phoneTypes;
-      this.studentInfo.productId=this.productList[0].productId;
-      this.dialogStatus = true;
+      let regValue=/^[0-9]{6}$/g,
+      flag=regValue.test(this.studentInfo.codes);
+      if(!flag){
+        wx.showToast({
+          title: '请输入6位数字验证码',
+          icon: 'none',
+        });
+        return;
+      }else {
+        this.studentInfo.tels = tels;
+        this.studentInfo.phoneTypes = phoneTypes;
+        this.studentInfo.productId=this.productList[0].productId;
+        this.dialogStatus = true;
+      }
+
+
+
+
+
+
+
     },
 
     // 点击确定或者取消按钮关闭弹窗，取消开通业务
@@ -222,7 +238,6 @@ export default class Index extends wepy.page {
             value='';
             this.studentInfo.name='';
           }
-          break;
 
       }
 
@@ -340,8 +355,6 @@ export default class Index extends wepy.page {
           break;
       }
     },
-
-
   };
 
   async getProvince() {
