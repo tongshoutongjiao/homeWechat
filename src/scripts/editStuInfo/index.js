@@ -132,25 +132,28 @@ export default class Index extends wepy.page {
       console.log('点击弹框显示选择开通套餐');
       let tels = e.currentTarget.dataset.tels,
         phoneTypes = e.currentTarget.dataset.phoneTypes;
-      let regValue=/^[0-9]{6}$/g,
-      flag=regValue.test(this.studentInfo.codes);
-      if(!flag){
-        wx.showToast({
-          title: '请输入6位数字验证码',
-          icon: 'none',
-        });
-        return;
+      let regValue=/^[0-9]{6}$/g,flag;
+      if(this.studentInfo.codes){
+        flag=regValue.test(this.studentInfo.codes);
+        if(!flag){
+          wx.showToast({
+            title: '请输入6位数字验证码',
+            icon: 'none',
+          });
+          return;
+        }else {
+          this.studentInfo.tels = tels;
+          this.studentInfo.phoneTypes = phoneTypes;
+          this.studentInfo.productId=this.productList[0].productId;
+          this.dialogStatus = true;
+        }
       }else {
         this.studentInfo.tels = tels;
         this.studentInfo.phoneTypes = phoneTypes;
         this.studentInfo.productId=this.productList[0].productId;
         this.dialogStatus = true;
+        return;
       }
-
-
-
-
-
 
 
     },
