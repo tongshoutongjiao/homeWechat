@@ -61,8 +61,8 @@
       if (result.data.result === 200) {
         if (result.data.schoolList.length > 0) {
           this.empty = false
-          if (result.data.schoolList.length > 5) {
-            this.schoolList = result.data.schoolList.slice(0, 5)
+          if (result.data.schoolList.length > 10) {
+            this.schoolList = result.data.schoolList.slice(0, 10)
           } else {
             this.schoolList = result.data.schoolList
           }
