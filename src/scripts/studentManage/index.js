@@ -70,6 +70,7 @@ export default class Index extends wepy.page {
     // 跳转到新增学生页面
     navigateToaddStudent: function (e) {
       console.log('新增学生页面');
+      wepy.setStorageSync('editFlag',false);
       wepy.navigateTo({
         url: "/pages/addStudent?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -78,6 +79,7 @@ export default class Index extends wepy.page {
     // 跳转到修改编辑学生界面
     navigateToEditStuInfo: function (e) {
       console.log('编辑学生页面');
+      wepy.setStorageSync('editFlag',false);
       wx.navigateTo({
         url: "/pages/editStuInfo?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -225,6 +227,7 @@ export default class Index extends wepy.page {
     console.log(this);
    console.log(app);
     //  设置标题
+    let showFlag= wepy.setStorageSync('editFlag',false);
     wx.setNavigationBarTitle({
       title: decodeURI(this.schoolName)
     });
@@ -237,6 +240,16 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-    this.selectSpecGrade();
+   let showFlag= wepy.getStorageSync('editFlag');
+   console.log(showFlag);
+   if(showFlag){
+     // 可以增加默认值功能
+     this.selectSpecGrade();
+     wx.showToast({
+       title: '加载中',
+       icon: 'loading',
+       duration: 1000
+     });
+   }
   }
 }

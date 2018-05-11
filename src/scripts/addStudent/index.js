@@ -528,6 +528,7 @@ export default class Index extends wepy.page {
 		    icon: 'success',
 		    duration: 2000
 		  });
+      wepy.setStorageSync('editFlag',true);
 		  setTimeout(()=>{
 				this.savingFlag=false;
 				wx.navigateBack({
