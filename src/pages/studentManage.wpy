@@ -48,7 +48,9 @@
                                 <view class="nick-wrapper">
                                     <view class="nickname">
                                         <text>{{it.studentName}}</text>
-                                        <text class="{{it.isdorm? 'redStyle':'blueStyle'}}">({{it.isdorm?'住校':'走读'}})</text>
+                                        <text wx:if="{{it.isdorm===0}}" class="blueStyle">(走读)</text>
+                                        <text wx:elif="{{it.isdorm===1}}" class="redStyle">(住校)</text>
+                                        <text wx:else class="grayStyle" style="float: none">(待定)</text>
                                         <text class="{{it.openStatusName==='已开通'?'normal':'grayStyle'}}">{{it.openStatusName}}</text>
                                     </view>
                                     <view class="telNumber" wx:if="{{it.phone1!==' '}}">
