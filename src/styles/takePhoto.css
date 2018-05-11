@@ -1,0 +1,84 @@
+.flex {
+  display: flex;
+}
+.flex-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.photo-view {
+  margin-top: 40rpx;
+  width: 380rpx;  
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.student-name {
+  text-align: center;
+  font-size: 30rpx;
+  color: rgb(24,24,24);
+}
+.class-name {
+  text-align: center;
+  font-size: 28rpx;
+  color: rgb(142,142,147);
+}
+.description {
+  color: rgb(87,87,89);
+  font-size: 28rpx;
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+  
+}
+
+.title {
+  font-size: 30rpx;
+  color: rgb(24,24,24);
+  padding: 0 30rpx;
+  margin-top: 60rpx;
+
+}
+.demo {
+  color: rgb(53,141,255);
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.demo-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0,0,0,.8)
+}
+.demo-modal .photo-view{
+  width: 514rpx;
+  margin: 160rpx 120rpx 60rpx;
+}
+
+.demo-modal .photo-view image{
+  width: 514rpx;
+  height: 658rpx
+}
+
+.demo-modal .title {
+  color: #fff;
+}
+
+.demo-modal .description {
+  color: #fff;
+}
+
+button.btn-takephoto {
+  background-color: rgb(52,140,255);
+  width: 560rpx;
+  height: 80rpx;
+  border-radius: 40rpx 40rpx 40rpx 40rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-top: 60rpx;
+}

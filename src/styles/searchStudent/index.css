@@ -1,0 +1,190 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 120rpx;
+  width: 100%;
+  height: 100%;
+}
+.empty {
+  position: absolute;
+  top: 446rpx;
+  width: 100%;
+  color: #D0D0D4;
+  font-size: 14px;
+  text-align: center;
+}
+/*搜索栏样式*/
+.search-content {
+  display: flex;
+  position: fixed;
+  top: 17rpx;
+  width: 690rpx;
+  height: 80rpx;
+  margin: 0 30rpx;
+  border-radius: 40rpx;
+  background: #FFF;
+  z-index: 1;
+  box-shadow: 0 1px 10px rgba(142, 142, 147, 0.15);
+  justify-content: center;
+  align-items: center;
+}
+.search-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+}
+.search-title {
+  width: 140px;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 15px;
+  color: #8E8E93;
+}
+/*年级列表样式*/
+.grade-list {
+  position: absolute;
+  box-sizing: border-box;
+  top: 106rpx;
+  bottom: 0;
+  left: 0rpx;
+  right: 0rpx;
+  overflow-y: auto;
+  /*解决ios上滑动不流畅*/
+  -webkit-overflow-scrolling: touch;
+}
+.grade-list .wrapper {
+  margin-bottom: 10rpx;
+}
+.grade-list .student-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  background: #f7f7f7;
+}
+.grade-list .spec-grade {
+  width: 100%;
+}
+.grade-list .grade-name {
+  width: 100%;
+  height: 90rpx;
+  box-sizing: border-box;
+  padding: 0rpx 30rpx;
+}
+.grade-list .grade-name .trangle-icon {
+  position: relative;
+  float: right;
+  margin-right: 48rpx;
+}
+.grade-list .grade-name .trangle-icon text.down {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 53rpx;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .grade-name .trangle-icon text.up {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 45rpx;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .grade-name .trangle-icon text.hidePartDown {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 48rpx;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
+.grade-list .grade-name .trangle-icon text.hidePartUp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -67rpx;
+  top: 48rpx;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
+.grade-list .student-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 0rpx;
+  position: relative;
+}
+.grade-list .nick-photo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-size: cover;
+}
+.grade-list .nick-photo image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.grade-list .nick-wrapper {
+  width: 100%;
+  padding-left: 110rpx;
+  box-sizing: border-box;
+}
+.grade-list .nickname {
+  display: inline-block;
+  font-size: 30rpx;
+  width: 100%;
+  font-family: PingFangSC-Regular;
+  vertical-align: top;
+}
+.grade-list .nickname .blueStyle {
+  color: #358dff;
+}
+.grade-list .nickname .redStyle {
+  color: #ff7996;
+  font-size: 28rpx;
+}
+.grade-list .nickname .grayStyle {
+  float: right;
+  color: #d0d0d4;
+}
+.grade-list .nickname .normal {
+  float: right;
+  color: #575759;
+}
+.grade-list .nickname text:nth-child(1) {
+  margin-right: 10rpx;
+}
+.grade-list .telNumber {
+  font-size: 28rpx;
+  color: #8e8e93;
+}
+.grade-name view {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 90rpx;
+}

@@ -1,0 +1,72 @@
+<template>
+  <view wx:for="{{charts}}" wx:for-index="index" wx:for-item="item" wx:key="index" class="charts-item chart-{{item.type}}">
+    <view class="charts-title">{{item.title}}</view>
+    <view class="charts-sub-title" wx:if="{{item.subTitle}}">({{item.subTitle}})</view>
+    <canvas canvas-id="{{item.canvasId}}" data-index="{{index}}"  id="{{item.canvasId}}" class="ec-canvas" hidden="{{!boolCanvasShow}}" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd" style="width: {{item.width}}px; height: {{item.height}}px;" />
+    <image style="width: {{item.width}}px; height: {{item.height}}px;" hidden="{{!boolImageShow}}" mode="scaleToFill" src="{{item.src}}"></image>
+  </view>
+</template>
+
+<style>
+.charts-item {
+  height: 
+}
+</style>
+
+<script>
+import wepy from 'wepy';
+import wxCharts from '../../utils/wxcharts'
+
+export default class ECanvas extends wepy.component {
+  $isComponent = true;
+
+  data = {
+    hidden: false,
+    instances: []
+  };
+
+  props = {
+    charts: Array,
+    index: String,
+    boolCanvasShow: Boolean,
+    boolImageShow: Boolean,
+  }
+
+  methods = {
+    handleTouchStart(e) {
+      const instance = this.instances[Number(e.target.dataset.index)];
+      if(instance){
+        instance.scrollStart(e);
+      }
+    },
+    handleTouchEnd(e) {
+      const instance = this.instances[Number(e.target.dataset.index)];
+      if(instance){
+        instance.scrollEnd(e);
+      }
+    },
+    handleTouchMove(e) {
+      const instance = this.instances[Number(e.target.dataset.index)];
+      if(instance){
+        instance.scroll(e);
+      }
+    },
+    redraw(charts) {
+      this.charts = charts;
+      this.instances.splice(0);
+      this.$apply();
+      setTimeout(e => {
+        charts.forEach(chart => this.instances.push(new wxCharts(chart)));
+        Promise.all(this.instances.map(ins => new Promise((resolve, reject) => ins.addEventListener('renderComplete', resolve)))).then(e => this.$emit('chart-complete', this.instances))
+      }, 100);
+     
+    }
+  }
+  onReady() {
+    console.log('canvas onload.');
+    if(this.charts.length){
+      this.redraw(this.charts)
+    }
+  }
+}
+</script>

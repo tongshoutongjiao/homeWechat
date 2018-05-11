@@ -1,0 +1,36 @@
+<template>
+  <view class="student-name">{{studentName}}</view>
+  <view class="class-name">{{className}}</view>
+  <view class="flex">
+    <view class="flex-item" catchtap="handlePrev" data-index="{{prevIndex}}">
+      <image src="../asset/left_icon.png" mode="widthFix" style="width:20rpx" ></image>
+    </view>
+    <view class="flex-item photo-view">
+      <image src="{{studentPhoto}}"  mode="widthFix"></image>
+    </view>
+    <view class="flex-item" catchtap="handleNext" data-index="{{nextIndex}}">
+      <image src="../asset/right_icon.png" mode="widthFix" style="width:20rpx" ></image>
+    </view>
+  </view>
+  <view>
+    <button type="primary" bindtap="handleCameraToggle" data-hidden="{{boolCameraHidden}}" class="btn-takephoto">拍照</button>
+    <camera-com></camera-com>
+  </view>
+  <view class="title">照片要求</view>
+  <view class="description">
+    <text>近期免冠照片，纯色背景，头部占照片尺寸2/3，人像清晰，神态自然。</text>
+  </view>
+  <view class="demo" bindtap="handleToggleViewDemo">查看示例样片</view>
+  <view class="demo-modal" hidden="{{boolDemoHidden}}" bindtap="handleToggleViewDemo">
+      <view class="photo-view">
+        <image src="../asset/img1.png" mode="widthFix"></image>
+      </view>
+      <view class="title">照片要求</view>
+      <view class="description">
+        <text>近期免冠照片，纯色背景，头部占照片尺寸2/3，人像清晰，神态自然。</text>
+      </view>
+  </view>
+</template>
+
+<script src="../scripts/takePhoto/index.js"></script>
+<style src="../styles/takePhoto.css"></style>

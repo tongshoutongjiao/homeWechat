@@ -1,0 +1,66 @@
+
+.flex {
+  display: flex;
+}
+.flex-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.class-picker {
+  font-size: 34rpx;
+  color: rgb(24,24,24);
+  height: 100rpx;
+}
+
+.student-item {
+  font-size: 28rpx;
+  margin: 30rpx 30rpx;
+}
+.student-item .name {
+  color: rgb(24,24,24);
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+
+.students {
+  margin-top: 50rpx;
+}
+.student-item .icon-camera {
+  width: 36rpx;
+}
+.student-item .photo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50% 50%;
+}
+.student-item .upload {
+  color: rgb(53,141,255);
+}
+.student-item .uploaded {
+  color: rgb(208,208,212);
+}
+.student-item .student-info {
+  justify-content: left;
+
+}
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 16rpx solid #D0D0D4;
+  margin-left: 10rpx;
+}
+.school-album {
+  height: 100vh;
+  width: 100%;
+}
+
+.scroll-view {
+  height: calc(100% - 100rpx);
+}

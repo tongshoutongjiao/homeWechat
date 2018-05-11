@@ -1,0 +1,127 @@
+<template>
+  <view class="search-content">
+    <image class="search-icon" src="/images/search_icon.png"></image>
+    <input class="search-title" placeholder="请输入学校名字搜索" value="{{searchValue}}" bindinput="searchValueInput" focus="true"/>
+  </view>
+  <view class="empty" hidden="{{!empty}}">暂无学校相关数据</view>
+  <view class="school-list" hidden="{{empty}}">
+    <repeat for="{{schoolList}}" index="index" item="item">
+      <view class="school-name" data-id="{{item.id}}" data-name="{{item.schoolName}}" bindtap="chooseSchool">{{item.schoolName}}</view>
+    </repeat>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import api from '../api.js'
+  import querystring from 'querystring'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '搜索'
+    }
+    data = {
+      toCurrentTab: '0',
+      searchDate: '',
+      regionLevel: 0,
+      regionId: [],
+      regionManager: 0,
+      operaType: 6,
+      page: 1,
+      empty: true,
+      schoolList: []
+    }
+    methods = {
+      searchValueInput(e) {
+        var value = e.detail.value
+        if (value !== '') {
+          this.search(value)
+        }
+      },
+      chooseSchool(e) {
+        let page_url = this.page_url;
+        wepy.redirectTo({
+          url: `${page_url + (page_url.indexOf('?') === -1 ? '?' : '&' ) + querystring.stringify(e.target.dataset)}`
+        });
+      }
+    }
+    async onLoad(e) {
+      console.log(e);      
+      let {page_url = '', ...params} = e;
+      page_url = unescape(page_url)
+      this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)
+    }
+    async search(e) {
+      let result = await api.searchSchool({
+        method: 'POST',
+        data: {
+          userId: wepy.getStorageSync('userId'),
+          keywords: e,
+          operaType: 6
+        }
+      })
+      if (result.data.result === 200) {
+        if (result.data.schoolList.length > 0) {
+          this.empty = false
+          if (result.data.schoolList.length > 5) {
+            this.schoolList = result.data.schoolList.slice(0, 5)
+          } else {
+            this.schoolList = result.data.schoolList
+          }
+        } else {
+          this.empty = true
+        }
+        this.$apply()
+      }
+    }
+  }
+</script>
+
+<style>
+  /*--------------------- empty -----------------------------*/
+  .empty {
+    position: absolute;
+    top: 446rpx;
+    width: 100%;
+    color: #D0D0D4;
+    font-size: 14px;
+    text-align: center;
+  }
+  /*--------------------- search -----------------------------*/
+  .search-content {
+    display: flex;
+    position: fixed;
+    top: 17rpx;
+    width: 690rpx;
+    height: 80rpx;
+    margin: 0 30rpx;
+    border-radius: 40rpx;
+    background: #FFF;
+    z-index: 1;
+    box-shadow:0 1px 10px rgba(142, 142, 147, 0.15);
+    justify-content: center;
+    align-items: center;
+  }
+  .search-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: 5rpx;
+    margin-right: 10rpx;
+  }
+  .search-title {
+    width: 140px;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 15px;
+    color: #8E8E93;
+  }
+  /*--------------------- 学校列表 -----------------------------*/
+  .school-list {
+    margin-top: 105rpx;
+  }
+  .school-name {
+    padding: 0 30rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #575759;
+    font-size: 15px;
+  }
+</style>

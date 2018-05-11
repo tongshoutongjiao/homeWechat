@@ -1,0 +1,36 @@
+<template>
+  <view class="school-album">
+    <view class="class-picker flex">
+      <view class="flex-item">
+        <picker bindchange="handleGradeChange" range-key="gradeName" value="{{gradeActiveIndex}}" range="{{grades}}">
+          <view class="picker">{{gradeName}}</view>
+        </picker>
+        <view class="triangle-down"></view>
+      </view>
+      <view class="flex-item">
+        <picker bindchange="handleClassChange" range-key="className" value="{{classActiveIndex}}" range="{{classes}}">
+          <view class="picker">{{className}}</view>
+        </picker>
+        <view class="triangle-down"></view>
+      </view>
+    </view>
+    <scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
+      <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
+        <view class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" data-class-name="{{className}}" data-id="{{item.studentId}}" catchtap="handleNavigateTo">
+          <view class="flex-item student-info">
+            <image class="photo" src="{{item.studentImg || defaultPhoto}}?imageView2/2/w/100/h/138/q/50|imageslim"  mode="aspectFill"></image>
+            <view class="name">{{item.studentName}}</view>
+          </view>
+          <view class="flex-item">
+            <image class="icon-camera" src="{{item.studentImg ? '../asset/aupd_icon.png' : '../asset/upd_icon.png'}}"  mode="widthFix"></image>
+          </view>
+          <view class="flex-item {{item.studentImg ? 'uploaded' : 'upload'}}">{{item.studentImg ? "你已上传" : "点击上传"}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <letter-index></letter-index>
+</template>
+
+<script src="../scripts/schoolAlbum/index.js"></script>
+<style src="../styles/schoolAlbum.css"></style>

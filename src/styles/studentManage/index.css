@@ -1,0 +1,283 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 120rpx;
+  width: 100%;
+  height: 100%;
+}
+image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+/*搜索栏样式*/
+.search-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120rpx;
+  background: #FFF;
+  z-index: 100;
+}
+.search-wrapper .search-content {
+  display: flex;
+  width: 690rpx;
+  height: 80rpx;
+  margin: 20rpx 30rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 1px 10px rgba(142, 142, 147, 0.15);
+  justify-content: center;
+  align-items: center;
+}
+.search-wrapper .search-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+}
+.search-wrapper .search-title {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 15px;
+  color: #8E8E93;
+}
+/*tab栏样式*/
+.grade-tab {
+  box-sizing: border-box;
+  padding: 20rpx 0rpx 20rpx 30rpx ;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.grade-tab .grade-info {
+  position: relative;
+  display: inline-block;
+  fontFamily: PingFangSC-Medium;
+  font-size: 32rpx ;
+  color: #8e8e93;
+  margin-right: 80rpx;
+  padding-bottom: 20rpx;
+}
+.grade-tab text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  text-align: center;
+  width: 20rpx ;
+  height: 4rpx;
+  background: #fff;
+  border-radius: 2rpx ;
+}
+.grade-tab .actived {
+  color: #181818;
+}
+.grade-tab .actived text {
+  background: #348cff;
+}
+/*年级列表样式*/
+.grade-list {
+  position: absolute;
+  box-sizing: border-box;
+  top: 240rpx;
+  bottom: 0;
+  left: 0rpx;
+  right: 0rpx;
+  overflow-y: auto;
+  /*解决ios上滑动不流畅*/
+  -webkit-overflow-scrolling: touch;
+}
+.grade-list .open-num {
+  float: right;
+  color: #575759;
+  margin-right: 36rpx;
+}
+.grade-list .student-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  background: #f7f7f7;
+}
+.grade-list .spec-grade {
+  width: 100%;
+}
+.grade-list .grade-name {
+  position: relative;
+  width: 100%;
+  height: 92rpx;
+  box-sizing: border-box;
+  padding: 0rpx 30rpx;
+}
+.grade-list .grade-name .right-icon {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 30rpx;
+  top: 60%;
+  transform: translateY(-50%) rotate(45deg);
+  border-top: 20rpx solid #d0d0d4;
+  border-bottom: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .grade-name .right-hide {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 35rpx;
+  top: 60%;
+  transform: translateY(-50%) rotate(45deg);
+  border-top: 20rpx solid #fff;
+  border-bottom: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  z-index: 1;
+}
+.grade-list .student-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx 0rpx;
+  height: 140rpx;
+  position: relative;
+}
+.grade-list .nick-photo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  float: left;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-size: cover;
+}
+.grade-list .nick-photo image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.grade-list .nick-wrapper {
+  width: 100%;
+  padding-left: 110rpx;
+  box-sizing: border-box;
+}
+.grade-list .nickname {
+  display: inline-block;
+  font-size: 30rpx;
+  width: 100%;
+  font-family: PingFangSC-Regular;
+  vertical-align: top;
+}
+.grade-list .nickname .blueStyle {
+  color: #358dff;
+}
+.grade-list .nickname .redStyle {
+  color: #ff7996;
+  font-size: 28rpx;
+}
+.grade-list .nickname .grayStyle {
+  float: right;
+  color: #d0d0d4;
+}
+.grade-list .nickname .normal {
+  float: right;
+  color: #575759;
+}
+.grade-list .nickname text:nth-child(1) {
+  margin-right: 10rpx;
+}
+.grade-list .telNumber {
+  font-size: 28rpx;
+  color: #8e8e93;
+  height: 30rpx;
+}
+.grade-name view {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 92rpx;
+}
+.grade-name view:nth-child(1) {
+  font-family: PingFangSC-Regular;
+}
+.grade-name .trangle-icon {
+  position: relative;
+  float: right;
+  margin-right: 48rpx;
+}
+.grade-name .trangle-icon text.down {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -70rpx;
+  top: 46%;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-name .trangle-icon text.up {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -70rpx;
+  top: 44%;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #d0d0d4;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 1;
+}
+.grade-name .trangle-icon text.hidePartDown {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -70rpx;
+  top: 41%;
+  transform: translateX(-50%);
+  border-top: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
+.grade-name .trangle-icon text.hidePartUp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -70rpx;
+  top: 48%;
+  transform: translateX(-50%);
+  border-bottom: 10rpx solid #fff;
+  border-right: 14rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  z-index: 100;
+}
+/*edit*/
+.edit {
+  position: fixed;
+  bottom: 26rpx;
+  right: 44rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #0077ff;
+  opacity: .7;
+}
+.edit view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10rpx;
+  width: 48rpx;
+  height: 4rpx;
+  background: #ffffff;
+}
+.edit view:nth-child(2) {
+  width: 4rpx;
+  height: 48rpx;
+}

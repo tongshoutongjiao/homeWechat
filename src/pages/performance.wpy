@@ -1,0 +1,52 @@
+<template name="main">
+  <view class="performance">
+    <!-- header bar -->
+    <view class="header-bar flex">
+      <view class="flex-item">
+        <text class="username">{{operaname || username}}</text><text>名下所有学校统计</text>
+      </view>
+      <view class="filter">
+        <button class="btn-filter" size="mini" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}"   wx:if="{{userType !== '4'}}">筛选</button>
+      </view>
+    </view>
+    <!-- Tabs date-picker -->
+    <view class="tabs flex timeouts">
+      <view class="flex-item flex">
+        <view class="flex-item  {{item.id === timeoutActive ? 'tab-active' : ''}}" wx:for="{{timeouts}}"  wx:key="{{item.id}}">
+          <text bindtap="handleSwitchTimeout" data-id="{{item.id}}" >{{item.name}}</text>
+        </view>
+      </view>
+      <view class="date-picker"> 
+        <picker mode="date" fields="day" value="{{logdate}}" start="{{startdate}}" end="{{enddate}}" bindchange="handleDateChange" wx:if="{{timeoutActive === 1}}">
+          <view>{{logdate}}</view>
+        </picker>
+        <picker mode="date" fields="month" value="{{logdate}}" start="{{startdate}}" end="{{enddate}}"  bindchange="handleDateChange" wx:if="{{timeoutActive === 3}}">
+          <view>{{logdate}}</view>
+        </picker>
+        <picker mode="selector" value="{{logdate}}" range="{{quarters}}" bindchange="handleDateChange" wx:if="{{timeoutActive === 4}}" >
+          <view>{{logdate}}</view>
+        </picker>
+      </view>
+    </view>
+    <!-- Tabs -->
+    <view class="tabs flex category">
+      <view class="flex-item {{item.id === pageActive ? 'tab-active' : ''}}" wx:for="{{tabs}}"  wx:key="{{item.id}}">
+        <text bindtap="handleSwitchTabs" data-id="{{item.id}}" >{{item.name}}</text>
+      </view> 
+    </view>
+    <!-- main -->
+    <view class="no-data" wx:if="{{userType === '5'}}">暂无权限</view>
+    <view class="container-charts">
+      <view class="tips" wx:if="{{boolTipsShow}}" animation="{{animationData}}" >
+        <text>此界面仅统计使用状态为“</text>
+        <text class="strong">在使用</text>
+        <text>”的设备</text>
+      </view>
+      <echarts :charts.sync="charts" :boolCanvasShow.sync="boolCanvasShow" :boolImageShow.sync="boolImageShow" ></echarts>
+    </view>
+    <!-- filter slider -->
+    <filter-slider ></filter-slider>
+  </view>
+</template>
+<script src="../scripts/performance/index.js" ></script>
+<style src="../styles/performance.css"></style>

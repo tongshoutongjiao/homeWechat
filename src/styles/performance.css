@@ -1,0 +1,122 @@
+
+.flex {
+  display: flex;
+}
+.flex-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.header-bar {
+  font-size: 32rpx;
+  padding: 20rpx 25rpx 0;
+  color: rgb(24,24,24);
+}
+.header-bar .flex-item {
+  justify-content: left;
+}
+
+.no-data {
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 250rpx;
+  color: rgb(24,24,24);
+}
+.username {
+  color: rgb(53,141,255);
+  padding-right: 10rpx;
+}
+
+.timeouts, .category {
+  padding: 0 25rpx;
+  font-size: 30rpx;
+  margin-top: 25rpx
+}
+
+.timeouts .flex-item text {
+  padding-bottom: 10rpx;
+  border-bottom: 4rpx solid #fff;
+}
+.timeouts .flex-item.tab-active text {
+  border-bottom: 4rpx solid rgb(52,140,255);
+}
+
+.category .tab-active {
+  background-color: rgb(52,140,255);
+  color: #fff;
+}
+
+.category {
+  padding-bottom: 40rpx;
+}
+
+.date-picker {
+  width: 220rpx;
+  text-align: right;
+}
+.performance {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+.category view {
+  font-size: 30rpx;
+  color: rgb(142,142,147);
+  height: 64rpx;
+  text-align: center;
+  justify-content: center;
+}
+
+.container-charts {
+}
+.charts-title {
+  color: rgb(53,141,255);
+  font-size: 30rpx;
+  padding-bottom: 15rpx;
+}
+.charts-sub-title {
+  color: rgb(53,141,255);
+  font-size: 24rpx;
+  padding-bottom: 20rpx;
+}
+.charts-sub-title {
+  font-size: rgb(142,142,147);
+  font-size: 20rpx;
+  text-align: center;
+}
+.charts-item {
+  height: 400rpx;
+  border-top: 2rpx solid rgb(230,230,230);
+  margin-bottom: 40rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  padding-top: 40rpx;
+}
+
+.tips {
+  font-size: 28rpx;
+  color: #8e8e93;
+  background-color: #e7e7e7;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+}
+
+.strong {
+  color: #181818;
+}
+
+.chart-pie {
+  height: 500rpx;
+
+}
+
+
+.filter {
+  width: 150rpx;
+  text-align: right;
+}

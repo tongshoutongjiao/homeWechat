@@ -1,0 +1,18 @@
+<view class="filter-slider-bg" bindtap="handleOpenFilter" data-bool-view-filter="{{boolViewFilter}}" wx:if="{{boolViewFilter}}" ></view>
+<view class="filter-slider {{boolViewFilter ? 'no-translate' : ''}} flex">
+  <scroll-view scroll-y >
+    <block wx:for="{{filterList}}"  wx:key="index" wx:for-index="index" wx:for-item="item">
+      <view class="filter-title">筛选方式</view>
+      <view class="filter-category filter-category">
+        <view class="filter-item"  wx:for="{{item.children}}"  wx:key="index" wx:for-index="index"  wx:for-item="child" data-id=""  catchtap="handleChooseFilter">
+          <view class="filter-item-name">{{child.name}}</view>
+          <view class="filter-item-sub" wx:if="{{child.sub}}">{{child.sub}}</view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="button-group">
+    <view class="btn btn-cancel" bindtap="handleFilterCancel" >取消</view>
+    <view class="btn btn-confirm" bindtap="handleFilterConfirm" >确认</view>
+  </view>
+</view>
