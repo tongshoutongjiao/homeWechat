@@ -132,10 +132,27 @@ export default class Index extends wepy.page {
       console.log('点击弹框显示选择开通套餐');
       let tels = e.currentTarget.dataset.tels,
         phoneTypes = e.currentTarget.dataset.phoneTypes;
-      console.log(tels);
-      this.studentInfo.tels = tels;
-      this.studentInfo.phoneTypes = phoneTypes;
-      this.dialogStatus = true;
+      let regValue=/^[0-9]{6}$/g,
+      flag=regValue.test(this.studentInfo.codes);
+      if(!flag){
+        wx.showToast({
+          title: '请输入6位数字验证码',
+          icon: 'none',
+        });
+        return;
+      }else {
+        this.studentInfo.tels = tels;
+        this.studentInfo.phoneTypes = phoneTypes;
+        this.studentInfo.productId=this.productList[0].productId;
+        this.dialogStatus = true;
+      }
+
+
+
+
+
+
+
     },
 
     // 点击确定或者取消按钮关闭弹窗，取消开通业务
@@ -192,7 +209,6 @@ export default class Index extends wepy.page {
           this.studentInfo.identity = value;
           break;
         case 'codes':
-
             this.studentInfo.codes = value;
 
           break;
@@ -204,6 +220,7 @@ export default class Index extends wepy.page {
     // 失去焦点姓名 code 是否正确
     judgeValueInput:function(e){
       let inputType = e.currentTarget.dataset.inputType,
+
         value = e.detail.value;
       switch (inputType){
         case 'name':
@@ -221,21 +238,7 @@ export default class Index extends wepy.page {
             value='';
             this.studentInfo.name='';
           }
-          break;
-        case 'codes':
-          let regCodes = /^[0-9]{6}$/g;
-          console.log(this.studentInfo.codes);
-          if (regCodes.test(value)) {
-            this.studentInfo.codes = value;
-          } else {
-            wx.showToast({
-              title: '请输入6位数字验证码',
-              icon: 'none',
-            });
-            value='';
-            this.studentInfo.codes = '';
-          }
-          break;
+
       }
 
 
@@ -352,8 +355,6 @@ export default class Index extends wepy.page {
           break;
       }
     },
-
-
   };
 
   async getProvince() {
@@ -604,6 +605,7 @@ export default class Index extends wepy.page {
       });
       setTimeout(() => {
         this.savingFlag = false;
+        wepy.setStorageSync('editFlag',true);
         wx.navigateBack({
           delta: 1
         })
@@ -629,7 +631,12 @@ export default class Index extends wepy.page {
       }
     });
     if (res.data.result === 200) {
+      console.log(res.data.businessList);
+      res.data.businessList.forEach(function (item,index) {
+
+      });
       this.productList = res.data.businessList;
+      console.log(this.productList)
     }
     this.$apply();
   }

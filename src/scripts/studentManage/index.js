@@ -62,8 +62,6 @@ export default class Index extends wepy.page {
     toggleTrangle: function (e) {
       let index = e.currentTarget.dataset.index,
         classId = e.currentTarget.dataset.classId;
-      console.log('this.classInfo');
-      console.log(this.classInfo);
       this.classInfo[index].flag = !this.classInfo[index].flag;
       this.trangleDown = !this.trangleDown;
       this.getStudentsByClassId(classId);
@@ -72,7 +70,7 @@ export default class Index extends wepy.page {
     // 跳转到新增学生页面
     navigateToaddStudent: function (e) {
       console.log('新增学生页面');
-      console.log(e);
+      wepy.setStorageSync('editFlag',false);
       wepy.navigateTo({
         url: "/pages/addStudent?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -81,6 +79,7 @@ export default class Index extends wepy.page {
     // 跳转到修改编辑学生界面
     navigateToEditStuInfo: function (e) {
       console.log('编辑学生页面');
+      wepy.setStorageSync('editFlag',false);
       wx.navigateTo({
         url: "/pages/editStuInfo?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -88,12 +87,14 @@ export default class Index extends wepy.page {
   };
 
   async selectSpecGrade(gradName, index, slideIndex) {
-    gradName = gradName || '全部';
-    index = index || 0;
-    slideIndex = slideIndex || null;
+
+    gradName = gradName  || '全部';
+    index = index ||  0;
+      slideIndex = slideIndex || null;
+    this.gradeId=index;
+    this.slideIndex=slideIndex;
     let n = slideIndex / 3;
     n ? this.scrollLeft = n * 200 : this.scrollLeft = 0;
-
 
     if (gradName === '全部') {
       this.gradeFlag = true;
@@ -112,10 +113,10 @@ export default class Index extends wepy.page {
         item.flag = false;
         item.index = index;
         item.gradeName = gradName;
+        item.allNum=item.openNum*1+item.unOpenNum*1;
       });
     }
     this.selected = index;
-
   }
 
   async getStudentsByClassId(id) {
@@ -124,13 +125,13 @@ export default class Index extends wepy.page {
     // 结果按照姓氏排序
     if (studentsRes.statusCode === 200) {
       let data = studentsRes.data.data.sort(function (a, b) {
-        let s=a.studentNameQp;
-        let e=b.studentNameQp;
-        if(s>e){
+        let s = a.studentNameQp;
+        let e = b.studentNameQp;
+        if (s > e) {
           return 1
-        }else if(s<e){
+        } else if (s < e) {
           return -1;
-        }else{
+        } else {
           return 0;
         }
       });
@@ -182,6 +183,7 @@ export default class Index extends wepy.page {
     if (list.data.result === 200) {
       list.data.schoolBusinessList.forEach(function (item, index) {
         item.index = index;
+        item.allNum=item.gradeOpen*1+item.gradeUnOpen*1
       });
 
       let tempData = list.data.schoolBusinessList.concat();
@@ -220,10 +222,16 @@ export default class Index extends wepy.page {
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
+    const app = getApp();
+    console.log(this.$wxapp);
+    console.log(this);
+   console.log(app);
     //  设置标题
+    let showFlag= wepy.setStorageSync('editFlag',false);
     wx.setNavigationBarTitle({
       title: decodeURI(this.schoolName)
     });
+    setTimeout(e => this.initData());
   }
 
   onReady() {
@@ -232,6 +240,16 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-    setTimeout(e => this.initData());
+   let showFlag= wepy.getStorageSync('editFlag');
+   console.log(showFlag);
+   if(showFlag){
+     // 可以增加默认值功能
+     this.selectSpecGrade();
+     wx.showToast({
+       title: '加载中',
+       icon: 'loading',
+       duration: 1000
+     });
+   }
   }
 }
