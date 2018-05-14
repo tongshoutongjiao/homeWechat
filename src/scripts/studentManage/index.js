@@ -29,8 +29,8 @@ export default class Index extends wepy.page {
     defaultPhoto: defaultPhoto,
     gradeId: '',
     slideIndex: null,
-    storageFlag: false
-
+    storageFlag: false,
+    queryFlag:false,
   };
   events = {};
   methods = {
@@ -60,11 +60,18 @@ export default class Index extends wepy.page {
 
     // 点击展开年级列表及学生信息
     toggleTrangle: function (e) {
+      if(!this.queryFlag){
+        return;
+      }
+      let classInfo = this.classInfo;
+
       let index = e.currentTarget.dataset.index,
         classId = e.currentTarget.dataset.classId;
       this.classInfo[index].flag = !this.classInfo[index].flag;
       this.trangleDown = !this.trangleDown;
-      this.getStudentsByClassId(classId);
+      if(!classInfo[index].studentList){
+        this.getStudentsByClassId(classId);
+      }
     },
 
     // 跳转到新增学生页面
@@ -87,7 +94,12 @@ export default class Index extends wepy.page {
   };
 
   async selectSpecGrade(gradName, index, slideIndex) {
+    console.log('重新选择');
 
+    if(!this.queryFlag){
+      console.log('请求数据中');
+      return;
+    }
     gradName = gradName  || '全部';
     index = index ||  0;
       slideIndex = slideIndex || null;
@@ -118,12 +130,23 @@ export default class Index extends wepy.page {
     }
     this.selected = index;
   }
-
   async getStudentsByClassId(id) {
     let classInfo = this.classInfo;
-    const studentsRes = await api.getStudentsByClassId({data: {classId: id}});
+    this.queryFlag=false;
+    const studentsRes = await api.getStudentsByClassId(
+      {
+        data: {classId: id}
+      }
+      );
+
     // 结果按照姓氏排序
     if (studentsRes.statusCode === 200) {
+
+      // 修改可点击状态
+      setTimeout(()=>{
+        this.queryFlag=true;
+      },500);
+
       let data = studentsRes.data.data.sort(function (a, b) {
         let s = a.studentNameQp;
         let e = b.studentNameQp;
@@ -174,7 +197,7 @@ export default class Index extends wepy.page {
   //
   async getBussinessList() {
     let list = await api.schoolBusinessList({
-      showLoading: true,
+      showLoading: false,
       method: 'POST',
       data: {
         schoolId: this.schoolId
@@ -185,10 +208,12 @@ export default class Index extends wepy.page {
         item.index = index;
         item.allNum=item.gradeOpen*1+item.gradeUnOpen*1
       });
-
       let tempData = list.data.schoolBusinessList.concat();
       this.gradesList = list.data.schoolBusinessList;
       this.handleGradesInfoData(tempData);
+      setTimeout(()=>{
+        this.queryFlag=true;
+      },500);
       this.$apply();
     }
   }
@@ -212,9 +237,6 @@ export default class Index extends wepy.page {
     // 获取所有年级信息
     this.getBussinessList();
 
-    // 班级信息
-    this.getClassBySchoolId();
-
     // 初始化信息
     this.selectSpecGrade();
   }
@@ -226,6 +248,7 @@ export default class Index extends wepy.page {
     console.log(this.$wxapp);
     console.log(this);
    console.log(app);
+   this.$parent.globalData.name='zhlzhl';
     //  设置标题
     let showFlag= wepy.setStorageSync('editFlag',false);
     wx.setNavigationBarTitle({
@@ -242,13 +265,14 @@ export default class Index extends wepy.page {
     console.log('show !');
    let showFlag= wepy.getStorageSync('editFlag');
    console.log(showFlag);
+
    if(showFlag){
-     // 可以增加默认值功能
-     this.selectSpecGrade();
+     this.getBussinessList();
+      this.selectSpecGrade();
      wx.showToast({
        title: '加载中',
        icon: 'loading',
-       duration: 1000
+       duration: 500
      });
    }
   }
