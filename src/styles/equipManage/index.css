@@ -1,0 +1,248 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 120rpx;
+  width: 100%;
+  height: 100%;
+}
+image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.reformat {
+  width: 30rpx;
+  height: 28rpx;
+  margin-right: 25rpx;
+  vertical-align: middle;
+}
+.all-default {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 25rpx;
+  vertical-align: middle;
+}
+/*搜索栏样式*/
+.search-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120rpx;
+  background: #FFF;
+  z-index: 100;
+}
+.search-wrapper .search-content {
+  display: flex;
+  width: 690rpx;
+  height: 80rpx;
+  margin: 20rpx 30rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 1px 10px rgba(142, 142, 147, 0.15);
+  justify-content: center;
+  align-items: center;
+}
+.search-wrapper .search-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+}
+.search-wrapper .search-title {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 15px;
+  color: #8E8E93;
+}
+/*tab列表头*/
+.listTitle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100rpx;
+  background: #f7f7f7;
+  margin-top: 30rpx;
+  padding-left: 80rpx;
+}
+.listTitle .listTitleChild {
+  font-size: 28rpx;
+  color: #575759;
+  text-align: center;
+}
+/*列表*/
+.equipList {
+  position: absolute;
+  top: 250rpx;
+  bottom: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+.equipWrapper {
+  box-sizing: border-box;
+}
+.equipWrapper .detail {
+  display: flex;
+  white-space: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 58rpx;
+  padding-left: 80rpx;
+}
+.equipWrapper .detail view {
+  font-size: 28rpx;
+  color: #575759;
+  text-align: center;
+}
+.equipWrapper .detail view.blue-style {
+  color: #5978be;
+}
+.equipWrapper .detail view.gray-style {
+  color: #d0d0d4 ;
+}
+.equipWrapper .all-default {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 25rpx;
+  vertical-align: middle;
+}
+.equipWrapper .location {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 46rpx 30rpx 30rpx;
+  color: #575759;
+  font-size: 28rpx;
+}
+.equipWrapper .location text {
+  vertical-align: middle;
+}
+.equipWrapper .location text.gray-style {
+  color: #d0d0d4 ;
+}
+.leftIcon {
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid #d0d0d4;
+  border-right: transparent;
+  border-top: transparent;
+  margin: 0 auto;
+}
+/*底部操作栏*/
+.btomView {
+  display: flex;
+  z-index: 888;
+  background: #fff;
+  height: 100rpx;
+  background: rgba(255, 255, 255, 0.9);
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  font-size: 28rpx;
+}
+.btomView view {
+  line-height: 100rpx;
+}
+.btomView .select-all {
+  width: 30%;
+  margin-left: 30rpx;
+}
+.btomView .format {
+  width: 30%;
+  text-align: center;
+  margin-right: 10%;
+}
+.btomView .restore {
+  width: 30%;
+  text-align: center;
+}
+.btomView .restore view {
+  width: 186rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #348cff;
+  border-radius: 100rpx ;
+  color: #fff;
+}
+.btomView .restore view.disabled {
+  opacity: .3;
+}
+/*维修弹出框*/
+.dialog .mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog .record {
+  position: fixed;
+  box-sizing: border-box;
+  padding: 50rpx 0rpx 28rpx;
+  z-index: 5000;
+  top: 440rpx ;
+  left: 30rpx;
+  right: 30rpx;
+  bottom: 30rpx;
+  background-color: #FFFFFF;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+.dialog .serials {
+  padding-left: 30rpx;
+  color: #358dff;
+  margin-bottom: 30rpx;
+}
+.dialog .recordForm {
+  margin-bottom: 40rpx;
+}
+.dialog .recordTitle {
+  padding-left: 30rpx;
+  color: #181818;
+  margin-bottom: 30rpx;
+}
+.dialog .formTitle {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  background: #f7f7f7;
+}
+.dialog .formTitle view {
+  text-align: center;
+  width: 25%;
+  font-size: 28rpx;
+  color: #575759;
+}
+.dialog .formTitle view.fix-style {
+  color: #358dff;
+}
+.dialog .desc {
+  padding-left: 30rpx;
+  color: #8e8e93;
+}
+.dialog .btn {
+  margin-top: 20rpx;
+  padding: 0rpx 30rpx;
+  height: 80rpx;
+}
+.dialog .btn view {
+  display: inline-block;
+  background: #f7f7f7;
+  width: 300rpx ;
+  line-height: 80rpx;
+  font-size: 32rpx ;
+  color: #8e8e93;
+  text-align: center;
+  border-radius: 200rpx;
+}
+.dialog .btn view:nth-child(1) {
+  margin-right: 30rpx;
+}
+.dialog .btn view.blue-style {
+  color: #358dff;
+}

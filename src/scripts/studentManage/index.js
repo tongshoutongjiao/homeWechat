@@ -213,7 +213,7 @@ export default class Index extends wepy.page {
     this.getBussinessList();
 
     // 班级信息
-    this.getClassBySchoolId();
+    // this.getClassBySchoolId();
 
     // 初始化信息
     this.selectSpecGrade();
@@ -223,9 +223,7 @@ export default class Index extends wepy.page {
     this.schoolId = e.id;
     this.schoolName = e.name;
     const app = getApp();
-    console.log(this.$wxapp);
-    console.log(this);
-   console.log(app);
+
     //  设置标题
     let showFlag= wepy.setStorageSync('editFlag',false);
     wx.setNavigationBarTitle({

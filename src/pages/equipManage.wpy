@@ -1,6 +1,102 @@
+
 <template>
 	<view class="container">
+		<view class="search-wrapper">
+			<view class="search-content" bindtap="handleSearch" data-grade-id="">
+				<image class="search-icon" src="/images/search_icon.png"></image>
+				<view class="search-title">搜索学校名字</view>
+			</view>
+		</view>
+		<view class="listTitle">
+			<view class="listTitleChild" style="width: 20%">安装位置</view>
+			<view class="listTitleChild" style="width: 30%">终端编号</view>
+			<view class="listTitleChild" style="width: 30%">终端类型</view>
+			<view class="listTitleChild" style="width: 20%">状态</view>
+		</view>
 
+	   <scroll-view class="equipList" scroll-y="true">
+		   <view class="equipWrapper" wx:for="{{equipInfo}}" >
+			   <view class="location" bindtap="clickSelectEquip" data-id="{{item.id}}" data-index="{{item.index}}">
+				   <block wx:if="{{item.active}}">
+					   <image class="all-default" src="/images/float_icon_a.png"/>
+				   </block>
+				   <block wx:else>
+					   <image class="all-default" src="/images/float_icon_d.png"/>
+				   </block>
+
+				   <text class="{{grayFlag?'gray-style':''}}">{{item.location}}</text>
+			   </view>
+			   <view class="detail">
+				   <view style="width: 20%" class="{{grayFlag?'gray-style':''}}">
+					   <view  class=" leftIcon"></view>
+				   </view>
+				   <view style="width: 30%" class="blue-style">{{item.SN}}</view>
+				   <view style="width: 30%" class="{{grayFlag?'gray-style':''}}">{{item.equipType}}</view>
+				   <view style="width: 20%" class="{{grayFlag?'gray-style':''}}">{{item.status}}</view>
+			   </view>
+		   </view>
+
+
+
+
+	   </scroll-view>
+		<view class="btomView" >
+			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
+				<block wx:if="{{selectAllFlag}}">
+					<image class="all-default" src="/images/float_icon_a.png"/>
+				</block>
+				<block wx:else>
+					<image class="all-default" src="/images/float_icon_d.png"/>
+				</block>
+
+				<text >全选</text>
+			</view>
+			<view class="format">
+				<image class="reformat"  bindtap="clickSelectOperateEquip" data-select-type="format" src="/images/reformat_icon.png"/>
+				<text >初始化</text>
+			</view>
+			<view class="restore" bindtap="{{fixFlag?'clickNavigatorToRestore':''}}">
+				<view class="{{fixFlag?'':'disabled'}}" >维修</view>
+			</view>
+
+		</view>
+	</view>
+	<!--维修单弹窗-->
+	<view class="dialog" wx:if="{{dialogFlag}}">
+		<view class="mask"></view>
+		<view class="record">
+				<view class="serials">312323356100</view>
+			<view class="recordTitle">近期已有维修记录</view>
+			<view class="recordForm">
+				<view class="formTitle">
+					<view >接单日期</view>
+					<view >维修日期</view>
+					<view >维修人员</view>
+					<view >接单日期</view>
+				</view>
+				<view class=" formTitle formContent">
+					<view >2018-03-24</view>
+					<view >2018-04-24</view>
+					<view >罗安疆...</view>
+					<view class="fix-style">修改</view>
+				</view>
+				<view class=" formTitle formContent">
+					<view >2018-03-24</view>
+					<view >2018-04-24</view>
+					<view >罗安疆...</view>
+					<view class="fix-style" >修改</view>
+				</view>
+
+			</view>
+			<view class="desc">
+				如果要维修的记录已经创建,只是需要修改其中的内容,请选择已有的维修记录进行修改,如果没有请新建维修单。
+			</view>
+			<view class="btn">
+				<view bindtap="clickOperateOrder" data-type="cancel">取消</view>
+				<view bindtap="clickOperateOrder" data-type="sure" class="blue-style">新建维修单</view>
+			</view>
+
+		</view>
 	</view>
 
 </template>
