@@ -43,7 +43,7 @@
                         <view class="student-list"  wx:for="{{item.studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo">
                             <view class="student-info">
                                 <view class="nick-photo" >
-                                    <image src="{{it.studentImg||defaultPhoto}}" mode="aspectFill"/>
+                                    <image src="{{it.studentImg||defaultPhoto}}?imageView2/2/w/100/h/138/q/50|imageslim" mode="aspectFill"/>
                                 </view>
                                 <view class="nick-wrapper">
                                     <view class="nickname">

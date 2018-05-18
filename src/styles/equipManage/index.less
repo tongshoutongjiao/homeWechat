@@ -180,6 +180,22 @@ image{
   }
 
 }
+.other-style{
+  display: block;
+  width: 100%;
+  .format{
+    position: absolute;
+    top: 0;
+    right: 30rpx;
+    width: 20%;
+    margin-right: 0;
+
+    color: #5978be;
+
+  }
+
+
+}
 
 /*维修弹出框*/
 .dialog{
@@ -192,12 +208,28 @@ image{
     bottom:0;
     background:rgba(0, 0, 0, 0.5);
   }
+  .confirm{
+    position: fixed;
+    z-index: 5000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    border-radius: 10rpx;
+    width: 690rpx;
+    height: 250rpx;
+    .title{
+      text-align:center;
+      font-size:32rpx;
+      line-height:120rpx;
+    }
+  }
   .record{
     position:fixed;
     box-sizing:border-box;
     padding:50rpx 0rpx 28rpx;
     z-index:5000;
-    top:440rpx ;
+    top:410rpx ;
     left:30rpx;
     right:30rpx;
     bottom:30rpx;
@@ -217,17 +249,25 @@ image{
     padding-left: 30rpx;
     color: #181818;
     margin-bottom: 30rpx;
+    font-size: 32rpx;
   }
   .formTitle{
     display: flex;
     align-items: center;
-    height: 100rpx;
+    height: 90rpx;
     background: rgb(247,247,247);
+    padding:0rpx 30rpx;
+    .title{
+      color: #8E8E93;
+    }
     view{
       text-align: center;
-      width: 25%;
+      width: 30%;
       font-size: 28rpx;
       color:rgb(87,87,89);
+      &:nth-last-child(1){
+        width: 20%;
+      }
       &.fix-style{
         color: #358dff;
       }

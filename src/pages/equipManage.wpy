@@ -13,7 +13,6 @@
 			<view class="listTitleChild" style="width: 30%">终端类型</view>
 			<view class="listTitleChild" style="width: 20%">状态</view>
 		</view>
-
 	   <scroll-view class="equipList" scroll-y="true">
 		   <view class="equipWrapper" wx:for="{{equipInfo}}" >
 			   <view class="location" bindtap="clickSelectEquip" data-id="{{item.id}}" data-index="{{item.index}}">
@@ -24,15 +23,15 @@
 					   <image class="all-default" src="/images/float_icon_d.png"/>
 				   </block>
 
-				   <text class="{{grayFlag?'gray-style':''}}">{{item.location}}</text>
+				   <text class="{{grayFlag?'':'gray-style'}}">{{item.location}}</text>
 			   </view>
 			   <view class="detail">
-				   <view style="width: 20%" class="{{grayFlag?'gray-style':''}}">
+				   <view style="width: 20%" class="{{grayFlag?'':'gray-style'}}">
 					   <view  class=" leftIcon"></view>
 				   </view>
 				   <view style="width: 30%" class="blue-style">{{item.SN}}</view>
-				   <view style="width: 30%" class="{{grayFlag?'gray-style':''}}">{{item.equipType}}</view>
-				   <view style="width: 20%" class="{{grayFlag?'gray-style':''}}">{{item.status}}</view>
+				   <view style="width: 30%" class="{{grayFlag?'':'gray-style'}}">{{item.equipType}}</view>
+				   <view style="width: 20%" class="{{grayFlag?'':'gray-style'}}">{{item.status}}</view>
 			   </view>
 		   </view>
 
@@ -40,7 +39,8 @@
 
 
 	   </scroll-view>
-		<view class="btomView" >
+
+		<view class="btomView" wx:if="{{identify==='repairMan'}}" >
 			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
 				<block wx:if="{{selectAllFlag}}">
 					<image class="all-default" src="/images/float_icon_a.png"/>
@@ -51,15 +51,53 @@
 
 				<text >全选</text>
 			</view>
-			<view class="format">
-				<image class="reformat"  bindtap="clickSelectOperateEquip" data-select-type="format" src="/images/reformat_icon.png"/>
+			<view class="format" bindtap="clickSelectOperateEquip" data-select-type="format">
+				<image class="reformat"   src="/images/reformat_icon.png"/>
 				<text >初始化</text>
 			</view>
-			<view class="restore" bindtap="{{fixFlag?'clickNavigatorToRestore':''}}">
+			<view class="restore" bindtap="{{fixFlag?'clickNavigatorToRestore':''}}"  data-user="repairMan">
 				<view class="{{fixFlag?'':'disabled'}}" >维修</view>
 			</view>
-
 		</view>
+
+		<view class="btomView" wx:if="{{identify==='planter'}}" >
+			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
+				<block wx:if="{{selectAllFlag}}">
+					<image class="all-default" src="/images/float_icon_a.png"/>
+				</block>
+				<block wx:else>
+					<image class="all-default" src="/images/float_icon_d.png"/>
+				</block>
+
+				<text >全选</text>
+			</view>
+			<view class="format" bindtap="clickSelectOperateEquip" data-select-type="format">
+				<image class="reformat"   src="/images/reformat_icon.png"/>
+				<text >初始化</text>
+			</view>
+			<view class="restore" bindtap="{{fixFlag?'clickNavigatorToRestore':''}}" data-user="planter">
+				<view class="{{fixFlag?'':'disabled'}}" >安装</view>
+			</view>
+		</view>
+
+		<view class="btomView other-style" wx:if="{{identify==='other'}}" >
+			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
+				<block wx:if="{{selectAllFlag}}">
+					<image class="all-default" src="/images/float_icon_a.png"/>
+				</block>
+				<block wx:else>
+					<image class="all-default" src="/images/float_icon_d.png"/>
+				</block>
+
+				<text >全选</text>
+			</view>
+			<view class="format" bindtap="clickSelectOperateEquip" data-select-type="format">
+				<image class="reformat"   src="/images/reformat_icon.png"/>
+				<text >初始化</text>
+			</view>
+		</view>
+
+
 	</view>
 	<!--维修单弹窗-->
 	<view class="dialog" wx:if="{{dialogFlag}}">
@@ -69,22 +107,22 @@
 			<view class="recordTitle">近期已有维修记录</view>
 			<view class="recordForm">
 				<view class="formTitle">
-					<view >接单日期</view>
-					<view >维修日期</view>
-					<view >维修人员</view>
-					<view >接单日期</view>
+					<view class="title" >接单日期</view>
+					<view class="title"  >维修日期</view>
+					<view class="title" >维修人员</view>
+					<view class="title"  ></view>
 				</view>
 				<view class=" formTitle formContent">
 					<view >2018-03-24</view>
 					<view >2018-04-24</view>
 					<view >罗安疆...</view>
-					<view class="fix-style">修改</view>
+					<view class="fix-style" bindtap="clickFixRecord">修改</view>
 				</view>
 				<view class=" formTitle formContent">
-					<view >2018-03-24</view>
+					<view>2018-03-24</view>
 					<view >2018-04-24</view>
 					<view >罗安疆...</view>
-					<view class="fix-style" >修改</view>
+					<view class="fix-style" bindtap="clickFixRecord">修改</view>
 				</view>
 
 			</view>
@@ -99,6 +137,18 @@
 		</view>
 	</view>
 
+	<!--确认弹窗-->
+	<view class="dialog" wx:if="{{confirmFlag}}">
+		<view class="mask"></view>
+		<view class="confirm">
+			<view class="title">确定初始化你选中的{{selectLength}}个设备?</view>
+			<view class="btn">
+				<view bindtap="clickConfirmReformat" data-type="cancel" >取消</view>
+				<view bindtap="clickConfirmReformat" data-type="sure" class="blue-style">确定</view>
+			</view>
+
+		</view>
+	</view>
 </template>
 <script src="../scripts/equipManage/index.js"></script>
 <style src="../styles/equipManage/index.css"></style>

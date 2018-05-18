@@ -1,0 +1,131 @@
+<template>
+	<view class="container">
+		<view class="unfix school-name">
+			<view>学校名称</view>
+			<view>商丘市第二初级中学</view>
+		</view>
+		<view class="unfix end-sn">
+			<view>终端编号</view>
+			<view>312323356100</view>
+		</view>
+		<view class="default end-sn">
+			<view>终端名称</view>
+			<input type="text" placeholder="请输入终端名称">
+		</view>
+
+		<view class="default date-style">
+			<view>终端类型</view>
+			<picker bindchange="bindEndType" value="{{alertData.endType.endTypeIndex}}" range="{{alertData.endType.array}}">
+				<view class="picker">
+					{{alertData.endType.array[alertData.endType.endTypeIndex]}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class="default ">
+			<view>SIM卡号</view>
+			<input type="number" placeholder="请输入SIM卡号">
+		</view>
+		<view class="default ">
+			<view>安装位置</view>
+			<input type="text" placeholder="请输入安装位置">
+		</view>
+		<view class="default date-style">
+			<view>终端使用状态</view>
+			<picker bindchange="bindEndStatusChange" value="{{alertData.endStatusData.endStatusIndex}}"
+			        range="{{alertData.endStatusData.array}}">
+				<view class="picker">
+					{{alertData.endStatusData.array[alertData.endStatusData.endStatusIndex]}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class=" default date-style checkBox-style">
+			<view>终端启用状态</view>
+			<view class="wrapper">
+				<view class="use-status" bindtap="clickSelectStatus" data-end-status="1">
+					<image wx:if="{{endStatus==='1'}}" class="all-default" src="/images/float_icon_a.png" />
+					<image wx:else class="all-default" src="/images/float_icon_d.png"/>
+					<view>是</view>
+				</view>
+				<view class="use-status" bindtap="clickSelectStatus" data-end-status="0">
+					<image wx:if="{{endStatus==='0'}}" class="all-default" src="/images/float_icon_a.png"/>
+					<image wx:else class="all-default" src="/images/float_icon_d.png" />
+					<view>否</view>
+				</view>
+			</view>
+		</view>
+		<view class=" default date-style">
+			<view>终端安装时间</view>
+			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">
+				<view class="picker">
+					{{date.startDate?date.startDate:'选择开始日期'}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class="default date-style">
+			<view>安装类型 (xxx)</view>
+			<picker bindchange="bindPlantType" value="{{alertData.plantType.plantTypeIndex}}"
+			        range="{{alertData.plantType.array}}">
+				<view class="picker">
+					{{alertData.plantType.array[alertData.plantType.plantTypeIndex]}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+
+		<view class="default date-style another-page" data-type="repairPerson" bindtap="clickChooseOptions">
+			<view>安装人员</view>
+
+			<view class="picker">{{repairInfo.repairPersonSelected?repairInfo.repairPersonSelected:''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+		<view class="default date-style another-page" data-type="remark" bindtap="clickChooseOptions">
+			<view>备注</view>
+			<view class="picker">{{repairInfo.remarkSelected||''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+
+		<view class="camera-container">
+			<view>
+				<text>远景照</text>
+				<scroll-view class="photo-wrapper" scroll-x="true">
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="far">
+						<text class="row"></text>
+						<text class="col"></text>
+					</view>
+
+				</scroll-view>
+			</view>
+			<view>
+				<text>近景照</text>
+				<view class="photo-wrapper">
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="close">
+						<text class="row"></text>
+						<text class="col"></text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view style="height:170rpx;">
+			<view class="sure-btn">
+				保存
+
+			</view>
+		</view>
+	</view>
+
+	<!--底部弹窗组件-->
+	<upload-img></upload-img>
+</template>
+<script src="../scripts/planterDetail/index.js"></script>
+<style src="../styles/planterDetail/index.css"></style>

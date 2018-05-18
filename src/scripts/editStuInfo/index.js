@@ -147,12 +147,6 @@ export default class Index extends wepy.page {
         this.dialogStatus = true;
       }
 
-
-
-
-
-
-
     },
 
     // 点击确定或者取消按钮关闭弹窗，取消开通业务

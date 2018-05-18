@@ -1,0 +1,99 @@
+
+.animation-element-wrapper {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  text{
+    color: #999999;
+    display: inline-flex;
+    position: absolute;
+    margin-top: 20rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 34rpx;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 470rpx;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.line{
+  display: block;
+  position: fixed;
+  height: 1rpx;
+  width: 100%;
+  margin-top: 89rpx;
+  background-color: #eeeeee;
+}
+/* 底部按钮选择框 */
+.photo-style{
+  display: block;
+  height: 294rpx;
+  background: #eee;
+}
+.photo-line{
+  margin-top: 4rpx;
+}
+.camera{
+  width:100%;
+  position:relative;
+  display:block;
+  font-size:30rpx;
+  line-height:90rpx;
+  box-sizing:border-box;
+  background: #fff;
+
+  text{
+    position: absolute;
+    bottom: 6rpx;
+    left: 50%;
+    font-size: 20rpx;
+    transform: translateX(-50%);
+
+  }
+}
+
+.text-c{
+  text-align: center;
+}
+.cancel-style{
+  line-height: 90rpx;
+  font-size: 30rpx;
+  width: 100%;
+  margin-bottom:20rpx;
+  margin-top:20rpx;
+  background: #fff;
+
+}
+.album{
+  font-size: 30rpx;
+  line-height: 90rpx;
+  width: 100%;
+  background: #fff;
+}
+
+
+/*camera组件样式*/
+.camera-wrap{
+  height: 100%;
+}
+.camera-controls{
+  display: flex;
+  flex-wrap: nowrap;
+  height: 490rpx;
+  view{
+    width: 33.3%;
+    text-align: center ;
+  }
+}

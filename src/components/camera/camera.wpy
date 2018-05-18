@@ -47,7 +47,7 @@ export default class CameraCom extends wepy.component {
   data = {
     hidden: true,
     devicePosition: 'back'
-  }
+  };
   props = {
     takePhoto: {
       default: function(){},
@@ -57,7 +57,13 @@ export default class CameraCom extends wepy.component {
       default: true,
       type: Boolean,
     }
-  }
+  };
+  events={
+    'getBroadcast':(ret)=>{
+      console.log('camera接收父级数据');
+      console.log(ret);
+    }
+  };
   methods = {
     toggle(show) {
       this.hidden = !show;
@@ -82,7 +88,7 @@ export default class CameraCom extends wepy.component {
           }
       });
     }
-  }
+  };
   onLoad() {
     console.log(this)
     

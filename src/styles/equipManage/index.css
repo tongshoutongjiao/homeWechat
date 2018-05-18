@@ -170,6 +170,18 @@ image {
 .btomView .restore view.disabled {
   opacity: .3;
 }
+.other-style {
+  display: block;
+  width: 100%;
+}
+.other-style .format {
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  width: 20%;
+  margin-right: 0;
+  color: #5978be;
+}
 /*维修弹出框*/
 .dialog .mask {
   position: fixed;
@@ -180,12 +192,28 @@ image {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+.dialog .confirm {
+  position: fixed;
+  z-index: 5000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10rpx;
+  width: 690rpx;
+  height: 250rpx;
+}
+.dialog .confirm .title {
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 120rpx;
+}
 .dialog .record {
   position: fixed;
   box-sizing: border-box;
   padding: 50rpx 0rpx 28rpx;
   z-index: 5000;
-  top: 440rpx ;
+  top: 410rpx ;
   left: 30rpx;
   right: 30rpx;
   bottom: 30rpx;
@@ -205,18 +233,26 @@ image {
   padding-left: 30rpx;
   color: #181818;
   margin-bottom: 30rpx;
+  font-size: 32rpx;
 }
 .dialog .formTitle {
   display: flex;
   align-items: center;
-  height: 100rpx;
+  height: 90rpx;
   background: #f7f7f7;
+  padding: 0rpx 30rpx;
+}
+.dialog .formTitle .title {
+  color: #8E8E93;
 }
 .dialog .formTitle view {
   text-align: center;
-  width: 25%;
+  width: 30%;
   font-size: 28rpx;
   color: #575759;
+}
+.dialog .formTitle view:nth-last-child(1) {
+  width: 20%;
 }
 .dialog .formTitle view.fix-style {
   color: #358dff;

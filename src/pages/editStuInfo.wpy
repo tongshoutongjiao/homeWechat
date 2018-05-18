@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="photo" >
 			<view>头像</view>
-			<image src="{{studentInfo.studentImg?studentInfo.studentImg:defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+			<image src="{{studentInfo.studentImg?studentInfo.studentImg:defaultPhoto}}?imageView2/2/w/100/h/138/q/50|imageslim" mode="aspectFill" bindtap="clickUploadImg"/>
 		</view>
 		<view class="class-name">
 			<view>班级</view>

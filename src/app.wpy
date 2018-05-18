@@ -39,6 +39,9 @@
 				'pages/addStudent',
 				'pages/editStuInfo',
 				'pages/equipManage',
+				'pages/repairDetail',
+				'pages/equipTypePage',
+				'pages/planterDetail',
 			],
 			window: {
 				backgroundTextStyle: 'light',

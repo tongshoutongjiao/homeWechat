@@ -1,0 +1,17 @@
+<template>
+		<view class="animation-element-wrapper" style="visibility:{{showPhoto? 'visible':'hidden'}}">
+			<view class="animation-element photo-style">
+				<view class="camera text-c" data-photo-type="camera" bindtap="chooseUploadStyle">
+					<view>拍摄</view>
+				</view>
+				<view class="line photo-line"></view>
+				<view class="album text-c" data-photo-type="album" bindtap="chooseUploadStyle">从手机相册选择</view>
+				<view class="cancel-style text-c" data-photo-type="cancel" bindtap="chooseUploadStyle">取消</view>
+			</view>
+		</view>
+
+	<!--拍照组件-->
+	<camera-com></camera-com>
+</template>
+<script src="../../scripts/uploadImg/index.js"></script>
+<style src="../../styles/uploadImg/index.css"></style>

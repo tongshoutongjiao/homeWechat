@@ -25,7 +25,7 @@
                             <view class="student-info">
                                 <view class="nick-photo">
                                     <block wx:if="{{student.bulkPasteImg!==' '}}">
-                                        <image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
+                                        <image src="{{student.bulkPasteImg}}?imageView2/2/w/100/h/138/q/50|imageslim" mode="aspectFill"/>
                                     </block>
                                     <block wx:else>
                                         <image src="{{defaultPhoto}}" mode="aspectFill"/>
