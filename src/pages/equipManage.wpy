@@ -23,21 +23,17 @@
 					   <image class="all-default" src="/images/float_icon_d.png"/>
 				   </block>
 
-				   <text class="{{grayFlag?'':'gray-style'}}">{{item.location}}</text>
+				   <text class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.installAddress}}</text>
 			   </view>
 			   <view class="detail">
-				   <view style="width: 20%" class="{{grayFlag?'':'gray-style'}}">
+				   <view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">
 					   <view  class=" leftIcon"></view>
 				   </view>
-				   <view style="width: 30%" class="blue-style">{{item.SN}}</view>
-				   <view style="width: 30%" class="{{grayFlag?'':'gray-style'}}">{{item.equipType}}</view>
-				   <view style="width: 20%" class="{{grayFlag?'':'gray-style'}}">{{item.status}}</view>
+				   <view style="width: 30%" class="blue-style" bindtap="clickNavigateToEquipList">{{item.terminalNum}}</view>
+				   <view style="width: 30%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.terminalName}}</view>
+				   <view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.isLogin==='1'?'在线':'离线'}}</view>
 			   </view>
 		   </view>
-
-
-
-
 	   </scroll-view>
 
 		<view class="btomView" wx:if="{{identify==='repairMan'}}" >
@@ -112,16 +108,10 @@
 					<view class="title" >维修人员</view>
 					<view class="title"  ></view>
 				</view>
-				<view class=" formTitle formContent">
-					<view >2018-03-24</view>
-					<view >2018-04-24</view>
-					<view >罗安疆...</view>
-					<view class="fix-style" bindtap="clickFixRecord">修改</view>
-				</view>
-				<view class=" formTitle formContent">
-					<view>2018-03-24</view>
-					<view >2018-04-24</view>
-					<view >罗安疆...</view>
+				<view class=" formTitle formContent" wx:for="{{repairList}}">
+					<view >{{item.orderTime}}</view>
+					<view >{{item.serviceTime}}</view>
+					<view >{{item.serviceman}}</view>
 					<view class="fix-style" bindtap="clickFixRecord">修改</view>
 				</view>
 

@@ -10,7 +10,7 @@
 		</view>
 		<view class="default end-sn">
 			<view>终端名称</view>
-			<input type="text" placeholder="V8刷卡器" autofocus>
+			<input type="text" placeholder="V8刷卡器" >
 		</view>
 		<view class="unfix school-name">
 			<view>终端类型</view>
@@ -18,11 +18,11 @@
 		</view>
 		<view class="default ">
 			<view>SIM卡号</view>
-			<input type="number" placeholder="请输入SIM卡号" auto-focus>
+			<input type="number" placeholder="请输入SIM卡号" >
 		</view>
 		<view class="default ">
 			<view>安装位置</view>
-			<input type="text" placeholder="教学楼北侧楼梯口" auto-focus>
+			<input type="text" placeholder="教学楼北侧楼梯口" >
 		</view>
 		<view class=" default date-style">
 			<view>接单日期</view>
@@ -65,7 +65,7 @@
 		</view>
 		<view class="default ">
 			<view>故障终端程序</view>
-			<input type="number" placeholder="V7" auto-focus>
+			<input type="number" placeholder="V7">
 		</view>
 		<view class="default date-style">
 			<view>故障终端主板</view>
@@ -130,7 +130,8 @@
 				<text>远景照</text>
 				<scroll-view class="photo-wrapper" scroll-x="true">
 					<view class="far" style="display: inline-block" wx:for="{{repairInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}">
-					<image src="{{item.url}}"></image>
+					   <image src="{{item.url}}"></image>
+						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
 					<view class="add-icon"  wx:if="{{farIconFlag}}" bindtap="clickUploadImage" data-pic-type="far">
 						<text class="row"></text>
@@ -144,6 +145,7 @@
 				<view class="photo-wrapper">
 					<view class="close" wx:for="{{repairInfo.closeImgUrlList}}" data-pic-type="close" bindtap="clickOperatePhoto" data-src="{{item.url}}">
 						<image src="{{item.url}}"></image>
+						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
 					<view class="add-icon"  wx:if="{{closeIconFlag}}" bindtap="clickUploadImage" data-pic-type="close">
 						<text class="row"></text>

@@ -42,6 +42,7 @@
 				'pages/repairDetail',
 				'pages/equipTypePage',
 				'pages/planterDetail',
+				'pages/equipDetail',
 			],
 			window: {
 				backgroundTextStyle: 'light',

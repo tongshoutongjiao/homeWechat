@@ -118,6 +118,8 @@ const addNewStudent = params => wxRequest(params, apiMall + '/manageHelper/addSt
 const getRegionProvince = params => wxRequest(params, apiMall + '/region/listProvince.do');
 const getRegionCity = params => wxRequest(params, apiMall + '/region/listCity.do');
 const getRegionCounty = params => wxRequest(params, apiMall + '/region/listRegion.do');
+const getEquipListBySchoolId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalList.do');
+const getRepairRecordByTerminalId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalRepairList.do');
 const addStudentPhoto= async (params) => {
   wepy.showLoading({
     title: '正在上传..',
@@ -165,6 +167,7 @@ const uploadStudentPhoto = async (params) => {
   wepy.hideLoading();
   return ret;
 };
+
 
 
 module.exports = {
@@ -219,5 +222,7 @@ module.exports = {
   getRegionCity,
   getRegionCounty,
   addNewStudent,
-  addStudentPhoto
-}
+  addStudentPhoto,
+  getEquipListBySchoolId,
+  getRepairRecordByTerminalId
+};
