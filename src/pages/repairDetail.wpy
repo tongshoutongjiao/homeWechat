@@ -2,33 +2,36 @@
 	<view class="container">
 		<view class="unfix school-name">
 			<view>学校名称</view>
-			<view>商丘市第二初级中学</view>
+			<view>{{repairData.schoolName}}</view>
 		</view>
 		<view class="unfix end-sn">
 			<view>终端编号</view>
-			<view>312323356100</view>
+			<view>{{repairData.terminalNum}}</view>
 		</view>
-		<view class="default end-sn">
+		<view class="default end-sn fixed">
 			<view>终端名称</view>
-			<input type="text" placeholder="V8刷卡器" >
+			<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="{{repairData.terminalName}}" >
 		</view>
 		<view class="unfix school-name">
 			<view>终端类型</view>
-			<view>新电话终端</view>
+			<view>{{repairData.typeName}}</view>
 		</view>
-		<view class="default ">
+		<view class="default fixed">
 			<view>SIM卡号</view>
-			<input type="number" placeholder="请输入SIM卡号" >
+			<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="{{repairData.simNum}}" >
 		</view>
-		<view class="default ">
+		<view class="default fixed">
 			<view>安装位置</view>
-			<input type="text" placeholder="教学楼北侧楼梯口" >
+			<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress}}" >
 		</view>
 		<view class=" default date-style">
 			<view>接单日期</view>
 			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">
-				<view class="picker">
-				 {{date.startDate?date.startDate:'选择开始日期'}}
+				<view wx:if="{{recordId}}"class="picker">
+					{{date.startDate||repairData.orderTime}}
+				</view>
+				<view wx:else class="picker">
+				 {{date.startDate||'选择开始日期'}}
 				</view>
 			</picker>
 			<view class="right-icon"></view>
@@ -36,9 +39,13 @@
 		</view>
 		<view class=" default date-style ">
 			<view>维修日期</view>
-			<picker mode="date" value="{{date.repairDate}}"bindchange="bindRepairDateChange">
-				<view class="picker">
-					{{date.repairDate?date.repairDate:'选择维修日期'}}
+
+			<picker mode="date" value="{{date.repairDate}}" bindchange="bindRepairDateChange">
+				<view wx:if="{{recordId}}" class="picker">
+					{{date.repairDate||repairData.serviceTime}}
+				</view>
+				<view wx:else class="picker">
+					{{date.repairDate||'选择维修日期'}}
 				</view>
 			</picker>
 			<view class="right-icon"></view>
@@ -55,7 +62,10 @@
 		<view class="default date-style">
 			<view>终端使用状态</view>
 			<picker bindchange="bindEndStatusChange" value="{{alertData.endStatusData.endStatusIndex}}" range="{{alertData.endStatusData.array}}">
-				<view class="picker">
+				<view class="picker" wx:if="{{recordId&&terminalStateFlag}}">
+					{{alertData.endStatusData.array[repairData.terminalState]}}
+				</view>
+				<view class="picker" wx:else>
 					{{alertData.endStatusData.array[alertData.endStatusData.endStatusIndex]}}
 				</view>
 			</picker>
@@ -63,14 +73,17 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default ">
+		<view class="default fixed ">
 			<view>故障终端程序</view>
-			<input type="number" placeholder="V7">
+			<input data-input-type="faultProgram" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="number" placeholder="请输入故障终端程序名称" value="{{repairData.faultProgram||''}}">
 		</view>
 		<view class="default date-style">
 			<view>故障终端主板</view>
 			<picker bindchange="bindEndBoard" value="{{alertData.endBoard.endBoardIndex}}" range="{{alertData.endBoard.array}}">
-				<view class="picker">
+				<view class="picker" wx:if="{{recordId&&mainBoardFlag}}">
+					{{repairData.faultMainboard}}
+				</view>
+				<view class="picker" wx:else>
 					{{alertData.endBoard.array[alertData.endBoard.endBoardIndex]}}
 				</view>
 			</picker>
@@ -129,11 +142,11 @@
 			<view>
 				<text>远景照</text>
 				<scroll-view class="photo-wrapper" scroll-x="true">
-					<view class="far" style="display: inline-block" wx:for="{{repairInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}">
+					<view class="far" style="display: inline-block" wx:for="{{repairInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
 					   <image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-					<view class="add-icon"  wx:if="{{farIconFlag}}" bindtap="clickUploadImage" data-pic-type="far">
+					<view  class="add-icon"  wx:if="{{repairInfo.farImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="far">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
@@ -143,33 +156,28 @@
 			<view>
 				<text>近景照</text>
 				<view class="photo-wrapper">
-					<view class="close" wx:for="{{repairInfo.closeImgUrlList}}" data-pic-type="close" bindtap="clickOperatePhoto" data-src="{{item.url}}">
+					<view class="close" wx:for="{{repairInfo.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}" bindtap="clickOperatePhoto" data-src="{{item.url}}">
 						<image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-					<view class="add-icon"  wx:if="{{closeIconFlag}}" bindtap="clickUploadImage" data-pic-type="close">
+					<view class="add-icon"  wx:if="{{repairInfo.closeImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="close">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
-
 				</view>
 			</view>
 		</view>
 		<view style="height:170rpx;">
-			<view class="sure-btn">
+			<view class="sure-btn" bindtap="clickUpdateEquipInfo">
 				保存
-
 			</view>
 		</view>
 	</view>
 	<view class="operate-img" wx:if="{{largeImgFlag}}">
 		<view class="mask" bindtap="cancelPhotoMask"></view>
-		<scroll-view class="photo-list"scroll-X="true"   scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
-			<view class="large-img">
-				<image src="{{curPhoto||''}}" mode="aspectFill"></image>
-			</view>
-			<view class="large-img">
-				<image src="{{curPhoto||''}}" mode="aspectFill"></image>
+		<scroll-view class="photo-list"scroll-X="true" scroll-left="{{scrollLeft}}"  scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
+			<view class="large-img" wx:for="{{curPhotoList}}" >
+				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
 			</view>
 		</scroll-view>
 
@@ -177,6 +185,7 @@
 			<image src="/images/delete-photo-icon.png"></image>
 		</view>
 	</view>
+
 	<!--选择拍照功能框-->
 	<upload-img></upload-img>
 </template>

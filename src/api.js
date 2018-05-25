@@ -62,8 +62,8 @@ const wxRequest = async (params = {}, url) => {
 //const apiMall = 'http://192.168.5.125:8380' // 开发（晨宇）
 // const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
 //const apiMall = 'http://192.168.5.131:8380';
-       const apiMall = 'https://api.967111.com'; // 正式
-      // const apiMall = 'http://192.168.5.122:8080'; // 广越
+//        const apiMall = 'https://api.967111.com'; // 正式
+       const apiMall = 'http://192.168.5.122:8080'; // 广越
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
@@ -120,6 +120,11 @@ const getRegionCity = params => wxRequest(params, apiMall + '/region/listCity.do
 const getRegionCounty = params => wxRequest(params, apiMall + '/region/listRegion.do');
 const getEquipListBySchoolId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalList.do');
 const getRepairRecordByTerminalId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalRepairList.do');
+const getUserIdentifyById=params=>wxRequest(params,apiMall+'/manageHelper/machine/checkUserType.do');
+const getGroupPersonById=params=>wxRequest(params,apiMall+'/manageHelper/machine/groupManList.do');
+const updateEquipInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateOrInsertTerminalSer.do');
+const reformatEquipments=params=>wxRequest(params,apiMall+'/manageHelper/machine/operationTerminal.do');
+
 const addStudentPhoto= async (params) => {
   wepy.showLoading({
     title: '正在上传..',
@@ -224,5 +229,9 @@ module.exports = {
   addNewStudent,
   addStudentPhoto,
   getEquipListBySchoolId,
-  getRepairRecordByTerminalId
+  getRepairRecordByTerminalId,
+  getUserIdentifyById,
+  getGroupPersonById,
+  updateEquipInfo,
+  reformatEquipments
 };

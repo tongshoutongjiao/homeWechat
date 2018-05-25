@@ -14,7 +14,8 @@ export default class Index extends wepy.page {
   data = {
     type: '',
     iconFlag: true,
-    selectInfo: []
+    selectInfo: [],
+    personList:[]
   };
 
   methods = {
@@ -77,12 +78,13 @@ export default class Index extends wepy.page {
 
   onReady() {
     console.log('ready..');
-
+    this.operateId=this.$parent.globalData.operateId;
   }
 
   onShow() {
     console.log('show..');
   //   根据globalData中的数据，更新最新的选中状态
+
 
 
 
@@ -107,7 +109,8 @@ export default class Index extends wepy.page {
     // 2 是否需要自定义的样式  故障类型维修人员不需要，其他都需要
     let type,
       data = [],
-      dataList = [];
+      dataList = [],
+      personListData=[];
     type = this.type;
     // 赋值前 需要判断是不是第一次进入该页面，如果是的话，执行switch方法，如果不是的话,直接遍历globalData中的数据
     if(this.$parent.globalData[`${type}`]){
@@ -121,7 +124,10 @@ export default class Index extends wepy.page {
           break;
         case 'repairPerson':
           // 请求接口
-          data = ['1', '2', '3', '4'];
+          console.log('fafafafaa');
+          let curData=[];
+       this.getGroupPerson();
+
           break;
         case 'hardware':
           data = ['自定义', '主板', '刷卡线', '喇叭', '语音芯片', '功放板', 'GPRS模块', '天线帽', '显示屏', '话柄', '键盘', '挡板', '锁芯', '挂叉', '电源'];
@@ -139,6 +145,7 @@ export default class Index extends wepy.page {
           data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡'];
           break;
       }
+
       data.forEach(function (item, index) {
         let obj = {};
         obj.name = item;
@@ -151,6 +158,41 @@ export default class Index extends wepy.page {
       this.$parent.globalData[`${type}`] = dataList;
     }
   }
+
+//  获取维修人员列表
+ async getGroupPerson(type){
+    let operateId= wepy.getStorageSync('operateId'),
+      personList,
+      personListData=[];
+    let res=await api.getGroupPersonById({
+      method:'POST',
+      data:{
+        groupId:operateId
+      }
+    });
+    if(res.statusCode===200){
+      personList=res.data.data;
+      personList.forEach(function (item,index) {
+        let obj = {};
+        console.log(item);
+        obj.name = item.personName;
+        obj.id=item.personId;
+        obj.index = index;
+        obj.selected = false;
+        personListData.push(obj);
+        obj = null;
+      });
+      this.selectInfo = personListData;
+      this.$parent.globalData[`${type}`] = personListData;
+
+    }
+
+   this.$apply();
+
+
+ }
+
+
 
 
 }

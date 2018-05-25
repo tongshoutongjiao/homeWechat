@@ -1,0 +1,120 @@
+<template>
+	<view class="{{wrapperFlag?'wrapper':''}}" >
+		<view class="container">
+		<view class="unfix school-name">
+			<view>学校名称</view>
+			<view>商丘市第二初级中学</view>
+		</view>
+		<view class="unfix end-sn">
+			<view>终端编号</view>
+			<view>312323356100</view>
+		</view>
+		<view class="unfix end-sn">
+			<view>终端名称</view>
+			<view>黄壳彩屏</view>
+		</view>
+		<view class="unfix school-name">
+			<view>终端类型</view>
+			<view>新电话终端</view>
+		</view>
+		<view class="unfix simStyle">
+			<view>SIM卡号</view>
+			<input wx:if="{{inputFlag}}" type="text" type="number" placeholder="请输入SIM卡号" value="{{simNum}}" auto-focus>
+			<view wx:else bindtap="clickEditSimCard">{{simNum}}</view>
+
+
+		</view>
+		<view class="unfix ">
+			<view>安装位置</view>
+			<view>教学楼北侧楼梯口</view>
+		</view>
+		<view class="unfix software">
+			<view>软件</view>
+			<view>1203</view>
+		</view>
+		<view class="unfix sn">
+			<view>IMEI</view>
+			<view>8104632563112121</view>
+		</view>
+		<view class="unfix">
+			<view>网关</view>
+			<view>192.168.0.125.10000</view>
+		</view>
+		<view class="unfix">
+			<view>状态</view>
+			<view>在线</view>
+		</view>
+		<view class="unfix">
+			<view>最后在线</view>
+			<view>2018-01-22 10:25:55</view>
+		</view>
+		<view class="unfix">
+			<view>安装人员</view>
+			<view>周秋香</view>
+		</view>
+		<view class="unfix">
+			<view>终端安装时间</view>
+			<view>2018-01-22</view>
+		</view>
+		<view class="unfix">
+			<view>通告时间</view>
+			<view>2018-01-22 10:25:55</view>
+		</view>
+		<view class="unfix">
+			<view>信号强度</view>
+			<view>23</view>
+		</view>
+		<view class="unfix">
+			<view>备注</view>
+			<view>SIM卡不正常</view>
+		</view>
+
+		<view class="camera-container">
+			<view>
+				<text>远景照</text>
+				<scroll-view class="photo-wrapper" scroll-x="true" >
+					<view class="far" style="display: inline-block" wx:for="{{equipInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+						<image src="{{item.url}}"></image>
+						<image class=" magnifier" src="/images/magnifier.png"></image>
+					</view>
+				</scroll-view>
+			</view>
+			<view>
+				<text>近景照</text>
+				<scroll-view class="photo-wrapper" scroll-x="true">
+					<view class="close" style="display: inline-block" wx:for="{{equipInfo.closeImgUrlList}}" data-pic-type="close" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+						<image src="{{item.url}}"></image>
+						<image  class=" magnifier" src="/images/magnifier.png"></image>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="unfix">
+			<view>位置备注</view>
+			<textarea class="remark" maxlength=50 auto-focus=true placeholder="请输入位置备注,最多50个字" auto-height=true/>
+		</view>
+		<view style="height:170rpx;">
+			<view class="sure-btn">
+				保存
+			</view>
+		</view>
+	</view>
+		<view class="operate-img" wx:if="{{largeImgFlag}}">
+			<view class="mask" bindtap="cancelPhotoMask"></view>
+			<scroll-view class="photo-list"scroll-X="true" scroll-left="{{scrollLeft}}"  scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
+				<view class="large-img" wx:for="{{curPhotoList}}" >
+					<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
+				</view>
+			</scroll-view>
+
+			<!--<view class="deleteIcon" bindtap="deleteCurPhoto">-->
+				<!--<image src="/images/delete-photo-icon.png"></image>-->
+			<!--</view>-->
+		</view>
+
+	</view>
+
+
+</template>
+<script src="../scripts/equipDetail/index.js"></script>
+<style src="../styles/equipDetail/index.css"></style>
