@@ -1,0 +1,47 @@
+<template>
+	<view class="container">
+		<view class="type-list" wx:for="{{selectInfo}}" data-index="{{item.index}}" bindtap="clickSelectType" >
+
+			<block wx:if="{{item.name==='自定义'}}">
+				<block wx:if="{{item.selected}}">
+					<view class="icon">
+						<image class="all-default" src="/images/float_icon_a.png"/>
+					</view>
+					<view>{{item.name}}</view>
+					<view class="custom-style" catchtap="clickInputContent">
+						<input placeholder-style="custom" type="text"  bindinput="getInputValue" placeholder="请输入不超过15个字的自定义内容" value="{{inputFlag?inputValue:item.customName}}" maxlength="15">
+					</view>
+				</block>
+				<block wx:else>
+					<view class="icon">
+						<image class="all-default" src="/images/float_icon_d.png"/>
+					</view>
+					<view>{{item.name}}</view>
+				</block>
+
+			</block>
+
+			<block wx:else>
+				<view class="icon">
+					<block wx:if="{{item.selected}}">
+						<image class="all-default" src="/images/float_icon_a.png"/>
+					</block>
+					<block wx:else>
+						<image class="all-default" src="/images/float_icon_d.png"/>
+					</block>
+				</view>
+				<view>{{item.name}}</view>
+			</block>
+
+		</view>
+
+
+	</view>
+	<view class="btn-wrapper">
+		<view class="sure-btn" bindtap="clickSaveSelected">
+			保存
+		</view>
+	</view>
+</template>
+<script src="../scripts/equipTypePage/index.js"></script>
+<style src="../styles/equipTypePage/index.css"></style>

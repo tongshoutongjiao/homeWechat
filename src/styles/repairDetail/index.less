@@ -1,0 +1,310 @@
+page{
+  width: 100%;
+  height: 100%;
+}
+input{
+  position: absolute;
+  right: 0rpx;
+}
+image{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.right-icon{
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 10rpx;
+  top: 60%;
+  transform: translateY(-50%)  rotate(45deg);
+  border-top: 20rpx solid #d0d0d4;
+  border-bottom: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  z-index: 1;
+}
+.right-hide{
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 13rpx;
+  top: 60%;
+  transform: translateY(-50%)  rotate(45deg);
+  border-top: 20rpx solid #fff;
+  border-bottom: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  z-index: 1;
+}
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0rpx 30rpx;
+  font-size: 30rpx;
+  .default{
+    position: relative;
+    line-height: 80rpx;
+    view{
+      display: inline-block;
+      color: #575759;
+    }
+    input{
+      display:inline-block;
+      text-align:right;
+      float:right;
+      height:80rpx;
+      line-height:80rpx;
+    }
+  }
+  .fixed{
+    input{
+      color: #8e8e93;
+    }
+  }
+  .unfix{
+    line-height:80rpx;
+    view{
+      display: inline-block;
+      &:nth-child(1){
+        color: #575759;
+      }
+      &:nth-child(2){
+        float: right;
+      }
+    }
+
+  }
+  .date-style{
+    .picker{
+      position: absolute;
+      right: 38rpx;
+      top: 0;
+      color: #181818;
+    }
+
+  }
+  .camera-container{
+    text{
+      display: block;
+      width: 100%;
+      line-height: 70rpx;
+      font-size: 30rpx;
+    }
+    .photo-wrapper{
+      margin-top: 20rpx;
+      margin-bottom: 20rpx;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      .add-icon{
+        position: relative;
+        display: inline-block;
+        border: 2rpx solid #d0d0d4;
+        width: 160rpx;
+        height: 160rpx;
+        .row,.col{
+          position: absolute;
+          width: 60rpx;
+          height: 4rpx;
+          background: #d0d0d4;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+        .col{
+          height: 60rpx;
+          width: 4rpx;
+
+        }
+
+
+
+      }
+
+
+    }
+  }
+  .sure-btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width:560rpx ;
+    line-height: 80rpx;
+    background:#348cff ;
+    border-radius:200rpx;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40rpx;
+    margin-top: 50rpx;
+  }
+}
+
+
+.animation-element-wrapper {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  text{
+    color: #999999;
+    display: inline-flex;
+    position: absolute;
+    margin-top: 20rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 34rpx;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 470rpx;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.animation-button {
+  margin-top: 20rpx;
+  top:20rpx;
+  width: 400rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  align-items:center;
+}
+
+
+.left-bt{
+  left: 30rpx;
+}
+.right-bt {
+  right: 30rpx;
+}
+
+.line{
+  display: block;
+  position: fixed;
+  height: 1rpx;
+  width: 100%;
+  margin-top: 89rpx;
+  background-color: #eeeeee;
+}
+
+/* 底部按钮选择框 */
+.photo-style{
+  display: block;
+  height: 294rpx;
+  background: #eee;
+}
+.photo-line{
+  margin-top: 4rpx;
+}
+.camera{
+  width:100%;
+  position:relative;
+  display:block;
+  font-size:30rpx;
+  line-height:90rpx;
+  box-sizing:border-box;
+  background: #fff;
+
+  text{
+    position: absolute;
+    bottom: 6rpx;
+    left: 50%;
+    font-size: 20rpx;
+    transform: translateX(-50%);
+
+  }
+}
+
+.text-c{
+  text-align: center;
+}
+.cancel-style{
+  line-height: 90rpx;
+  font-size: 30rpx;
+  width: 100%;
+  margin-bottom:20rpx;
+  margin-top:20rpx;
+  background: #fff;
+
+}
+.album{
+  font-size: 30rpx;
+  line-height: 90rpx;
+  width: 100%;
+  background: #fff;
+}
+
+/* far close*/
+.far{
+  position: relative;
+display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right:30rpx ;
+}
+.close{
+  position: relative;
+  display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right:30rpx ;
+}
+// 大图效果样式
+// 大图效果样式
+.mask{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:rgba(0, 0, 0, 0.7);
+  z-index:500;
+
+}
+.photo-list{
+  position: fixed;
+  top: 160rpx;
+  bottom: 286rpx;
+  background: gray;
+  white-space: nowrap;
+  z-index: 700;
+}
+.large-img{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-right: 10rpx;
+
+}
+.deleteIcon{
+  position: fixed;
+  z-index: 800;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+
+  image{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32rpx;
+    height: 40rpx;
+    bottom: 30rpx;
+  }
+
+}
+.magnifier{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height:24rpx;
+}

@@ -1,0 +1,157 @@
+<template>
+	<view class="container">
+		<view class="unfix school-name">
+			<view>学校名称</view>
+			<view>{{plantEquip.schoolName}}</view>
+		</view>
+		<view class="unfix end-sn">
+			<view>终端编号</view>
+			<view>{{plantEquip.terminalNum}}</view>
+		</view>
+		<view class="default end-sn">
+			<view>终端名称</view>
+			<input type="text" data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" placeholder="请输入终端名称" value="{{plantEquip.terminalName||''}}">
+		</view>
+
+		<view class="default date-style">
+			<view>终端类型</view>
+			<picker bindchange="bindEndType" value="{{alertData.endType.endTypeIndex}}" range="{{alertData.endType.array}}" range-key="{{'typeName'}}">
+				<view class="picker" wx:if="{{typeNameFlag}}">
+					{{typeName}}
+				</view>
+				<view wx:else class="picker">
+					{{alertData.endType.array[alertData.endType.endTypeIndex].typeName}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class="default ">
+			<view>SIM卡号</view>
+			<input type="number" placeholder="请输入SIM卡号" data-input-type="simNum" bindinput="getInputValue" bindfocus="getFocusValue" value="{{plantEquip.simNum||''}}">
+		</view>
+		<view class="default ">
+			<view>安装位置</view>
+			<input type="text" placeholder="请输入安装位置" data-input-type="installAddress" bindinput="getInputValue" bindfocus="getFocusValue" value="{{plantEquip.installAddress||''}}">
+		</view>
+		<view class="default date-style">
+			<view>终端使用状态</view>
+			<picker bindchange="bindEndStatusChange" value="{{alertData.endStatusData.endStatusIndex}}"
+			        range="{{alertData.endStatusData.array}}">
+				<view class="picker">
+					{{alertData.endStatusData.array[alertData.endStatusData.endStatusIndex]}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class=" default date-style checkBox-style">
+			<view>终端启用状态</view>
+			<view class="wrapper">
+				<view class="use-status" bindtap="clickSelectStatus" data-end-status="1">
+					<image wx:if="{{endStatus=='1'}}" class="all-default" src="/images/float_icon_a.png" />
+					<image wx:else class="all-default" src="/images/float_icon_d.png"/>
+					<view>是</view>
+				</view>
+				<view class="use-status" bindtap="clickSelectStatus" data-end-status="0">
+					<image wx:if="{{endStatus=='0'}}" class="all-default" src="/images/float_icon_a.png"/>
+					<image wx:else class="all-default" src="/images/float_icon_d.png" />
+					<view>否</view>
+				</view>
+			</view>
+		</view>
+		<view class=" default date-style">
+			<view>终端安装时间</view>
+			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">
+				<view class="picker">
+					{{date.startDate?date.startDate:'选择开始日期'}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+		<view class="default date-style">
+			<view>安装类型</view>
+			<picker bindchange="bindPlantType" value="{{alertData.plantType.plantTypeIndex}}"
+			        range="{{alertData.plantType.array}}">
+				<view wx:if="{{plantTypeFlag}}" class=" picker gray-style">
+					点击选择
+				</view>
+				<view wx:else class="picker">
+					{{alertData.plantType.array[alertData.plantType.plantTypeIndex]||defaultInstallType}}
+				</view>
+			</picker>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+		</view>
+
+		<view class="default date-style another-page" data-type="repairPerson" bindtap="clickChooseOptions">
+			<view>安装人员</view>
+			<view class="picker">{{equipInfo.plantPersonSelected||''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+		<view class="default date-style another-page" data-type="remark" bindtap="clickChooseOptions">
+			<view>备注</view>
+			<view class="picker">{{equipInfo.remarkSelected||''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+
+		<view class="camera-container">
+			<view>
+				<text>远景照</text>
+				<scroll-view class="photo-wrapper" scroll-x="true">
+					<view class="far" style="display: inline-block" wx:for="{{imgUrlList.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+						<image src="{{item.url}}"></image>
+						<image  class=" magnifier" src="/images/magnifier.png"></image>
+					</view>
+
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="far"  wx:if="{{imgUrlList.farImgUrlList.length<2}}">
+						<text class="row"></text>
+						<text class="col"></text>
+					</view>
+
+				</scroll-view>
+			</view>
+			<view>
+				<text>近景照</text>
+				<view class="photo-wrapper">
+
+					<view class="close" wx:for="{{imgUrlList.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}" bindtap="clickOperatePhoto" data-src="{{item.url}}">
+						<image src="{{item.url}}"></image>
+						<image  class=" magnifier" src="/images/magnifier.png"></image>
+					</view>
+
+
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="close" wx:if="{{imgUrlList.closeImgUrlList.length<2}}">
+						<text class="row"></text>
+						<text class="col"></text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view style="height:170rpx;">
+			<view class="sure-btn" bindtap="clickSaveEquipInfo">
+				保存
+			</view>
+		</view>
+	</view>
+	<view class="operate-img" wx:if="{{largeImgFlag}}">
+		<view class="mask" bindtap="cancelPhotoMask"></view>
+		<scroll-view class="photo-list"scroll-X="true" scroll-left="{{scrollLeft}}"  scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
+			<view class="large-img" wx:for="{{curPhotoList}}" >
+				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
+			</view>
+		</scroll-view>
+
+		<view class="deleteIcon" bindtap="deleteCurPhoto">
+			<image src="/images/delete-photo-icon.png"></image>
+		</view>
+	</view>
+
+</template>
+<script src="../scripts/planterDetail/index.js"></script>
+<style src="../styles/planterDetail/index.css"></style>
