@@ -54,7 +54,7 @@
 		<view class="default date-style another-page" data-type="repairPerson" bindtap="clickChooseOptions">
 			<view>维修人员</view>
 
-				<view class="picker">{{repairInfo.repairPersonSelected?repairInfo.repairPersonSelected:''}}</view>
+				<view class="picker">{{selectOptions.repairPersonSelected?selectOptions.repairPersonSelected:''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -94,7 +94,7 @@
 		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
 			<view>故障类型</view>
 
-			<view class="picker">{{repairInfo.faultTypeSelected?repairInfo.faultTypeSelected:''}}</view>
+			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -102,7 +102,7 @@
 		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
 			<view>硬件类型</view>
 
-			<view class="picker">{{repairInfo.hardwareSelected?repairInfo.hardwareSelected:''}}</view>
+			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -110,7 +110,7 @@
 		<view class="default date-style another-page" data-type="faultView" bindtap="clickChooseOptions">
 			<view>故障现象</view>
 
-			<view class="picker">{{repairInfo.faultViewSelected||''}}</view>
+			<view class="picker">{{selectOptions.faultViewSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -118,7 +118,7 @@
 		<view class="default date-style another-page" data-type="faultReason" bindtap="clickChooseOptions">
 			<view>故障原因</view>
 
-			<view class="picker">{{repairInfo.faultReasonSelected||''}}</view>
+			<view class="picker">{{selectOptions.faultReasonSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -126,14 +126,14 @@
 		<view class="default date-style another-page" data-type="handleMeasures" bindtap="clickChooseOptions">
 			<view>处理措施</view>
 
-			<view class="picker">{{repairInfo.handleMeasuresSelected||''}}</view>
+			<view class="picker">{{selectOptions.handleMeasuresSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
 		</view>
 		<view class="default date-style another-page" data-type="remark" bindtap="clickChooseOptions">
 			<view>备注</view>
-			<view class="picker">{{repairInfo.remarkSelected||''}}</view>
+			<view class="picker">{{selectOptions.remarkSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -142,11 +142,11 @@
 			<view>
 				<text>远景照</text>
 				<scroll-view class="photo-wrapper" scroll-x="true">
-					<view class="far" style="display: inline-block" wx:for="{{repairInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+					<view class="far" style="display: inline-block" wx:for="{{imgUrlList.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
 					   <image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-					<view  class="add-icon"  wx:if="{{repairInfo.farImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="far">
+					<view  class="add-icon"  wx:if="{{imgUrlList.farImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="far">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
@@ -156,11 +156,11 @@
 			<view>
 				<text>近景照</text>
 				<view class="photo-wrapper">
-					<view class="close" wx:for="{{repairInfo.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}" bindtap="clickOperatePhoto" data-src="{{item.url}}">
+					<view class="close" wx:for="{{imgUrlList.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}" bindtap="clickOperatePhoto" data-src="{{item.url}}">
 						<image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-					<view class="add-icon"  wx:if="{{repairInfo.closeImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="close">
+					<view class="add-icon"  wx:if="{{imgUrlList.closeImgUrlList.length<2}}" bindtap="clickUploadImage" data-pic-type="close">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
@@ -185,9 +185,6 @@
 			<image src="/images/delete-photo-icon.png"></image>
 		</view>
 	</view>
-
-	<!--选择拍照功能框-->
-	<upload-img></upload-img>
 </template>
 <script src="../scripts/repairDetail/index.js"></script>
 <style src="../styles/repairDetail/index.css"></style>

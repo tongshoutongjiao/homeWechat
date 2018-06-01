@@ -124,6 +124,11 @@ const getUserIdentifyById=params=>wxRequest(params,apiMall+'/manageHelper/machin
 const getGroupPersonById=params=>wxRequest(params,apiMall+'/manageHelper/machine/groupManList.do');
 const updateEquipInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateOrInsertTerminalSer.do');
 const reformatEquipments=params=>wxRequest(params,apiMall+'/manageHelper/machine/operationTerminal.do');
+const getTerminalType=params=>wxRequest(params,apiMall+'/manageHelper/machine/seachTerminalType.do');
+const installCurEquip=params=>wxRequest(params,apiMall+'/manageHelper/machine/installTerminal.do');
+const getEquipInfoById=params=>wxRequest(params,apiMall+'/manageHelper/machine/getTerminalById.do');
+const saveEquipAddressInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateTerminalReAdrById.do');
+
 
 const addStudentPhoto= async (params) => {
   wepy.showLoading({
@@ -233,5 +238,9 @@ module.exports = {
   getUserIdentifyById,
   getGroupPersonById,
   updateEquipInfo,
-  reformatEquipments
+  reformatEquipments,
+  getTerminalType,
+  installCurEquip,
+  getEquipInfoById,
+  saveEquipAddressInfo
 };

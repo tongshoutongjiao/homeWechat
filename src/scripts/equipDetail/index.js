@@ -1,6 +1,7 @@
 import wepy from 'wepy'
 import api from '../api.js'
-import querystring from 'querystring'
+import querystring from 'querystring';
+import * as commonMethods from '../utils/commonMethods';
 
 export default class Index extends wepy.page {
   config = {
@@ -9,42 +10,25 @@ export default class Index extends wepy.page {
   data = {
     largeImgFlag: false,
     curPhotoList: [],
+    equipID: null,
+    terminalSN: null,
 
-    deleteIconInfo:{
-      deleteIndex:'',// 删除图片的索引
-
+    deleteIconInfo: {
+      deleteIndex: '',// 删除图片的索引
     },
-    wrapperFlag:false,// 是否允许滚动页面
+    wrapperFlag: false,// 是否允许滚动页面
     scrollLeft: '',
-    simNum: '11111111111',
+    simNum: '',
     inputFlag: true,// 如果卡号为11个数字1时，为可编辑状态，否则不可编辑
-    equipInfo: {
-      farImgUrlList: [
-        {
-          url: 'http://img.967111.com/_1526623776505.jpg',
-          index: '0',
-          picType:'far',
-        },
-        {
-          url: 'http://img.967111.com/_1526623788668.jpg',
-          index: '1',
-          picType:'far',
-        }
-      ],
-      closeImgUrlList: [
-        {
-          url: 'http://img.967111.com/_1526623788668.jpg',
-          index: '0',
-          picType:'close',
-        },
-        {
-          url: 'http://img.967111.com/_1526623776505.jpg',
-          index: '1',
-          picType:'close',
-        }
-      ]
+    equipmentInfo: {},
+    imgUrlList: {
+      farImgUrlList: [],
+      closeImgUrlList: [],
+      submitData: [],
     },
-
+    inputValue: {},
+    savingFlag: false,
+    remarkFlag:false
   };
   methods = {
 
@@ -56,91 +40,200 @@ export default class Index extends wepy.page {
 
     //   点击查看大图
     clickOperatePhoto: function (e) {
-      console.log(e);
-      let curPhoto = e.currentTarget.dataset.src,
-        curIndex = e.currentTarget.dataset.index,
-        picType = e.currentTarget.dataset.picType;
-      let width = wx.getSystemInfoSync().windowWidth;
-
-      if (picType === 'far') {
-        console.log("远景照");
-        console.log(curIndex);
-        if(curIndex==='1'){
-          this.scrollLeft=width;
-          this.deleteIconInfo.deleteIndex=1;
-        }else{
-          this.scrollLeft=0;
-          this.deleteIconInfo.deleteIndex=0;
-        }
-        this.deleteIconInfo.picType='far';
-        this.curPhotoList = this.equipInfo.farImgUrlList;
-        console.log(this.curPhotoList)
-      } else {
-        console.log('近景照');
-        console.log(curIndex);
-        if(curIndex==='1'){
-          this.scrollLeft=width;
-          this.deleteIconInfo.deleteIndex=1;
-
-        }else {
-          this.scrollLeft=0;
-          this.deleteIconInfo.deleteIndex=0;
-        }
-        this.deleteIconInfo.picType='close';
-        this.curPhotoList = this.equipInfo.closeImgUrlList;
-      }
-      this.wrapperFlag=true;
-      this.largeImgFlag = true;
+      commonMethods.clickCheckImg(e, this)
     },
 
     //  取消遮罩层效果
     cancelPhotoMask: function (e) {
       this.largeImgFlag = false;
-      this.wrapperFlag=false;
-    },
-
-    // 点击删除当前图片
-    deleteCurPhoto: function (e) {
-      //   获取到当前图片的url ,当前照片的类型，id，然后删除
-       this.largeImgFlag = false;
-      this.wrapperFlag=false;
-      let {picType,deleteIndex}=this.deleteIconInfo;
-
-      // 判断是远景还是近景
-
-      if(picType==='far'){
-        deleteIndex===0?this.equipInfo.farImgUrlList.shift():this.equipInfo.farImgUrlList.pop()
-
-      }else {
-        deleteIndex===0?this.equipInfo.closeImgUrlList.shift():this.equipInfo.closeImgUrlList.pop()
-      }
-
-      console.log(this.deleteIconInfo);
+      this.wrapperFlag = false;
     },
 
     //  左右滑动切换图片
     getSelectItem: function (e) {
-      let width = wx.getSystemInfoSync().windowWidth;
-      console.log('滑动距离');
-      let curLeft=e.detail.scrollLeft;
-     if(curLeft<width/2){
-       console.log('第一张');
-       this.deleteIconInfo.deleteIndex=0;
-     }else {
-       console.log('第二张');
-       this.deleteIconInfo.deleteIndex=1;
-     }
+      commonMethods.slideLargeImg(e, this);
     },
 
+    //  获取到input框中的内容
+    getInputValue(e) {
+      let type = e.currentTarget.dataset.inputType;
+      switch (type) {
+        case 'simNum':
+          this.inputValue.simNum = e.detail.value;
+          break;
+        case 'remark':
+          this.remarkFlag=true;
+          this.inputValue.remarkAdress = e.detail.value;
+          break;
+      }
+      this.$apply();
+    },
+
+    //  聚焦时获取到input中的内容
+    getFocusValue(e) {
+      let type = e.currentTarget.dataset.inputType;
+      let obj = this.inputValue;
+      console.log(e);
+      console.log(e.detail.value);
+      switch (type) {
+        case 'simNum':
+          console.log('simNum');
+          this.inputValue.simNum = e.detail.value;
+          let reg = /^\d{11}$/g;
+          if (!reg.test(obj.simNum)) {
+            wx.showToast({
+              title: '请输入11位sim卡号',
+              icon: 'none',
+            });
+            return;
+          }
+          break;
+        case 'remark':
+          this.inputValue.remarkAdress = e.detail.value;
+          break;
+
+      }
+
+    },
+
+    //  点击保存位置信息以及sim 信息
+    clickSaveInfo(e) {
+      this.saveInfo();
+    }
   };
 
+
   async onLoad(e) {
+    console.log('获取终端详情页面设备id');
+    let id = e.equipId;
     console.log(e);
-
+    console.log(id);
+    this.terminalSN = e.equipSn;
+    this.equipID = e.equipId;
+    this.getEquipById(id);
   }
 
-  onShow() {
-
+  async getEquipById(id) {
+    let resData = await commonMethods.getEquipById(id);
+    this.getUsageData(resData);
+    this.$apply();
   }
+
+  getUsageData(data) {
+    let farArray = this.imgUrlList.farImgUrlList,
+      closeArray = this.imgUrlList.closeImgUrlList;
+    let defaultData = {
+      schoolName: '',// 学校名
+      terminalNum: '',// 终端编号
+      terminalName: '',//终端名称
+      typeName: '',// 终端类型
+      simNum: '',//sim 卡号
+      installAddress: '',// 安装位置
+      softVersion: '',// 软件
+      imei: '',// IMEI
+      serialNum: '',//网关
+      isLogin: '',// 状态
+      lastTime: '',// 最后在线
+      pname: '',// 安装人员
+      installTime: '',//安装时间
+      whiteNumTime: '',// 通告时间
+      baoStrong: '',// 信号强度
+      remark: '',// 备注,
+      remarkAdress: '',// 备注地址
+    };
+
+    for (let key in defaultData) {
+      defaultData[key] = data[key];
+    }
+    for (let key in data) {
+      switch (key) {
+        case 'imgurl1':
+          if (data[key] != null && data[key] !== 'null') {
+            closeArray = closeArray || [];
+            closeArray.push({
+              url: data[key],
+              picType: 'close',
+            })
+          }
+          break;
+        case 'imgurl2':
+          if (data[key] != null && data[key] !== 'null') {
+            closeArray = closeArray || [];
+            closeArray.push({
+              url: data[key],
+              picType: 'close',
+            });
+          }
+          break;
+        case 'imgurl3':
+          if (data[key] != null && data[key] !== 'null') {
+            farArray = farArray || [];
+            farArray.push({
+              url: data[key],
+              picType: 'far',
+            });
+          }
+          break;
+        case 'imgurl4':
+          if (data[key] != null && data[key] !== 'null') {
+            farArray = farArray || [];
+            farArray.push({
+              url: data[key],
+              picType: 'far',
+            });
+          }
+          break;
+      }
+    }
+    [farArray, closeArray].forEach(function (item) {
+      item.forEach(function (curPic, index) {
+        curPic.index = index;
+      })
+    });
+
+    this.equipmentInfo = defaultData;
+    this.$apply();
+  }
+
+  async saveInfo() {
+    if (this.savingFlag) {
+      return;
+    }
+    this.savingFlag = true;
+    let obj = this.inputValue;
+    console.log(obj);
+    let res = await api.saveEquipAddressInfo({
+      method: 'POST',
+      data: {
+        id: this.equipID,
+        remarkAdress: this.remarkFlag?obj.remarkAdress :this.equipmentInfo.remarkAdress,
+        simNum: obj.simNum || this.equipmentInfo.simNum
+      }
+    });
+    console.log('updateInfo');
+    console.log(res);
+    if (res.data.result === 200) {
+
+      wepy.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 1000
+      });
+      setTimeout(() => {
+        this.savingFlag = false;
+        wepy.navigateBack({
+          delta: 1
+        })
+      }, 1000);
+    } else {
+      this.savingFlag = false;
+      wepy.showToast({
+        title: res.data.message,
+        icon: 'none',
+        duration: 1000
+      });
+    }
+  }
+
 
 }

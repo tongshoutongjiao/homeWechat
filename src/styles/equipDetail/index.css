@@ -48,7 +48,6 @@ image {
   float: right;
   height: 80rpx;
   line-height: 80rpx;
-  padding-right: 30rpx;
 }
 .container .unfix .remark {
   display: inline-block;

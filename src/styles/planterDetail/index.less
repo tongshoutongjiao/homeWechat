@@ -6,6 +6,11 @@ input{
   position: absolute;
   right: 0rpx;
 }
+image{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
 .right-icon{
   position: absolute;
   width: 0;
@@ -88,6 +93,9 @@ input{
       top: 0;
       color: #181818;
     }
+    .gray-style{
+      color: #8e8e93;
+    }
 
   }
   .camera-container{
@@ -105,6 +113,7 @@ input{
       flex-direction: row;
       .add-icon{
         position: relative;
+        display: inline-block;
         border: 2rpx solid #d0d0d4;
         width: 160rpx;
         height: 160rpx;
@@ -143,6 +152,72 @@ input{
     margin-bottom: 40rpx;
     margin-top: 50rpx;
   }
+}
+/* far close*/
+.far{
+  position: relative;
+  display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right:30rpx ;
+}
+.close{
+  position: relative;
+  display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right:30rpx ;
+}
+// 大图效果样式
+// 大图效果样式
+.mask{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:rgba(0, 0, 0, 0.7);
+  z-index:500;
+
+}
+.photo-list{
+  position: fixed;
+  top: 160rpx;
+  bottom: 286rpx;
+  background: gray;
+  white-space: nowrap;
+  z-index: 700;
+}
+.large-img{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-right: 10rpx;
+
+}
+.deleteIcon{
+  position: fixed;
+  z-index: 800;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+
+  image{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32rpx;
+    height: 40rpx;
+    bottom: 30rpx;
+  }
+
+}
+.magnifier{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24rpx;
+  height:24rpx;
 }
 
 

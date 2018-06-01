@@ -10,7 +10,7 @@ export default class Index extends wepy.page {
 
   data = {
     schoolName: '',
-    schoolId:'',
+    schoolId: '',
     grayFlag: true,
     equipInfo: [],
     repairList: [],// 维修单列表
@@ -20,7 +20,7 @@ export default class Index extends wepy.page {
     confirmFlag: false,// 确认初始化弹出框
     selectLength: 0,//选中维修设备的个数
     identify: 'repairMan',// repairMan 维修人员 planter 安装员 other
-    terminalId:'',
+    terminalId: '',
   };
 
   methods = {
@@ -71,8 +71,6 @@ export default class Index extends wepy.page {
 
       } else {
         //  点击弹出确认弹窗
-        console.log('选中数目选中数目');
-        console.log(this.selectLength);
         if (this.selectLength) {
           this.confirmFlag = true;
         } else {
@@ -107,31 +105,7 @@ export default class Index extends wepy.page {
 
           // 遍历所有的设备，获取到有选中状态设备的id
           // 点击某一个机台获取设备维修记录
-          that.judgeOrderList();
-          // this.repairList=[
-          //   {
-          //     id:'',// 维修单主键
-          //     schoolName:'',// 学校名字
-          //     schoolID:'',// 学校id
-          //     terminalNum:'',//终端编号
-          //     simNum:'',//sim卡号
-          //     terminalName:'',//终端名字
-          //     orderTime:'2018-03-24',// 接单日期
-          //     serviceTime:'2018-04-24',// 维修日期
-          //     serviceman:'罗大锤',// 维修人员
-          //   },
-          //   {
-          //     id:'',// 维修单主键
-          //     schoolName:'',// 学校名字
-          //     schoolID:'',// 学校id
-          //     terminalNum:'',//终端编号
-          //     simNum:'',//sim卡号
-          //     terminalName:'',//终端名字
-          //     orderTime:'2018-05-24',// 接单日期
-          //     serviceTime:'2018-06-24',// 维修日期
-          //     serviceman:'测试名',// 维修人员
-          //   }
-          // ];
+          that.judgeOrderList(e);
           break;
         case 'planter':
           this.navigatorToPlanterPage(e);
@@ -154,16 +128,13 @@ export default class Index extends wepy.page {
 
     // 点维修记录的修改按钮，跳转到编辑维修单页面
     clickFixRecord: function (e) {
-      console.log('点击修改对应日期的维修单');
       this.navigatorToRepainDetail(e);
     },
 
     //  点击编号跳转到终端详情页面
     clickNavigateToEquipList: function (e) {
-      console.log(e);
       this.navigatorToEquipListPage(e);
     }
-
   };
 
   events = {
@@ -172,45 +143,42 @@ export default class Index extends wepy.page {
   };
 
   async onLoad(e) {
-    console.log('load..');
-    console.log(this.$parent);
-    console.log(e);
     this.schoolId = e.id;
     this.schoolName = decodeURI(e.name);
     // 初始化页面数据
     setTimeout(e => this.initData());
 
   }
-
-  onReady() {
-    console.log('ready..');
-
-  }
-
   onShow() {
     console.log('show..');
+
+    // 初始化页面数据
+    this.initData();
+    //   返回这个页面时，刷新数据
+    this.dialogFlag = true ? this.dialogFlag = false : '';
+    this.fixFlag=false;
   }
 
   // 跳转进入维修详情页面
   navigatorToRepainDetail(e) {
-    console.log('设备信息');
-    console.log(this.equipInfo);
-    console.log(this.$parent.globalData);
     this.$parent.globalData.curRepairData.schoolName = this.schoolName;
     this.$parent.globalData.curRepairData.schoolId = this.schoolId;
 
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
 
     this.$navigate(`./repairDetail?` + str);
-    // wepy.navigateTo({
-    //   url: `/pages/repairDetail?` + str
-    // });
   }
 
   // 跳转进入安装页面
   navigatorToPlanterPage(e) {
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
-    // this.$redirect(`./planterDetail?` + str)
+    let curEquip = this.equipInfo.filter(function (item) {
+      return item.active === true;
+    });
+    curEquip[0].schoolName = this.schoolName;
+
+
+    this.$parent.globalData.curPlantEquip = curEquip[0];
     wepy.navigateTo({
       url: `/pages/planterDetail?` + str
     });
@@ -220,6 +188,7 @@ export default class Index extends wepy.page {
   navigatorToEquipListPage(e) {
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
     // this.$redirect(`./planterDetail?` + str)
+
     wepy.navigateTo({
       url: `/pages/equipDetail?` + str
     });
@@ -227,95 +196,16 @@ export default class Index extends wepy.page {
 
   // 初始化页面数据
   async initData(e) {
-
-
-    this.equipInfo = [
-      {
-        id: 1,
-        index: 0,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '0',
-        active: false
-      },
-      {
-        id: 2,
-        index: 1,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '0',
-        active: false
-      },
-      {
-        id: 3,
-        index: 2,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: 4,
-        index: 3,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: 5,
-        index: 4,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: 6,
-        index: 5,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: 7,
-        index: 6,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: 8,
-        index: 7,
-        installAddress: '勤东教学楼一',
-        terminalNum: '312323325012',
-        terminalName: 'c[新电话终端]',
-        isLogin: '1',
-        active: false
-      },
-      {
-        id: '',// 设备唯一主键
-        typeName: '',// 终端类型
-        installAddress: '',// 安装位置
-        terminalNum: '',// 终端编号
-        isLogin: '',// 状态 1在线 0 离线
-        simNum: '',// sim卡号
-        terminalState: '',// 使用状态
-        terminalName: ''// 终端名字
-      }
-    ];
+    this.equipInfo = [];
 
     //  判断登录人是维修，安装还是其他人
     this.judgeOperator(e);
+
+    // 处理静态数据
+    this.getStaticData();
+
+    // 请求安装时终端类型数据
+    this.getTypeName();
   }
 
   //   1安装  2维修  3其他
@@ -336,11 +226,17 @@ export default class Index extends wepy.page {
         case 11:
           wepy.setStorageSync('operateId', 11);
           this.identify = 'repairMan';
+
+          // 请求维修人员
+          this.getGroupPerson();
           break;
         case 10:
           wepy.setStorageSync('operateId', 10);
           this.$parent.globalData.operateId = 10;
           this.identify = 'planter';
+
+          // 请求安装人员
+          this.getGroupPerson();
           break;
         default:
           wepy.setStorageSync('operateId', '');
@@ -349,9 +245,6 @@ export default class Index extends wepy.page {
 
     }
 
-    // 通过学校信息,获取设备列表
-    console.log('this.schoolId');
-    console.log(this.schoolId);
     let res = await api.getEquipListBySchoolId({
       method: 'POST',
       data: {
@@ -359,8 +252,6 @@ export default class Index extends wepy.page {
       }
     });
     console.log('当前学校的设备列表');
-    console.log(res);
-    console.log(res.statusCode);
     this.equipInfo = res.statusCode === 200 ? res.data.data : [];
     this.equipInfo.forEach(function (item, index) {
       item.active = false;
@@ -370,62 +261,55 @@ export default class Index extends wepy.page {
   }
 
   // 判断是否有维修单
-  async judgeOrderList() {
+  async judgeOrderList(e) {
     let curData = this.equipInfo.filter(function (item, index) {
       return item.active === true;
     });
     this.$parent.globalData.curRepairData = curData[0];
-    this.terminalId=curData[0].id;
+    this.terminalId = curData[0].id;
 
     //
-    let resRecord= await api.getRepairRecordByTerminalId({
-        method:'POST',
-        data:{
-          terminalId:'12230'
-        }
-      });
-    if( resRecord.statusCode===200){
-      console.log('查询维修记录');
-      console.log(this.repairList);
-      if (resRecord.data.data.length > 2) {
-          this.repairList = resRecord.data.data.slice(0, 2)
-      } else {
-        this.repairList=resRecord.data.data;
+    let resRecord = await api.getRepairRecordByTerminalId({
+      method: 'POST',
+      data: {
+        terminalId: this.terminalId
       }
-      this.repairList.forEach(function (item,index) {
-        item.recordId=index+1;
+    });
+    if (resRecord.statusCode === 200) {
+      if (resRecord.data.data.length > 4) {
+        this.repairList = resRecord.data.data.slice(0, 4)
+      } else {
+        this.repairList = resRecord.data.data;
+      }
+      this.repairList.forEach(function (item, index) {
+        item.recordId = index + 1;
       });
-
-      console.log('this.repairList');
-      console.log(this.repairList);
-      this.$parent.globalData.recordData=this.repairList;
+      this.$parent.globalData.recordData = this.repairList;
       this.repairList.length ? this.dialogFlag = true : this.navigatorToRepainDetail(e);
     }
     this.$apply();
   }
 
   // 初始化选中设备
-  async reformatEquipments(){
+  async reformatEquipments() {
     let userName = wepy.getStorageSync('userName');
     let userId = wepy.getStorageSync('userId');
-    let tempArray = [],tempStr='';
+    let tempArray = [], tempStr = '';
     this.equipInfo.filter(function (item) {
       if (item.active === true) {
         tempArray.push(item.id)
       }
     });
-    tempStr=tempArray.join(',');
-    let res= await api.reformatEquipments({
-      method:'POST',
-      data:{
+    tempStr = tempArray.join(',');
+    let res = await api.reformatEquipments({
+      method: 'POST',
+      data: {
         userName,
         userId,
-        ids:tempStr
+        ids: tempStr
       }
     });
-    console.log('初始化结果');
-    console.log(res);
-    if(res.statusCode===200){
+    if (res.statusCode === 200) {
       this.selectAllFlag = false;
       this.fixFlag = false;
       for (let i = 0; i < this.equipInfo.length; i++) {
@@ -437,7 +321,7 @@ export default class Index extends wepy.page {
         duration: 2000
       });
 
-    }else {
+    } else {
       wx.showToast({
         title: '初始化失败',
         icon: 'none',
@@ -445,6 +329,134 @@ export default class Index extends wepy.page {
       });
     }
     this.$apply();
+  }
+
+  //  获取维修人员列表
+  async getGroupPerson() {
+    let operateId = wepy.getStorageSync('operateId'),
+      personList,
+      personListData = [];
+    let res = await api.getGroupPersonById({
+      method: 'POST',
+      data: {
+        groupId: operateId
+      }
+    });
+    if (res.statusCode === 200) {
+      personList = res.data.data;
+      personList.forEach(function (item, index) {
+        let obj = {};
+        obj.name = item.personName;
+        obj.id = item.personId;
+        obj.index = index;
+        obj.selected = false;
+        personListData.push(obj);
+        obj = null;
+      });
+      this.$parent.globalData.repairPerson = personListData;
+    }
+    this.$apply();
+
+
+  }
+
+  //   处理本地静态数据，保存到全部变量中
+  async getStaticData() {
+    let data = [], dataList = [], self = this;
+    ['faultType', 'hardware', 'faultView', 'faultReason', 'handleMeasures', 'remark'].forEach(function (type) {
+      switch (type) {
+        case 'faultType':
+          dataList = [];
+          data = ['SIM卡', '程序', '参数', '网络', '线路', '硬件'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData.faultType = dataList;
+          break;
+        case 'hardware':
+          dataList = [];
+          data = ['自定义', '主板', '刷卡线', '喇叭', '语音芯片', '功放板', 'GPRS模块', '天线帽', '显示屏', '话柄', '键盘', '挡板', '锁芯', '挂叉', '电源'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData.hardware = dataList;
+          break;
+        case 'faultView':
+          dataList = [];
+          data = ['自定义', '设备掉线', '黑屏', '白屏', '花屏', '刷卡无声音', '程序版本低', '通话无声音', '按键失灵', '刷卡无反应', '刷卡距离近', '锁打不开', '摘机无反应', '参数错误', '死机'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData.faultView = dataList;
+          break;
+        case 'faultReason':
+          dataList = [];
+          data = ['自定义', 'SIM卡不正常', '电源坏', '线路无电', '显示屏坏', '喇叭坏', '话柄坏', '远程升级失败', '功放板坏', '语音芯片坏', '刷卡版坏', 'GPRS模块问题', '天线帽损坏', '键盘坏', '锁芯坏', '挂叉坏', '蜂鸣器坏', '程序问题', '主板坏', '人为损坏'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData.faultReason = dataList;
+          break;
+        case 'handleMeasures':
+          dataList = [];
+          data = ['自定义', '走部门协作', '更换主板', '更换刷卡版', '更换喇叭', '更换语音芯片', '更换功放板', '更换GPRS模块', '更换天线帽', '更换显示屏', '更换话柄', '更换键盘', '更换挡板', '更换锁芯', '更换挂叉', '更换电源', '升级新程序', '修改参数', '更换蜂鸣器'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData[`${type}`] = dataList;
+          break;
+        case 'remark':
+          dataList = [];
+          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡'];
+          data.forEach(function (item, index) {
+            let obj = {};
+            obj.name = item;
+            obj.index = index;
+            obj.selected = false;
+            dataList.push(obj);
+            obj = null;
+          });
+          self.$parent.globalData.remark = dataList;
+          break;
+      }
+
+    });
+    this.$apply();
+  }
+
+//
+  async getTypeName() {
+
+    let resRecord = await api.getTerminalType({
+      method: 'POST',
+      data: {}
+    });
+    this.$parent.globalData.terminalTypeData = resRecord.data.result === 200 ? resRecord.data.data : '';
   }
 
 }

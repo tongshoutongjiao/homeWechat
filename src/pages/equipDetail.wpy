@@ -3,98 +3,95 @@
 		<view class="container">
 		<view class="unfix school-name">
 			<view>学校名称</view>
-			<view>商丘市第二初级中学</view>
+			<view>{{equipmentInfo.schoolName}}</view>
 		</view>
 		<view class="unfix end-sn">
 			<view>终端编号</view>
-			<view>312323356100</view>
+			<view>{{equipmentInfo.terminalNum}}</view>
 		</view>
 		<view class="unfix end-sn">
 			<view>终端名称</view>
-			<view>黄壳彩屏</view>
+			<view>{{equipmentInfo.terminalName}}</view>
 		</view>
 		<view class="unfix school-name">
 			<view>终端类型</view>
-			<view>新电话终端</view>
+			<view>{{equipmentInfo.typeName}}</view>
 		</view>
 		<view class="unfix simStyle">
 			<view>SIM卡号</view>
-			<input wx:if="{{inputFlag}}" type="text" type="number" placeholder="请输入SIM卡号" value="{{simNum}}" auto-focus>
-			<view wx:else bindtap="clickEditSimCard">{{simNum}}</view>
-
+			<input data-input-type="simNum" wx:if="{{equipmentInfo.simNum==='11111111111'}}" type="text" type="number" placeholder="请输入SIM卡号" value="{{equipmentInfo.simNum}}" auto-focus bindinput="getInputValue" bindblur="getFocusValue"/>
+			<view wx:else>{{equipmentInfo.simNum}}</view>
 
 		</view>
 		<view class="unfix ">
 			<view>安装位置</view>
-			<view>教学楼北侧楼梯口</view>
+			<view>{{equipmentInfo.installAddress}}</view>
 		</view>
 		<view class="unfix software">
 			<view>软件</view>
-			<view>1203</view>
+			<view>{{equipmentInfo.softVersion}}</view>
 		</view>
 		<view class="unfix sn">
 			<view>IMEI</view>
-			<view>8104632563112121</view>
+			<view>{{equipmentInfo.imei}}</view>
 		</view>
 		<view class="unfix">
 			<view>网关</view>
-			<view>192.168.0.125.10000</view>
+			<view>{{equipmentInfo.serialNum}}</view>
 		</view>
 		<view class="unfix">
 			<view>状态</view>
-			<view>在线</view>
+			<view>{{equipmentInfo.isLogin===0?'断开':'在线'}}</view>
 		</view>
 		<view class="unfix">
 			<view>最后在线</view>
-			<view>2018-01-22 10:25:55</view>
+			<view>{{equipmentInfo.lastTime}}</view>
 		</view>
 		<view class="unfix">
 			<view>安装人员</view>
-			<view>周秋香</view>
+			<view>{{equipmentInfo.pname}}</view>
 		</view>
 		<view class="unfix">
 			<view>终端安装时间</view>
-			<view>2018-01-22</view>
+			<view>{{equipmentInfo.installTime}}</view>
 		</view>
 		<view class="unfix">
 			<view>通告时间</view>
-			<view>2018-01-22 10:25:55</view>
+			<view>{{equipmentInfo.whiteNumTime}}</view>
 		</view>
 		<view class="unfix">
 			<view>信号强度</view>
-			<view>23</view>
+			<view>{{equipmentInfo.baoStrong}}</view>
 		</view>
 		<view class="unfix">
 			<view>备注</view>
-			<view>SIM卡不正常</view>
+			<view>{{equipmentInfo.remark}}</view>
 		</view>
 
 		<view class="camera-container">
 			<view>
-				<text>远景照</text>
-				<scroll-view class="photo-wrapper" scroll-x="true" >
-					<view class="far" style="display: inline-block" wx:for="{{equipInfo.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
-						<image src="{{item.url}}"></image>
-						<image class=" magnifier" src="/images/magnifier.png"></image>
-					</view>
-				</scroll-view>
-			</view>
-			<view>
-				<text>近景照</text>
+				<text>近/远景照</text>
 				<scroll-view class="photo-wrapper" scroll-x="true">
-					<view class="close" style="display: inline-block" wx:for="{{equipInfo.closeImgUrlList}}" data-pic-type="close" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+					<view class="close" style="display: inline-block" wx:for="{{imgUrlList.closeImgUrlList}}" data-pic-type="close" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
 						<image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
 				</scroll-view>
+				<scroll-view class="photo-wrapper" scroll-x="true" >
+					<view class="far" style="display: inline-block" wx:for="{{imgUrlList.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+						<image src="{{item.url}}"></image>
+						<image class=" magnifier" src="/images/magnifier.png"></image>
+					</view>
+				</scroll-view>
+
 			</view>
 		</view>
 		<view class="unfix">
 			<view>位置备注</view>
-			<textarea class="remark" maxlength=50 auto-focus=true placeholder="请输入位置备注,最多50个字" auto-height=true/>
+			<textarea class="remark" data-input-type="remark" maxlength=50 auto-focus=true bindinput="getInputValue" bindblur="getFocusValue" placeholder="请输入位置备注,最多50个字" value="{{equipmentInfo.remarkAdress||''}}" auto-height=true/ auto-focus	>
 		</view>
 		<view style="height:170rpx;">
-			<view class="sure-btn">
+			<view class="sure-btn" bindtap="clickSaveInfo" >
 				保存
 			</view>
 		</view>
@@ -106,10 +103,6 @@
 					<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
 				</view>
 			</scroll-view>
-
-			<!--<view class="deleteIcon" bindtap="deleteCurPhoto">-->
-				<!--<image src="/images/delete-photo-icon.png"></image>-->
-			<!--</view>-->
 		</view>
 
 	</view>
