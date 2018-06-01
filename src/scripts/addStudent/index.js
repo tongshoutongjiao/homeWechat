@@ -433,7 +433,6 @@ export default class Index extends wepy.page {
 	async onLoad(option) {
 		console.log('页面信息');
 		console.log(option);
-		console.log(this.$parent.globalData);
 		this.schoolId = option.schoolId;
 		this.gradeName = option.gradeName;
 
