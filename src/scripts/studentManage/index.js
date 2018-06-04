@@ -1,15 +1,10 @@
 import wepy from 'wepy';
 import api from '../api';
-import ECharts from '../components/ec-canvas/ec-canvas';
-import FilterSlider from '../components/slider-filter/slider-filter';
+
 import * as Toolkit from '../utils/toolkit';
 
 const defaultPhoto = '../asset/hp_icon.png';
 export default class Index extends wepy.page {
-  components = {
-    echarts: ECharts,
-    'filter-slider': FilterSlider,
-  };
   config = {
     navigationBarTitleText: '学生管理'
   };

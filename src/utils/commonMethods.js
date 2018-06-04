@@ -27,7 +27,6 @@ export async function getEquipById(id) {
 export function handleImgUrlInfo(self) {
   // 初始化提交数据
   console.log('处理图片信息');
-  console.log(self);
   self.imgUrlList.submitData = {};
   console.log(self.imgUrlList.submitData);
   let tempArray = [],

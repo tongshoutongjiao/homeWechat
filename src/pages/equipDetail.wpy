@@ -19,7 +19,7 @@
 		</view>
 		<view class="unfix simStyle">
 			<view>SIM卡号</view>
-			<input data-input-type="simNum" wx:if="{{equipmentInfo.simNum==='11111111111'}}" type="text" type="number" placeholder="请输入SIM卡号" value="{{equipmentInfo.simNum}}" auto-focus bindinput="getInputValue" bindblur="getFocusValue"/>
+			<input data-input-type="simNum" wx:if="{{equipmentInfo.simNum==='11111111111'}}" type="text" type="number" placeholder="请输入SIM卡号" value="{{equipmentInfo.simNum}}" auto-focus=true bindinput="getInputValue" bindblur="getFocusValue"/>
 			<view wx:else>{{equipmentInfo.simNum}}</view>
 
 		</view>
@@ -88,7 +88,7 @@
 		</view>
 		<view class="unfix">
 			<view>位置备注</view>
-			<textarea class="remark" data-input-type="remark" maxlength=50 auto-focus=true bindinput="getInputValue" bindblur="getFocusValue" placeholder="请输入位置备注,最多50个字" value="{{equipmentInfo.remarkAdress||''}}" auto-height=true/ auto-focus	>
+			<textarea class="remark" data-input-type="remark" maxlength=50  bindinput="getInputValue" bindblur="getFocusValue" placeholder="请输入位置备注,最多50个字" value="{{equipmentInfo.remarkAdress||''}}" auto-height=true/ auto-focus	>
 		</view>
 		<view style="height:170rpx;">
 			<view class="sure-btn" bindtap="clickSaveInfo" >
