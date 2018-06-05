@@ -73,11 +73,8 @@ export default class Index extends wepy.page {
     getFocusValue(e) {
       let type = e.currentTarget.dataset.inputType;
       let obj = this.inputValue;
-      console.log(e);
-      console.log(e.detail.value);
       switch (type) {
         case 'simNum':
-          console.log('simNum');
           this.inputValue.simNum = e.detail.value;
           let reg = /^\d{11}$/g;
           if (!reg.test(obj.simNum)) {
@@ -106,8 +103,6 @@ export default class Index extends wepy.page {
   async onLoad(e) {
     console.log('获取终端详情页面设备id');
     let id = e.equipId;
-    console.log(e);
-    console.log(id);
     this.terminalSN = e.equipSn;
     this.equipID = e.equipId;
     this.getEquipById(id);
@@ -201,7 +196,6 @@ export default class Index extends wepy.page {
     }
     this.savingFlag = true;
     let obj = this.inputValue;
-    console.log(obj);
     let res = await api.saveEquipAddressInfo({
       method: 'POST',
       data: {
@@ -210,8 +204,6 @@ export default class Index extends wepy.page {
         simNum: obj.simNum || this.equipmentInfo.simNum
       }
     });
-    console.log('updateInfo');
-    console.log(res);
     if (res.data.result === 200) {
 
       wepy.showToast({

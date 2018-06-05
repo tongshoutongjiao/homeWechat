@@ -1,0 +1,91 @@
+<template>
+	<view class="container bg-color">
+		<view class="tab ">
+			<view class="specTab pl30 {{selectFlag? 'bg-color blue-style':''}}" bindtap="clickSelectOption" data-click-type="attend">{{curAttendName}}
+				<view class="down-flag"></view>
+			</view>
+			<view class="specTab text-c" bindtap="clickSelectOption" data-click-type="date">
+				<picker mode="date" value="{{date}}" bindchange="bindDateChange">
+					<view class="picker">
+						{{date}}
+					</view>
+				</picker>
+				<view class="down-flag"></view>
+			</view>
+			<view class="specTab text-c" bindtap="clickSelectOption" data-click-type="range">全校
+			</view>
+		</view>
+		<view class="select-box bg-color" wx:if="{{selectFlag}}">
+			<view wx:for="{{attendStyle}}" class="select-item pl30 pr30" bindtap="selectAttendStyle" data-attend-index={{item.index}}>{{item.attendName}}
+			<block wx:if="{{selectIndex===item.index}}">
+				<icon type="success_no_circle" size="15" color="#348cff"/>
+			</block>
+			</view>
+		</view>
+		<view class="attend-info">
+			<view class="title">
+				<view>时段</view>
+				<view>入校</view>
+				<view>出校</view>
+				<view>未刷卡</view>
+				<view>请假</view>
+			</view>
+			<view class="title">
+				<view>早晨上学</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view>上午上课</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view>中午进出</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view>下午上课</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view>下午放学</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view>晚自习</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+			<view class="title">
+				<view >晚自习放学</view>
+				<view>0</view>
+				<view>0</view>
+				<view class="blue-style">456</view>
+				<view class="blue-style">1</view>
+			</view>
+
+
+		</view>
+
+
+
+	</view>
+</template>
+<script src="../scripts/studentAttendance/index.js"></script>
+<style src="../styles/studentAttendance/index.css"></style>

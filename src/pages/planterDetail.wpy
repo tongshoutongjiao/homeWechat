@@ -124,8 +124,6 @@
 						<image src="{{item.url}}"></image>
 						<image  class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-
-
 					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="close" wx:if="{{imgUrlList.closeImgUrlList.length<2}}">
 						<text class="row"></text>
 						<text class="col"></text>

@@ -17,7 +17,7 @@
       </view>
     </scroll-view>
   </view>
-  <letter-index></letter-index>
+  <!--<letter-index></letter-index>-->
 </template>
 
 <script src="../scripts/schools/index.js"></script>

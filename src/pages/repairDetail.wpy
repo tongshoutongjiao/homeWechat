@@ -75,7 +75,7 @@
 		</view>
 		<view class="default fixed ">
 			<view>故障终端程序</view>
-			<input data-input-type="faultProgram" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="number" placeholder="请输入故障终端程序名称" value="{{repairData.faultProgram||''}}">
+			<input data-input-type="faultProgram" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus  placeholder="请输入故障终端程序名称" value="{{repairData.faultProgram||''}}">
 		</view>
 		<view class="default date-style">
 			<view>故障终端主板</view>

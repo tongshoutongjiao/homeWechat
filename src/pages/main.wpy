@@ -20,9 +20,9 @@
       <image src="../images/student_manage.png" class="main-icon"></image>
       <view class="icon-title">学生管理</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/student_check_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">学生考勤</view>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生考勤&page_url=/pages/studentAttendance">
+      <image src="../images/student_check.png" class="main-icon"></image>
+      <view class="icon-title">学生考勤</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
       <image src="../images/business_open.png" class="main-icon"></image>

@@ -177,7 +177,6 @@ export default class Index extends wepy.page {
     });
     curEquip[0].schoolName = this.schoolName;
 
-
     this.$parent.globalData.curPlantEquip = curEquip[0];
     wepy.navigateTo({
       url: `/pages/planterDetail?` + str
@@ -187,8 +186,6 @@ export default class Index extends wepy.page {
   // 跳转终端详情页面
   navigatorToEquipListPage(e) {
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
-    // this.$redirect(`./planterDetail?` + str)
-
     wepy.navigateTo({
       url: `/pages/equipDetail?` + str
     });

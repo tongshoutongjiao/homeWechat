@@ -38,7 +38,7 @@ export default class Index extends wepy.page {
         this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)
     }
     async search(e) {
-        console.log('搜索设置搜索设置');
+        console.log('搜索设置搜索设置')
         let result = await api.searchSchool({
             method: 'POST',
             data: {
@@ -46,7 +46,7 @@ export default class Index extends wepy.page {
                 keywords: e,
                 operaType: 6
             }
-        });
+        })
         if (result.data.result === 200) {
             if (result.data.schoolList.length > 0) {
                 this.empty = false

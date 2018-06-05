@@ -172,6 +172,7 @@ export default class Index extends wepy.page {
           title: '请输入11位sim卡号',
           icon: 'none',
         });
+        this.savingFlag = false;
         return;
       }
 
@@ -239,10 +240,8 @@ export default class Index extends wepy.page {
           break;
         case 'installAddress':
           this.inputValue.installAddress = e.detail.value;
-
           break;
         case 'terminalName':
-
           this.inputValue.terminalName = e.detail.value;
           break;
       }

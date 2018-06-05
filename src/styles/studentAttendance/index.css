@@ -1,0 +1,85 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.bg-color {
+  background: #f7f7f7;
+}
+.blue-style {
+  color: #348cff;
+}
+.text-c {
+  text-align: center;
+}
+.pl30 {
+  padding-left: 30rpx;
+}
+.pr30 {
+  padding-right: 30rpx;
+}
+.tab {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  border-top: 2rpx solid #eee;
+  border-bottom: 2rpx solid #eee ;
+  background: #fff;
+}
+.tab .specTab {
+  position: relative;
+  box-sizing: border-box;
+  width: 33.3%;
+  font-size: 30rpx;
+  border-right: 2rpx solid #eee;
+  line-height: 90rpx;
+}
+.tab .specTab .down-flag {
+  position: absolute;
+  content: '';
+  top: 45%;
+  right: 16rpx;
+  border-top: 10rpx solid #888;
+  border-bottom: 10rpx solid transparent;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+}
+.select-box {
+  position: absolute;
+  z-index: 10;
+  box-sizing: border-box;
+  width: 100%;
+}
+.select-box .select-item {
+  font-size: 24rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.select-box icon {
+  float: right;
+  margin-top: 10rpx;
+}
+.attend-info {
+  position: absolute;
+  top: 110rpx;
+  background: #fff;
+  left: 30rpx;
+  right: 30rpx;
+}
+.attend-info .title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80rpx;
+  font-size: 28rpx;
+  color: #8e8e93;
+}
+.attend-info .title view {
+  width: 20%;
+  text-align: center;
+}
+.attend-info .title view:nth-child(1) {
+  width: 25%;
+}

@@ -13,36 +13,36 @@
 			<view class="listTitleChild" style="width: 30%">终端类型</view>
 			<view class="listTitleChild" style="width: 20%">状态</view>
 		</view>
-	   <scroll-view class="equipList" scroll-y="true">
-		   <block wx:if="{{equipInfo.length}}">
-			   <view class="equipWrapper" wx:for="{{equipInfo}}" >
-				   <view class="location" bindtap="clickSelectEquip" data-id="{{item.id}}" data-index="{{item.index}}">
-					   <block wx:if="{{item.active}}">
-						   <image class="all-default" src="/images/float_icon_a.png"/>
-					   </block>
-					   <block wx:else>
-						   <image class="all-default" src="/images/float_icon_d.png"/>
-					   </block>
+		<scroll-view class="equipList" scroll-y="true">
+			<block wx:if="{{equipInfo.length}}">
+				<view class="equipWrapper" wx:for="{{equipInfo}}" >
+					<view class="location" bindtap="clickSelectEquip" data-id="{{item.id}}" data-index="{{item.index}}">
+						<block wx:if="{{item.active}}">
+							<image class="all-default" src="/images/float_icon_a.png"/>
+						</block>
+						<block wx:else>
+							<image class="all-default" src="/images/float_icon_d.png"/>
+						</block>
 
-					   <text class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.installAddress}}</text>
-				   </view>
-				   <view class="detail">
-					   <view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">
-						   <view  class=" leftIcon"></view>
-					   </view>
-					   <view style="width: 30%" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}">{{item.terminalNum}}</view>
-					   <view style="width: 30%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.terminalName}}</view>
-					   <view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.isLogin==='1'?'在线':'离线'}}</view>
-				   </view>
-			   </view>
-		   </block>
-		   <block wx:else>
-			   <view class="none">暂无相关设备数据</view>
+						<text class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.installAddress}}</text>
+					</view>
+					<view class="detail">
+						<view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">
+							<view  class=" leftIcon"></view>
+						</view>
+						<view style="width: 30%" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}">{{item.terminalNum}}</view>
+						<view style="width: 30%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.terminalName}}</view>
+						<view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.isLogin==='1'?'在线':'离线'}}</view>
+					</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="none">暂无相关设备数据</view>
 
-		   </block>
+			</block>
 
 
-	   </scroll-view>
+		</scroll-view>
 
 		<view class="btomView" wx:if="{{identify==='repairMan'}}" >
 			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
@@ -107,7 +107,7 @@
 	<view class="dialog" wx:if="{{dialogFlag}}">
 		<view class="mask"></view>
 		<view class="record">
-				<view class="serials">312323356100</view>
+			<view class="serials">312323356100</view>
 			<view class="recordTitle">近期已有维修记录</view>
 			<view class="recordForm">
 				<view class="formTitle">
