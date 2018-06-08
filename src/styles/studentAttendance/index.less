@@ -5,6 +5,37 @@
   width: 100%;
   height: 100%;
 }
+/*搜索栏样式*/
+.search-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120rpx;
+  background: #FFF;
+  z-index: 100;
+  .search-content {
+    display: flex;
+    width: 690rpx;
+    height: 80rpx;
+    margin: 20rpx 30rpx;
+    border-radius: 40rpx;
+    box-shadow:0 1px 10px rgba(142, 142, 147, 0.15);
+    justify-content: center;
+    align-items: center;
+  }
+  .search-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: 5rpx;
+    margin-right: 10rpx;
+  }
+  .search-title {
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 15px;
+    color: #8E8E93;
+  }
+}
 .bg-color{
   background: rgb(247,247,247);
 }
@@ -24,27 +55,30 @@
   display: flex;
   align-items: center;
   height: 90rpx;
-  border-top: 2rpx solid #eee;
-  border-bottom:2rpx solid #eee ;
   background: #fff;
+  margin-top: 120rpx;
   .specTab{
     position: relative;
     box-sizing: border-box;
-
     width: 33.3%;
     font-size: 30rpx;
-    border-right: 2rpx solid #eee;
     line-height:90rpx;
     .down-flag{
       position: absolute;
-      content: '';
-      top: 45%;
-      right:16rpx;
-      border-top: 10rpx solid #888;
-      border-bottom: 10rpx solid transparent;
+      top: 46%;
+      right: 30rpx;
+      display: inline-block;
+      vertical-align: middle;
+      border-top: 8rpx solid #888;
+      border-bottom: 8rpx solid transparent;
       border-left: 10rpx solid transparent;
       border-right: 10rpx solid transparent;
     }
+  }
+ .select-option{
+    display: inline-block;
+    vertical-align: middle;
+   width: 100%;
   }
 }
 .select-box{
@@ -64,7 +98,7 @@
 }
 .attend-info{
   position: absolute;
-  top: 110rpx;
+  top: 230rpx;
   background: #fff;
   left: 30rpx;
   right: 30rpx;
@@ -85,4 +119,12 @@
 
   }
 
+}
+.null-text{
+  color: #d0d0d4;
+  font-size: 28rpx;
+  text-align: center;
+  width: 100%;
+  line-height: 40rpx;
+  margin: auto;
 }

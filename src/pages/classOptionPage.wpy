@@ -1,0 +1,67 @@
+<template>
+	<view class="container">
+		<block wx:if="{{typeId==='1'}}">
+			<view class="wrapper">
+				<scroll-view scroll-Y="true" class="left-part bg-color">
+					<view wx:for="{{gradesList}}" class="{{selectGrade===item.index?'selected':''}}" wx:key="{{item.index}}"
+					      data-grade-id="{{item.gradeId}}" data-index="{{item.index}}"
+					      data-grade-name="{{item.gradeName}}" bindtap="clickGetListInfo" data-select-type="grade">{{item.gradeName}}
+					</view>
+				</scroll-view>
+				<scroll-view scroll-Y="true" class="right-part">
+					<view wx:for="{{classList}}" wx:key="{{item.classId}}" data-class-id="{{item.classId}}"
+					      data-index="{{item.index}}" data-select="{{item.selected}}" data-grade-name="{{item.gradeName}}"
+					      data-class-name="{{item.className}}" bindtap="clickSelectInfo">{{item.className}}
+					</view>
+				</scroll-view>
+			</view>
+		</block>
+		<block wx:if="{{typeId==='3'}}">
+			<view class="wrapper dorm-attendance">
+				<view class="select-condition pt-20">
+					<view>筛选</view>
+					<view class="condition ml-30 {{selectedOptions==='dorm'?'selected':''}}" data-select-type="dorm"
+					      bindtap="clickSelectCondition">按宿舍楼
+					</view>
+					<view class="condition ml-20 {{selectedOptions==='className'?'selected':''}}" data-select-type="className"
+					      bindtap="clickSelectCondition">按班级
+					</view>
+				</view>
+				<view class="dorm-style">
+					<block wx:if="{{selectedOptions==='dorm'}}">
+						<scroll-view scroll-Y="true" class="  left-part bg-color">
+							<view wx:for="{{dormData.dormNumberList}}"  class="{{selectDormNumber==item.index?'selected':''}}" data-index="{{item.index}}" data-floor-id="{{item.floorId}}" bindtap="clickGetListInfo" data-select-type="dormNumber" >
+								{{item.floorName}}
+							</view>
+						</scroll-view>
+						<scroll-view scroll-Y="true" class="middle-part bg-color">
+							<view wx:for="{{dormData.floorNameList}}" class="{{selectLayer===item.index?'selected':''}}" data-layer-id="{{item.layerId}}" data-index="{{item.index}}" data-select-type="floor" bindtap="clickGetListInfo" >{{item.layerName}}</view>
+						</scroll-view>
+						<scroll-view scroll-Y="true" class="right-part">
+							<view wx:for="{{dormData.dormNameList}}" data-dorm-name="{{item.dormName}}" data-dorm-id="{{item.dormId}}" data-select-type="dormRoom" bindtap="clickGetListInfo">
+								{{item.dormName}}
+							</view>
+						</scroll-view>
+					</block>
+					<block wx:else>
+						<scroll-view scroll-Y="true" class="left-part bg-color">
+							<view wx:for="{{gradesList}}" class="{{selectGrade===item.index?'selected':''}}" wx:key="{{item.index}}"
+							      data-grade-id="{{item.gradeId}}" data-index="{{item.index}}"
+							      data-grade-name="{{item.gradeName}}" bindtap="clickGetListInfo" data-select-type="grade">{{item.gradeName}}
+							</view>
+						</scroll-view>
+						<scroll-view scroll-Y="true" class="right-part" style="width: 66.6%;">
+							<view wx:for="{{classList}}" wx:key="{{item.classId}}" data-class-id="{{item.classId}}"
+							      data-index="{{item.index}}" data-select="{{item.selected}}" data-grade-name="{{item.gradeName}}"
+							      data-class-name="{{item.className}}" bindtap="clickSelectInfo">{{item.className}}
+							</view>
+						</scroll-view>
+					</block>
+				</view>
+
+			</view>
+		</block>
+	</view>
+</template>
+<script src="../scripts/classOptionPage/index.js"></script>
+<style src="../styles/classOptionPage/index.css"></style>

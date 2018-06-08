@@ -1,0 +1,23 @@
+<template>
+	<view class="container">
+		<view class="title">
+			全校 早晨上学刷卡
+		</view>
+		<view class="student-wrapper">
+			<view class="item-list bg-color">
+				<view>班级</view>
+				<view>姓名</view>
+				<view>类型</view>
+				<view>刷卡时间</view>
+			</view>
+			<view class="item-list" wx:for="{{recordData}}">
+				<view>{{item.className}}</view>
+				<view>{{item.studentName}}</view>
+				<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
+				<view class="card-time">{{item.cardTime}}</view>
+			</view>
+		</view>
+	</view>
+</template>
+<script src="../scripts/recordPage/index.js"></script>
+<style src="../styles/recordPage/index.css"></style>

@@ -44,6 +44,8 @@
         'pages/planterDetail',
         'pages/equipDetail',
 				'pages/studentAttendance',
+				'pages/classOptionPage',
+				'pages/recordPage',
 			],
 			window: {
 				backgroundTextStyle: 'light',

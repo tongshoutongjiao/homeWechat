@@ -5,7 +5,7 @@ import wepy from "wepy";
 export async function getEquipById(id) {
   let resData;
   let res = await api.getEquipInfoById({
-    methos: 'POST',
+    method: 'POST',
     data: {
       id
     }
@@ -185,6 +185,20 @@ export function clickCheckImg(e, self) {
   self.$apply()
 
 
+}
+
+// 根据学校id查询到学校的年级以及班级信息
+export async function getBussinessList(self) {
+  let list = await api.schoolBusinessList({
+    showLoading: false,
+    method: 'POST',
+    data: {
+      schoolId: self.schoolId
+    }
+  });
+  if(list.data.result===200){
+   return   list.data.schoolBusinessList;
+  }
 }
 
 

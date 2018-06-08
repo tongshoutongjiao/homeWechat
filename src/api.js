@@ -63,7 +63,7 @@ const wxRequest = async (params = {}, url) => {
 // const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
 //const apiMall = 'http://192.168.5.131:8380';
 //        const apiMall = 'https://api.967111.com'; // 正式
-const apiMall = 'http://192.168.5.122:8080'; // 广越
+ const apiMall = 'http://192.168.5.122:8080'; // 广越
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
@@ -128,6 +128,11 @@ const getTerminalType=params=>wxRequest(params,apiMall+'/manageHelper/machine/se
 const installCurEquip=params=>wxRequest(params,apiMall+'/manageHelper/machine/installTerminal.do');
 const getEquipInfoById=params=>wxRequest(params,apiMall+'/manageHelper/machine/getTerminalById.do');
 const saveEquipAddressInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateTerminalReAdrById.do');
+const getAttendanceMethods=params=>wxRequest(params,apiMall+'/manageHelper/kaoqin/listKaoqinType.do');
+const getCardRecord=params=>wxRequest(params,apiMall+'/teacher/kaoqin/listKaoqinSumNew.do');
+const getDormInfo=params=>wxRequest(params,apiMall+'/manageHelper/kaoqin/getAllSchoolFloorInfo.do');
+const getDormAttendanceInfo=params=>wxRequest(params,apiMall+'/dorm/countDormChecking.do');
+const getDormListByFloorId=params=>wxRequest(params,apiMall+'/dorm/getTeacherDormInfo.do');
 
 
 const addStudentPhoto= async (params) => {
@@ -242,5 +247,11 @@ module.exports = {
   getTerminalType,
   installCurEquip,
   getEquipInfoById,
-  saveEquipAddressInfo
+  saveEquipAddressInfo,
+  getAttendanceMethods,
+  getCardRecord,
+  getDormInfo,
+  getDormAttendanceInfo,
+  getDormListByFloorId
+
 };

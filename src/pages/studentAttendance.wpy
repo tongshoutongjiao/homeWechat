@@ -1,25 +1,32 @@
 <template>
 	<view class="container bg-color">
-		<view class="tab ">
-			<view class="specTab pl30 {{selectFlag? 'bg-color blue-style':''}}" bindtap="clickSelectOption" data-click-type="attend">{{curAttendName}}
-				<view class="down-flag"></view>
-			</view>
-			<view class="specTab text-c" bindtap="clickSelectOption" data-click-type="date">
-				<picker mode="date" value="{{date}}" bindchange="bindDateChange">
-					<view class="picker">
-						{{date}}
-					</view>
-				</picker>
-				<view class="down-flag"></view>
-			</view>
-			<view class="specTab text-c" bindtap="clickSelectOption" data-click-type="range">全校
+		<view class="search-wrapper">
+			<view class="search-content" bindtap="handleSearch" data-grade-id="">
+				<image class="search-icon" src="/images/search_icon.png"></image>
+				<view class="search-title">搜索学校名字</view>
 			</view>
 		</view>
-		<view class="select-box bg-color" wx:if="{{selectFlag}}">
-			<view wx:for="{{attendStyle}}" class="select-item pl30 pr30" bindtap="selectAttendStyle" data-attend-index={{item.index}}>{{item.attendName}}
-			<block wx:if="{{selectIndex===item.index}}">
-				<icon type="success_no_circle" size="15" color="#348cff"/>
-			</block>
+		<view class="tab ">
+			<view class="specTab pl30" >
+				<picker class="select-option" data-bind-type="attend" bindchange="bindChangeStyle" value="{{attendStyle.index}}" range="{{attendStyle.array}}" range-key="{{'typeName'}}">
+					<view class="picker">
+						{{attendStyle.array[attendStyle.index].typeName}}
+					</view>
+					<view class="down-flag" ></view>
+				</picker>
+
+			</view>
+			<view class="specTab text-c" >
+				<picker class="select-option" data-bind-type="date" mode="date" value="{{cardRecordData.attendanceDate}}" bindchange="bindChangeStyle">
+					<view class="picker">
+						{{cardRecordData.date}}
+					</view>
+					<view class="down-flag"  bindchange="bindDateChange"></view>
+				</picker>
+			</view>
+			<view class="specTab text-c" bindtap="clickSelectOption"  data-class-id="{{attendanceObj.classId}}" data-school-id="{{schoolId}}" data-grade-id="{{attendanceObj.gradeId}}" data-type-id="{{cardRecordData.kaoqinTypeId}}">
+				<view class="select-option">{{attendanceObj.content}}</view>
+				<view class="down-flag"></view>
 			</view>
 		</view>
 		<view class="attend-info">
@@ -30,60 +37,19 @@
 				<view>未刷卡</view>
 				<view>请假</view>
 			</view>
-			<view class="title">
-				<view>早晨上学</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view>上午上课</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view>中午进出</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view>下午上课</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view>下午放学</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view>晚自习</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-			<view class="title">
-				<view >晚自习放学</view>
-				<view>0</view>
-				<view>0</view>
-				<view class="blue-style">456</view>
-				<view class="blue-style">1</view>
-			</view>
-
-
+			<block wx:if="{{recordData.length}}">
+				<view class="title" wx:for="{{recordData}}">
+					<view>{{item.kaoqinSpan}}</view>
+					<view data-navigate-type="in"  class="{{item.inCount===0?'':'blue-style'}}" bindtap="{{item.inCount===0?'':'clickNavigateToRecordPage'}}" >{{item.inCount}}</view>
+					<view data-navigate-type="out"  class="{{item.outCount===0?'':'blue-style'}}" bindtap="{{item.outCount===0?'':'clickNavigateToRecordPage'}}" >{{item.outCount}}</view>
+					<view class="{{item.noRecord===0?'':'blue-style'}}" bindtap="{{item.noRecord===0?'':'clickNavigateToRecordPage'}}" data-navigate-type="card">{{item.noRecord}}</view>
+					<view class="{{item.restCount===0?'':'blue-style'}}"  bindtap="{{item.restCount===0?'':'clickNavigateToRecordPage'}}"  data-navigate-type="rest">{{item.restCount}}</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="null-text" style="line-height: 600rpx">暂无该时段刷卡记录</view>
+			</block>
 		</view>
-
-
 
 	</view>
 </template>
