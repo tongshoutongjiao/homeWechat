@@ -25,6 +25,22 @@
   color: #575759 ;
   font-size: 28rpx;
 }
+.item-list .picker {
+  position: relative;
+  width: 100%;
+}
+.item-list .down-flag {
+  position: absolute;
+  width: auto;
+  top: 46%;
+  right: 30rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-top: 8rpx solid #888;
+  border-bottom: 8rpx solid transparent;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+}
 .card-time {
   color: #181818;
 }

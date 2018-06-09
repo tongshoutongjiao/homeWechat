@@ -3,20 +3,51 @@
 		<view class="title">
 			全校 早晨上学刷卡
 		</view>
-		<view class="student-wrapper">
-			<view class="item-list bg-color">
-				<view>班级</view>
-				<view>姓名</view>
-				<view>类型</view>
-				<view>刷卡时间</view>
+
+			<view wx:if="{{typeId==='1'}}" class="student-wrapper">
+				<view class="item-list bg-color">
+					<view>班级</view>
+					<view>姓名</view>
+					<view>类型</view>
+					<view>刷卡时间</view>
+				</view>
+				<view class="item-list" wx:for="{{recordData}}">
+					<view>{{item.className}}</view>
+					<view>{{item.studentName}}</view>
+					<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
+					<view class="card-time">{{item.cardTime}}</view>
+				</view>
+				<view class="load" style=" text-align: center;font-size: 28rpx;color: #8e8e93;">加载中....</view>
 			</view>
-			<view class="item-list" wx:for="{{recordData}}">
-				<view>{{item.className}}</view>
-				<view>{{item.studentName}}</view>
-				<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
-				<view class="card-time">{{item.cardTime}}</view>
+			<view wx:if="{{typeId==='3'}}" class="student-wrapper">
+				<view class="item-list bg-color">
+					<view>班级</view>
+					<view>姓名</view>
+
+					<view>
+						<picker  bindchange="bindChangeStyle" value="{{bindData.index}}" range="{{bindData.array}}" range-key="{{'typeName'}}">
+							<view class="picker">
+								{{bindData.array[bindData.index].typeName}}
+								<view class="down-flag"></view>
+							</view>
+
+
+						</picker>
+					</view>
+
+					<view>刷卡时间</view>
+				</view>
+				<view class="item-list" wx:for="{{recordData}}">
+					<view>{{item.className}}</view>
+					<view>{{item.studentName}}</view>
+					<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
+					<view class="card-time">{{item.cardTime}}</view>
+				</view>
+				<view class="load" style=" text-align: center;font-size: 28rpx;color: #8e8e93;">加载中....</view>
 			</view>
-		</view>
+
+
+
 	</view>
 </template>
 <script src="../scripts/recordPage/index.js"></script>

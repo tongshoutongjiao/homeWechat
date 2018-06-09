@@ -13,103 +13,88 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.13589449">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="25">
-                  <caret line="105" selection-start-line="105" selection-end-line="105" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
-                    <element signature="e#319#631#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="studentAttendance.wpy" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/pages/studentAttendance.wpy">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="613">
-                  <caret line="27" column="51" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="51" />
-                  <folding>
-                    <element signature="n#style#0;n#view#0;n#block#1;n#view#2;n#view#0;n#template#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="225" column="27" lean-forward="true" selection-start-line="225" selection-start-column="27" selection-end-line="225" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
-                    <element signature="e#319#631#0" />
-                    <element signature="e#3161#3173#0" />
-                    <element signature="e#5694#7585#0" />
-                    <element signature="e#6204#6918#0" />
-                    <element signature="e#8214#8925#0" />
-                    <element signature="e#7924#8064#0" />
-                    <element signature="e#8022#8205#0" />
-                    <element signature="e#8214#8442#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="classOptionPage.wpy" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/classOptionPage.wpy">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="416">
-                  <caret line="40" column="77" lean-forward="true" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
-                  <folding>
-                    <element signature="n#block#1;n#view#1;n#view#0;n#block#1;n#view#0;n#template#0;n#!!top" />
-                    <element signature="n#style#0;n#scroll-view#1;n#block#1;n#view#1;n#view#0;n#block#1;n#view#0;n#template#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/scripts/classOptionPage/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="334" column="31" lean-forward="true" selection-start-line="334" selection-start-column="31" selection-end-line="334" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
-                    <element signature="e#766#1122#0" />
-                    <element signature="e#2651#3540#0" />
-                    <element signature="e#2950#2972#0" />
-                    <element signature="e#3115#3137#0" />
-                    <element signature="e#3099#3357#0" />
-                    <element signature="e#3598#3714#0" />
-                    <element signature="e#4035#4369#0" />
-                    <element signature="e#4168#4339#0" />
-                    <element signature="e#4452#4772#0" />
-                    <element signature="e#4841#6184#0" />
-                    <element signature="e#5710#6320#0" />
-                    <element signature="e#6220#6716#0" />
-                    <element signature="e#6343#6418#0" />
-                    <element signature="e#6455#6505#0" />
-                    <element signature="e#6761#7006#0" />
-                    <element signature="e#6808#6855#0" />
-                    <element signature="e#6891#6983#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="recordPage.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recordPage.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scripts/recordPage/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1190">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+              <folding>
+                <element signature="e#89#173#0" />
+                <element signature="e#183#218#0" />
+                <element signature="e#716#737#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/studentAttendance/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="77" column="1" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/studentAttendance/index.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="59" column="11" selection-start-line="59" selection-start-column="11" selection-end-line="59" selection-end-column="11" />
+              <folding>
+                <element signature="e#10#89#0" />
+                <element signature="e#116#667#0" />
+                <element signature="e#234#454#0" />
+                <element signature="e#470#559#0" />
+                <element signature="e#576#665#0" />
+                <element signature="e#753#778#0" />
+                <element signature="e#784#810#0" />
+                <element signature="e#816#843#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
+              <folding>
+                <element signature="e#11#82#0" />
+                <element signature="e#90#175#0" />
+                <element signature="e#186#212#0" />
+                <element signature="e#224#286#0" />
+                <element signature="e#303#381#0" />
+                <element signature="e#401#419#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -124,21 +109,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>attendanceObj</find>
-      <find>middle-part</find>
-      <find>attend</find>
-      <find>selectGrade</find>
-      <find>selected</find>
-      <find>allClassList</find>
-      <find>classList</find>
-      <find>navigator</find>
-      <find>navigateToRecordPage</find>
       <find>import</find>
       <find>typeId</find>
-      <find>kaoqinTypeId</find>
       <find>cardRecordData</find>
-      <find>getDormAttendanceInfo</find>
       <find>recordData</find>
       <find>handleResponseData</find>
       <find>allFloorList</find>
@@ -153,7 +126,19 @@
       <find>clickSelectCondition</find>
       <find>conso</find>
       <find>getAttendanceMethods</find>
+      <find>contentObj</find>
+      <find>layerId</find>
+      <find>floorName</find>
+      <find>judgeQueryType</find>
       <find>clickGetListInfo</find>
+      <find>selectInfo</find>
+      <find>nodeType</find>
+      <find>getCardRecord</find>
+      <find>judgeGlobalData</find>
+      <find>getDormAttendanceInfo</find>
+      <find>kaoqinTypeId</find>
+      <find>judgeAttendanceType</find>
+      <find>down</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/scripts/search/index.js" />
         <option value="$PROJECT_DIR$/src/styles/repairDetail/index.less" />
         <option value="$PROJECT_DIR$/dist/pages/equipManage.js" />
-        <option value="$PROJECT_DIR$/src/styles/planterDetail/index.less" />
         <option value="$PROJECT_DIR$/src/styles/equipDetail/index.less" />
         <option value="$PROJECT_DIR$/src/pages/repairDetail.wpy" />
         <option value="$PROJECT_DIR$/src/styles/equipManage/index.less" />
@@ -201,18 +185,19 @@
         <option value="$PROJECT_DIR$/src/pages/main.wpy" />
         <option value="$PROJECT_DIR$/src/pages/equipManage.wpy" />
         <option value="$PROJECT_DIR$/src/utils/commonMethods.js" />
-        <option value="$PROJECT_DIR$/src/styles/studentAttendance/index.less" />
         <option value="$PROJECT_DIR$/src/styles/classOptionPage/index.less" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/studentAttendance.wpy" />
+        <option value="$PROJECT_DIR$/src/api.js" />
+        <option value="$PROJECT_DIR$/src/pages/classOptionPage.wpy" />
+        <option value="$PROJECT_DIR$/src/scripts/classOptionPage/index.js" />
+        <option value="$PROJECT_DIR$/src/scripts/studentAttendance/index.js" />
+        <option value="$PROJECT_DIR$/src/styles/planterDetail/index.less" />
         <option value="$PROJECT_DIR$/src/styles/recordPage/index.css" />
+        <option value="$PROJECT_DIR$/src/styles/studentAttendance/index.less" />
         <option value="$PROJECT_DIR$/src/pages/recordPage.wpy" />
         <option value="$PROJECT_DIR$/src/styles/recordPage/index.less" />
         <option value="$PROJECT_DIR$/src/scripts/recordPage/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/studentAttendance.wpy" />
-        <option value="$PROJECT_DIR$/src/api.js" />
-        <option value="$PROJECT_DIR$/src/scripts/studentAttendance/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/classOptionPage.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/classOptionPage/index.js" />
       </list>
     </option>
   </component>
@@ -242,10 +227,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-293" />
-    <option name="y" value="64" />
-    <option name="width" value="1912" />
-    <option name="height" value="915" />
+    <option name="x" value="353" />
+    <option name="y" value="30" />
+    <option name="width" value="1299" />
+    <option name="height" value="960" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -255,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -271,13 +257,42 @@
               <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
               <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="recordPage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="recordPage" type="462c0819:PsiDirectoryNode" />
+              <item name="index.less" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="studentAttendance" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="studentAttendance" type="462c0819:PsiDirectoryNode" />
+              <item name="index.less" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -286,6 +301,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ejs.close.delimiter" value="%&gt;" />
     <property name="ejs.open.delimiter" value="&lt;%" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Roaming/npm/lessc.cmd" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -300,7 +316,7 @@
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="standardjs.codestyle.accepted" value="true" />
   </component>
   <component name="RecentsManager">
@@ -407,11 +423,13 @@
       <workItem from="1528250410579" duration="23451000" />
       <workItem from="1528332060287" duration="27618000" />
       <workItem from="1528418335677" duration="28677000" />
+      <workItem from="1528504649851" duration="25783000" />
+      <workItem from="1528535405369" duration="3095000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="908139000" />
+    <option name="totallyTimeSpent" value="937017000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,14 +441,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-293" y="64" width="1912" height="915" extended-state="0" />
+    <frame x="353" y="30" width="1299" height="960" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.07082002" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.13201581" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021119" side_tool="true" weight="0.005586592" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49788806" weight="0.0012903226" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49788806" weight="0.0012330456" />
       <window_info id="Structure" order="1" sideWeight="0.5027933" side_tool="true" weight="0.40496305" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32960895" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -497,7 +515,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="175" />
+      <option name="time" value="184" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -510,70 +528,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="e#294#381#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2050">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#319#631#0" />
-            <element signature="e#3161#3173#0" />
-            <element signature="e#5694#7585#0" />
-            <element signature="e#6204#6918#0" />
-            <element signature="e#8214#8925#0" />
-            <element signature="e#7924#8064#0" />
-            <element signature="e#8022#8205#0" />
-            <element signature="e#8214#8442#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/repairDetail/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="126" column="23" lean-forward="true" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
-          <folding>
-            <element signature="e#161#416#0" />
-            <element signature="e#428#680#0" />
-            <element signature="e#787#1040#0" />
-            <element signature="e#845#903#0" />
-            <element signature="e#913#1036#0" />
-            <element signature="e#1550#2150#0" />
-            <element signature="e#1854#2058#0" />
-            <element signature="e#2071#2131#0" />
-            <element signature="e#3995#4101#0" />
-            <element signature="e#4108#4216#0" />
-            <element signature="e#4242#4360#0" />
-            <element signature="e#4372#4486#0" />
-            <element signature="e#4497#4580#0" />
-            <element signature="e#4592#4809#0" />
-            <element signature="e#4820#4902#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/planterDetail/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="156" column="5" lean-forward="true" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-          <folding>
-            <element signature="e#4#38#0" />
-            <element signature="e#44#84#0" />
-            <element signature="e#2467#2728#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/schoolList.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -1070,51 +1024,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/studentAttendance/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="103" column="15" lean-forward="true" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
-          <folding>
-            <element signature="e#10#89#0" />
-            <element signature="e#116#667#0" />
-            <element signature="e#234#454#0" />
-            <element signature="e#470#559#0" />
-            <element signature="e#576#665#0" />
-            <element signature="e#753#778#0" />
-            <element signature="e#784#810#0" />
-            <element signature="e#816#843#0" />
-            <element signature="e#848#1485#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="e#294#381#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/recordPage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recordPage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -1129,68 +1038,166 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/studentAttendance.wpy">
+    <entry file="file://$PROJECT_DIR$/src/scripts/classOptionPage/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="27" column="51" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="51" />
+        <state relative-caret-position="424">
+          <caret line="334" column="5" selection-start-line="334" selection-start-column="5" selection-end-line="334" selection-end-column="5" />
           <folding>
-            <element signature="n#style#0;n#view#0;n#block#1;n#view#2;n#view#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#628#718#0" />
+            <element signature="e#837#1012#0" />
+            <element signature="e#1355#1676#0" />
+            <element signature="e#1685#2059#0" />
+            <element signature="e#2068#2568#0" />
+            <element signature="e#2577#3274#0" />
+            <element signature="e#4486#4807#0" />
+            <element signature="e#5127#5461#0" />
+            <element signature="e#5544#5864#0" />
+            <element signature="e#5933#7276#0" />
+            <element signature="e#5739#6352#0" />
+            <element signature="e#6110#6450#0" />
+            <element signature="e#6270#6440#0" />
+            <element signature="e#6482#6520#0" />
+            <element signature="e#6359#6969#0" />
+            <element signature="e#7231#7272#0" />
+            <element signature="e#7312#7808#0" />
+            <element signature="e#7435#7510#0" />
+            <element signature="e#7853#8098#0" />
+            <element signature="e#8138#9037#0" />
+            <element signature="e#8245#8475#0" />
+            <element signature="e#8481#9013#0" />
+            <element signature="e#8523#8767#0" />
+            <element signature="e#8779#9007#0" />
+            <element signature="e#8227#8644#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
+    <entry file="file://$PROJECT_DIR$/src/styles/planterDetail/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="225" column="27" lean-forward="true" selection-start-line="225" selection-start-column="27" selection-end-line="225" selection-end-column="27" />
+        <state relative-caret-position="74">
+          <caret line="185" column="10" selection-start-line="185" selection-start-column="10" selection-end-line="185" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/planterDetail/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="169" column="1" lean-forward="true" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#319#631#0" />
-            <element signature="e#3161#3173#0" />
-            <element signature="e#5694#7585#0" />
-            <element signature="e#6204#6918#0" />
-            <element signature="e#8214#8925#0" />
-            <element signature="e#7924#8064#0" />
-            <element signature="e#8022#8205#0" />
-            <element signature="e#8214#8442#0" />
+            <element signature="e#4#38#0" />
+            <element signature="e#44#84#0" />
+            <element signature="e#691#2730#0" />
+            <element signature="e#1724#2455#0" />
+            <element signature="e#2467#2728#0" />
+            <element signature="e#2750#2858#0" />
+            <element signature="e#2865#2973#0" />
+            <element signature="e#2999#3117#0" />
+            <element signature="e#3129#3243#0" />
+            <element signature="e#3254#3337#0" />
+            <element signature="e#3349#3566#0" />
+            <element signature="e#3577#3659#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/classOptionPage.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="40" column="77" lean-forward="true" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+        <state relative-caret-position="25">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
           <folding>
+            <element signature="n#block#0;n#view#0;n#template#0;n#!!top" />
             <element signature="n#block#1;n#view#1;n#view#0;n#block#1;n#view#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#scroll-view#1;n#block#1;n#view#1;n#view#0;n#block#1;n#view#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/classOptionPage/index.js">
+    <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="334" column="31" lean-forward="true" selection-start-line="334" selection-start-column="31" selection-end-line="334" selection-end-column="31" />
+        <state relative-caret-position="200">
+          <caret line="83" column="19" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#766#1122#0" />
-            <element signature="e#2651#3540#0" />
-            <element signature="e#2950#2972#0" />
-            <element signature="e#3115#3137#0" />
-            <element signature="e#3099#3357#0" />
-            <element signature="e#3598#3714#0" />
-            <element signature="e#4035#4369#0" />
-            <element signature="e#4168#4339#0" />
-            <element signature="e#4452#4772#0" />
-            <element signature="e#4841#6184#0" />
-            <element signature="e#5710#6320#0" />
-            <element signature="e#6220#6716#0" />
-            <element signature="e#6343#6418#0" />
-            <element signature="e#6455#6505#0" />
-            <element signature="e#6761#7006#0" />
-            <element signature="e#6808#6855#0" />
-            <element signature="e#6891#6983#0" />
+            <element signature="e#319#631#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/studentAttendance.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#view#0;n#block#1;n#view#2;n#view#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/studentAttendance/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="59" column="11" selection-start-line="59" selection-start-column="11" selection-end-line="59" selection-end-column="11" />
+          <folding>
+            <element signature="e#10#89#0" />
+            <element signature="e#116#667#0" />
+            <element signature="e#234#454#0" />
+            <element signature="e#470#559#0" />
+            <element signature="e#576#665#0" />
+            <element signature="e#753#778#0" />
+            <element signature="e#784#810#0" />
+            <element signature="e#816#843#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/studentAttendance/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="77" column="1" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="e#11#82#0" />
+            <element signature="e#90#175#0" />
+            <element signature="e#186#212#0" />
+            <element signature="e#224#286#0" />
+            <element signature="e#303#381#0" />
+            <element signature="e#401#419#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/recordPage/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding>
+            <element signature="e#89#173#0" />
+            <element signature="e#183#218#0" />
+            <element signature="e#716#737#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recordPage.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/recordPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1190">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

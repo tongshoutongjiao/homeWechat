@@ -30,12 +30,12 @@
 				<view class="dorm-style">
 					<block wx:if="{{selectedOptions==='dorm'}}">
 						<scroll-view scroll-Y="true" class="  left-part bg-color">
-							<view wx:for="{{dormData.dormNumberList}}"  class="{{selectDormNumber==item.index?'selected':''}}" data-index="{{item.index}}" data-floor-id="{{item.floorId}}" bindtap="clickGetListInfo" data-select-type="dormNumber" >
+							<view wx:for="{{dormData.dormNumberList}}"  class="{{selectDormNumber==item.index?'selected':''}}" data-index="{{item.index}}" data-floor-id="{{item.floorId}}" bindtap="clickGetListInfo" data-select-type="dormNumber" data-floor-name="{{item.floorName}}">
 								{{item.floorName}}
 							</view>
 						</scroll-view>
 						<scroll-view scroll-Y="true" class="middle-part bg-color">
-							<view wx:for="{{dormData.floorNameList}}" class="{{selectLayer===item.index?'selected':''}}" data-layer-id="{{item.layerId}}" data-index="{{item.index}}" data-select-type="floor" bindtap="clickGetListInfo" >{{item.layerName}}</view>
+							<view wx:for="{{dormData.floorNameList}}" class="{{selectLayer===item.index?'selected':''}}"  data-layer-name="{{item.layerName}}" data-layer-id="{{item.layerId}}" data-index="{{item.index}}" data-select-type="floor" bindtap="clickGetListInfo" >{{item.layerName}}</view>
 						</scroll-view>
 						<scroll-view scroll-Y="true" class="right-part">
 							<view wx:for="{{dormData.dormNameList}}" data-dorm-name="{{item.dormName}}" data-dorm-id="{{item.dormId}}" data-select-type="dormRoom" bindtap="clickGetListInfo">

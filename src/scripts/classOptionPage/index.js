@@ -26,26 +26,13 @@ export default class Index extends wepy.page {
       layerId: '',
       gradeId: 'all',
     },// 学校  宿舍楼 宿舍id
-    contentObj: {},
+    contentObj: {},// 所有用户选择过的内容，
     dormInfo: {
       nodeType: 'school4Dorm',
     },
     dormData: {
-      dormNumberList: [
-        {
-          floorName: '1号楼男生',
-          floorId: '0'
-        }
-
-
-      ],// 楼号
-      floorNameList: [
-        {
-          layerId: '0',
-          layerName: '108层',
-          index: 0
-        }
-      ],// 楼层
+      dormNumberList: [],// 楼号
+      floorNameList: [],// 楼层
       dormNameList: [
         {
           dormId: 'all',
@@ -62,48 +49,49 @@ export default class Index extends wepy.page {
       let dataObj = e.currentTarget.dataset,
         selectType = dataObj.selectType,
         index = dataObj.index,
-        data = this.dormData;
+        data = this.dormData,
+        contentObj = this.contentObj,
+        idObj = this.idObj;
       switch (selectType) {
         case 'grade':
           console.log('点击对应的年级信息');
           let gradeId = dataObj.gradeId,
             gradeName = dataObj.gradeName;
           this.selectGrade = index;
-          this.idObj.gradeId = gradeId;
-          this.contentObj.gradeName = gradeName;
           this.classList = this.gradesList[index].list;
+          idObj.gradeId = gradeId;
+          contentObj.gradeName = gradeName;
           break;
         case 'dormNumber':
           this.selectDormNumber = index;
           this.selectLayer = 0;
-          this.idObj.floorId = dataObj.floorId;
-          this.idObj.layerId = 'all';
           data.floorNameList = data.dormNumberList[index].list;
           this.dormData.dormNameList = [{dormId: 'all', dormName: '全部'}];
+          idObj.floorId = dataObj.floorId;
+          idObj.layerId = 'all';
+          contentObj.floorName = dataObj.floorName;
           break;
         case 'floor':
-          this.idObj.layerId = dataObj.layerId;
-          this.idObj.schoolId = this.schoolId;
           this.selectLayer = index;
           if (dataObj.layerId === 'all') {
             this.dormData.dormNameList = [{dormId: 'all', dormName: '全部'}];
-            return;
           }
-          // 根据楼层号获取动画宿舍号
-          this.getDormNumList(this.idObj);
+          idObj.layerId = dataObj.layerId;
+          idObj.schoolId = this.schoolId;
+          contentObj.layerName = dataObj.layerName;
+          console.log('查看楼层号');
+          console.log(dataObj.layerId);
+          console.log(idObj);
+          // 根据当前楼层号获取宿舍号
+          this.getDormNumList(idObj);
           break;
         case 'dormRoom':
           console.log('点击宿舍号');
           this.idObj.dormId = dataObj.dormId;
-          console.log(this.idObj);
           if (dataObj.dormId === 'all') {
-            console.log('4种情况可能按照学校查询，也可能按照宿舍楼查询，可能按照楼层查询,还可能按照宿舍号查询');
-
-            //
+            console.log('4种情况可能按照学校查询，3也可能按照宿舍楼查询，2可能按照楼层查询');
             this.judgeQueryType();
-
           }
-
           else {
             console.log('只能是按照宿舍号查询');
             this.idObj.gradeId = '';
@@ -112,11 +100,11 @@ export default class Index extends wepy.page {
             for (let key in this.idObj) {
               this.dormInfo[key] = this.idObj[key]
             }
-            this.$parent.globalData.dormInfo = this.dormInfo;
-            console.log(this.$parent.globalData.dormInfo);
           }
-
-
+          this.$parent.globalData.dormInfo = this.dormInfo;
+          wepy.navigateBack({
+            delta: 1
+          });
           break;
       }
       this.$apply();
@@ -125,37 +113,23 @@ export default class Index extends wepy.page {
     // 点击对应的班级信息
     clickSelectInfo: function (e) {
       let dataset = e.currentTarget.dataset,
-        classId = dataset.classId,
-        idObj = this.idObj,
-        contentObj = this.contentObj,
+        dormInfo=this.dormInfo,
         selectedInfo = {};
-      if (dataset.className === '全部') {
-        //  只需要传递schoolId 和gradeId gradeName
-        if (idObj.gradeId !== 'all') {
-          selectedInfo.schoolId = idObj.schoolId;
-          selectedInfo.gradeId = idObj.gradeId;
-          selectedInfo.content = contentObj.gradeName;
-        }
-        else {
-          selectedInfo.schoolId = idObj.schoolId;
-          selectedInfo.gradeId = '';
-          selectedInfo.content = '全校';
-          selectedInfo.classId = '';
-        }
+
+      switch (this.typeId) {
+        case '1':
+          console.log('处理选中的数据');
+          this.operateClassData(dataset,selectedInfo,'selectedInfo');
+          break;
+        case '3':
+          console.log('宿舍考勤');
+          this.operateClassData(dataset,dormInfo,'dormInfo');
+          break;
+
       }
-      else {
-        // 需要传递三个参数  schoolId gradeId  classId className
-        selectedInfo.schoolId = idObj.schoolId;
-        selectedInfo.gradeId = idObj.gradeId;
-        selectedInfo.classId = dataset.classId;
-        selectedInfo.content = dataset.className;
-      }
-      this.$parent.globalData.selectedInfo = selectedInfo;
-      wepy.navigateBack({
-        delta: 1
-      });
       this.$apply();
     },
+
     // 点击切换选择条件
     clickSelectCondition: function (e) {
       let type = e.currentTarget.dataset.selectType;
@@ -180,34 +154,18 @@ export default class Index extends wepy.page {
     this.typeId = e.typeId;
     this.idObj.schoolId = e.schoolId;
 
-    // 确认之前页面是出入校考勤还是宿舍考勤
-    // 如果是出入校考勤，则按年级班级正常显示
-    // 如果是宿舍考勤的话，则需要根据学校id获取到学校的宿舍楼信息
-
-
     setTimeout(e => this.initData());
   }
 
   initData() {
     // 进入页面首先清除之前存入全局变量中的数据
     delete this.$parent.globalData.selectedInfo;
+    delete this.$parent.globalData.dormInfo;
     let typeId = this.typeId;
 
     // typeId 考勤类型
-    switch (typeId) {
-      case '1':
-        console.log('班级考勤');
-        break;
-      case '3':
-        console.log('宿舍考勤');
-        this.getDormInfo();
-        break;
-    }
+    typeId === '3' && this.getDormInfo();
     this.getGradesInfo();
-  }
-
-  onShow() {
-    console.log('show !');
   }
 
   // 获取年级信息
@@ -291,10 +249,7 @@ export default class Index extends wepy.page {
         schoolId: '166'
       }
     });
-
-    if (res.data.result === 200) {
-      data.dormNumberList = res.data.data;
-    }
+    res.data.result === 200 && (data.dormNumberList = res.data.data);
     let targetObj = this.handleResponseData(data.dormNumberList, this.allFloorList, resType);
     data.floorNameList = targetObj.classifyData;
     data.dormNumberList = targetObj.resData;
@@ -307,19 +262,14 @@ export default class Index extends wepy.page {
       method: 'POST',
       data: idObj
     });
-    if (res.data.result === 200) {
-      this.dormData.dormNameList = this.dormData.dormNameList.concat(res.data.data);
-    }
-
-
+    res.data.result === 200 && (this.dormData.dormNameList = this.dormData.dormNameList.concat(res.data.data));
     this.$apply();
   }
 
   // 判断按照宿舍考勤的查找条件
   judgeQueryType() {
-
+    let contentObj = this.contentObj;
     console.log(this.idObj);
-
     if (this.idObj.floorId === 'all') {
       console.log('按照学校查找的');
       this.idObj.gradeId = '';
@@ -328,23 +278,66 @@ export default class Index extends wepy.page {
       for (let key in this.idObj) {
         this.dormInfo[key] = this.idObj[key]
       }
-      this.$parent.globalData.dormInfo = this.dormInfo;
-      console.log(this.$parent.globalData.dormInfo);
     } else {
       if (this.idObj.layerId === 'all') {
         console.log('按照宿舍楼查找');
         this.dormInfo.queryType = '3';
-        this.dormInfo.content = '全校';
-      } else {
+        // 宿舍楼
+        this.dormInfo.content = contentObj.floorName;
+        for (let key in this.idObj) {
+          this.dormInfo[key] = this.idObj[key]
+        }
+      }
+      else {
         console.log('按照楼层查找');
         this.dormInfo.queryType = '2';
-        this.dormInfo.content = '全校';
+        this.dormInfo.content = contentObj.layerName;
+        for (let key in this.idObj) {
+          this.dormInfo[key] = this.idObj[key]
+        }
       }
-
     }
     this.$apply();
+  }
 
-
+//   选择班级时，判断是出入校还是宿舍
+  operateClassData(data,selectedInfo,name){
+   let idObj = this.idObj,
+     contentObj = this.contentObj,
+     queryType;
+    if (data.className === '全部') {
+      //  只需要传递schoolId 和gradeId gradeName
+      if (idObj.gradeId !== 'all'){
+        selectedInfo.schoolId = idObj.schoolId;
+        selectedInfo.gradeId = idObj.gradeId;
+        selectedInfo.content = contentObj.gradeName;
+      }
+      else {
+        selectedInfo.schoolId = idObj.schoolId;
+        selectedInfo.gradeId = '';
+        selectedInfo.content = '全校';
+        selectedInfo.classId = '';
+      }
+    }
+    else {
+      // 需要传递三个参数  schoolId gradeId  classId className
+      selectedInfo.schoolId = idObj.schoolId;
+      selectedInfo.gradeId = idObj.gradeId;
+      selectedInfo.classId = data.classId;
+      selectedInfo.content = data.className;
+    }
+    // 按班级查寝（3：全校 2：年级 1：班级）
+    if(name==='dormInfo'){
+      console.log(selectedInfo);
+      queryType=data.className !== '全部'?'1':idObj.gradeId !== 'all'?'2':'3';
+      console.log(queryType);
+      selectedInfo.queryType=queryType;
+    }
+    this.$parent.globalData[`${name}`] = selectedInfo;
+    wepy.navigateBack({
+      delta: 1
+    });
+    this.$apply();
   }
 
 }
