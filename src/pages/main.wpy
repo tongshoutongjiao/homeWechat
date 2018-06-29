@@ -1,68 +1,78 @@
 <template>
-  <view class="icon-box">
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/contribution_rank_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">贡献排名</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/performance">
-      <image src="../images/my_performance.png" class="main-icon"></image>
-      <view class="icon-title">我的业绩</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="schoolList">
-      <image src="../images/school_list.png" class="main-icon"></image>
-      <view class="icon-title">学校列表</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/school_card_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">学校发卡</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生管理&page_url=/pages/studentManage">
-      <image src="../images/student_manage.png" class="main-icon"></image>
-      <view class="icon-title">学生管理</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生考勤&page_url=/pages/studentAttendance">
-      <image src="../images/student_check.png" class="main-icon"></image>
-      <view class="icon-title">学生考勤</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
-      <image src="../images/business_open.png" class="main-icon"></image>
-      <view class="icon-title">业务开通</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/market_rank_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">销售排名</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">运维排名</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=设备管理&page_url=/pages/equipManage">
-      <image src="../images/equipment_manage.png" class="main-icon"></image>
-      <view class="icon-title">设备管理</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=批量拍照&page_url=/pages/schoolAlbum">
-      <image src="../images/batch_photo.png" class="main-icon"></image>
-      <view class="icon-title">批量拍照</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/repository_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">知识库</view>
-    </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/school_implement_disabled.png" class="main-icon"></image>
-      <view class="icon-title disabled">新校实施</view>
-    </view>
-  </view>
-  <view class="log-out" catchtap="logOut">
-    <image src="../images/quit_icon.png" alt="注销登录"></image>
-  </view>
-  <toast />
+	<view class="header">
+		<view class="info-part">
+			<view><image src="../images/voice_icon.png"></image></view>
+			<view>迎新期间有{{count}}人照片审核未通过</view>
+			<view class="blue-style" bindtap="navigateToUploadDetail">查看详情</view>
+		</view>
+		<view class="search-input" bindtap="handleSearch" >
+			<image src="../images/search_icon.png" style="width: 30rpx; height: 30rpx; margin-right: 10rpx;"></image>
+			<text>请输入卡号或者手机号搜索学生</text>
+		</view>
+	</view>
+	<view class="icon-box">
+		<view class="icon-list" bindtap="toPage" data-page="/pages/performance">
+			<image src="../images/my_performance.png" class="main-icon"></image>
+			<view class="icon-title">我的业绩</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="schoolList">
+			<image src="../images/school_list.png" class="main-icon"></image>
+			<view class="icon-title">学校列表</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生管理&page_url=/pages/studentManage">
+			<image src="../images/student_manage.png" class="main-icon"></image>
+			<view class="icon-title">学生管理</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="">
+			<image src="../images/school_card_disabled.png" class="main-icon"></image>
+			<view class="icon-title disabled">学校发卡</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
+			<image src="../images/business_open.png" class="main-icon"></image>
+			<view class="icon-title">业务开通</view>
+		</view>
+
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生考勤&page_url=/pages/studentAttendance">
+			<image src="../images/student_check.png" class="main-icon"></image>
+			<view class="icon-title">学生考勤</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=批量拍照&page_url=/pages/schoolAlbum">
+			<image src="../images/batch_photo.png" class="main-icon"></image>
+			<view class="icon-title">批量拍照</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="">
+			<image src="../images/market_rank_disabled.png" class="main-icon"></image>
+			<view class="icon-title disabled">销售排名</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="">
+			<image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
+			<view class="icon-title disabled">运维排名</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=设备管理&page_url=/pages/equipManage">
+			<image src="../images/equipment_manage.png" class="main-icon"></image>
+			<view class="icon-title">设备管理</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=新校实施&page_url=/pages/schoolEffect">
+			<image src="../images/school_implement.png" class="main-icon"></image>
+			<view class="icon-title disabled">新校实施</view>
+		</view>
+		<view class="icon-list" bindtap="toPage" data-page="">
+			<image src="../images/repository_disabled.png" class="main-icon"></image>
+			<view class="icon-title disabled">知识库</view>
+		</view>
+
+	</view>
+	<view class="log-out" catchtap="logOut">
+		<image src="../images/quit_icon.png" alt="注销登录"></image>
+	</view>
+	<toast/>
 </template>
 
 <script>
   import wepy from 'wepy'
   import api from '../api.js'
   import Toast from 'wepy-com-toast'
+
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '首页'
@@ -70,11 +80,17 @@
     components = {
       toast: Toast
     }
+    data={
+      count:0
+    }
+
     async onLoad() {
       let userId = wepy.getStorageSync('userId')
       let getTypeInfo = await api.getType({method: 'POST', data: {userId: userId}})
-      wepy.setStorageSync('userType', getTypeInfo.data.userType)
+      wepy.setStorageSync('userType', getTypeInfo.data.userType);
+      this.getFailStudentList()
     }
+
     methods = {
       toPage(e) {
         let _page = e.currentTarget.dataset.page
@@ -85,8 +101,19 @@
           return false
         }
         wepy.navigateTo({url: _page})
+      },
+      handleSearch(e) {
+        wepy.navigateTo({
+          url: `/pages/searchStudent`
+        });
+      },
+      navigateToUploadDetail(e){
+        wepy.navigateTo({
+          url: `/pages/uploadDetail`
+        });
       }
     }
+
     async logOut(e) {
       var _this = this
       let res = await wepy.showModal({
@@ -96,6 +123,7 @@
         _this.sureLogOut()
       }
     }
+
     async sureLogOut() {
       let result = await api.logout({
         method: 'POST',
@@ -114,62 +142,140 @@
         })
       }
     }
+
+    async getFailStudentList(){
+      console.log('获取未通过审核学生列表');
+      let userId=wepy.getStorageSync('userId');
+      console.log(userId);
+     let resData=await api.getFailedStudentList({
+	     method:'POST',
+	     data:{
+	       userId
+	     }
+     });
+      console.log(resData.data);
+	    if(resData.data.result===200){
+        this.$parent.globalData.schoolListData=resData.data.schoolList;
+	       this.calculateCount(resData.data.schoolList);
+	    }
+    }
+    calculateCount(data){
+      let count=null;
+      data.forEach(item=>{
+        count+=item.auditCount
+      });
+      console.log(count);
+      this.count=count;
+      this.$apply();
+    }
+
+
   }
 </script>
 
 <style>
-  .icon-box {
-    display: flex;
-    justify-content: flex-start;
-    flex-flow: wrap;
-  }
-  .icon-list {
-    width: 33.3%;
-    text-align: center;
-    color: #181818;
-    font-size: 15px;
-  }
-  .main-icon {
-    width: 84rpx;
-    height: 72rpx;
-    display: block;
-    margin: 0 auto;
-    margin-top: 60rpx;
-  }
-  .icon-title {
-    line-height: 68rpx;
-    color: #575759;
-    font-size: 14px;
-  }
-  /*--------------------- 注销登录 -----------------------------*/
-  .log-out {
-    display: flex;
-    position: fixed;
-    bottom: 80rpx;
-    right: 30rpx;
-    width: 100rpx;
-    height: 100rpx;
-    background: rgba(52,140,255,.8);
-    border-radius: 100%;
-    align-items: center;
-    box-shadow:0 4px 10px rgba(52,141,255,.81);
-  }
-  .log-out image {
-    width: 60rpx;
-    height: 54rpx;
-    margin-left: 16rpx;
-  }
-  /*提示信息*/
-  .wetoast__bd {
-    min-width: 200px;
-    min-height: 0;
-    padding: 10px;
-  }
-  /*提示信息标题*/
-  .wetoast__bd__title {
-    font-size: 14px;
-  }
-  .disabled {
-    color: #8e8e93;
-  }
+	.icon-box {
+		display: flex;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+
+	.icon-list {
+		width: 33.3%;
+		text-align: center;
+		color: #181818;
+		font-size: 15px;
+	}
+
+	.main-icon {
+		width: 84rpx;
+		height: 72rpx;
+		display: block;
+		margin: 0 auto;
+		margin-top: 60rpx;
+	}
+
+	.icon-title {
+		line-height: 68rpx;
+		color: #575759;
+		font-size: 14px;
+	}
+
+	/*--------------------- 注销登录 -----------------------------*/
+	.log-out {
+		display: flex;
+		position: fixed;
+		bottom: 80rpx;
+		right: 30rpx;
+		width: 100rpx;
+		height: 100rpx;
+		background: rgba(52, 140, 255, .8);
+		border-radius: 100%;
+		align-items: center;
+		box-shadow: 0 4px 10px rgba(52, 141, 255, .81);
+	}
+
+	.log-out image {
+		width: 60rpx;
+		height: 54rpx;
+		margin-left: 16rpx;
+	}
+
+	/*提示信息*/
+	.wetoast__bd {
+		min-width: 200px;
+		min-height: 0;
+		padding: 10px;
+	}
+
+	/*提示信息标题*/
+	.wetoast__bd__title {
+		font-size: 14px;
+	}
+
+	.disabled {
+		color: #8e8e93;
+	}
+	/*搜索框*/
+	.header {
+		width: 100%;
+		height: 232rpx;
+	}
+	.search-input {
+		width: 690rpx;
+		height: 80rpx;
+		margin: 20rpx 30rpx;
+		box-shadow: 0 1px 10px rgba(142,142,147,0.15);
+		border-radius: 40rpx 40rpx;
+		font-size: 28rpx;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+		color: rgb(142,142,147);
+
+	}
+
+	/* 头部提示信息*/
+	.info-part{
+		display: flex;
+		height: 112rpx;
+		line-height: 112rpx;
+		box-sizing: border-box;
+		padding-left: 30rpx;
+		font-size: 30rpx;
+	}
+	.info-part image{
+		display: inline-block;
+		width: 34rpx;
+		height: 30rpx;
+		margin-right: 20rpx;
+		margin-left: 34rpx;
+		vertical-align: middle;
+	}
+	.info-part .blue-style{
+		color: #0077ff;
+		margin-left:10rpx;
+		font-family: PingFangSC-Medium;
+	}
 </style>

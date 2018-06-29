@@ -24,6 +24,14 @@
 			<view>安装位置</view>
 			<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress}}" >
 		</view>
+		<view class="default ">
+			<view>地图定位</view>
+			<view style="float: right;">{{latFlag&&longFlag?'已定位':'未定位'}}
+				<view class="locationIcon" bindtap="clickNavigateToMapPage" data-school-id="{{repairData.schoolId}}" data-location-flag="{{latFlag&&longFlag?true:false}}" data-equip-id="{{repairData.terminalId}}">
+					<image src="/images/location_icon.jpg"></image>
+				</view>
+			</view>
+		</view>
 		<view class=" default date-style">
 			<view>接单日期</view>
 			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">

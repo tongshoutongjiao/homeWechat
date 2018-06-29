@@ -213,6 +213,7 @@
   <block wx:if="{{cameraFlag}}">
     <camera-com></camera-com>
   </block>
+  <view>{{tempUrl}}</view>
 
 </template>
 <script src="../scripts/addStudent/index.js"></script>

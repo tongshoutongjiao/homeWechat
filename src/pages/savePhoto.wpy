@@ -1,0 +1,53 @@
+<template>
+	<view class="container">
+		<view class="save album " bindtap="clickLoadImg">点击从相册上传图片</view>
+		<view class="save takePhoto" bindtap="clickTakePhoto">点击用手机拍照</view>
+
+		<!--相机组件-->
+		<view class="camera-wrap flex" hidden="{{hidden}}">
+			<camera device-position="{{devicePosition}}" flash="off" binderror="error" hidden="{{hidden}}">
+				<cover-image class="camera-mast" src="/asset/pe_icon.png"></cover-image>
+			</camera>
+			<view class="flex flex-item camera-controls" hidden="{{hidden}}">
+				<view class="flex-item" bindtap="handleCancel">
+					<image src="/asset/cancel_icon.png" mode="aspectFit" style="width: 64rpx"></image>
+				</view>
+				<view class="flex-item" bindtap="handleTakePhoto">
+					<image src="/asset/tp_icon.png" mode="aspectFit" style="width: 128rpx"></image>
+				</view>
+				<view class="flex-item" bindtap="handleSwitchCamera">
+					<image src="/asset/rl_icon.png" mode="aspectFit" style="width: 64rpx"></image>
+				</view>
+			</view>
+		</view>
+		<!--相机组件-->
+
+
+		<!--图片区域-->
+		<view  class="imgWrapper">
+			<image wx:for="{{albumList}}" style="width: 100px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}" src="{{item.path}}"></image>
+		</view>
+
+		<view class="imgWrapper">
+			<image wx:for="{{photoList}}" style="width: 100px; height: 100px; background-color: #eeeeee;" mode="{{item.mode}}"
+			       src="{{item.url}}"></image>
+		</view>
+		<!--图片区域-->
+
+
+		<!--操作区域-->
+		<view class="operate">
+			<view class="item" bindtap="showPhoto" data-photo-type="album">相册图片</view>
+			<view class="item" bindtap="showPhoto" data-photo-type="photo">拍照图片</view>
+			<view class="item" bindtap="clearLocalStorage">清除图片缓存</view>
+		</view>
+
+		<view>缓存图片的长度{{photoLength}}</view>
+		<view>相册图片所需时长:{{albumTime||'0'}}秒</view>
+		<view>拍照图片所需时长:{{cameraTime||'0'}}秒</view>
+		<!--操作区域-->
+
+	</view>
+</template>
+<script src="../scripts/savePhoto/index.js"></script>
+<style src="../styles/savePhoto/index.css"></style>

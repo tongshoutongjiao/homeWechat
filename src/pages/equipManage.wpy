@@ -40,8 +40,6 @@
 				<view class="none">暂无相关设备数据</view>
 
 			</block>
-
-
 		</scroll-view>
 
 		<view class="btomView" wx:if="{{identify==='repairMan'}}" >

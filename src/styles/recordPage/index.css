@@ -24,6 +24,12 @@
   text-align: center;
   color: #575759 ;
   font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item-list .gray-style {
+  color: #d0d0d4;
 }
 .item-list .picker {
   position: relative;
@@ -41,6 +47,17 @@
   border-left: 10rpx solid transparent;
   border-right: 10rpx solid transparent;
 }
+.load {
+  text-align: center;
+  font-size: 28rpx;
+  color: #8e8e93;
+}
 .card-time {
   color: #181818;
+}
+.null-text {
+  text-align: center;
+  font-size: 28rpx;
+  color: #8e8e93;
+  margin-top: 300rpx;
 }

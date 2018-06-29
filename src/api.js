@@ -4,7 +4,7 @@ import querystring from 'querystring'
 let requestLength = 0;
 
 const wxRequest = async (params = {}, url) => {
-  requestLength ++ ;
+  requestLength++;
   if (true) {
     wx.showLoading({
       title: '加载中',
@@ -59,11 +59,12 @@ const wxRequest = async (params = {}, url) => {
   } */
   return res
 };
-//const apiMall = 'http://192.168.5.125:8380' // 开发（晨宇）
+ // const apiMall = 'http://192.168.5.128:8380'; // 开发（晨宇）
+ const apiMall = 'http://192.168.5.128:8080'; // 开发（晨宇 设备管理）
 // const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
-//const apiMall = 'http://192.168.5.131:8380';
-//        const apiMall = 'https://api.967111.com'; // 正式
- const apiMall = 'http://192.168.5.122:8080'; // 广越
+// const apiMall = 'http://192.168.5.131:8380';
+       // const apiMall = 'https://api.967111.com'; // 正式
+ // const apiMall = 'http://192.168.5.122:8080'; // 广越
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
@@ -118,24 +119,31 @@ const addNewStudent = params => wxRequest(params, apiMall + '/manageHelper/addSt
 const getRegionProvince = params => wxRequest(params, apiMall + '/region/listProvince.do');
 const getRegionCity = params => wxRequest(params, apiMall + '/region/listCity.do');
 const getRegionCounty = params => wxRequest(params, apiMall + '/region/listRegion.do');
-const getEquipListBySchoolId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalList.do');
-const getRepairRecordByTerminalId=params=>wxRequest(params,apiMall+'/manageHelper/machine/terminalRepairList.do');
-const getUserIdentifyById=params=>wxRequest(params,apiMall+'/manageHelper/machine/checkUserType.do');
-const getGroupPersonById=params=>wxRequest(params,apiMall+'/manageHelper/machine/groupManList.do');
-const updateEquipInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateOrInsertTerminalSer.do');
-const reformatEquipments=params=>wxRequest(params,apiMall+'/manageHelper/machine/operationTerminal.do');
-const getTerminalType=params=>wxRequest(params,apiMall+'/manageHelper/machine/seachTerminalType.do');
-const installCurEquip=params=>wxRequest(params,apiMall+'/manageHelper/machine/installTerminal.do');
-const getEquipInfoById=params=>wxRequest(params,apiMall+'/manageHelper/machine/getTerminalById.do');
-const saveEquipAddressInfo=params=>wxRequest(params,apiMall+'/manageHelper/machine/updateTerminalReAdrById.do');
-const getAttendanceMethods=params=>wxRequest(params,apiMall+'/manageHelper/kaoqin/listKaoqinType.do');
-const getCardRecord=params=>wxRequest(params,apiMall+'/teacher/kaoqin/listKaoqinSumNew.do');
-const getDormInfo=params=>wxRequest(params,apiMall+'/manageHelper/kaoqin/getAllSchoolFloorInfo.do');
-const getDormAttendanceInfo=params=>wxRequest(params,apiMall+'/dorm/countDormChecking.do');
-const getDormListByFloorId=params=>wxRequest(params,apiMall+'/dorm/getTeacherDormInfo.do');
+const getEquipListBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/machine/terminalList.do');
+const getRepairRecordByTerminalId = params => wxRequest(params, apiMall + '/manageHelper/machine/terminalRepairList.do');
+const getUserIdentifyById = params => wxRequest(params, apiMall + '/manageHelper/machine/checkUserType.do');
+const getGroupPersonById = params => wxRequest(params, apiMall + '/manageHelper/machine/groupManList.do');
+const updateEquipInfo = params => wxRequest(params, apiMall + '/manageHelper/machine/updateOrInsertTerminalSer.do');
+const reformatEquipments = params => wxRequest(params, apiMall + '/manageHelper/machine/operationTerminal.do');
+const getTerminalType = params => wxRequest(params, apiMall + '/manageHelper/machine/seachTerminalType.do');
+const installCurEquip = params => wxRequest(params, apiMall + '/manageHelper/machine/installTerminal.do');
+const getEquipInfoById = params => wxRequest(params, apiMall + '/manageHelper/machine/getTerminalById.do');
+const saveEquipAddressInfo = params => wxRequest(params, apiMall + '/manageHelper/machine/updateTerminalReAdrById.do');
+const getAttendanceMethods = params => wxRequest(params, apiMall + '/manageHelper/kaoqin/listKaoqinType.do');
+const getCardRecord = params => wxRequest(params, apiMall + '/teacher/kaoqin/listKaoqinSumNew.do');
+const getDormInfo = params => wxRequest(params, apiMall + '/manageHelper/kaoqin/getAllSchoolFloorInfo.do');
+const getDormAttendanceInfo = params => wxRequest(params, apiMall + '/dorm/countDormChecking.do');
+const getDormListByFloorId = params => wxRequest(params, apiMall + '/dorm/getTeacherDormInfo.do');
+const dormRestData = params => wxRequest(params, apiMall + '/dorm/infoDormRestChecking.do');
+const InOutRestData = params => wxRequest(params, apiMall + '/teacher/kaoqin/infoSchoolRestChecking.do');
+const InOutData = params => wxRequest(params, apiMall + '/teacher/kaoqin/listGateKaoqinDetailNew.do');
+const dormData = params => wxRequest(params, apiMall + '/dorm/detailDormChecking.do');
+const searchStudentByCardOrPhone = params => wxRequest(params, apiMall + '/manageHelper/listStudentByCardOrPhone.do');
+const getEquipListInfoBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/machine/seachLonlatBySchool.do');
+const updateEquipInfoByLocation = params => wxRequest(params, apiMall + '/manageHelper/machine/updateTerminalLongLatById.do');
+const getFailedStudentList = params => wxRequest(params, apiMall + '/manageHelper/getAuditCountList.do');
 
-
-const addStudentPhoto= async (params) => {
+const addStudentPhoto = async (params) => {
   wepy.showLoading({
     title: '正在上传..',
     mask: true
@@ -159,16 +167,13 @@ const addStudentPhoto= async (params) => {
   return ret;
 };
 const uploadStudentPhoto = async (params) => {
-  wepy.showLoading({
-    title: '正在上传..',
-    mask: true
-  });
 
   const defaultParams = {
     platformType: 3,
     version: '1.0.0',
     preHand: 1
   };
+  console.log('上传请求函数上传请求函数')
 
   const ret = await wepy.uploadFile({
     url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
@@ -179,10 +184,8 @@ const uploadStudentPhoto = async (params) => {
   });
 
 
-  wepy.hideLoading();
   return ret;
 };
-
 
 
 module.exports = {
@@ -252,6 +255,13 @@ module.exports = {
   getCardRecord,
   getDormInfo,
   getDormAttendanceInfo,
-  getDormListByFloorId
-
+  getDormListByFloorId,
+  dormRestData,
+  InOutRestData,
+  InOutData,
+  dormData,
+  searchStudentByCardOrPhone,
+  getEquipListInfoBySchoolId,
+  updateEquipInfoByLocation,
+  getFailedStudentList
 };

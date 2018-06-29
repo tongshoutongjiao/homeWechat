@@ -60,7 +60,6 @@ export default class Index extends wepy.page {
   };
 
   methods = {
-
     // 安装日期
     bindStartDateChange: function (e) {
       this.date.startDate = e.detail.value;
@@ -268,6 +267,14 @@ export default class Index extends wepy.page {
     getSelectItem: function (e) {
       commonMethods.slideLargeImg(e, this);
     },
+
+    // 点击跳转地图定位页面
+    clickNavigateToMapPage: function (e) {
+      console.log('点击跳转到地图定位页面');
+      wepy.navigateTo({
+        url: `/pages/mapPage`
+      });
+    }
   };
 
   onLoad() {
@@ -469,8 +476,7 @@ export default class Index extends wepy.page {
     this.$apply()
   }
 
-//  回显图片添加索引
-
+  // 回显图片添加索引
   addImgIndex() {
     let farImgArray = this.imgUrlList.farImgUrlList,
       closeImgArray = this.imgUrlList.closeImgUrlList;

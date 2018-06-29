@@ -1,0 +1,67 @@
+.container {
+  padding-top: 40rpx;
+}
+.part {
+  box-sizing: border-box;
+  padding: 0 30rpx ;
+}
+.part .title {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx ;
+  color: #fff;
+  border-radius: 100rpx;
+  line-height: 70rpx;
+  background: #348cff;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.part .context {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 72rpx;
+  margin-bottom: 40rpx;
+}
+.part .context .number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 52rpx;
+  border: 2rpx solid #348cff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 52rpx;
+  font-size: 28rpx;
+  color: #348cff;
+}
+.part .desc {
+  font-size: 30rpx;
+  line-height: 50rpx;
+}
+.part .complete {
+  color: #358dff;
+}
+.part .gray-style {
+  color: #8e8e93;
+}
+.partTwo .title {
+  background: #feb10c;
+}
+.partTwo .context .number {
+  border: 2rpx solid #ffb10c;
+  color: #ffb10c;
+}
+.partTwo .complete {
+  color: #feb10c;
+}
+.partThree .title {
+  background: #ff7996;
+}
+.partThree .context .number {
+  border: 2rpx solid #ff7996;
+  color: #ff7996;
+}
+.partThree .complete {
+  color: #ff7996;
+}

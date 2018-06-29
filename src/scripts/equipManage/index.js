@@ -2,6 +2,7 @@ import wepy from 'wepy';
 import api from '../api';
 import * as Toolkit from '../utils/toolkit';
 
+
 export default class Index extends wepy.page {
   components = {};
   config = {
@@ -101,6 +102,12 @@ export default class Index extends wepy.page {
       let userIdentify = e.currentTarget.dataset.user;
       switch (userIdentify) {
         case 'repairMan':
+
+          // 测试
+          // wepy.navigateTo({
+          //   url: `/pages/repairDetail`
+          // });
+
           // 是否有维修单，有就显示，没有直接跳到新建维修单页面
 
           // 遍历所有的设备，获取到有选中状态设备的id
@@ -108,6 +115,13 @@ export default class Index extends wepy.page {
           that.judgeOrderList(e);
           break;
         case 'planter':
+
+
+          // 测试
+          // wepy.navigateTo({
+          //   url: `/pages/planterDetail`
+          // });
+
           this.navigatorToPlanterPage(e);
           break;
       }
@@ -149,6 +163,7 @@ export default class Index extends wepy.page {
     setTimeout(e => this.initData());
 
   }
+
   onShow() {
     console.log('show..');
 
@@ -156,7 +171,7 @@ export default class Index extends wepy.page {
     this.initData();
     //   返回这个页面时，刷新数据
     this.dialogFlag = true ? this.dialogFlag = false : '';
-    this.fixFlag=false;
+    this.fixFlag = false;
   }
 
   // 跳转进入维修详情页面
@@ -164,8 +179,11 @@ export default class Index extends wepy.page {
     this.$parent.globalData.curRepairData.schoolName = this.schoolName;
     this.$parent.globalData.curRepairData.schoolId = this.schoolId;
 
-    let str = Toolkit.jsonToParam(e.currentTarget.dataset);
+    console.log('全局变量当前维修数据');
+    console.log(this.$parent.globalData);
 
+
+    let str = Toolkit.jsonToParam(e.currentTarget.dataset);
     this.$navigate(`./repairDetail?` + str);
   }
 
@@ -176,6 +194,9 @@ export default class Index extends wepy.page {
       return item.active === true;
     });
     curEquip[0].schoolName = this.schoolName;
+
+    // 新增加的terminalId
+    curEquip[0].schoolId = this.schoolId;
 
     this.$parent.globalData.curPlantEquip = curEquip[0];
     wepy.navigateTo({
@@ -249,7 +270,50 @@ export default class Index extends wepy.page {
       }
     });
     console.log('当前学校的设备列表');
+
     this.equipInfo = res.statusCode === 200 ? res.data.data : [];
+
+    // console.log('假数据列表');
+    // this.equipInfo = [
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   },
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   },
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   },
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   },
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   },
+    //   {
+    //     id: '0',
+    //     installAddress: '十一号楼顶',
+    //     terminalNum: '1234545454',
+    //     isLogin: '1'
+    //   }
+    // ];
+
+
     this.equipInfo.forEach(function (item, index) {
       item.active = false;
       item.index = index;

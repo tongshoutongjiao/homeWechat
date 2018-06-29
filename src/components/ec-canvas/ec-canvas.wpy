@@ -8,9 +8,9 @@
 </template>
 
 <style>
-.charts-item {
-  height: 
-}
+/*.charts-item {*/
+  /*height: */
+/*}*/
 </style>
 
 <script>

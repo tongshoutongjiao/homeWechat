@@ -29,9 +29,7 @@ export default class Index extends wepy.page {
       kaoqinTypeId: 1,
       attendanceDate: '',
     },// 出入校考勤默认传递的数据
-
     recordData: [],// 考勤返回的数据
-
     attendStyle: {
       array: [
         {
@@ -42,12 +40,12 @@ export default class Index extends wepy.page {
           typeName: '宿舍考勤',
           typeId: 3
         }
-
       ],
       index: '0'
     },
     date: "06-04",
     nodeType: 'school4Dorm',// 判断按班级还是按宿舍楼 默认宿舍楼
+
   };
   events = {};
   methods = {
@@ -76,6 +74,24 @@ export default class Index extends wepy.page {
         // 考勤类型
         this.attendStyle.index = e.detail.value;
         cardRecordData.kaoqinTypeId = this.attendStyle.array[e.detail.value].typeId;
+
+        // 判断用户是否切换筛选条件，如果切换，则修改默认值，否则正常执行
+        if (typeId !== this.attendStyle.array[e.detail.value].typeId) {
+          this.attendanceObj.content = '全校';
+          let tempObj = {
+            gradeId: '',
+            classId: '',
+            layerId: '',
+            dormId: '',
+            floorId: '',
+            queryType: '4',
+            schoolId: this.schoolId
+          };
+          Object.assign(this.cardRecordData, tempObj);
+          Object.assign(dormInfo || {}, tempObj);
+          cardRecordData.kaoqinTypeId === 1 ? this.judgeGlobalData(selectedInfo, this.getCardRecord) : this.judgeGlobalData(dormInfo, this.getDormAttendanceInfo);
+          return;
+        }
         cardRecordData.kaoqinTypeId === 1 ? this.judgeGlobalData(selectedInfo, this.getCardRecord) : this.judgeGlobalData(dormInfo, this.getDormAttendanceInfo);
       }
       this.$apply();
@@ -85,11 +101,17 @@ export default class Index extends wepy.page {
     clickNavigateToRecordPage: function (e) {
       let navType = e.currentTarget.dataset.navigateType;
       this.navigateToRecordPage(e, navType)
+    },
+
+    //  点击搜索学校名字
+    handleSearch: function () {
+      wepy.navigateBack({
+        delta: 1
+      })
     }
   };
 
   async onLoad(e) {
-    console.log(e);
     this.schoolId = e.id;
 
     //  获取到当前的时间日期，年月日格式
@@ -101,6 +123,7 @@ export default class Index extends wepy.page {
 
   onShow() {
     console.log('show !');
+
     // 根据typeId 判断当前页面选择的数据
     this.handleDefaultSelectData();
   }
@@ -113,8 +136,6 @@ export default class Index extends wepy.page {
     let typeId = this.cardRecordData.kaoqinTypeId,
       selectedInfo = this.$parent.globalData.selectedInfo,
       dormInfo = this.$parent.globalData.dormInfo;
-    console.log('查看nodeType');
-    console.log(dormInfo);
     typeId == '1' ? this.judgeGlobalData(selectedInfo, this.getCardRecord) : this.judgeGlobalData(dormInfo, this.getDormAttendanceInfo);
     this.$apply();
   }
@@ -154,22 +175,26 @@ export default class Index extends wepy.page {
   async getCardRecord(self, optionObj) {
     let defaultObj = self.cardRecordData;
     defaultObj = optionObj ? Object.assign(defaultObj, optionObj) : defaultObj;
+    defaultObj.attentanceDate = defaultObj.attendanceDate;
+
+
+    // 测试数据
+    // defaultObj.schoolId = '69';
+    // defaultObj.attentanceDate = '2018-06-11';
+    // defaultObj.attendanceDate = '2018-06-11';
+
+
+
     let res = await api.getCardRecord({
       method: 'POST',
       data: defaultObj
     });
     if (res.data.result === 200 && !!res.data.data[0]) {
       self.recordData = res.data.data[0];
-
+      self.handleRecordPageData(defaultObj);
     } else {
       self.recordData = [];
     }
-
-
-
-
-
-
     self.$apply();
   }
 
@@ -187,63 +212,6 @@ export default class Index extends wepy.page {
 
 //  跳转到明细页面
   async navigateToRecordPage(e) {
-    // 根据考勤类型判断需要传递的参数
-    let typeId = this.cardRecordData.kaoqinTypeId,
-      navigatorType = e.currentTarget.dataset.navigatorType,
-      paramObj = {};
-    switch (typeId) {
-      case '1':
-        console.log('按学校考勤');
-        paramObj = {
-          schoolId: this.schoolId,
-          gradeId: this.gradeId,
-          classId: this.classId,
-          isdorm: '0',// 是否住宿 0 否 1 是 2 待定
-          kaoqinSpanId: '',//
-          attendanceDate: '',// 考勤日期
-          director: '',// 刷卡状态 1 入校 0 出校 -1 未刷卡
-          page: '',// 当前页码 默认为0
-          number: '',//每页数据条数
-        };
-        if (navigatorType === 'rest') {
-          console.log('出入校请假明细');
-          // 区别:请假考勤需要判断考勤方式，出入校考勤需要判断判断刷卡状态;
-          paramObj.nodeType = 'school';
-        } else {
-          console.log('出入校考勤明细');
-          paramObj.director = '';
-        }
-        console.log(paramObj);
-        break;
-      case '3':
-        console.log('按宿舍考勤');
-        paramObj = {
-          schoolId: this.schoolId,
-          gradeId: this.gradeId,
-          classId: this.classId,
-          floorId: this.floorId,
-          layerId: this.layerId,
-          dormId: this.dormId,
-          isdorm: '1',
-          kaoqinSpanId: '',//
-          attendanceDate: '',// 考勤日期
-          page: '',// 当前页码 默认为0
-          number: '',//每页数据条数
-        };
-        if (navigatorType === 'rest') {
-          console.log('出入校请假明细');
-          paramObj.nodeType = 'school';
-        } else {
-          console.log('出入校考勤明细');
-          paramObj.kaoqinTypeId = '';
-          paramObj.director = '';
-        }
-        console.log(paramObj);
-        break;
-    }
-
-    let str = Toolkit.jsonToParam(e.currentTarget.dataset)+Toolkit.jsonToParam(paramObj);
-    console.log(str);
     wepy.navigateTo({
       url: `/pages/recordPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
     });
@@ -298,13 +266,15 @@ export default class Index extends wepy.page {
     defaultData.queryType = self.queryType;
     defaultData.attentanceDate = self.attendanceDate;
 
-    // 测试数据
-    defaultData.schoolId = '69';
-    defaultData.attentanceDate = '2018-05-03';
-
-
-    console.log('宿舍考勤数据');
+    console.log('获取所有的日期日期信息');
     console.log(defaultData);
+
+
+    // 测试数据
+    //  defaultData.schoolId = '69';
+    //  defaultData.attentanceDate = '2018-06-11';
+    // defaultData.attentanceDate = '2018-06-04';
+
 
     let res = await api.getDormAttendanceInfo({
       method: 'POST',
@@ -312,6 +282,8 @@ export default class Index extends wepy.page {
     });
     if (res.data.result === 200 && !!res.data.data[0]) {
       this.recordData = res.data.data[0];
+      // 处理recordPage 页面需要的数据
+      this.handleRecordPageData(defaultData);
     } else {
       this.recordData = [];
     }
@@ -326,5 +298,22 @@ export default class Index extends wepy.page {
       return;
     }
     fn(this);
+  }
+
+// 点击span内容的时候，将当前页面选择的数据保存到全局变量
+  handleRecordPageData(defaultObj) {
+    let recordPageData = {};
+    recordPageData.kaoqinTypeId = this.cardRecordData.kaoqinTypeId;
+    recordPageData.isdorm = '0';
+    recordPageData.page = '0';
+    recordPageData.number = '100';
+
+    Object.assign(recordPageData, defaultObj);
+
+    delete recordPageData.preHand;
+    delete recordPageData.version;
+    delete recordPageData.token;
+    delete recordPageData.platformType;
+    this.$parent.globalData.recordPageData = recordPageData;
   }
 }

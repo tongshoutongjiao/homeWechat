@@ -25,8 +25,9 @@ export default class Index extends wepy.page {
     schoolName: '',
     studentsList: [],
     empty: '',
-    defaultPhoto:defaultPhoto
-
+    defaultPhoto: defaultPhoto,
+    cardFlag: false,
+    cardNum: null,
 
   };
   events = {};
@@ -36,8 +37,16 @@ export default class Index extends wepy.page {
     searchValueInput(e) {
       var value = e.detail.value;
       if (value !== '') {
-        this.search(value)
+        this.search(value);
       }
+      this.$apply();
+    },
+
+    // 学生卡号或者手机号搜索
+    searchValueCard(e) {
+      console.log('学生卡号或者手机号');
+      //   如果输入的是十位，则为卡号，否则为手机号
+      this.cardNum = e.detail.value;
     },
 
     //  点击跳转到编辑学生信息页面
@@ -47,14 +56,16 @@ export default class Index extends wepy.page {
       })
     },
 
-  //   点击展开改班级下的学生列表
-		toggleStudentList:function (e) {
-      let index=e.currentTarget.dataset.index;
-      console.log('展开学生信息列表');
-      console.log(e);
-      console.log(this.studentInfo);
-      this.studentsList[index].extendFlag=!this.studentsList[index].extendFlag;
-		}
+    //   点击展开改班级下的学生列表
+    toggleStudentList: function (e) {
+      let index = e.currentTarget.dataset.index;
+      this.studentsList[index].extendFlag = !this.studentsList[index].extendFlag;
+    },
+
+    // 点击执行搜索学生功能
+    searchStudent: function () {
+      this.searchCardOrPhone()
+    }
   };
 
   async search(e) {
@@ -65,17 +76,13 @@ export default class Index extends wepy.page {
         studentName: e,
       }
     });
-    console.log('返回结果');
-    console.log(result);
     if (result.data.result === 200) {
-      console.log('返回结果');
-      console.log(result.data.classList);
       if (result.data.classList.length > 0) {
         this.empty = false;
-        result.data.classList.forEach(function (item,index) {
-					item.index=index;
-					index===0?item.extendFlag=true:item.extendFlag=false;
-				});
+        result.data.classList.forEach(function (item, index) {
+          item.index = index;
+          index === 0 ? item.extendFlag = true : item.extendFlag = false;
+        });
 
         this.studentsList = result.data.classList;
       } else {
@@ -86,15 +93,14 @@ export default class Index extends wepy.page {
   }
 
 
-
   async onLoad(e) {
     console.log('页面参数');
-    console.log(e);
     this.schoolId = e.schoolId;
     this.schoolName = e.name;
-
+    this.cardFlag = e.schoolId ? true : false;
     // 初始化页面数据
     setTimeout(e => this.initData());
+    this.$apply();
   }
 
   onReady() {
@@ -104,4 +110,41 @@ export default class Index extends wepy.page {
   onShow() {
     console.log('show !');
   }
+
+//
+  async searchCardOrPhone(e) {
+    let cardNum = this.cardNum,
+      reg = /^\d{11}|\d{10}$/g, resData;
+
+    if (reg.test(cardNum)) {
+      resData = await api.searchStudentByCardOrPhone({
+        method: 'POST',
+        data: {
+          cardNum: cardNum
+        }
+      })
+    } else {
+      wepy.showToast({
+        title: '请输入正确的卡号或者手机号',
+        icon: 'none',
+      });
+    }
+    if (resData.data.result === 200) {
+      if (resData.data.classList.length > 0) {
+        this.empty = false;
+        resData.data.classList.forEach(function (item, index) {
+          item.index = index;
+          index === 0 ? item.extendFlag = true : item.extendFlag = false;
+        });
+        this.studentsList = resData.data.classList;
+        this.studentsList.forEach(function (item) {
+          item.classInf=item.studentList[0].classInf;
+        })
+      } else {
+        this.empty = true
+      }
+      this.$apply()
+    }
+  }
+
 }

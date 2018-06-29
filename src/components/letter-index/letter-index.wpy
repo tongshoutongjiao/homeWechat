@@ -30,7 +30,7 @@ import wepy from 'wepy';
 
 export default class LetterIndexCom extends wepy.component {
   $isComponent = true;
-  
+
   data = {
     letters: [],
     timer: null,

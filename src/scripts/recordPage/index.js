@@ -12,7 +12,8 @@ export default class Index extends wepy.page {
 
   data = {
     recordData: [],
-    typeId: '3',
+    typeId: 1,
+    curPageData: {},
     bindData: {
       array: [
         {
@@ -22,30 +23,54 @@ export default class Index extends wepy.page {
         {
           typeName: '住宿',
           isDorm: '1'
+        },
+        {
+          typeName: '待定',
+          isDorm: '2'
         }
       ],
       index: '0'
-    }
+    },
+    loadingFlag: true,
+    restFlag: false,
+    isDormFlag: 0,
+    inOutFlag:false,
   };
   methods = {
     bindChangeStyle: function (e) {
-      console.log(e);
       this.bindData.index = e.detail.value;
+      let data = this.curPageData;
+      data.isdorm = e.detail.value;
+      data.isDorm = e.detail.value;
+      this.isDormFlag = e.detail.value;
+      this.recordData = [];
+      this.getAttendanceData();
       this.$apply();
     }
   };
 
   async onLoad(e) {
-    console.log(e);
-    this.schoolId = e.id;
-    // 根据上个页面传递的数据,先根据typeId判断是通过出入考勤还是通过宿舍考勤进来的
-    // 出入校考勤：请求接口，默认是走读
-    // 宿舍考勤:
-    // 初始化页面数据
+    let curPageData = this.$parent.globalData.recordPageData;
+    curPageData.navigateType = e.navigateType;
+    curPageData.kaoqinSpanId = e.spanId;
+    this.typeId = curPageData.kaoqinTypeId;
+    this.curPageData = curPageData;
+
+    //  出入校考勤:
+    console.log('出入校考勤');
+    console.log(curPageData);
+    if(curPageData.navigateType==='in'||curPageData.navigateType==='out'){
+      this.inOutFlag=true;
+      // this.getMockData();
+      console.log('入校数据统计')
+    }
+
     setTimeout(e => this.initData());
+    this.$apply();
   }
 
   onShow() {
+
   }
 
   /**
@@ -53,9 +78,14 @@ export default class Index extends wepy.page {
    */
   onReachBottom() {
     console.log('上拉加载数据');
+    let pageFlag = true;
+    this.getAttendanceData(pageFlag);
+    this.$apply()
   }
 
-  initData() {
+  initData(e) {
+
+    this.getAttendanceData();
 
     let defaultData = {
       schoolId: '',
@@ -70,80 +100,116 @@ export default class Index extends wepy.page {
       number: ''// 每页数据条数
     };
 
-    this.recordData = [
-      {
-        cardTime: '07:52',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '周杰伦',// 姓名
-        isDorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:52',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '周杰伦',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:52',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '周杰伦',// 姓名
-        isDorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:52',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '周杰伦',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      },
-      {
-        cardTime: '07:50',// 刷卡时间
-        className: '1.03班',// 班级
-        studentName: '朴树',// 姓名
-        isdorm: '1',// 0 走读 1 住宿
-      }
-    ];
+    this.recordData = [];
   }
 
+  // 获取考勤数据
+  getAttendanceData(pageFlag) {
+    let data = this.curPageData;
+    data.attendanceDate = data.attentanceDate;
+    // data.attendanceDate = '2018-06-04';
+    data.number = '100';
+    if (pageFlag) {
+      data.page++
+    }
+    console.log('页面请求数据页面请求数据');
+    data.navigateType === 'rest' ? this.getRestData(data) : this.getInOutData(data);
+    this.$apply();
+  }
+
+//   获取请假数据
+  async getRestData(data) {
+    let resData = null;
+    data.isDorm = data.isdorm;
+    wepy.setNavigationBarTitle({
+      title: '请假明细'//页面标题为路由参数
+    });
+    this.restFlag = true;
+    if (data.kaoqinTypeId === 1) {
+      resData = await api.InOutRestData({
+        method: 'POST',
+        data: data
+      })
+    } else {
+      resData = await api.dormRestData({
+        method: 'POST',
+        data: data
+      });
+    }
+    if (resData.data.result === 200) {
+      this.recordData = this.recordData.concat(resData.data.data);
+    }
+    this.$apply();
+  }
+
+//   获取出入校数据
+  async getInOutData(data) {
+    //   考勤id
+    let typeId = data.kaoqinTypeId;
+    let resData = [];
+    wepy.setNavigationBarTitle({
+      title: '出入校明细'//页面标题为路由参数
+    });
+    if (typeId === 1) {
+      switch (data.navigateType) {
+        case 'in':
+          data.director = '1';
+          break;
+        case 'out':
+          data.director = '0';
+          break;
+        case 'card':
+          data.director = '-1';
+          break;
+      }
+      resData = await api.InOutData({
+        method: 'POST',
+        data: data
+      });
+      if (resData.data.result === 200) {
+        this.recordData = this.recordData.concat(resData.data.data);
+        // this.recordData=this.getMockData();
+      }
+    } else {
+      switch (data.navigateType) {
+        case 'in':
+          data.director = '1';
+          break;
+        case 'out':
+          data.director = '0';
+          break;
+        case 'card':
+          data.director = '-1';
+          break;
+      }
+      resData = await api.dormData({
+        method: 'POST',
+        data: data
+      });
+      if (resData.data.result === 200) {
+        this.recordData = this.recordData.concat(resData.data.data);
+        // this.recordData=this.getMockData();
+      }
+    }
+    this.$apply();
+  }
+
+//   出入校假数据
+  getMockData(){
+    let tempArray=[];
+    for(let i=0;i<12;i++){
+      tempArray.push({
+        index:i,
+        cardCode:'1245665',
+        className:'国际06ssssssss班',
+        gradeId:6863,
+        studentName:'赵海龙',
+        cardTime:'06-11 14:57',
+        isdorm:1,
+
+      })
+    }
+
+    return tempArray;
+  }
 }

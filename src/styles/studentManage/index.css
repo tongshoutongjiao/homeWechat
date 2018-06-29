@@ -154,6 +154,19 @@ image {
   border-radius: 50%;
   background-size: cover;
 }
+.grade-list .nick-photo .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
 .grade-list .nick-photo image {
   display: inline-block;
   width: 100%;

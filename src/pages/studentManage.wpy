@@ -7,7 +7,7 @@
             </view>
         </view>
         <scroll-view scroll-X="true" class="grade-tab" scroll-left="{{scrollLeft}}">
-            <view wx:for="{{gradesInfo}}" class="grade-info {{selected == item.gradeId ? 'actived' : ''}}"
+            <view wx:for="{{gradesInfo}}" wx:key="{{item.gradeId}}" class="grade-info {{selected == item.gradeId ? 'actived' : ''}}"
                   data-grade-id="{{item.gradeId}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" bindtap="selectGrade">{{item.gradeName}}
                 <text class="btm"></text>
             </view>
@@ -16,7 +16,7 @@
         <view class="grade-list">
             <block wx:if="{{gradeFlag}}">
                 <view class="spec-grade">
-                    <view class="grade-name" wx:for="{{gradesList}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
+                    <view class="grade-name" wx:for="{{gradesList}}" wx:key="{{item.gradeId}}" data-slide-index="{{item.index}}" data-gra-name="{{item.gradeName}}" data-grade-id="{{item.gradeId}}" bindtap="switchGrade">
                         <view>{{item.gradeName}}</view>
                         <view class="open-num" >{{item.gradeOpen}}/{{item.allNum}}</view>
                         <view class="right-icon"></view>
@@ -40,9 +40,12 @@
                         </view>
                     </view>
                     <block wx:if="{{item.flag&&studentList}}">
-                        <view class="student-list"  wx:for="{{item.studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo">
+                        <view class="student-list"  wx:for="{{item.studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo" wx:key="{{it.studentId}}">
                             <view class="student-info">
-                                <view class="nick-photo" >
+                                <view class="nick-photo"  >
+                                    <block wx:if="{{it.auditStatus===2}}">
+                                        <view class="layer">不合格</view>
+                                    </block>
                                     <image src="{{it.studentImg||defaultPhoto}}" mode="aspectFill"/>
                                 </view>
                                 <view class="nick-wrapper">

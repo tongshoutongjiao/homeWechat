@@ -1,0 +1,44 @@
+<template>
+	<view class="container">
+		<view class="search-wrapper">
+			<view class="search-content" bindtap="handleSearch" data-grade-id="">
+				<image class="search-icon" src="/images/search_icon.png"></image>
+				<view class="search-title">搜索学校名字</view>
+			</view>
+		</view>
+		<view class="listTitle">
+			<view class="listTitleChild">学校名称</view>
+			<view class="listTitleChild">业务经理</view>
+			<view class="listTitleChild">客服专员</view>
+			<view class="listTitleChild">开始日期</view>
+			<view class="listTitleChild">项目进度</view>
+		</view>
+
+		<scroll-view class="equipList" scroll-y="true">
+			<block wx:if="{{schoolInfo.length}}">
+				<view class="equipWrapper" wx:for="{{schoolInfo}}">
+					<view class="location" bindtap="clickNavigateToPhrase" data-id="{{item.id}}" data-index="{{item.index}}">
+						<text>{{item.schoolName}}</text>
+					</view>
+					<view class="detail">
+						<view>
+							<view class=" leftIcon"></view>
+						</view>
+						<view class="blue-style" bindtap="clickGetPhoneNumber" data-phone-number="13839955953">{{item.CustomerPerson}}</view>
+						<view  class="blue-style" bindtap="clickGetPhoneNumber" data-phone-number="18258232644">{{item.serviceManager}}</view>
+						<view>2018/02/28</view>
+						<view>实施前1</view>
+					</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="none">暂无相关数据</view>
+			</block>
+
+
+		</scroll-view>
+
+	</view>
+</template>
+<script src="../scripts/schoolEffect/index.js"></script>
+<style src="../styles/schoolEffect/index.css"></style>

@@ -164,7 +164,7 @@ export default class Index extends wepy.page {
 							console.log(res);
 							let tempPaths = res.tempFilePaths;
 							if (res.tempFilePaths.length) {
-								that.uploadImg(res.tempFilePaths)
+								that.uploadImg(res.tempFilePaths);
 							} else {
 								console.log('未选择图片');
 							}
@@ -285,8 +285,6 @@ export default class Index extends wepy.page {
           break;
       }
 
-
-
 		},
 
 		//  隐藏弹窗浮层
@@ -389,27 +387,34 @@ export default class Index extends wepy.page {
 	async uploadImg(paths, callback, imgs) {
 		let localSrc=typeof paths=='object'?paths[0]:paths;
 
-		const uploadRes = await api.addStudentPhoto({
-			filePath: localSrc,
-			name: 'imgfile',
-			formData: {},
-		});
-		console.log('uploadRes');
-		console.log(uploadRes);
-		const photoRes = JSON.parse(uploadRes.data);
-		if (!photoRes.data || !photoRes.data[0]) {
-			wx.showToast({
-				title: '上传失败',
-				icon: 'none',
-			});
-			return;
-		}
-		wx.showToast({
-			title: '上传成功',
-			icon: 'success',
-		});
-		console.log(uploadRes);
-		this.studentInfo.studentImg = photoRes.data[0].imgUrl;
+
+
+		// 上传图片
+		console.log('临时图片路径');
+		console.log(localSrc);
+		this.saveLocalImg(localSrc);
+
+		// const uploadRes = await api.addStudentPhoto({
+		// 	filePath: localSrc,
+		// 	name: 'imgfile',
+		// 	formData: {},
+		// });
+		// console.log('uploadRes');
+		// console.log(uploadRes);
+		// const photoRes = JSON.parse(uploadRes.data);
+		// if (!photoRes.data || !photoRes.data[0]) {
+		// 	wx.showToast({
+		// 		title: '上传失败',
+		// 		icon: 'none',
+		// 	});
+		// 	return;
+		// }
+		// wx.showToast({
+		// 	title: '上传成功',
+		// 	icon: 'success',
+		// });
+		// console.log(uploadRes);
+		// this.studentInfo.studentImg = photoRes.data[0].imgUrl;
 		this.$apply();
 
 	}
@@ -546,5 +551,31 @@ export default class Index extends wepy.page {
 			});
 
 		}
+	}
+
+
+	async saveLocalImg(url){
+		console.log('url');
+		console.log(url);
+    wx.saveImageToPhotosAlbum({
+      filePath:url,
+      success(res) {
+      	console.log('保存到相册成功');
+      	console.log(res);
+      	wepy.setStorageSync('imgUrl', url);
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+          duration: 2000
+        });
+      },
+	    fail(){
+      console.log('fail')
+	    },
+      complete(){
+        console.log('complete');
+      }
+    })
+
 	}
 }

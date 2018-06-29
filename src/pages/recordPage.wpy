@@ -4,50 +4,75 @@
 			全校 早晨上学刷卡
 		</view>
 
-			<view wx:if="{{typeId==='1'}}" class="student-wrapper">
-				<view class="item-list bg-color">
-					<view>班级</view>
-					<view>姓名</view>
-					<view>类型</view>
-					<view>刷卡时间</view>
-				</view>
-				<view class="item-list" wx:for="{{recordData}}">
-					<view>{{item.className}}</view>
-					<view>{{item.studentName}}</view>
-					<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
-					<view class="card-time">{{item.cardTime}}</view>
-				</view>
-				<view class="load" style=" text-align: center;font-size: 28rpx;color: #8e8e93;">加载中....</view>
+		<view wx:if="{{typeId===3}}" class="student-wrapper">
+			<view class="item-list bg-color">
+				<view>班级</view>
+				<view>姓名</view>
+				<view>类型</view>
+				<view>刷卡时间</view>
 			</view>
-			<view wx:if="{{typeId==='3'}}" class="student-wrapper">
-				<view class="item-list bg-color">
-					<view>班级</view>
-					<view>姓名</view>
-
+			<view class="item-list" wx:for="{{recordData}}">
+				<view>{{item.className}}</view>
+				<view>{{item.studentName}}</view>
+				<block wx:if="{{!restFlag}}">
+					<view>住宿</view>
+					<view class="card-time {{item.cardTime===''?'gray-style':''}}">{{item.cardTime||'未刷卡'}}</view>
+				</block>
+				<block wx:else>
+					<view>住宿</view>
+					<view class="card-time gray-style">请假</view>
+				</block>
+			</view>
+			<block wx:if="{{recordData.length}}">
+				<block wx:if="{{recordData.length>10}}">
+					<view class="load">{{loadingFlag?'加载中....':'没有更多数据了'}}</view>
+				</block>
+			</block>
+			<block wx:else>
+				<view class="null-text">暂无数据</view>
+			</block>
+		</view>
+		<view wx:if="{{typeId===1}}" class="student-wrapper">
+			<view class="item-list bg-color">
+				<view>班级</view>
+				<view>姓名</view>
+				<block wx:if="{{inOutFlag}}">
+					<view>类型</view>
+				</block>
+				<block wx:else>
 					<view>
-						<picker  bindchange="bindChangeStyle" value="{{bindData.index}}" range="{{bindData.array}}" range-key="{{'typeName'}}">
+						<picker bindchange="bindChangeStyle" value="{{bindData.index}}" range="{{bindData.array}}"
+						        range-key="{{'typeName'}}">
 							<view class="picker">
 								{{bindData.array[bindData.index].typeName}}
 								<view class="down-flag"></view>
 							</view>
-
-
 						</picker>
 					</view>
-
-					<view>刷卡时间</view>
-				</view>
-				<view class="item-list" wx:for="{{recordData}}">
-					<view>{{item.className}}</view>
-					<view>{{item.studentName}}</view>
-					<view>{{item.isdorm==='0'?'走读':'住宿'}}</view>
-					<view class="card-time">{{item.cardTime}}</view>
-				</view>
-				<view class="load" style=" text-align: center;font-size: 28rpx;color: #8e8e93;">加载中....</view>
+				</block>
+				<view>刷卡时间</view>
 			</view>
-
-
-
+			<view class="item-list" wx:for="{{recordData}}">
+				<view>{{item.className}}</view>
+				<view>{{item.studentName}}</view>
+				<block wx:if="{{!restFlag}}">
+					<view>{{item.isdorm===0?'走读':item.isdorm===1?'住宿':'待定'}}</view>
+					<view class="card-time {{item.cardTime===''?'gray-style':''}}">{{item.cardTime||'未刷卡'}}</view>
+				</block>
+				<block wx:else>
+					<view>{{isDormFlag===0?'走读':'住宿'}}</view>
+					<view class="card-time gray-style">请假</view>
+				</block>
+			</view>
+			<block wx:if="{{recordData.length}}">
+				<block wx:if="{{recordData.length>10}}">
+					<view class="load">{{loadingFlag?'加载中...':'没有更多数据了'}}</view>
+				</block>
+			</block>
+			<block wx:else>
+				<view class="null-text">暂无数据</view>
+			</block>
+		</view>
 	</view>
 </template>
 <script src="../scripts/recordPage/index.js"></script>

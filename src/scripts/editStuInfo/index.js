@@ -252,7 +252,6 @@ export default class Index extends wepy.page {
     clickSaveStudentInfo: function () {
       console.log('提交后台数据');
 
-
       this.updateStudentsInfo();
       this.$apply();
 

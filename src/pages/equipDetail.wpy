@@ -27,6 +27,14 @@
 			<view>安装位置</view>
 			<view>{{equipmentInfo.installAddress}}</view>
 		</view>
+			<view class="unfix ">
+				<view>地图定位</view>
+				<view>{{plantEquip.installAddress||'未定位'}}
+					<view class="locationIcon">
+						<image src="/images/location_icon.jpg"></image>
+					</view>
+				</view>
+			</view>
 		<view class="unfix software">
 			<view>软件</view>
 			<view>{{equipmentInfo.softVersion}}</view>

@@ -30,6 +30,20 @@
         <text>近期免冠照片，纯色背景，头部占照片尺寸2/3，人像清晰，神态自然。</text>
       </view>
   </view>
+
+
+  <!--确认弹窗-->
+  <view class="dialog" wx:if="{{confirmFlag}}">
+    <view class="mask"></view>
+    <view class="confirm">
+      <view class="title">温馨提示</view>
+      <view class="content">您拍的照片已超过500张，请先上传照片</view>
+      <view class="btn">
+        <view class="ft" bindtap="clickOperatePhoto" data-type="cancel" >取消</view>
+        <view  bindtap="clickOperatePhoto" data-type="sure" class="blue-style rt">确定</view>
+      </view>
+    </view>
+  </view>
 </template>
 
 <script src="../scripts/takePhoto/index.js"></script>

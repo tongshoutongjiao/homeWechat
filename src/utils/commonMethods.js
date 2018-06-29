@@ -78,8 +78,7 @@ export function getImgUrl(ret, picType, self) {
 // 点击实现上传图片功能
 
 export function uploadEquipImage(e, self) {
-  console.log(this);
-  console.dir(this.uploadImg);
+
 
   let picType = e.currentTarget.dataset.picType;
   wx.chooseImage({
@@ -202,4 +201,47 @@ export async function getBussinessList(self) {
 }
 
 
+
+// 批量上传学生照片
+export async function batchUploadPhoto(data,self,callback){
+  console.log('批处理学生的照片信息');
+  let tempArray=[];
+  wx.showLoading({
+    title: '上传中',
+    icon: 'loading',
+    mask:true
+  });
+  for(let i=0,curItem;i<data.length;i++) {
+    curItem = data[i];
+    let uploadRes = await api.uploadStudentPhoto({
+      filePath: curItem.imgUrl,
+      name: 'imgfile',
+      formData: {
+        studentId: curItem.studentId
+      },
+    });
+    let photoRes = JSON.parse(uploadRes.data);
+    if(!photoRes.data || !photoRes.data[0]){
+
+      // 如果单张照片上传失败的话，保存当前照片的信息
+      tempArray.push(curItem)
+    }
+  }
+  if(!tempArray.length){
+    wx.hideLoading();
+    setTimeout(function(){
+      wx.showToast({
+        title: '上传成功',
+        icon: 'success',
+        duration: 1000
+      });
+    },1000)
+  }else {
+    wx.showToast({
+      title: `有${tempArray.length}张照片未上传，请重新上传`,
+      icon: 'none',
+    })
+  }
+  callback(tempArray,self)
+}
 

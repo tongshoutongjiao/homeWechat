@@ -1,0 +1,286 @@
+<template>
+	<view class="container">
+		<scroll-view scroll-y="true" bindscroll="scroll" style="height: 500px;">
+			<view class="part">
+				<view class="title">实施前(预计3个工作日，实际5个工作日)</view>
+				<view class="context">
+					<view class="number">1</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">2</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">3</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">4</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">5</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">6</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">7</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">8</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+			</view>
+			<view class="part partTwo" bindscroll="scroll" >
+				<view class="title">实施前(预计3个工作日，实际5个工作日)</view>
+				<view class="context">
+					<view class="number">1</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">2</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">3</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">4</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">5</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">6</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">7</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">8</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+
+			</view>
+			<view class="part partThree">
+				<view class="title">实施前(预计3个工作日，实际5个工作日)</view>
+				<view class="context">
+					<view class="number">1</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">2</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">3</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">4</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">5</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">6</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+
+					<view class="number">7</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+				<view class="context">
+					<view class="number">8</view>
+					<view class="desc">
+						<view>"i家校"协议签订（预计2月1日)</view>
+						<view>实际日期：2月1日
+							<text class="complete">按期完成</text>
+						</view>
+
+						<view class="gray-style">备注：人生若只如初见</view>
+					</view>
+				</view>
+
+			</view>
+		</scroll-view>
+
+
+	</view>
+
+</template>
+<script src="../scripts/effectPhase/index.js"></script>
+<style src="../styles/effectPhase/index.css"></style>

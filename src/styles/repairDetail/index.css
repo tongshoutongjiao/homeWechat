@@ -175,6 +175,16 @@ image {
   margin-top: 89rpx;
   background-color: #eeeeee;
 }
+.locationIcon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+.locationIcon image {
+  margin-bottom: 15rpx;
+}
 /* 底部按钮选择框 */
 .photo-style {
   display: block;
