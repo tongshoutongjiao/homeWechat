@@ -41,8 +41,8 @@
 		<view class="default ">
 			<view>地图定位</view>
 			<view style="float: right">
-				{{plantEquip.installAddress||'未定位'}}
-				<view class="locationIcon" bindtap="clickNavigateToMapPage">
+				{{locationFlag?'已定位':'未定位'}}
+				<view class="locationIcon" bindtap="clickNavigateToMapPage" data-school-id="{{plantEquip.schoolId}}" data-location-flag="{{locationFlag}}" data-equip-id="{{plantEquip.id}}">
 					<image src="/images/location_icon.jpg"></image>
 				</view>
 			</view>

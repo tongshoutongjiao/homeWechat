@@ -99,22 +99,6 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
-			<view>故障类型</view>
-
-			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
-			<view class="right-icon"></view>
-			<view class="right-hide"></view>
-
-		</view>
-		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
-			<view>硬件类型</view>
-
-			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
-			<view class="right-icon"></view>
-			<view class="right-hide"></view>
-
-		</view>
 		<view class="default date-style another-page" data-type="faultView" bindtap="clickChooseOptions">
 			<view>故障现象</view>
 
@@ -131,6 +115,24 @@
 			<view class="right-hide"></view>
 
 		</view>
+		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
+			<view>故障类型</view>
+
+			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
+			<view>硬件类型</view>
+
+			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+
+
 		<view class="default date-style another-page" data-type="handleMeasures" bindtap="clickChooseOptions">
 			<view>处理措施</view>
 

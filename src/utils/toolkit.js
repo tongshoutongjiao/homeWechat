@@ -20,11 +20,11 @@ export function groupByFirstLetter(list, groupKey){
     }
     temp[firstLetter].push(item);
   });
+
   const indexs = Object.keys(temp).sort();
   if(indexs[0] === '#'){
     indexs.push(indexs.shift());
   }
-
   return indexs.map(key => ({label: key, list: temp[key]}));
 }
 

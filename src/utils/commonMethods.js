@@ -205,14 +205,17 @@ export async function getBussinessList(self) {
 // 批量上传学生照片
 export async function batchUploadPhoto(data,self,callback){
   console.log('批处理学生的照片信息');
+
   let tempArray=[];
-  wx.showLoading({
-    title: '上传中',
-    icon: 'loading',
-    mask:true
-  });
+
   for(let i=0,curItem;i<data.length;i++) {
     curItem = data[i];
+    let rate=`${i+1}/${data.length}`;
+    wx.showLoading({
+      title:`上传进度 `+String(rate),
+      icon: 'loading',
+      mask:true
+    });
     let uploadRes = await api.uploadStudentPhoto({
       filePath: curItem.imgUrl,
       name: 'imgfile',

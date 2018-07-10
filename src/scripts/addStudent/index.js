@@ -188,6 +188,16 @@ export default class Index extends wepy.page {
 		clickSaveStudentInfo: function (e) {
 			console.log('保存用户输入的信息');
 			//
+
+
+      if(this.selectClassName===''){
+        wx.showToast({
+          title: '请选择班级',
+          icon: 'none',
+        });
+        return;
+      }
+
 			if(this.studentInfo.name===''){
 				wx.showToast({
 					title: '请输入姓名',
@@ -202,16 +212,10 @@ export default class Index extends wepy.page {
 				});
 				return;
 			}
-			if(this.selectClassName===''){
-				wx.showToast({
-					title: '请选择班级',
-					icon: 'none',
-				});
-				return;
-			}
+
 			if(this.studentInfo.isDorm===''){
 				wx.showToast({
-					title: '请选择住宿类型',
+					title: '请选择学生类型',
 					icon: 'none',
 				});
 				return;

@@ -512,7 +512,6 @@ export default class Index extends wepy.page {
 
 //
   async getTypeName() {
-
     let resRecord = await api.getTerminalType({
       method: 'POST',
       data: {}

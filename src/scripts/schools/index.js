@@ -5,9 +5,9 @@ import api from '../api';
 import * as Toolkit from '../utils/toolkit';
 
 export default class Index extends wepy.page {
-	 components = {
-	   // 'letter-index': LetterIndex
-	 };
+	 // components = {
+	 //   'letter-index': LetterIndex
+	 // };
 
 	config = {
 		navigationBarTitleText: '选择学校'
@@ -45,7 +45,8 @@ export default class Index extends wepy.page {
 			query.select('.scroll-view').scrollOffset();
 			query.select('.scroll-view').boundingClientRect();
 			query.select(`#letter_${letter}`).boundingClientRect();
-			query.exec(([scroll, rect, dom]) => {
+			
+			query.exec(([scroll, rect, dom] ) => {
 				this.scrollTop = scroll.scrollTop - rect.top + dom.top;
 				this.$apply();
 			});
@@ -54,12 +55,18 @@ export default class Index extends wepy.page {
 
 	async onLoad(e) {
 		console.log('load..');
+		console.log('页面参数');
+		console.log(e);
 		let {title = '选择学校', page_url = '', ...params} = e;
 		wx.setNavigationBarTitle({title: unescape(title)});
 		page_url = unescape(page_url);
 		this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)
 		const ret = await api.getSchoolsByUserId({data: {userId: wx.getStorageSync('userId')}});
+
+
 		this.schoolSets = Toolkit.groupByFirstLetter(ret.data.data, 'schoolNameQp');
+
+
 		// this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label));
 		this.$apply();
 

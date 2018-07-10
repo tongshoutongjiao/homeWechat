@@ -52,6 +52,8 @@ export default class LetterIndexCom extends wepy.component {
 
     },
     handleMove(e) {
+      console.log('touchmove 事件');
+      console.log(e);
       if(this.timer) {
         return;
       }
@@ -76,8 +78,10 @@ export default class LetterIndexCom extends wepy.component {
       this.letters = indexs;
       this.letterLength = indexs.length;
       this.$apply();
+
       setTimeout(e => {
         wx.createSelectorQuery().select('.letter-index-wrap').boundingClientRect(ret => {
+          console.log(ret);
           this.letterAreaTop = ret.top;
           this.letterHeight = ret.height / this.letterLength;
           this.$apply();

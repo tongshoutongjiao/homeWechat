@@ -35,6 +35,7 @@ export default class Index extends wepy.page {
     restFlag: false,
     isDormFlag: 0,
     inOutFlag:false,
+    scrollHeight:null,
   };
   methods = {
     bindChangeStyle: function (e) {
@@ -44,9 +45,20 @@ export default class Index extends wepy.page {
       data.isDorm = e.detail.value;
       this.isDormFlag = e.detail.value;
       this.recordData = [];
+
+      console.log('每次点击之后重新请求加载页面数据');
+      console.log(data);
       this.getAttendanceData();
       this.$apply();
+    },
+
+    bindLower:function () {
+      let pageFlag = true;
+      this.getAttendanceData(pageFlag);
+      this.$apply()
     }
+
+
   };
 
   async onLoad(e) {
@@ -55,6 +67,8 @@ export default class Index extends wepy.page {
     curPageData.kaoqinSpanId = e.spanId;
     this.typeId = curPageData.kaoqinTypeId;
     this.curPageData = curPageData;
+
+
 
     //  出入校考勤:
     console.log('出入校考勤');
@@ -66,6 +80,10 @@ export default class Index extends wepy.page {
     }
 
     setTimeout(e => this.initData());
+
+
+
+
     this.$apply();
   }
 
@@ -78,14 +96,13 @@ export default class Index extends wepy.page {
    */
   onReachBottom() {
     console.log('上拉加载数据');
-    let pageFlag = true;
-    this.getAttendanceData(pageFlag);
-    this.$apply()
+
   }
 
   initData(e) {
 
     this.getAttendanceData();
+    this.calculateHeight();
 
     let defaultData = {
       schoolId: '',
@@ -104,17 +121,26 @@ export default class Index extends wepy.page {
   }
 
   // 获取考勤数据
-  getAttendanceData(pageFlag) {
+  getAttendanceData(pageFlag,chooseIcon) {
     let data = this.curPageData;
     data.attendanceDate = data.attentanceDate;
-    // data.attendanceDate = '2018-06-04';
-    data.number = '100';
-    if (pageFlag) {
-      data.page++
-    }
+    data.number = '20';
+    pageFlag? data.page++:data.page=0;
     console.log('页面请求数据页面请求数据');
     data.navigateType === 'rest' ? this.getRestData(data) : this.getInOutData(data);
     this.$apply();
+  }
+
+  // 计算scroll-view 的高度
+  calculateHeight(){
+    let scrollHeight;
+    wx.getSystemInfo({
+      success: function(res) {
+        scrollHeight=res.windowHeight-100;
+      }
+    });
+    this.scrollHeight=scrollHeight;
+    this.$apply()
   }
 
 //   获取请假数据
@@ -122,7 +148,7 @@ export default class Index extends wepy.page {
     let resData = null;
     data.isDorm = data.isdorm;
     wepy.setNavigationBarTitle({
-      title: '请假明细'//页面标题为路由参数
+      title: '请假明细' //页面标题为路由参数
     });
     this.restFlag = true;
     if (data.kaoqinTypeId === 1) {
@@ -201,12 +227,11 @@ export default class Index extends wepy.page {
       tempArray.push({
         index:i,
         cardCode:'1245665',
-        className:'国际06ssssssss班',
+        className:'国际06班',
         gradeId:6863,
         studentName:'赵海龙',
         cardTime:'06-11 14:57',
         isdorm:1,
-
       })
     }
 

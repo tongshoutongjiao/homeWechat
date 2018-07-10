@@ -84,7 +84,7 @@
 						</view>
 						<block wx:if="{{item.extendFlag}}">
 							<view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student"
-							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{schoolId}}"
+							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{student.schoolId}}"
 							      data-class-name="{{item.className}}">
 								<view class="student-info">
 									<view class="nick-photo">

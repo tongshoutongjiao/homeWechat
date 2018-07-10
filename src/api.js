@@ -59,11 +59,11 @@ const wxRequest = async (params = {}, url) => {
   } */
   return res
 };
- // const apiMall = 'http://192.168.5.128:8380'; // 开发（晨宇）
- const apiMall = 'http://192.168.5.128:8080'; // 开发（晨宇 设备管理）
-// const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
+ // const apiMall = 'http://192.168.5.133:8380'; // 开发（晨宇）
+ // const apiMall = 'http://192.168.5.133:8080'; // 开发（晨宇 设备管理）
+// const apiMall = 'http://182.92.131.35:8081'; // 测试（appServer）
 // const apiMall = 'http://192.168.5.131:8380';
-       // const apiMall = 'https://api.967111.com'; // 正式
+       const apiMall = 'https://api.967111.com'; // 正式
  // const apiMall = 'http://192.168.5.122:8080'; // 广越
 
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')

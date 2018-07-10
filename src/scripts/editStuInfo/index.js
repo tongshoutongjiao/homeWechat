@@ -223,7 +223,6 @@ export default class Index extends wepy.page {
     // 失去焦点姓名 code 是否正确
     judgeValueInput:function(e){
       let inputType = e.currentTarget.dataset.inputType,
-
         value = e.detail.value;
       switch (inputType){
         case 'name':
@@ -681,6 +680,17 @@ export default class Index extends wepy.page {
         schoolId: this.schoolId
       }
     });
+
+    //
+    console.log('根据学校id获取所有的年级信息');
+    console.log(list);
+
+
+
+
+
+
+
     // 保存所有年级数据
     tempData = list.data.result === 200 ? list.data.schoolBusinessList : [];
 

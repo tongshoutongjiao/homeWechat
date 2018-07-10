@@ -1,6 +1,7 @@
 import wepy from 'wepy'
 import api from '../api.js'
 import querystring from 'querystring';
+import * as Toolkit from '../utils/toolkit';
 import * as commonMethods from '../utils/commonMethods';
 
 export default class Index extends wepy.page {
@@ -12,7 +13,7 @@ export default class Index extends wepy.page {
     curPhotoList: [],
     equipID: null,
     terminalSN: null,
-
+    schoolId: '',
     deleteIconInfo: {
       deleteIndex: '',// 删除图片的索引
     },
@@ -28,7 +29,8 @@ export default class Index extends wepy.page {
     },
     inputValue: {},
     savingFlag: false,
-    remarkFlag:false
+    remarkFlag: false,
+    locationFlag: false,// 地图定位标识
   };
   methods = {
 
@@ -62,7 +64,7 @@ export default class Index extends wepy.page {
           this.inputValue.simNum = e.detail.value;
           break;
         case 'remark':
-          this.remarkFlag=true;
+          this.remarkFlag = true;
           this.inputValue.remarkAdress = e.detail.value;
           break;
       }
@@ -88,7 +90,6 @@ export default class Index extends wepy.page {
         case 'remark':
           this.inputValue.remarkAdress = e.detail.value;
           break;
-
       }
 
     },
@@ -96,16 +97,25 @@ export default class Index extends wepy.page {
     //  点击保存位置信息以及sim 信息
     clickSaveInfo(e) {
       this.saveInfo();
+    },
+
+    //   点击跳转至地图页面
+    clickNavigateToMapPage(e) {
+      console.log('终端详情页面');
+      wepy.navigateTo({
+        url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
+      });
     }
   };
 
 
   async onLoad(e) {
     console.log('获取终端详情页面设备id');
+    console.log(e);
     let id = e.equipId;
     this.terminalSN = e.equipSn;
     this.equipID = e.equipId;
-    this.getEquipById(id);
+    this.schoolId = e.schoolId;
   }
 
   async getEquipById(id) {
@@ -135,6 +145,8 @@ export default class Index extends wepy.page {
       baoStrong: '',// 信号强度
       remark: '',// 备注,
       remarkAdress: '',// 备注地址
+      latitude: '',
+      longitude: ''
     };
 
     for (let key in defaultData) {
@@ -186,6 +198,18 @@ export default class Index extends wepy.page {
       })
     });
 
+
+    // 添加定位标识
+    if (String(defaultData.latitude) !== 'null' && String(defaultData.longitude) !== 'null') {
+      //
+      wx.setStorageSync('lat', defaultData.latitude);
+      wx.setStorageSync('long', defaultData.longitude);
+      this.locationFlag = true;
+    } else {
+      wx.removeStorageSync('lat');
+      wx.removeStorageSync('long');
+      this.locationFlag = false;
+    }
     this.equipmentInfo = defaultData;
     this.$apply();
   }
@@ -200,12 +224,11 @@ export default class Index extends wepy.page {
       method: 'POST',
       data: {
         id: this.equipID,
-        remarkAdress: this.remarkFlag?obj.remarkAdress :this.equipmentInfo.remarkAdress,
+        remarkAdress: this.remarkFlag ? obj.remarkAdress : this.equipmentInfo.remarkAdress,
         simNum: obj.simNum || this.equipmentInfo.simNum
       }
     });
     if (res.data.result === 200) {
-
       wepy.showToast({
         title: '保存成功',
         icon: 'success',
@@ -227,5 +250,10 @@ export default class Index extends wepy.page {
     }
   }
 
+  async onShow() {
+
+    // 获取设备信息
+    this.getEquipById(this.equipID);
+  }
 
 }

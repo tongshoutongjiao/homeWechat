@@ -26,7 +26,6 @@ export default class Index extends wepy.page {
         array: ['未使用', '在使用', '已丢失'],
         endStatusIndex: 0,
       },
-
       //
       endBoard: {
         array: ['V2主板', 'V3主板', 'V5主板'],
@@ -47,8 +46,8 @@ export default class Index extends wepy.page {
     mainBoardFlag: true,// 故障终端主板
     terminalStateFlag: true,// 终端使用状态
     savingFlag: false,// 保存标志
-    latFlag:false,
-    longFlag:false,
+    latFlag: false,
+    longFlag: false,
 
   };
 
@@ -148,7 +147,6 @@ export default class Index extends wepy.page {
 
     // 点击更新设备信息
     clickUpdateEquipInfo: function (e) {
-      console.log("点击执行提交操作");
       if (this.savingFlag) {
         return;
       }
@@ -156,9 +154,6 @@ export default class Index extends wepy.page {
       this.inputValue.simNum = this.inputValue.simNum || this.repairData.simNum;
       let obj = this.inputValue;
       let reg = /^\d{11}$/g;
-
-      console.log('手机号测试');
-      console.log(obj.simNum);
       if (!reg.test(obj.simNum)) {
         wx.showToast({
           title: '请输入11位sim卡号',
@@ -213,8 +208,6 @@ export default class Index extends wepy.page {
 
     // 点击跳转地图定位页面
     clickNavigateToMapPage: function (e) {
-      console.log('点击跳转到地图定位页面');
-      console.log(this);
       wepy.navigateTo({
         url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
       });
@@ -237,6 +230,8 @@ export default class Index extends wepy.page {
     let newData = [];
     let data = this.$parent.globalData;
     let selectOptions = this.selectOptions;
+    this.latFlag = wx.getStorageSync('lat');
+    this.longFlag = wx.getStorageSync('long');
     for (let key in data) {
       switch (key) {
         case 'repairPerson':
@@ -299,11 +294,11 @@ export default class Index extends wepy.page {
           break
       }
     }
+    this.$apply()
   }
 
   async updateEquipInfo() {
     let submitDate = this.date.submitData;
-    console.log('提交信息');
 
     if (!this.repairData.orderTime && !submitDate.orderTime) {
       wx.showToast({
@@ -372,15 +367,10 @@ export default class Index extends wepy.page {
       userName,
       userId
     });
-
-    console.log('提交对象');
-    console.log(equipInfoData);
     let res = await api.updateEquipInfo({
       method: 'POST',
       data: equipInfoData
     });
-
-
     if (res.data.result === 200) {
       this.savingFlag = false;
       wepy.showToast({
@@ -394,8 +384,6 @@ export default class Index extends wepy.page {
         })
       }, 1000);
       this.savingFlag = false;
-
-
     } else {
       this.savingFlag = false;
       wepy.showToast({
@@ -411,10 +399,10 @@ export default class Index extends wepy.page {
     let data = this.$parent.globalData;
     // 将之前选中的设备信息，存放至当前页面，
     this.repairData = {};
+
     // 判断recordId是否存在,存在的话，使用record 中的数据替代，否则使用原来的
     if (this.recordId) {
       let recordId = this.recordId - 1;
-
       this.repairData = data.recordData[recordId];
       this.imgId = data.recordData[recordId].imgId;
 
@@ -492,21 +480,8 @@ export default class Index extends wepy.page {
               this.handleDefaultSelect('remark');
             }
             break;
-          case 'latitude':
-            if (this.repairData.latitude && this.repairData.latitude !== 'null') {
-              this.latFlag=true;
-              wx.setStorageSync('lat',this.repairData.latitude)
-            }
-            break;
-          case 'longitude':
-            if (this.repairData.longitude && this.repairData.longitude !== 'null') {
-              this.longFlag=true;
-              wx.setStorageSync('long',this.repairData.longitude)
-            }
-            break;
         }
       }
-
     } else {
       for (let key in data.curRepairData) {
         if (key === 'id') {
@@ -520,12 +495,17 @@ export default class Index extends wepy.page {
       });
       this.repairData.terminalId = data.curRepairData.id;
     }
+
+    //   处理定位数据
+    String(this.repairData.latitude) !== 'null' ? wx.setStorageSync('lat', this.repairData.latitude) : wx.removeStorageSync('lat');
+
+    String(this.repairData.longitude) !== 'null' ? wx.setStorageSync('long', this.repairData.longitude) : wx.removeStorageSync('long');
+
     this.$apply();
   }
 
   async initData(e) {
     // 如果有维修记录，先渲染维修的数据，而不是默认值
-    // this.recordId?this.getRecordData():this.handleDefaultData();
     this.handleDefaultData();
   }
 

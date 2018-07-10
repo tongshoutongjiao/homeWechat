@@ -19,6 +19,5 @@
   </view>
   <!--<letter-index></letter-index>-->
 </template>
-
 <script src="../scripts/schools/index.js"></script>
 <style src="../styles/schools.css"></style>

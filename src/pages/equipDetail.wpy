@@ -29,7 +29,7 @@
 		</view>
 			<view class="unfix ">
 				<view>地图定位</view>
-				<view>{{plantEquip.installAddress||'未定位'}}
+				<view bindtap="clickNavigateToMapPage" data-equip-id="{{equipID}}" data-school-id="{{schoolId}}" data-location-flag="{{locationFlag}}">{{ locationFlag?'已定位':'未定位'}}
 					<view class="locationIcon">
 						<image src="/images/location_icon.jpg"></image>
 					</view>
@@ -112,10 +112,7 @@
 				</view>
 			</scroll-view>
 		</view>
-
 	</view>
-
-
 </template>
 <script src="../scripts/equipDetail/index.js"></script>
 <style src="../styles/equipDetail/index.css"></style>

@@ -262,7 +262,11 @@ export default class Index extends wepy.page {
       method: 'POST',
       data: idObj
     });
-    res.data.result === 200 && (this.dormData.dormNameList = this.dormData.dormNameList.concat(res.data.data));
+    console.log('当前楼层的宿舍号');
+    console.log(res);
+    console.log(res.data.data);
+
+    res.data.result === 200 && (this.dormData.dormNameList = res.data.data);
     this.$apply();
   }
 

@@ -109,10 +109,17 @@ export default class Index extends wepy.page {
 
   onShow() {
     console.log('show !');
+    console.log('执行搜索功能');
+
+
+    let flag = true;
+    if (getCurrentPages().length) {
+      getCurrentPages().length === 2 ? this.searchCardOrPhone(flag) : '';
+    }
   }
 
 //
-  async searchCardOrPhone(e) {
+  async searchCardOrPhone(flag) {
     let cardNum = this.cardNum,
       reg = /^\d{11}|\d{10}$/g, resData;
 
@@ -124,10 +131,12 @@ export default class Index extends wepy.page {
         }
       })
     } else {
-      wepy.showToast({
-        title: '请输入正确的卡号或者手机号',
-        icon: 'none',
-      });
+      if (flag === undefined) {
+        wepy.showToast({
+          title: '请输入正确的卡号或者手机号',
+          icon: 'none',
+        });
+      }
     }
     if (resData.data.result === 200) {
       if (resData.data.classList.length > 0) {
@@ -138,7 +147,7 @@ export default class Index extends wepy.page {
         });
         this.studentsList = resData.data.classList;
         this.studentsList.forEach(function (item) {
-          item.classInf=item.studentList[0].classInf;
+          item.classInf = item.studentList[0].classInf;
         })
       } else {
         this.empty = true

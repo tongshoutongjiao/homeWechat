@@ -1,11 +1,13 @@
 <template>
 	<view class="header">
-		<view class="info-part">
-			<view><image src="../images/voice_icon.png"></image></view>
-			<view>迎新期间有{{count}}人照片审核未通过</view>
-			<view class="blue-style" bindtap="navigateToUploadDetail">查看详情</view>
-		</view>
-		<view class="search-input" bindtap="handleSearch" >
+		<block wx:if="{{count>0?true:false}}">
+			<view class="info-part">
+				<view><image src="../images/voice_icon.png"></image></view>
+				<view>迎新期间有{{count}}人照片审核未通过</view>
+				<view class="blue-style" bindtap="navigateToUploadDetail">查看详情</view>
+			</view>
+		</block>
+		<view class="search-input  {{count>0?'':''}}    " bindtap="handleSearch" >
 			<image src="../images/search_icon.png" style="width: 30rpx; height: 30rpx; margin-right: 10rpx;"></image>
 			<text>请输入卡号或者手机号搜索学生</text>
 		</view>
@@ -239,7 +241,7 @@
 	/*搜索框*/
 	.header {
 		width: 100%;
-		height: 232rpx;
+		height: auto;
 	}
 	.search-input {
 		width: 690rpx;

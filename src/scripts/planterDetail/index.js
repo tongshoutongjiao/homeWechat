@@ -21,6 +21,7 @@ export default class Index extends wepy.page {
     deleteIconInfo: {},
     curPhotoList: [],// 大图图片列表
     savingFlag: false,
+    locationFlag: false,// 定位信息
 
     typeList: ['planter', 'remark'],//  备注
 
@@ -272,7 +273,7 @@ export default class Index extends wepy.page {
     clickNavigateToMapPage: function (e) {
       console.log('点击跳转到地图定位页面');
       wepy.navigateTo({
-        url: `/pages/mapPage`
+        url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
       });
     }
   };
@@ -285,12 +286,14 @@ export default class Index extends wepy.page {
   onShow() {
     console.log('show..');
     //   回显选择的globalDate中的数据
-    this.echoSelectedData()
+    this.echoSelectedData();
+
   }
 
   async initData(e) {
     let data = this.$parent.globalData;
     this.plantEquip = data.curPlantEquip;
+
     this.alertData.endType.array = data.terminalTypeData;
     this.alertData.endStatusData.endStatusIndex = data.curPlantEquip.terminalState;
     this.endStatus = this.plantEquip.isLogin;
@@ -325,6 +328,13 @@ export default class Index extends wepy.page {
           break;
       }
     }
+
+    // 判断是否已定位
+
+      let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
+      lat && long ? this.locationFlag = true : this.locationFlag = false;
+
+
     this.$apply();
   }
 
@@ -375,8 +385,26 @@ export default class Index extends wepy.page {
       imgurl2: '',
       imgurl3: '',
       imgurl4: '',
-
+      latitude: '',
+      longitude: '',
     };
+
+    // 添加经纬度
+    this.$parent.globalData.curPlantEquip.latitude = resData.latitude;
+    this.$parent.globalData.curPlantEquip.latitude = resData.longitude;
+
+
+    // 添加定位标识
+    if (String(resData.latitude) !== 'null' && String(resData.longitude) !== 'null') {
+      wx.setStorageSync('lat', resData.latitude);
+      wx.setStorageSync('long', resData.longitude);
+      this.locationFlag=true;
+    } else {
+      wx.removeStorageSync('lat');
+      wx.removeStorageSync('long');
+      this.locationFlag=false;
+    }
+
     for (let key in defaultObj) {
       defaultObj[key] = resData[key]
     }
