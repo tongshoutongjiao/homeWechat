@@ -5,9 +5,10 @@ import api from '../api';
 import * as Toolkit from '../utils/toolkit';
 
 export default class Index extends wepy.page {
-	 // components = {
-	 //   'letter-index': LetterIndex
-	 // };
+	 components = {
+	   // 'letter-index': LetterIndex
+	 };
+
 
 	config = {
 		navigationBarTitleText: '选择学校'

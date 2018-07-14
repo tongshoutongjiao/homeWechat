@@ -1,0 +1,199 @@
+/*顶部固定栏*/
+.header{
+  position:fixed;
+  width:100%;
+  z-index:20;
+  background: #fff;
+}
+/* 顶部选择栏*/
+.tab{
+  width:100%;
+  margin-bottom:23rpx;
+  padding-right:20rpx;
+  view{
+    display: inline-block;
+    font-size: 32rpx;
+    line-height: 72rpx;
+  }
+  .select{
+    width: 522rpx;
+    text-align: center;
+    view{
+      position: relative;
+      display: inline-block;
+      width: 33.3%;
+      color: #8e8e93;
+
+      &.on{
+        color:#181818 ;
+        font-family: "PingFangSC-Medium";
+        .bottom-bar{
+          background: #348cff;
+        }
+      }
+      .bottom-bar{
+        position: absolute;
+        left: 50%;
+        bottom: 0rpx;
+        width: 20rpx;
+        height: 4rpx;
+        border-radius: 2rpx;
+        transform: translateX(-50%);
+        background: #fff;
+      }
+
+    }
+  }
+  .show-style{
+    position: relative;
+    width: calc(100% - 522rpx);
+    text-align: center;
+    color: #358dff;
+    view{
+      font-size: 28rpx;
+    }
+    &::before{
+      position: absolute;
+      content: '';
+      height: 30rpx;
+      display: inline-block;
+      margin-top: 25rpx;
+      left: 0rpx;
+      border-right: 5rpx solid #d0d0d4;
+    }
+  }
+}
+
+
+/*scroll-wrap*/
+.scroll-wrap{
+  box-sizing: border-box;
+  padding-bottom: 50rpx;
+  height: 100%;
+}
+.school-list{
+  height:calc(100% - 180rpx);
+  top:calc(100% - 1080rpx);
+}
+.swiper-box{
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 156rpx;
+  padding-left: 48rpx;
+  position: absolute;
+
+}
+
+
+/*中间操作栏*/
+.operate{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  font-size:32rpx;
+  color: #8e8e93;
+
+  /*三角形*/
+  .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 6rpx solid transparent;
+    border-right: 6rpx solid transparent;
+    border-top:10rpx solid #D0D0D4;
+    margin-left: 10rpx;
+    margin-top: 10rpx;
+  }
+  .school-name{
+    display: inline-block;
+    width: 150rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+
+  .filter-img{
+    width: 28rpx;
+    height: 28rpx;
+    align-self: center;
+    vertical-align: middle;
+  }
+  .search,.deleSchId {
+   vertical-align: middle;
+    margin-left: 10rpx;
+  }
+
+  /*综合过滤*/
+  .multipleRank {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+}
+
+/*学校列表标题*/
+.list-title{
+  display: flex;
+  width: 100%;
+  justify-content:space-around;
+  align-items: center;
+  background: #f7f7f7;
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  color: #575759;
+  line-height: 100rpx;
+}
+
+/* 底部导航栏*/
+.bottom-view{
+  display:flex;
+  justify-content:space-around;
+  z-index:888;
+  background:#348cff;
+  height:100rpx;
+  align-items:center;
+  position:fixed;
+  width:100%;
+  bottom:0rpx;
+  font-size:28rpx;
+  color:#ffffff;
+}
+
+/*schoolName*/
+.school-title-name{
+  color: #5978be;
+  font-size: 28rpx;
+  text-align: left;
+  margin-bottom: 30rpx;
+}
+// swiper列表
+.detileNum {
+  display: flex;
+  font-size: 28rpx;
+  color: #8e8e93;
+  justify-content: space-around;
+  align-items: center;
+  padding-right:25rpx;
+  .leftIcon {
+    width: 20rpx;
+    height: 20rpx;
+    border: 2rpx solid #d0d0d4;
+    border-right: transparent;
+    border-top: transparent;
+  }
+}
+.tips {
+  text-align: center;
+  color: #D6D6D8;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+.noData{
+  font-size: 28rpx;
+  margin-top:250rpx;
+  text-align: center;
+  color: #D6D6D8;
+}

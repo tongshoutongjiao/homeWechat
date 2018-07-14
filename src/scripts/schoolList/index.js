@@ -1,12 +1,13 @@
 import wepy from 'wepy'
 import api from '../api'
 import util from '../utils/util'
+import * as Toolkit from '../utils/toolkit'
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '学校列表'
-  }
+  };
   data = {
-    toCurrentTab: '0',
+    toCurrentTab: '0',// 当前tab栏 三种状态：0,1,2
     a: [],
     isFilter: false,
     useAreaManagerFilter: false,
@@ -288,170 +289,187 @@ export default class Index extends wepy.page {
 
   methods = {
     async swichNav(e) {
-      if (this.userType == '5') { return }
-      if (this.currentTab === e.target.dataset.current) {
-        return false
-      } else {
-        this.loadMore = true
-        this.currentTab = e.target.dataset.current
-        if (this.currentTab == '0') {
-          this.page = 1
-          this.selectDate = util.getBeforDay(new Date())
-          let dayParams = {}
-          dayParams.schoolId = this.schoolId
-          dayParams.userType = this.userType
-          dayParams.userId = wepy.getStorageSync('userId')
-          // dayParams.userId = 1790
-          dayParams.reportType = '1'
-          dayParams.selectType = this.selectType
-          dayParams.logdate = this.selectDate
-          dayParams.pageIndex = this.page
-          dayParams.pageSize  = this.size
-          dayParams.operaType = this.operaType
-          if (this.a.length > 0 && this.selecTakeArea == true) {
-            dayParams.regionId = this.a
-            dayParams.regionLevel = this.regionLevel
-            dayParams.regionManager = ''
-          } else if(this.a.length >0 && this.selecHeadPeo == true) {
-            dayParams.regionManager = this.a
-            dayParams.regionId = ''
-            dayParams.regionLevel = ''
-          } else if (this.a.length == 0) {
-            dayParams.regionId = ''
-            dayParams.regionLevel = ''
-            dayParams.regionManager = ''
-          }
-          this.getDayList = []
-          this.getWeekList = []
-          this.getMonthList = []
-          let getSchoolList = await api.getSchoolList({method: 'POST',data:dayParams})
-          this.getDayList = getSchoolList.data.dataList
-          this.btomSchollNum = getSchoolList.data.schoolNum
-          this.btomStudentNum = getSchoolList.data.studentNum
-          this.btomPassNum = getSchoolList.data.openRate
-          this.btomUserNum = getSchoolList.data.adduserNum
-          if (getSchoolList.data.dataList && !getSchoolList.data.dataList.length == 0) {
-            this.page += 1
-          } else {
-            this.loadMore = false
-          }
-          this.$apply()
-        } else if (this.currentTab == '1') {
-          if (this.toCurrentTab == '1') {
-            return false
-          } else {
-            this.loadMore = true
+      console.log('切换tab栏');
+
+      if (this.userType == '5') { return; }
+
+      if (this.currentTab !== e.target.dataset.current) {
+        this.loadMore = true;
+        this.currentTab = e.target.dataset.current;
+        switch (e.target.dataset.current){
+          case '0':
             this.page = 1
-            let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
-            this.str = splitWeek[1]
-            let weekParams = {}
-            weekParams.schoolId = this.schoolId
-            weekParams.userId = wepy.getStorageSync('userId')
-            // weekParams.userId = 1790
-            weekParams.userType = this.userType
-            weekParams.selectType = this.selectType
-            weekParams.operaType = this.operaType
-            // weekParams.userType = this.userType
-            weekParams.reportType = '2'
-            weekParams.pageIndex = this.page
-            weekParams.pageSize  = this.size
-            weekParams.logdate = splitWeek[0]
+            this.selectDate = util.getBeforDay(new Date())
+            let dayParams = {}
+            dayParams.schoolId = this.schoolId
+            dayParams.userType = this.userType
+            dayParams.userId = wepy.getStorageSync('userId')
+            // dayParams.userId = 1790
+            dayParams.reportType = '1'
+            dayParams.selectType = this.selectType
+            dayParams.logdate = this.selectDate
+            dayParams.pageIndex = this.page
+            dayParams.pageSize  = this.size
+            dayParams.operaType = this.operaType
             if (this.a.length > 0 && this.selecTakeArea == true) {
-              weekParams.regionId = this.a
-              weekParams.regionLevel = this.regionLevel
-              weekParams.regionManager = ''
-            } else if(this.a.length > 0 && this.selecHeadPeo == true) {
-              weekParams.regionManager = this.a
-              weekParams.regionId = this.a
-              weekParams.regionLevel = ''
-            } else if(this.a.length == 0){
-              weekParams.regionId = ''
-              weekParams.regionLevel = ''
-              weekParams.regionManager = ''
+              dayParams.regionId = this.a
+              dayParams.regionLevel = this.regionLevel
+              dayParams.regionManager = ''
+            } else if(this.a.length >0 && this.selecHeadPeo == true) {
+              dayParams.regionManager = this.a
+              dayParams.regionId = ''
+              dayParams.regionLevel = ''
+            } else if (this.a.length == 0) {
+              dayParams.regionId = ''
+              dayParams.regionLevel = ''
+              dayParams.regionManager = ''
             }
             this.getDayList = []
             this.getWeekList = []
             this.getMonthList = []
-            let getWeekSchoolList = await api.getSchoolList({method:'POST',data:weekParams})
-            this.getWeekList = getWeekSchoolList.data.dataList
-            this.btmWeekSchollNum = getWeekSchoolList.data.schoolNum
-            this.btmWeekStudentNum = getWeekSchoolList.data.studentNum
-            this.btmWeekPassNum = getWeekSchoolList.data.openRate
-            this.btmWeekUserNum = getWeekSchoolList.data.adduserNum
-            console.log(getWeekSchoolList.data.dataList)
-            if (getWeekSchoolList.data.dataList && !getWeekSchoolList.data.dataList.length ==0) {
+            let getSchoolList = await api.getSchoolList({method: 'POST',data:dayParams})
+            this.getDayList = getSchoolList.data.dataList
+            this.btomSchollNum = getSchoolList.data.schoolNum
+            this.btomStudentNum = getSchoolList.data.studentNum
+            this.btomPassNum = getSchoolList.data.openRate
+            this.btomUserNum = getSchoolList.data.adduserNum
+            if (getSchoolList.data.dataList && !getSchoolList.data.dataList.length == 0) {
               this.page += 1
             } else {
               this.loadMore = false
             }
-            this.$apply()
-          }
-        } else if (this.currentTab == '2') {
-          if (this.toCurrentTab == '2' ) {
-            return false
-          } else {
-            this.page = 1
-            this.loadMore = true
-            this.monthInit = util.getCurrentMonth(new Date())
-            let time = util.getCurrentMonth(new Date())
-            let splitMonth = this.monthInit.split('-')
-            let monthParams = {}
-            monthParams.schoolId = this.schoolId
-            monthParams.userType = this.userType
-            monthParams.userId = wepy.getStorageSync('userId')
-            // monthParams.userId = 1790
-            monthParams.operaType = this.operaType
-            monthParams.reportType = '3'
-            monthParams.selectType = this.selectType
-            monthParams.pageIndex = this.page
-            monthParams.pageSize  = this.size
-            if (this.a.length > 0 && this.selecTakeArea == true) {
-              monthParams.regionId = this.a
-              monthParams.regionLevel = this.regionLevel
-              monthParams.regionManager = ''
-            } else if (this.a.length > 0 && this.selecHeadPeo == true) {
-              monthParams.regionManager = this.a
-              monthParams.regionId = this.a
-              monthParams.regionLevel = ''
-            } else if (this.a.length == 0){
-              monthParams.regionId = ''
-              monthParams.regionLevel = ''
-              monthParams.regionManager = ''
+            break;
+          case '1':
+            if (this.toCurrentTab == '1') {
+              return false
             }
-            if (this.monthInit == time) {
-              monthParams.logdate = util.getBeforDay(new Date())
-              console.log(monthParams.logdate)
-            } else if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
-              monthParams.logdate = this.monthInit + '-31'
-            } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
-              monthParams.logdate = this.monthInit + '-30'
-              console.log(monthParams.logdate)
-            } else if (splitMonth[1] == '02') {
-              if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
-                monthParams.logdate = this.monthInit + '-29'
-              } else {
-                monthParams.logdate = this.monthInit + '-28'
+            else {
+              this.loadMore = true
+              this.page = 1
+              let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
+              this.str = splitWeek[1]
+              let weekParams = {}
+              weekParams.schoolId = this.schoolId
+              weekParams.userId = wepy.getStorageSync('userId')
+              // weekParams.userId = 1790
+              weekParams.userType = this.userType
+              weekParams.selectType = this.selectType
+              weekParams.operaType = this.operaType
+              // weekParams.userType = this.userType
+              weekParams.reportType = '2'
+              weekParams.pageIndex = this.page
+              weekParams.pageSize  = this.size
+              weekParams.logdate = splitWeek[0]
+              if (this.a.length > 0 && this.selecTakeArea == true) {
+                weekParams.regionId = this.a
+                weekParams.regionLevel = this.regionLevel
+                weekParams.regionManager = ''
+              } else if(this.a.length > 0 && this.selecHeadPeo == true) {
+                weekParams.regionManager = this.a
+                weekParams.regionId = this.a
+                weekParams.regionLevel = ''
+              } else if(this.a.length == 0){
+                weekParams.regionId = ''
+                weekParams.regionLevel = ''
+                weekParams.regionManager = ''
               }
+              this.getDayList = []
+              this.getWeekList = []
+              this.getMonthList = []
+              let getWeekSchoolList = await api.getSchoolList({method:'POST',data:weekParams})
+              this.getWeekList = getWeekSchoolList.data.dataList
+              this.btmWeekSchollNum = getWeekSchoolList.data.schoolNum
+              this.btmWeekStudentNum = getWeekSchoolList.data.studentNum
+              this.btmWeekPassNum = getWeekSchoolList.data.openRate
+              this.btmWeekUserNum = getWeekSchoolList.data.adduserNum
+              console.log(getWeekSchoolList.data.dataList)
+              if (getWeekSchoolList.data.dataList && !getWeekSchoolList.data.dataList.length ==0) {
+                this.page += 1
+              } else {
+                this.loadMore = false
+              }
+              this.$apply()
             }
-            this.getDayList = []
-            this.getWeekList = []
-            this.getMonthList = []
-            let getMonthSchoolList = await api.getSchoolList({method: 'POST', data: monthParams})
-            if (getMonthSchoolList.data.dataList.length && !getMonthSchoolList.data.dataList.length ==0) {
-              this.page += 1
-            } else {
-              this.loadMore = false
+           break;
+          case '2':
+            if (this.toCurrentTab == '2' ) {
+              return false
             }
-            this.getMonthList = getMonthSchoolList.data.dataList
-            this.btmMonSchollNum = getMonthSchoolList.data.schoolNum
-            this.btmMonStudentNum = getMonthSchoolList.data.studentNum
-            this.btmMonPassNum = getMonthSchoolList.data.openRate
-            this.btmMonUserNum = getMonthSchoolList.data.adduserNum
-            this.$apply()
-          }
+            else {
+              this.page = 1
+              this.loadMore = true
+              this.monthInit = util.getCurrentMonth(new Date())
+              let time = util.getCurrentMonth(new Date())
+              let splitMonth = this.monthInit.split('-')
+              let monthParams = {}
+              monthParams.schoolId = this.schoolId
+              monthParams.userType = this.userType
+              monthParams.userId = wepy.getStorageSync('userId')
+              // monthParams.userId = 1790
+              monthParams.operaType = this.operaType
+              monthParams.reportType = '3'
+              monthParams.selectType = this.selectType
+              monthParams.pageIndex = this.page
+              monthParams.pageSize  = this.size
+              if (this.a.length > 0 && this.selecTakeArea == true) {
+                monthParams.regionId = this.a
+                monthParams.regionLevel = this.regionLevel
+                monthParams.regionManager = ''
+              } else if (this.a.length > 0 && this.selecHeadPeo == true) {
+                monthParams.regionManager = this.a
+                monthParams.regionId = this.a
+                monthParams.regionLevel = ''
+              } else if (this.a.length == 0){
+                monthParams.regionId = ''
+                monthParams.regionLevel = ''
+                monthParams.regionManager = ''
+              }
+              if (this.monthInit == time) {
+                monthParams.logdate = util.getBeforDay(new Date())
+                console.log(monthParams.logdate)
+              } else if (splitMonth[1] == '01' || splitMonth[1] == '03' || splitMonth[1] == '05' || splitMonth[1] == '07' || splitMonth[1] == '08' || splitMonth[1] == '10' || splitMonth[1] == '12') {
+                monthParams.logdate = this.monthInit + '-31'
+              } else if (splitMonth[1] == '04' || splitMonth[1] == '06' || splitMonth[1] == '09' || splitMonth[1] == '11') {
+                monthParams.logdate = this.monthInit + '-30'
+                console.log(monthParams.logdate)
+              } else if (splitMonth[1] == '02') {
+                if ((splitMonth[0] % 4 == 0) && (splitMonth[0] % 100 != 0 || splitMonth[0] % 400 == 0)) {
+                  monthParams.logdate = this.monthInit + '-29'
+                } else {
+                  monthParams.logdate = this.monthInit + '-28'
+                }
+              }
+              this.getDayList = []
+              this.getWeekList = []
+              this.getMonthList = []
+              let getMonthSchoolList = await api.getSchoolList({method: 'POST', data: monthParams})
+              if (getMonthSchoolList.data.dataList.length && !getMonthSchoolList.data.dataList.length ==0) {
+                this.page += 1
+              } else {
+                this.loadMore = false
+              }
+              this.getMonthList = getMonthSchoolList.data.dataList
+              this.btmMonSchollNum = getMonthSchoolList.data.schoolNum
+              this.btmMonStudentNum = getMonthSchoolList.data.studentNum
+              this.btmMonPassNum = getMonthSchoolList.data.openRate
+              this.btmMonUserNum = getMonthSchoolList.data.adduserNum
+              this.$apply()
+            }
+            break;
+          default:
+            break;
         }
+        this.$apply();
       }
+
     },
+
+
+
+
+
+
+
     async bindChange(e) {
       console.log('bingCHANGE', e)
       if (this.userType == '5') { return }
@@ -501,7 +519,8 @@ export default class Index extends wepy.page {
       } else if (this.currentTab == '1') {
         if (this.toCurrentTab == '1') {
           return false
-        } else {
+        }
+        else {
           let splitWeek = this.pickerWeekArr[this.weekIndex].split('@')
           this.str = splitWeek[1]
           params.reportType = '2'
@@ -600,7 +619,7 @@ export default class Index extends wepy.page {
         params.selectType = '3'
         this.selectType = '3'
       } else if (e.detail.value == 3) {
-        params.selectType = '4'
+        params.selectType = '4';
         this.selectType = '4'
       }
 
@@ -627,7 +646,8 @@ export default class Index extends wepy.page {
         }
         this.getWeekList = getSchoolList.data.dataList
         this.$apply()
-      } else if (this.currentTab == '2') {
+      }
+      else if (this.currentTab == '2') {
         params.reportType = '3'
         let time = util.getCurrentMonth(new Date())
         if (this.monthInit == time) {
@@ -700,6 +720,8 @@ export default class Index extends wepy.page {
       }
       wepy.navigateTo({url: '../pages/search?page_url=/pages/schoolList&page=2&toCurrentTab=' + this.toCurrentTab + '&searchDate=' + searchDate + '&regionLevel=' + regionLevel + '&regionId=' + regionId + '&regionManager=' + regionManager + '&showDate=' + showDate})
     },
+
+
     async bindDateChange(e) {
       this.loadMore = true
       if (this.userType == '5') { return }
@@ -872,6 +894,8 @@ export default class Index extends wepy.page {
       }
     },
     async filter(e) { // 点击筛选事件
+      console.log('筛选筛选筛选');
+
       if (this.userType == '4' || this.userType == '5') { return }
       let animation = wepy.createAnimation({// 创建动画
         duration: 1000,

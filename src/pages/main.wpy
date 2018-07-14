@@ -58,7 +58,7 @@
 			<image src="../images/school_implement.png" class="main-icon"></image>
 			<view class="icon-title disabled">新校实施</view>
 		</view>
-		<view class="icon-list" bindtap="toPage" data-page="">
+		<view class="icon-list" bindtap="toPage" data-page="schoolCopy">
 			<image src="../images/repository_disabled.png" class="main-icon"></image>
 			<view class="icon-title disabled">知识库</view>
 		</view>
