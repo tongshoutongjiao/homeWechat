@@ -123,7 +123,7 @@
 		</view>
 
 		<!-- 筛选区域-->
-		<view class="select-option" wx:if="{{selectFlag}}">筛选筛选筛选</view>
+		<filter-slider></filter-slider>
 
 	</view>
 </template>

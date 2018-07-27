@@ -37,7 +37,7 @@ export default class Index extends wepy.page {
     selectClassName: '',
     showPhoto: false,
     savingFlag: false,
-    cameraFlag:false,
+    cameraFlag: false,
 
 
     //  省市县三级联动
@@ -100,7 +100,6 @@ export default class Index extends wepy.page {
       }
     },
 
-
     // 点击选中样式
     clickSelectItem: function (e) {
       let data = e.currentTarget.dataset,
@@ -132,25 +131,25 @@ export default class Index extends wepy.page {
       console.log('点击弹框显示选择开通套餐');
       let tels = e.currentTarget.dataset.tels,
         phoneTypes = e.currentTarget.dataset.phoneTypes;
-      let regValue=/^[0-9]{6}$/g,flag;
-      if(this.studentInfo.codes){
-        flag=regValue.test(this.studentInfo.codes);
-        if(!flag){
+      let regValue = /^[0-9]{6}$/g, flag;
+      if (this.studentInfo.codes) {
+        flag = regValue.test(this.studentInfo.codes);
+        if (!flag) {
           wx.showToast({
             title: '请输入6位数字验证码',
             icon: 'none',
           });
           return;
-        }else {
+        } else {
           this.studentInfo.tels = tels;
           this.studentInfo.phoneTypes = phoneTypes;
-          this.studentInfo.productId=this.productList[0].productId;
+          this.studentInfo.productId = this.productList[0].productId;
           this.dialogStatus = true;
         }
-      }else {
+      } else {
         this.studentInfo.tels = tels;
         this.studentInfo.phoneTypes = phoneTypes;
-        this.studentInfo.productId=this.productList[0].productId;
+        this.studentInfo.productId = this.productList[0].productId;
         this.dialogStatus = true;
         return;
       }
@@ -185,7 +184,7 @@ export default class Index extends wepy.page {
         value = e.detail.value;
       switch (inputType) {
         case 'name':
-            this.studentInfo.name = value;
+          this.studentInfo.name = value;
           break;
         case 'qinPhone1':
           this.studentInfo.qinPhone1 = value;
@@ -212,7 +211,7 @@ export default class Index extends wepy.page {
           this.studentInfo.identity = value;
           break;
         case 'codes':
-            this.studentInfo.codes = value;
+          this.studentInfo.codes = value;
 
           break;
       }
@@ -221,28 +220,27 @@ export default class Index extends wepy.page {
     },
 
     // 失去焦点姓名 code 是否正确
-    judgeValueInput:function(e){
+    judgeValueInput: function (e) {
       let inputType = e.currentTarget.dataset.inputType,
         value = e.detail.value;
-      switch (inputType){
+      switch (inputType) {
         case 'name':
-          let regName=/^(\w|[\u4e00-\u9fa5]){1,6}$/g;
-          if(value===''){
+          let regName = /^(\w|[\u4e00-\u9fa5]){1,6}$/g;
+          if (value === '') {
             break;
           }
-          if(regName.test(value)){
+          if (regName.test(value)) {
             this.studentInfo.name = value;
-          }else {
+          } else {
             wx.showToast({
               title: '请输入1到6位汉字',
               icon: 'none',
             });
-            value='';
-            this.studentInfo.name='';
+            value = '';
+            this.studentInfo.name = '';
           }
 
       }
-
 
 
     },
@@ -314,7 +312,7 @@ export default class Index extends wepy.page {
     //  点击上传头像
     clickUploadImg: function (e) {
       console.log('takePhotos');
-      this.cameraFlag=true;
+      this.cameraFlag = true;
       this.showPhoto = true;
 
     },
@@ -356,6 +354,13 @@ export default class Index extends wepy.page {
           break;
       }
     },
+
+    //  图片加载错误时
+    handErrorImg:function () {
+      console.log('图片加载失败时，执行当前函数');
+      this.studentInfo.studentImg=null;
+      this.$apply();
+    }
   };
 
   async getProvince() {
@@ -509,9 +514,9 @@ export default class Index extends wepy.page {
       if (key === 'qinPhone3') {
         this.studentInfo['qin3Flag'] = res.data[key] !== '' ? true : false
       }
-      if(key==='studentImg'){
-        this.studentImg=res.data[key];
-        this.defaultPhoto=defaultPhoto;
+      if (key === 'studentImg') {
+        this.studentImg = res.data[key];
+        this.defaultPhoto = defaultPhoto;
       }
       this.studentInfo[key] = res.data[key];
     }
@@ -547,8 +552,8 @@ export default class Index extends wepy.page {
         ajaxData[key] = this.studentInfo[key]
       }
     }
-    if(!this.selectAddressFlag){
-      ajaxData.regionId='';
+    if (!this.selectAddressFlag) {
+      ajaxData.regionId = '';
     }
 
     ajaxData.userTelNum = userTelNum;
@@ -577,7 +582,7 @@ export default class Index extends wepy.page {
     }
     if (ajaxData.isDorm === '') {
       wx.showToast({
-        title: '请选择住宿类型',
+        title: '请选择学生类型',
         icon: 'none',
       });
       return;
@@ -606,7 +611,7 @@ export default class Index extends wepy.page {
       });
       setTimeout(() => {
         this.savingFlag = false;
-        wepy.setStorageSync('editFlag',true);
+        wepy.setStorageSync('editFlag', true);
         wx.navigateBack({
           delta: 1
         })
@@ -633,8 +638,14 @@ export default class Index extends wepy.page {
     });
     if (res.data.result === 200) {
       console.log(res.data.businessList);
-      res.data.businessList.forEach(function (item,index) {
-
+      res.data.businessList.sort(this.compareProduct);
+      // this.compareProduct();
+      res.data.businessList.forEach(function (item, index) {
+        console.log('所有的套餐信息');
+        console.log(item);
+        console.log(item.productFee);
+        console.log(item.productFee.substr(0, 1));
+        console.log(index);
       });
       this.productList = res.data.businessList;
       console.log(this.productList)
@@ -686,11 +697,6 @@ export default class Index extends wepy.page {
     console.log(list);
 
 
-
-
-
-
-
     // 保存所有年级数据
     tempData = list.data.result === 200 ? list.data.schoolBusinessList : [];
 
@@ -716,6 +722,20 @@ export default class Index extends wepy.page {
     );
     that.animation.translateY(moveY + 'vh').step();
     that.animation = that.animation.export();
+  }
+
+  // 对比套餐类型
+  compareProduct(obj1, obj2) {
+    console.log('对比套餐类型');
+    var val1 = obj1.productFee.substr(0, 1);
+    var val2 = obj2.productFee.substr(0, 1);
+    if (val1 < val2) {
+      return -1;
+    } else if (val1 > val2) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
 

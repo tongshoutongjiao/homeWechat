@@ -42,7 +42,7 @@ export default class Index extends wepy.page {
       //  安装类型
       plantType: {
         array: ['加装', '新装', '移机', '改造'],
-        plantTypeIndex: 0
+        plantTypeIndex: null
       }
     },
     equipInfo: {},
@@ -124,7 +124,7 @@ export default class Index extends wepy.page {
     clickSelectStatus: function (e) {
       let endStatus = e.currentTarget.dataset.endStatus;
       this.endStatus = endStatus;
-      this.selectType.isActive = +endStatus;
+      this.selectType.isActive = endStatus * 1;
       this.$apply();
     },
 
@@ -194,17 +194,21 @@ export default class Index extends wepy.page {
         return;
       }
 
-      // 判读图片
+      // 判断图片
       commonMethods.handleImgUrlInfo(self);
 
       // 判断用户是否点击启用状态，
-      this.selectType.isActive = this.selectType.isActive || this.plantEquip.isLogin;
+      console.log('查看终端启用状态');
+      console.log(this.selectType);
+      console.log(this.plantEquip);
+      this.selectType.isActive = this.endStatus || this.plantEquip.isActive;
       this.selectType.terminalStatus = this.selectType.terminalStatus || this.plantEquip.terminalState;
       // 1 终端名称 sim卡号 安装位置
       // 2 是否启用 安装类型  终端类型  终端使用状态  终端安装时间
       // 3 安装人员 备注
       // 4 远景照 近景照
       // 其他的参数  this.plantEquip
+
       this.plantEquip.terminalId = this.plantEquip.id;
       Object.assign(defaultInfo, this.plantEquip, this.inputValue, this.selectType, this.selectOptions, this.imgUrlList.submitData, {
         userId,
@@ -217,32 +221,36 @@ export default class Index extends wepy.page {
     //  获取input框中的值
     getInputValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
-
     },
 
     //  聚焦时获取到input中的内容
     getFocusValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
+
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
 
@@ -250,9 +258,8 @@ export default class Index extends wepy.page {
 
     //   点击查看大图
     clickOperatePhoto: function (e) {
-
-      this.$apply();
       commonMethods.clickCheckImg(e, this);
+      this.$apply();
     },
     //  取消遮罩层效果
     cancelPhotoMask: function (e) {
@@ -271,7 +278,6 @@ export default class Index extends wepy.page {
 
     // 点击跳转地图定位页面
     clickNavigateToMapPage: function (e) {
-      console.log('点击跳转到地图定位页面');
       wepy.navigateTo({
         url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
       });
@@ -287,16 +293,14 @@ export default class Index extends wepy.page {
     console.log('show..');
     //   回显选择的globalDate中的数据
     this.echoSelectedData();
-
   }
 
   async initData(e) {
     let data = this.$parent.globalData;
     this.plantEquip = data.curPlantEquip;
-
     this.alertData.endType.array = data.terminalTypeData;
     this.alertData.endStatusData.endStatusIndex = data.curPlantEquip.terminalState;
-    this.endStatus = this.plantEquip.isLogin;
+    this.endStatus = this.plantEquip.isActive;
     this._getEquipInfoById();
   }
 
@@ -304,6 +308,9 @@ export default class Index extends wepy.page {
     let newData = [],
       idData = [];
     let data = this.$parent.globalData;
+
+    // 查看获取到的安装人员
+    console.log(data);
     for (let key in data) {
       switch (key) {
         case 'repairPerson':
@@ -316,6 +323,10 @@ export default class Index extends wepy.page {
           });
           this.selectOptions.installationP = idData.join(',');
           this.selectOptions.pname = newData.join(',');
+          console.log('查看所选中的安装人员');
+          console.log(newData);
+          console.log(this.selectOptions);
+          console.log(newData.join(',').length);
           this.equipInfo.plantPersonSelected = newData.join(',').length > 14 ? newData.join(',').substring(0, 14) + '...' : newData.join(',');
           break;
         case 'remark':
@@ -330,15 +341,16 @@ export default class Index extends wepy.page {
     }
 
     // 判断是否已定位
-
-      let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
-      lat && long ? this.locationFlag = true : this.locationFlag = false;
-
+    let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
+    lat && long ? this.locationFlag = true : this.locationFlag = false;
 
     this.$apply();
   }
 
   async submitEquipInfo(defaultInfo) {
+    console.log('最终提交数据');
+    console.log(defaultInfo);
+    console.log(defaultInfo.isActive);
     let res = await api.installCurEquip({
       method: 'POST',
       data: defaultInfo
@@ -398,11 +410,11 @@ export default class Index extends wepy.page {
     if (String(resData.latitude) !== 'null' && String(resData.longitude) !== 'null') {
       wx.setStorageSync('lat', resData.latitude);
       wx.setStorageSync('long', resData.longitude);
-      this.locationFlag=true;
+      this.locationFlag = true;
     } else {
       wx.removeStorageSync('lat');
       wx.removeStorageSync('long');
-      this.locationFlag=false;
+      this.locationFlag = false;
     }
 
     for (let key in defaultObj) {
@@ -420,10 +432,12 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.pname) {
       let plantPerson = this.$parent.globalData.repairPerson;
-      this.equipInfo.plantPersonSelected = defaultObj.pname;
+      console.log(defaultObj.pname);
+      let personSaved = defaultObj.pname.length > 14 ? defaultObj.pname.substring(0, 14) + '...' : defaultObj.pname;
+      this.equipInfo.plantPersonSelected = personSaved;
       let tempArray = defaultObj.pname.split(',');
       tempArray.forEach(function (item) {
-        plantPerson.forEach(function (plantP, index) {
+        plantPerson.forEach(function (plantP) {
           if (plantP.name === item) {
             plantP.selected = true;
           }
@@ -434,7 +448,8 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.remark) {
       let remark = this.$parent.globalData.remark;
-      this.equipInfo.remarkSelected = defaultObj.remark;
+      let remarkSaved = defaultObj.remark.length > 14 ? defaultObj.remark.substring(0, 14) + '...' : defaultObj.remark;
+      this.equipInfo.remarkSelected = remarkSaved;
       let tempArray = defaultObj.remark.split(',');
       console.log(remark);
       tempArray.forEach(function (item) {

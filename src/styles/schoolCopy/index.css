@@ -2,7 +2,7 @@
 .header {
   position: fixed;
   width: 100%;
-  z-index: 20;
+  z-index: 1;
   background: #fff;
 }
 /* 顶部选择栏*/
@@ -138,7 +138,7 @@
 .bottom-view {
   display: flex;
   justify-content: space-around;
-  z-index: 888;
+  z-index: 1;
   background: #348cff;
   height: 100rpx;
   align-items: center;

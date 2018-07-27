@@ -36,7 +36,7 @@
 		<view class="default ">
 			<view>安装位置</view>
 			<input type="text" placeholder="请输入安装位置" data-input-type="installAddress" bindinput="getInputValue"
-			       bindfocus="getFocusValue" value="{{plantEquip.installAddress||''}}">
+			       bindfocus="getFocusValue" value="{{plantEquip.installAddress&&plantEquip.installAddress!='null'?plantEquip.installAddress:'暂无'}}">
 		</view>
 		<view class="default ">
 			<view>地图定位</view>
@@ -160,7 +160,7 @@
 		             bindscroll="getSelectItem" bindtap="getSelectItemTest">
 			<view class="large-img" wx:for="{{curPhotoList}}">
 				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}"
-				       mode="aspectFill"></image>
+				       mode="aspectFit"></image>
 			</view>
 		</scroll-view>
 

@@ -1,14 +1,14 @@
 <template>
 	<view class="container">
 		<view class="title">
-			全校 早晨上学刷卡
+			{{titleText}}{{spanText}}刷卡
 		</view>
 		<block wx:if="{{typeId===3}}">
 			<view><view class="item-list bg-color">
 				<view>班级</view>
 				<view>姓名</view>
 				<view>类型</view>
-				<view>刷卡时间</view>
+				<view>{{restTitle||'刷卡时间'}}</view>
 			</view></view>
 
 
@@ -22,7 +22,7 @@
 						</block>
 						<block wx:else>
 							<view>住宿</view>
-							<view class="card-time gray-style">请假</view>
+							<view class="card-time gray-style">{{item.endDate}}</view>
 						</block>
 					</view>
 					<block wx:if="{{recordData.length}}">
@@ -53,7 +53,7 @@
 							</picker>
 						</view>
 					</block>
-					<view>刷卡时间</view>
+					<view>{{restTitle||'刷卡时间'}}</view>
 				</view></view>
 				<scroll-view  scroll-y="true" style="height:{{scrollHeight}}px"  bindscrolltolower="bindLower"  class="student-wrapper">
 					<view class="item-list" wx:for="{{recordData}}">
@@ -65,7 +65,7 @@
 						</block>
 						<block wx:else>
 							<view>{{isDormFlag===0?'走读':'住宿'}}</view>
-							<view class="card-time gray-style">请假</view>
+							<view class="card-time gray-style">{{item.endDate}}</view>
 						</block>
 					</view>
 					<block wx:if="{{recordData.length}}">

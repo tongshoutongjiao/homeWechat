@@ -9,13 +9,15 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '学生管理'
   };
   data = {
-    schoolData:[]
+    schoolData:[],
+    studentCount:'',
 
   };
 
   methods = {
     navigateToStudentManage:function (e) {
       console.log('跳转到学生管理页面');
+
       wepy.navigateTo({
         url: `/pages/studentManage?`+Toolkit.jsonToParam(e.currentTarget.dataset)
       });
@@ -24,9 +26,13 @@ export default class Index extends wepy.page {
   };
 
   onLoad(e) {
+    console.log('来啦来啦来啦');
+    console.log(e);
+
   let schoolData=this.$parent.globalData.schoolListData;
-  console.log(this.$parent.globalData);
-  console.log(schoolData);
+    this.studentCount=e.studentCount;
+
+
   this.schoolData=schoolData;
   this.$apply();
   }

@@ -24,15 +24,15 @@
 							<image class="all-default" src="/images/float_icon_d.png"/>
 						</block>
 
-						<text class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.installAddress}}</text>
+						<text class="{{item.isLogin=='1'?'':'gray-style'}}">{{item.installAddress&&item.installAddress!='null'?item.installAddress:'暂无'}}</text>
 					</view>
 					<view class="detail">
-						<view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">
+						<view style="width: 20%" class="{{item.isLogin=='1'?'':'gray-style'}}">
 							<view  class=" leftIcon"></view>
 						</view>
-						<view style="width: 30%" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}" data-school-id="{{schoolId}}">{{item.terminalNum}}</view>
-						<view style="width: 30%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.terminalName}}</view>
-						<view style="width: 20%" class="{{item.isLogin==='1'?'':'gray-style'}}">{{item.isLogin==='1'?'在线':'离线'}}</view>
+						<view style="width: 30%;margin-right:30rpx;" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}" data-school-id="{{schoolId}}">{{item.terminalNum}}</view>
+						<view style="width: 30%" class="{{item.isLogin=='1'?'':'gray-style'}}">{{item.typeName}}</view>
+						<view style="width: 20%" class="{{item.isLogin=='1'?'':'gray-style'}}">{{item.isLogin=='1'?'在线':'离线'}}</view>
 					</view>
 				</view>
 			</block>
@@ -105,7 +105,7 @@
 	<view class="dialog" wx:if="{{dialogFlag}}">
 		<view class="mask"></view>
 		<view class="record">
-			<view class="serials">312323356100</view>
+			<view class="serials">{{repairList[0].terminalNum}}</view>
 			<view class="recordTitle">近期已有维修记录</view>
 			<view class="recordForm">
 				<view class="formTitle">
@@ -123,7 +123,7 @@
 
 			</view>
 			<view class="desc">
-				如果要维修的记录已经创建,只是需要修改其中的内容,请选择已有的维修记录进行修改,如果没有请新建维修单。
+				如果要维修的记录已经创建，请选择已有记录进行修改，如果没有请新建维修单。
 			</view>
 			<view class="btn">
 				<view bindtap="clickOperateOrder" data-type="cancel">取消</view>

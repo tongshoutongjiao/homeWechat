@@ -201,18 +201,25 @@ export async function getBussinessList(self) {
 }
 
 
-
 // 批量上传学生照片
 export async function batchUploadPhoto(data,self,callback){
   console.log('批处理学生的照片信息');
-
   let tempArray=[];
 
   for(let i=0,curItem;i<data.length;i++) {
     curItem = data[i];
-    let rate=`${i+1}/${data.length}`;
+    let rate=(i+1)/(data.length);
+    let percent=((rate.toFixed(2))*100).toFixed()+'%';
+
+    console.log('rate:',rate);
+    console.log('rate取两位小数',rate.toFixed(2));
+    console.log('percent',percent);
+
+
+
+
     wx.showLoading({
-      title:`上传进度 `+String(rate),
+      title:`上传进度 `+String(percent),
       icon: 'loading',
       mask:true
     });
@@ -223,11 +230,17 @@ export async function batchUploadPhoto(data,self,callback){
         studentId: curItem.studentId
       },
     });
+    // 如果当前图片上传成功，直接清除上传照片的数据
     let photoRes = JSON.parse(uploadRes.data);
     if(!photoRes.data || !photoRes.data[0]){
-
       // 如果单张照片上传失败的话，保存当前照片的信息
       tempArray.push(curItem)
+    }
+    else {
+      data.splice(i,1);
+      i--;
+      self.localPhotoNumber=data.length;
+      self.$apply();
     }
   }
   if(!tempArray.length){

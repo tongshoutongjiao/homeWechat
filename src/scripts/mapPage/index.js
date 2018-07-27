@@ -19,7 +19,6 @@ export default class Index extends wepy.page {
     equipLength: '',
     cardLength: '',
     locationFlag: false,// 当前设备默认未定位
-
     deviceInfo: {
       deviceHeight: ''
     },
@@ -38,10 +37,10 @@ export default class Index extends wepy.page {
 
   methods = {
 
+    // 点击重新定位
     clickRelocation: function () {
       console.log('点击重新定位');
       let lat, long;
-
       wx.getLocation({
         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
         success: (res) => {
@@ -50,12 +49,11 @@ export default class Index extends wepy.page {
           this.$apply()
         }
       });
-
-
       this.updateEquipInfo();
       this.$apply();
     },
 
+    // 点击合起盒子
     clickCollapseBox: function () {
       console.log('点击合起设备盒子');
       this.displayStatus = !this.displayStatus;
@@ -63,22 +61,20 @@ export default class Index extends wepy.page {
       this.$apply();
     },
 
-    //  点击转换
+    //  点击切换设备信息
     markertap: function (e) {
-      console.log('点击切换按钮');
-      console.log(e);
       let id = e.markerId;
       this.switchEquipInfo(id);
     },
   };
 
   onLoad(e) {
-    // 当前页面需要知道的信息 schoolId 设备id 是否已定位
+    // 当前页面需要知道的信息有: schoolId 设备id 是否已定位
     console.log(e);
     this.schoolId = e.schoolId;
     this.equipID = e.equipId;
     this.locationFlag = e.locationFlag;
-    console.log('首先加载页面的信息信息信息');
+
     // 初始化页面数据
     setTimeout(e => this.initData());
     this.$apply();
@@ -86,6 +82,9 @@ export default class Index extends wepy.page {
 
   onShow() {
     console.log('show..');
+
+    //  判断当前设备是否已定位，如果已定位则显示已定位的样式，否则显示重新定位的样式
+    this.getCurLocation();
   }
 
   async initData(e) {
@@ -93,8 +92,7 @@ export default class Index extends wepy.page {
     //   获取设备的高度和宽度
     this.getDeviceInfo();
 
-    //  判断当前设备是否已定位，如果已定位则显示已定位的样式，否则显示重新定位的样式
-    this.getCurLocation();
+
 
     // 初始化当前设备定位信息
     this.initEquipData();
@@ -114,46 +112,70 @@ export default class Index extends wepy.page {
   // 定位当前设备
   getCurLocation() {
     // 判断设备是否已定位，如果未定位，则定位当前位置，否则直接定位到设备之前的位置
+
+
     if (this.locationFlag === 'true') {
-      // 定位过一定有数据 可以直接调用列表接口。
+      console.log('已定位');
+
+      // 已定位，则定位当前的位置
+
+
+
+
       let latitude = wx.getStorageSync('lat'),
         longitude = wx.getStorageSync('long');
+
+
+
+
+
+
+
+      wx.getStorageInfo({
+        success: function(res) {
+          console.log('获取到所有的本地数据');
+          console.log(res);
+        }
+      });
+      console.log('经度加纬度');
+      console.log(longitude);
+      console.log(latitude);
       this.longitude = longitude;
       this.latitude = latitude;
     } else {
-      console.log('自动定位当前位置');
+      console.log('未定位，自动定位当前位置');
+
+      // 未定位 则手动将位置定位当前位置，但不定位设备
+
       wx.getLocation({
         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
         success: (res) => {
+          console.log(res);
           this.latitude = res.latitude;
           this.longitude = res.longitude;
+          this.$apply();
         }
       });
     }
-
     this.getEquipListInfoBySchoolId();
     this.$apply();
   }
 
 // 获取学校设备信息的列表
   async getEquipListInfoBySchoolId() {
-    console.log('根据学校id,获取设备列表');
-
     let res = await api.getEquipListInfoBySchoolId({
       method: 'POST',
       data: {
         schoolId: this.schoolId,
       }
     });
-    console.log('设备列表');
     if (res.data.result === 200) {
       let data = res.data.data;
       this.handleResData(data);
       this.handleMarkerIcon(data);
     }
     if (res.data.result === 300) {
-
-      console.log('该学校第一次定位设备,首先将当前设备的信息更新至数据库');
+      console.log('如果该学校第一次定位设备,首先将当前设备的信息更新至数据库，才能拿到正常数据');
       this.updateEquipInfo();
     }
     this.$apply();
@@ -161,7 +183,14 @@ export default class Index extends wepy.page {
 
 //  更新设备经纬度
   async updateEquipInfo() {
-    console.log('更新设备信息');
+
+
+    console.log('传递的经纬度参数');
+    console.log(this.equipID);
+    console.log(this.longitude);
+    console.log(this.latitude);
+
+
     let res = await api.updateEquipInfoByLocation({
       method: 'POST',
       data: {
@@ -170,24 +199,32 @@ export default class Index extends wepy.page {
         latitude: this.latitude,// 纬度
       }
     });
+    if (res.data.result === 300) {
+      wx.showToast({
+        title: '更新失败',
+        icon: 'fail',
+        duration: 1000
+      });
+    }
     if (res.data.result === 200) {
       wx.showToast({
         title: '更新成功',
         icon: 'success',
         duration: 1000
       });
-      this.latFlag = wx.setStorageSync('lat',this.latitude);
-      this.longFlag = wx.setStorageSync('long',this.longitude);
+      this.latFlag = wx.setStorageSync('lat', this.latitude);
+      this.longFlag = wx.setStorageSync('long', this.longitude);
       this.equipInfo.status !== 'true' ? this.equipInfo.status = 'true' : '';
     }
 
-    this.getEquipListInfoBySchoolId();
+    setTimeout(() => {
+      this.getEquipListInfoBySchoolId();
+    }, 1000);
     this.$apply();
   }
 
 // 点击marker时候显示相对应设备的信息
   switchEquipInfo(id) {
-    console.log('点击设备时，根据 marker的id值来切换相对应的设备信息');
     // 根据id值来获取到相应的设备信息
     for (let i = 0; i < this.markers.length; i++) {
       let curMark = this.markers[i];
@@ -205,7 +242,6 @@ export default class Index extends wepy.page {
       }
     });
     id === Number(this.equipID) ? this.equipInfo.isCurEquip = true : this.equipInfo.isCurEquip = false;
-    console.log('当前设备是否已经定位');
     if (String(this.locationFlag) === 'true') {
       this.equipInfo.status = 'true';
     }
@@ -231,7 +267,6 @@ export default class Index extends wepy.page {
           break;
       }
     });
-    console.log('计算设备的数量');
     this.lengthInfo = {
       equipLength,
       cardLength,
@@ -243,6 +278,7 @@ export default class Index extends wepy.page {
 // 处理marker的小图标  当前的-> 其他设备的。
   handleMarkerIcon(data) {
     // 当前的 其他设备的 1 刷卡机 2 电话机 3刷卡@电话机
+    let tempData=[];
     for (let i = 0; i < data.length; i++) {
       let defaultObj = {},
         curData = data[i];
@@ -276,33 +312,24 @@ export default class Index extends wepy.page {
         }
       }
       if (Number(this.equipID) === curData.id) {
-
-        console.log('测试测试测试测试');
-        console.log(Number(this.equipID) );
-
-
         defaultObj.iconPath = '/images/dq_icon.png';
       }
-      this.markers.push(defaultObj);
+
+      tempData.push(defaultObj);
       defaultObj = null;
     }
+    this.markers=tempData.concat();
+    tempData=[];
     this.equipListData = data;
     this.$apply();
   }
 
 //  初始化页面数据
   initEquipData() {
-    console.log('初始化之前页面的数据');
-
-
     let tempData = getCurrentPages();
-
     let data = this.$parent.globalData.curRepairData || tempData[tempData.length - 2].data.equipmentInfo || this.$parent.globalData.curPlantEquip;
-
-    console.log(data);
-
-
     // 终端名称 终端类型 终端编号 是否已定位
+
     let defaultObj = {
       terminalName: '',
       terminalNum: '',
@@ -316,6 +343,5 @@ export default class Index extends wepy.page {
     this.$apply()
   }
 
-//
 
 }

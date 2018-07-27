@@ -116,6 +116,7 @@ export default class Index extends wepy.page {
     this.terminalSN = e.equipSn;
     this.equipID = e.equipId;
     this.schoolId = e.schoolId;
+    this.getEquipById(this.equipID);
   }
 
   async getEquipById(id) {
@@ -136,7 +137,7 @@ export default class Index extends wepy.page {
       installAddress: '',// 安装位置
       softVersion: '',// 软件
       imei: '',// IMEI
-      serialNum: '',//网关
+      lastIp: '',//网关
       isLogin: '',// 状态
       lastTime: '',// 最后在线
       pname: '',// 安装人员
@@ -242,18 +243,27 @@ export default class Index extends wepy.page {
       }, 1000);
     } else {
       this.savingFlag = false;
+      // let title=res.data.message
+      // wepy.showToast({
+      //   title: '失败',
+      //   icon: 'none',
+      //   duration: 1000
+      // });
       wepy.showToast({
-        title: res.data.message,
-        icon: 'none',
+        title: '失败',
+        icon: 'loading',
         duration: 1000
       });
     }
   }
 
   async onShow() {
-
     // 获取设备信息
-    this.getEquipById(this.equipID);
+    // 思路: 当前页面需要回显的数据只有一个，即设备定位的回显状态，所以将接口获取到的数据存储到localStorage中，然后如果在onShow 执行初始化函数。当另一个状态时，修改当前页面的定位状态
+    // this.getEquipById(this.equipID);
+    let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
+    lat && long ? this.locationFlag = true : this.locationFlag = false;
+    this.$apply();
   }
 
 }

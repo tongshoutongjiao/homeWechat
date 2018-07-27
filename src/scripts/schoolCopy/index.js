@@ -3,12 +3,9 @@ import api from '../api';
 import * as Toolkit from '../utils/toolkit';
 import sliderFilter from '../components/slider-filter/slider-filter';
 
-import * as commonMethods from '../utils/commonMethods';
-
 export default class Index extends wepy.page {
-
-  components={
-    'slider-filter':sliderFilter
+  components = {
+    'filter-slider': sliderFilter
   };
 
   config = {
@@ -59,7 +56,36 @@ export default class Index extends wepy.page {
     },// 底部统计数据
     schoolListData: [],
     pageData: false,
-    selectFlag:false
+  };
+
+  events = {
+
+    'filter-confirm': (e, ret) => {
+      console.log(e, ret);
+
+      // 判断是按照区域还是按负责人
+      if (ret.type < 2) {
+        console.log('按照负责人排序');
+        this.ajaxData.regionManager = ret.selectedItems.map(item => item.regionId).join(',');
+        this.ajaxData.regionLevel = ret.selectedItems.map(item => item.regionLevel).join(',');
+        this.ajaxData.regionId = ret.selectedItems.length ? ret.selectedItems[0].regionId.substr(0, 6) : '';
+      }
+      else {
+        console.log('按照区域排序');
+        this.ajaxData.regionManager = '';
+        this.ajaxData.regionId = ret.selectedItems.map(item => item.regionId).join(',');
+        this.ajaxData.regionLevel = ret.selectedItems.map(item => item.regionLevel).join(',');
+      }
+      this.ajaxData.operaType = ret.selectedItems.length ? ret.type : 6;
+      this.ajaxData.userId = ret.userId || wepy.getStorageSync('userId');
+      this.initSchoolData();
+      this.getSchoolListData();
+      this.$apply();
+    },
+    'filter-cancel': e => {
+      console.log(e);
+    },
+
   };
 
   methods = {
@@ -172,12 +198,16 @@ export default class Index extends wepy.page {
 
     },
 
-  //   筛选功能
-  selectSchoolByCondition:function(e){
-    console.log('筛选筛选');
-    this.selectFlag=true;
-    this.$apply()
-  }
+    //   筛选功能
+    selectSchoolByCondition: function (e) {
+      console.log('筛选筛选');
+      if (this.ajaxData.userType == '4' || this.ajaxData.userType == '5') {
+        return void (0)
+      }
+      // 点击筛选按钮，调用筛选组件
+      this.$invoke('filter-slider', 'open', true);
+      this.$apply()
+    }
 
   };
 
@@ -286,8 +316,8 @@ export default class Index extends wepy.page {
       for (let key in this.countData) {
         this.countData[key] = getSchoolList.data[key]
       }
-      // swiper 滑动区域数据
 
+      // swiper 滑动区域数据
       if (getSchoolList.data.dataList.length === 0) {
         this.pageData = true;
         return;
@@ -316,6 +346,7 @@ export default class Index extends wepy.page {
     let format = 'MM';
     let curMonth = Toolkit.dateFormat(new Date() * 1, format);
     let curMonthDate;
+
     // 判断选择的月份是否是当前月份，如果是的话则传递今天的日期，否则传递选择月份的最后一天
     if (month === curMonth) {
       this.monthData.requestValue = this.initMonthDate;

@@ -25,7 +25,7 @@ export default class Index extends wepy.page {
     gradeId: '',
     slideIndex: null,
     storageFlag: false,
-    queryFlag:false,
+    queryFlag: false,
   };
   events = {};
   methods = {
@@ -55,7 +55,7 @@ export default class Index extends wepy.page {
 
     // 点击展开年级列表及学生信息
     toggleTrangle: function (e) {
-      if(!this.queryFlag){
+      if (!this.queryFlag) {
         return;
       }
       let classInfo = this.classInfo;
@@ -64,15 +64,16 @@ export default class Index extends wepy.page {
         classId = e.currentTarget.dataset.classId;
       this.classInfo[index].flag = !this.classInfo[index].flag;
       this.trangleDown = !this.trangleDown;
-      if(!classInfo[index].studentList){
+      if (!classInfo[index].studentList) {
         this.getStudentsByClassId(classId);
+
       }
     },
 
     // 跳转到新增学生页面
     navigateToaddStudent: function (e) {
       console.log('新增学生页面');
-      wepy.setStorageSync('editFlag',false);
+      wepy.setStorageSync('editFlag', false);
       wepy.navigateTo({
         url: "/pages/addStudent?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
@@ -81,25 +82,30 @@ export default class Index extends wepy.page {
     // 跳转到修改编辑学生界面
     navigateToEditStuInfo: function (e) {
       console.log('编辑学生页面');
-      wepy.setStorageSync('editFlag',false);
+      wepy.setStorageSync('editFlag', false);
       wx.navigateTo({
         url: "/pages/editStuInfo?" + Toolkit.jsonToParam(e.currentTarget.dataset)
       })
+    },
+
+  //   图片加载不出来的时候，使用默认的
+    handErrorImg:function () {
+      console.log('处理加载有问题的图片');
     }
   };
 
   async selectSpecGrade(gradName, index, slideIndex) {
     console.log('重新选择');
 
-    if(!this.queryFlag){
+    if (!this.queryFlag) {
       console.log('请求数据中');
       return;
     }
-    gradName = gradName  || '全部';
-    index = index ||  0;
-      slideIndex = slideIndex || null;
-    this.gradeId=index;
-    this.slideIndex=slideIndex;
+    gradName = gradName || '全部';
+    index = index || 0;
+    slideIndex = slideIndex || null;
+    this.gradeId = index;
+    this.slideIndex = slideIndex;
     let n = slideIndex / 3;
     n ? this.scrollLeft = n * 200 : this.scrollLeft = 0;
 
@@ -120,27 +126,28 @@ export default class Index extends wepy.page {
         item.flag = false;
         item.index = index;
         item.gradeName = gradName;
-        item.allNum=item.openNum*1+item.unOpenNum*1;
+        item.allNum = item.openNum * 1 + item.unOpenNum * 1;
       });
     }
     this.selected = index;
   }
+
   async getStudentsByClassId(id) {
     let classInfo = this.classInfo;
-    this.queryFlag=false;
+    this.queryFlag = false;
     const studentsRes = await api.getStudentsByClassId(
       {
         data: {classId: id}
       }
-      );
+    );
 
     // 结果按照姓氏排序
     if (studentsRes.statusCode === 200) {
 
       // 修改可点击状态
-      setTimeout(()=>{
-        this.queryFlag=true;
-      },500);
+      setTimeout(() => {
+        this.queryFlag = true;
+      }, 500);
 
       let data = studentsRes.data.data.sort(function (a, b) {
         let s = a.studentNameQp;
@@ -155,6 +162,7 @@ export default class Index extends wepy.page {
       });
       classInfo.forEach(function (item, index) {
         if (item.classId === id) {
+          item.flag=true;
           item.studentList = studentsRes.data.data;
         }
       });
@@ -167,6 +175,10 @@ export default class Index extends wepy.page {
       });
 
     }
+
+
+      this.handleWithStudentPhoto();
+
     this.$apply();
 
   }
@@ -201,16 +213,45 @@ export default class Index extends wepy.page {
     if (list.data.result === 200) {
       list.data.schoolBusinessList.forEach(function (item, index) {
         item.index = index;
-        item.allNum=item.gradeOpen*1+item.gradeUnOpen*1
+        item.allNum = item.gradeOpen * 1 + item.gradeUnOpen * 1
       });
       let tempData = list.data.schoolBusinessList.concat();
       this.gradesList = list.data.schoolBusinessList;
       this.handleGradesInfoData(tempData);
-      setTimeout(()=>{
-        this.queryFlag=true;
-      },500);
+      setTimeout(() => {
+        this.queryFlag = true;
+      }, 500);
       this.$apply();
     }
+  }
+
+  //  处理年级信息
+  handleWithStudentPhoto(){
+    this.gradesList.forEach((item)=>{
+
+      item.list.length&&this.handleWithClassInfo(item.list)
+    });
+    this.$apply();
+  }
+
+  // 处理班级信息
+  handleWithClassInfo(data){
+    for(let i=0,curClass;i<data.length;i++){
+      curClass=data[i];
+      for(let key in curClass){
+       if(key==='studentList') {
+         this.handleWithPhoto(curClass[key])
+       }
+      }
+    }
+    this.$apply()
+  }
+  // 处理 学生信息
+  handleWithPhoto(data){
+    data.forEach(function (item) {
+      item.studentImg&&!item.studentImg.includes('http://img.967111.com') && (item.studentImg= null)
+    });
+    this.$apply()
   }
 
 
@@ -235,12 +276,13 @@ export default class Index extends wepy.page {
     // 初始化信息
     this.selectSpecGrade();
   }
+
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
     const app = getApp();
     //  设置标题
-    let showFlag= wepy.setStorageSync('editFlag',false);
+    let showFlag = wepy.setStorageSync('editFlag', false);
     wx.setNavigationBarTitle({
       title: decodeURI(this.schoolName)
     });
@@ -253,17 +295,19 @@ export default class Index extends wepy.page {
 
   onShow(e) {
     console.log('show !');
-   let showFlag= wepy.getStorageSync('editFlag');
-   console.log(showFlag);
+    let showFlag = wepy.getStorageSync('editFlag');
+    console.log(showFlag);
 
-   if(showFlag){
-     this.getBussinessList();
+    if (showFlag) {
+      this.getBussinessList();
       this.selectSpecGrade();
-     wx.showToast({
-       title: '加载中',
-       icon: 'loading',
-       duration: 500
-     });
-   }
+
+      wx.showToast({
+        title: '加载中',
+        icon: 'loading',
+        duration: 500
+      });
+    }
+
   }
 }

@@ -9,7 +9,7 @@
 					</view>
 					<view>{{item.name}}</view>
 					<view class="custom-style" catchtap="clickInputContent">
-						<input placeholder-style="custom" type="text"  bindinput="getInputValue" placeholder="请输入不超过15个字的自定义内容" value="{{inputFlag?inputValue:item.customName}}" maxlength="15">
+						<input placeholder-style="custom" type="text" data-index="{{item.index}}"   bindinput="getInputValue" placeholder="请输入不超过15个字的自定义内容" value="{{inputFlag?inputValue:item.customName}}" maxlength="15">
 					</view>
 				</block>
 				<block wx:else>

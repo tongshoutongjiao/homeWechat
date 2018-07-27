@@ -106,6 +106,7 @@ export default class LetterIndexCom extends wepy.component {
   open() {
     this.boolViewFilter = true;
     if(this.filterList.length === 0) {
+      console.log('啦啦啦');
       this.switchFilterType(this.activeType);
     }
     this.$apply();

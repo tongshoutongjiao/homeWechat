@@ -170,18 +170,23 @@ export default class Index extends wepy.page {
     //  获取到input框中的内容
     getInputValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
+      console.log('取出字符串前后端空格');
+      console.log(value);
+
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'faultProgram':
-          this.inputValue.faultProgram = e.detail.value;
+          this.inputValue.faultProgram = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
     },
@@ -189,18 +194,20 @@ export default class Index extends wepy.page {
     //  聚焦时获取到input中的内容
     getFocusValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'faultProgram':
-          this.inputValue.faultProgram = e.detail.value;
+          this.inputValue.faultProgram = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
 
@@ -218,20 +225,26 @@ export default class Index extends wepy.page {
   onLoad(e) {
     // 初始化页面数据
     this.recordId = e.recordId || '';
+
     setTimeout(e => this.initData());
   }
 
   onShow() {
-    //   回显选择的globalDate中的数据
+    //   回显选择的globalDate中的数据 地图 条件选择
     this.echoSelectedData();
+     console.log(this.$parent.globalData);
   }
 
+  onUnload() {
+    // 清除之前的定位信息
+    wx.removeStorageSync('lat');
+    wx.removeStorageSync('long');
+  }
   echoSelectedData() {
     let newData = [];
     let data = this.$parent.globalData;
     let selectOptions = this.selectOptions;
-    this.latFlag = wx.getStorageSync('lat');
-    this.longFlag = wx.getStorageSync('long');
+
     for (let key in data) {
       switch (key) {
         case 'repairPerson':
@@ -294,6 +307,12 @@ export default class Index extends wepy.page {
           break
       }
     }
+    this.handleCustom();
+
+    //
+    //
+    // this.latFlag = wx.getStorageSync('lat');
+    // this.longFlag = wx.getStorageSync('long');
     this.$apply()
   }
 
@@ -405,7 +424,6 @@ export default class Index extends wepy.page {
       let recordId = this.recordId - 1;
       this.repairData = data.recordData[recordId];
       this.imgId = data.recordData[recordId].imgId;
-
       //   需要对图片和默认的数据进行处理
       for (let key in this.repairData) {
         if (key.includes('imgUrl')) {
@@ -482,7 +500,8 @@ export default class Index extends wepy.page {
             break;
         }
       }
-    } else {
+    }
+    else {
       for (let key in data.curRepairData) {
         if (key === 'id') {
           this.repairData.terminalId = data.curRepairData[key];
@@ -500,6 +519,8 @@ export default class Index extends wepy.page {
     String(this.repairData.latitude) !== 'null' ? wx.setStorageSync('lat', this.repairData.latitude) : wx.removeStorageSync('lat');
 
     String(this.repairData.longitude) !== 'null' ? wx.setStorageSync('long', this.repairData.longitude) : wx.removeStorageSync('long');
+    this.latFlag = wx.getStorageSync('lat');
+    this.longFlag = wx.getStorageSync('long');
 
     this.$apply();
   }
@@ -507,6 +528,9 @@ export default class Index extends wepy.page {
   async initData(e) {
     // 如果有维修记录，先渲染维修的数据，而不是默认值
     this.handleDefaultData();
+    this.handleCustom();
+
+
   }
 
   handleDefaultSelect(type) {
@@ -546,16 +570,12 @@ export default class Index extends wepy.page {
         this._handleSelectData(nameString, 'remark');
         break;
     }
-
-
   }
 
 //   二次处理选中数据
   _handleSelectData(nameString, selectName) {
     let data = this.$parent.globalData;
     let name = nameString.indexOf(',') !== -1 ? nameString.split(',') : nameString;
-
-
     if (data[`${selectName}`][0].name === '自定义') {
       if (typeof name === 'object') {
         name.forEach(function (item) {
@@ -610,6 +630,20 @@ export default class Index extends wepy.page {
       }
     }
     this.echoSelectedData();
+
+    this.$apply();
+  }
+
+// 处理自定义的数据
+  handleCustom() {
+
+    //   思路:包括自定义的五种情况：1 故障现象 2 故障原因 3硬件类型 4 处理措施 5备注
+    let data = this.$parent.globalData;
+    ['remark', 'hardware', 'handleMeasures', 'faultView', 'faultReason'].forEach((item) => {
+      if (this.$parent.globalData[`${item}`][0].selected === true && this.$parent.globalData[`${item}`][0].customName == undefined) {
+        this.selectOptions[`${item}Selected`] = this.selectOptions[`${item}Selected`].length > 4 && this.selectOptions[`${item}Selected`].slice(0, 3) == '自定义' ? this.selectOptions[`${item}Selected`].slice(4) : ''
+      }
+    });
     this.$apply();
   }
 }

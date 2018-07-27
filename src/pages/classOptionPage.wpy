@@ -16,6 +16,8 @@
 				</scroll-view>
 			</view>
 		</block>
+
+
 		<block wx:if="{{typeId==='3'}}">
 			<view class="wrapper dorm-attendance">
 				<view class="select-condition pt-20">

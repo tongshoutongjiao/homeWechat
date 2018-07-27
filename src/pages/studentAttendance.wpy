@@ -21,10 +21,10 @@
 					<view class="picker">
 						{{cardRecordData.date}}
 					</view>
-					<view class="down-flag"  bindchange="bindDateChange"></view>
+					<view class="down-flag"></view>
 				</picker>
 			</view>
-			<view class="specTab text-c" bindtap="clickSelectOption"  data-class-id="{{attendanceObj.classId}}" data-school-id="{{schoolId}}" data-grade-id="{{attendanceObj.gradeId}}" data-type-id="{{cardRecordData.kaoqinTypeId}}">
+			<view class="specTab text-c" bindtap="clickSelectOption" data-select-type="{{attendanceObj.selectType}}" data-class-id="{{attendanceObj.classId}}" data-school-id="{{schoolId}}" data-grade-id="{{attendanceObj.gradeId}}" data-type-id="{{cardRecordData.kaoqinTypeId}}">
 				<view class="select-option">{{attendanceObj.content}}</view>
 				<view class="down-flag"></view>
 			</view>
@@ -38,19 +38,18 @@
 				<view>未刷卡</view>
 				<view>请假</view>
 			</view>
-				<view class="title" wx:for="{{recordData}}">
+				<view class="title" wx:for="{{recordData}}" wx:key="{{item.kaoqinSpanId}}">
 					<view>{{item.kaoqinSpan}}</view>
-					<view data-navigate-type="in" data-span-id="{{item.kaoqinSpanId}}"  class="{{item.inCount===0?'':'blue-style'}}" bindtap="{{item.inCount===1?'':'clickNavigateToRecordPage'}}" >{{item.inCount}}</view>
-					<view data-navigate-type="out" data-span-id="{{item.kaoqinSpanId}}"   class="{{item.outCount===0?'':'blue-style'}}" bindtap="{{item.outCount===1?'':'clickNavigateToRecordPage'}}" >{{item.outCount}}</view>
-					<view class="{{item.noRecord===0?'':'blue-style'}}" bindtap="{{item.noRecord===0?'':'clickNavigateToRecordPage'}}" data-navigate-type="card" data-span-id="{{item.kaoqinSpanId}}" >{{item.noRecord}}</view>
-					<view class="{{item.restCount===0?'':'blue-style'}}"  bindtap="{{item.restCount===0?'':'clickNavigateToRecordPage'}}"  data-navigate-type="rest" data-span-id="{{item.kaoqinSpanId}}" >{{item.restCount}}</view>
+					<view data-navigate-type="in" data-span-id="{{item.kaoqinSpanId}}" data-title-text="{{attendanceObj.content}}" data-span-text="{{item.kaoqinSpan}}"  class="{{item.inCount==0?'':'blue-style'}}" bindtap="{{item.inCount==1?'':'clickNavigateToRecordPage'}}" >{{item.inCount}}</view>
+					<view data-navigate-type="out" data-span-id="{{item.kaoqinSpanId}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}"  class="{{item.outCount==0?'':'blue-style'}}" bindtap="{{item.outCount==1?'':'clickNavigateToRecordPage'}}" >{{item.outCount}}</view>
+					<view class="{{item.noRecord==0?'':'blue-style'}}" bindtap="{{item.noRecord==0?'':'clickNavigateToRecordPage'}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}" data-navigate-type="card" data-span-id="{{item.kaoqinSpanId}}" >{{item.noRecord}}</view>
+					<view class="{{item.restCount==0?'':'blue-style'}}"  bindtap="{{item.restCount==0?'':'clickNavigateToRecordPage'}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}"  data-navigate-type="rest" data-span-id="{{item.kaoqinSpanId}}" >{{item.restCount}}</view>
 				</view>
 			</block>
 			<block wx:else>
 				<view class="null-text" style="line-height: 600rpx">暂无该时段刷卡记录</view>
 			</block>
 		</view>
-
 	</view>
 </template>
 <script src="../scripts/studentAttendance/index.js"></script>

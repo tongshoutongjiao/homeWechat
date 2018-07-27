@@ -36,6 +36,9 @@ export default class Index extends wepy.page {
     isDormFlag: 0,
     inOutFlag:false,
     scrollHeight:null,
+    spanText:'',
+    titleText:'全校',
+    restTitle:''
   };
   methods = {
     bindChangeStyle: function (e) {
@@ -46,6 +49,8 @@ export default class Index extends wepy.page {
       this.isDormFlag = e.detail.value;
       this.recordData = [];
 
+      this.loadingFlag=true;
+
       console.log('每次点击之后重新请求加载页面数据');
       console.log(data);
       this.getAttendanceData();
@@ -54,7 +59,7 @@ export default class Index extends wepy.page {
 
     bindLower:function () {
       let pageFlag = true;
-      this.getAttendanceData(pageFlag);
+     this.recordData.length&&(this.getAttendanceData(pageFlag));
       this.$apply()
     }
 
@@ -67,23 +72,13 @@ export default class Index extends wepy.page {
     curPageData.kaoqinSpanId = e.spanId;
     this.typeId = curPageData.kaoqinTypeId;
     this.curPageData = curPageData;
+    this.spanText=e.spanText;
+    this.titleText=e.titleText;
 
-
-
-    //  出入校考勤:
-    console.log('出入校考勤');
-    console.log(curPageData);
     if(curPageData.navigateType==='in'||curPageData.navigateType==='out'){
       this.inOutFlag=true;
-      // this.getMockData();
-      console.log('入校数据统计')
     }
-
     setTimeout(e => this.initData());
-
-
-
-
     this.$apply();
   }
 
@@ -100,6 +95,8 @@ export default class Index extends wepy.page {
   }
 
   initData(e) {
+
+
 
     this.getAttendanceData();
     this.calculateHeight();
@@ -118,10 +115,11 @@ export default class Index extends wepy.page {
     };
 
     this.recordData = [];
+
   }
 
   // 获取考勤数据
-  getAttendanceData(pageFlag,chooseIcon) {
+  getAttendanceData(pageFlag) {
     let data = this.curPageData;
     data.attendanceDate = data.attentanceDate;
     data.number = '20';
@@ -146,24 +144,37 @@ export default class Index extends wepy.page {
 //   获取请假数据
   async getRestData(data) {
     let resData = null;
+    this.restTitle='刷卡时间';
     data.isDorm = data.isdorm;
+
+
+    console.log(data);
     wepy.setNavigationBarTitle({
       title: '请假明细' //页面标题为路由参数
     });
     this.restFlag = true;
     if (data.kaoqinTypeId === 1) {
+      console.log('按照学校考勤');
+      data.nodeType='school';
       resData = await api.InOutRestData({
         method: 'POST',
         data: data
       })
     } else {
+      console.log('按照宿舍考勤');
+      data.nodeType='school4Dorm';
       resData = await api.dormRestData({
         method: 'POST',
         data: data
       });
     }
     if (resData.data.result === 200) {
-      this.recordData = this.recordData.concat(resData.data.data);
+      if(resData.data.data.length){
+        this.recordData = this.recordData.concat(resData.data.data);
+      }else {
+        this.loadingFlag=false;
+      }
+
     }
     this.$apply();
   }
@@ -213,28 +224,16 @@ export default class Index extends wepy.page {
         data: data
       });
       if (resData.data.result === 200) {
-        this.recordData = this.recordData.concat(resData.data.data);
-        // this.recordData=this.getMockData();
+
+        if(resData.data.data.length){
+          this.recordData = this.recordData.concat(resData.data.data);
+        }else {
+          this.loadingFlag=false;
+        }
+
       }
     }
     this.$apply();
   }
 
-//   出入校假数据
-  getMockData(){
-    let tempArray=[];
-    for(let i=0;i<12;i++){
-      tempArray.push({
-        index:i,
-        cardCode:'1245665',
-        className:'国际06班',
-        gradeId:6863,
-        studentName:'赵海龙',
-        cardTime:'06-11 14:57',
-        isdorm:1,
-      })
-    }
-
-    return tempArray;
-  }
 }

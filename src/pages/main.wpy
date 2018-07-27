@@ -4,7 +4,7 @@
 			<view class="info-part">
 				<view><image src="../images/voice_icon.png"></image></view>
 				<view>迎新期间有{{count}}人照片审核未通过</view>
-				<view class="blue-style" bindtap="navigateToUploadDetail">查看详情</view>
+				<view class="blue-style" bindtap="navigateToUploadDetail" data-student-count="{{count}}">查看详情</view>
 			</view>
 		</block>
 		<view class="search-input  {{count>0?'':''}}    " bindtap="handleSearch" >
@@ -17,7 +17,7 @@
 			<image src="../images/my_performance.png" class="main-icon"></image>
 			<view class="icon-title">我的业绩</view>
 		</view>
-		<view class="icon-list" bindtap="toPage" data-page="schoolList">
+		<view class="icon-list" bindtap="toPage" data-page="schoolCopy">
 			<image src="../images/school_list.png" class="main-icon"></image>
 			<view class="icon-title">学校列表</view>
 		</view>
@@ -74,6 +74,7 @@
   import wepy from 'wepy'
   import api from '../api.js'
   import Toast from 'wepy-com-toast'
+  import * as Toolkit from '../utils/toolkit'
 
   export default class Index extends wepy.page {
     config = {
@@ -111,7 +112,7 @@
       },
       navigateToUploadDetail(e){
         wepy.navigateTo({
-          url: `/pages/uploadDetail`
+          url: `/pages/uploadDetail?`+Toolkit.jsonToParam(e.currentTarget.dataset)
         });
       }
     }

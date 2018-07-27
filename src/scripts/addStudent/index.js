@@ -347,6 +347,13 @@ export default class Index extends wepy.page {
 			}
 			this.animationEvents(this, this.moveY, this.show);
 		},
+
+    //  图片加载错误时
+    handErrorImg:function () {
+      console.log('图片加载失败时，执行当前函数');
+      this.studentInfo.studentImg=null;
+      this.$apply();
+    }
 	};
 
 	// 动画事件

@@ -103,25 +103,13 @@ export default class Index extends wepy.page {
       switch (userIdentify) {
         case 'repairMan':
 
-          // 测试
-          // wepy.navigateTo({
-          //   url: `/pages/repairDetail`
-          // });
+          //1 是否有维修单，有就显示，没有直接跳到新建维修单页面
 
-          // 是否有维修单，有就显示，没有直接跳到新建维修单页面
-
-          // 遍历所有的设备，获取到有选中状态设备的id
-          // 点击某一个机台获取设备维修记录
+          // 2 遍历所有的设备，获取到有选中状态设备的id
+          // 3 点击某一个机台获取设备维修记录
           that.judgeOrderList(e);
           break;
         case 'planter':
-
-
-          // 测试
-          // wepy.navigateTo({
-          //   url: `/pages/planterDetail`
-          // });
-
           this.navigatorToPlanterPage(e);
           break;
       }
@@ -171,17 +159,17 @@ export default class Index extends wepy.page {
     this.initData();
     //   返回这个页面时，刷新数据
     this.dialogFlag = true ? this.dialogFlag = false : '';
+    this.selectLength=0;
+
+
     this.fixFlag = false;
+    this.$apply()
   }
 
   // 跳转进入维修详情页面
   navigatorToRepainDetail(e) {
     this.$parent.globalData.curRepairData.schoolName = this.schoolName;
     this.$parent.globalData.curRepairData.schoolId = this.schoolId;
-
-    console.log('全局变量当前维修数据');
-    console.log(this.$parent.globalData);
-
 
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
     this.$navigate(`./repairDetail?` + str);
@@ -270,50 +258,7 @@ export default class Index extends wepy.page {
       }
     });
     console.log('当前学校的设备列表');
-
     this.equipInfo = res.statusCode === 200 ? res.data.data : [];
-
-    // console.log('假数据列表');
-    // this.equipInfo = [
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   },
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   },
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   },
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   },
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   },
-    //   {
-    //     id: '0',
-    //     installAddress: '十一号楼顶',
-    //     terminalNum: '1234545454',
-    //     isLogin: '1'
-    //   }
-    // ];
-
-
     this.equipInfo.forEach(function (item, index) {
       item.active = false;
       item.index = index;
@@ -327,6 +272,8 @@ export default class Index extends wepy.page {
       return item.active === true;
     });
     this.$parent.globalData.curRepairData = curData[0];
+    console.log('来呀来呀获取点击设备的终端详情号');
+    console.log(this.$parent.globalData.curRepairData);
     this.terminalId = curData[0].id;
 
     //
@@ -493,7 +440,7 @@ export default class Index extends wepy.page {
           break;
         case 'remark':
           dataList = [];
-          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡'];
+          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡','线路无电','网络不稳定','设备丢失','设备停用'];
           data.forEach(function (item, index) {
             let obj = {};
             obj.name = item;
