@@ -56,9 +56,6 @@ image {
   height: 80rpx;
   line-height: 80rpx;
 }
-.container .fixed input {
-  color: #8e8e93;
-}
 .container .unfix {
   line-height: 80rpx;
 }

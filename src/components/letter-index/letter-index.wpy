@@ -1,100 +1,97 @@
 <template>
-  <view class="letter-index-wrap" catchtouchmove="handleMove">
-    <view wx:for="{{letters}}" wx:for-index="index" wx:for-item="letter" wx:key="index" class="letter-item"  bindtap="handleTapLetter" data-index="{{letter}}" >{{letter}}</view>
-  </view>
+	<view class="letter-index-wrap" catchtouchmove="handleMove">
+		<view wx:for="{{letters}}" wx:for-index="index" wx:for-item="letter" wx:key="index" class="letter-item"
+		      bindtap="handleTapLetter" data-index="{{letter}}">{{letter}}
+		</view>
+	</view>
 </template>
 
 <style>
-.letter-index-wrap {
-  position: fixed;
-  width: 90rpx;
-  font-size: 28rpx;
-  display: flex;
-  top: 150rpx;
-  right: 0rpx;
-  z-index: 3;
-  flex-direction: column;
-}
+	.letter-index-wrap {
+		position: fixed;
+		width: 90rpx;
+		font-size: 28rpx;
+		display: flex;
+		top: 150rpx;
+		right: 0rpx;
+		z-index: 3;
+		flex-direction: column;
+	}
 
-.letter-item {
-  flex: 1;
-  height: 3.3vh;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
+	.letter-item {
+		flex: 1;
+		height: 3.3vh;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+	}
 </style>
 
 <script>
-import wepy from 'wepy';
+  import wepy from 'wepy';
 
-export default class LetterIndexCom extends wepy.component {
-  $isComponent = true;
+  export default class LetterIndexCom extends wepy.component {
+    $isComponent = true;
 
-  data = {
-    letters: [],
-    timer: null,
-    letterAreaTop: 0,
-    letterHeight: 0,
-    letterLength: 0,
-    upstreamLetter: null,
-  }
-
-  events = {
-  }
-  methods = {
-    handleTapLetter(e) {
-      console.log(e);
-      this.upstreamLetter = e.target.dataset.index;
-      this.$emit('letter-index', e, this.upstreamLetter);
-      wx.vibrateShort();
-      this.$apply();
-
-    },
-    handleMove(e) {
-      console.log('touchmove 事件');
-      console.log(e);
-      if(this.timer) {
-        return;
-      }
-      if(this.letterLength === 0 || this.letterHeight === 0){
-        return console.log('no letter');
-      }
-      let clientY = e.changedTouches[0].clientY;
-      const currentIndex = Math.floor((clientY - this.letterAreaTop) / this.letterHeight);
-      const currentLetter = this.letters[currentIndex];
-      if(currentLetter){
-        if( this.upstreamLetter !== currentLetter){
-          this.upstreamLetter = currentLetter;
-          this.$emit('letter-index', e, currentLetter);
-          wx.vibrateShort();
-          this.$apply();
-        }
-      }
-      this.timer = setTimeout(e => this.timer = null, 200);
-    },
-    'set-indexs': indexs => {
-      console.log('set indexs :', indexs);
-      this.letters = indexs;
-      this.letterLength = indexs.length;
-      this.$apply();
-
-      setTimeout(e => {
-        wx.createSelectorQuery().select('.letter-index-wrap').boundingClientRect(ret => {
-          console.log(ret);
-          this.letterAreaTop = ret.top;
-          this.letterHeight = ret.height / this.letterLength;
-          this.$apply();
-        }).exec();
-      }, 500);
+    data = {
+      letters: [],
+      timer: null,
+      letterAreaTop: 0,
+      letterHeight: 0,
+      letterLength: 0,
+      upstreamLetter: null,
     }
-  }
-  onLoad() {
-    console.log('com ', this.constructor.name ,' load..', this)
-    //this.letters = 'abcdefghijklmnopqrstuvwxyz'.split('').map(item => item.toUpperCase()) ;
-    //this.$apply();
-  }
 
-}
+    events = {}
+    methods = {
+      handleTapLetter(e) {
+        console.log(e);
+        this.upstreamLetter = e.target.dataset.index;
+        this.$emit('letter-index', e, this.upstreamLetter);
+        wx.vibrateShort();
+        this.$apply();
+      },
+      handleMove(e) {
+        console.log('touchmove 事件');
+        if (this.timer) {
+          return;
+        }
+        if (this.letterLength === 0 || this.letterHeight === 0) {
+          return console.log('no letter');
+        }
+        let clientY = e.changedTouches[0].clientY;
+        const currentIndex = Math.floor((clientY - this.letterAreaTop) / this.letterHeight);
+        const currentLetter = this.letters[currentIndex];
+        if (currentLetter) {
+          if (this.upstreamLetter !== currentLetter) {
+            this.upstreamLetter = currentLetter;
+            this.$emit('letter-index', e, currentLetter);
+            wx.vibrateShort();
+            this.$apply();
+          }
+        }
+        this.timer = setTimeout(e => this.timer = null, 200);
+      },
+      'set-indexs': indexs => {
+        console.log('set indexs :', indexs);
+        this.letters = indexs;
+        this.letterLength = indexs.length;
+        this.$apply();
+        setTimeout(e => {
+          wx.createSelectorQuery().select('.letter-index-wrap').boundingClientRect(ret => {
+            console.log(ret);
+            this.letterAreaTop = ret.top;
+            this.letterHeight = ret.height / this.letterLength;
+            this.$apply();
+          }).exec();
+        }, 500);
+      }
+    };
+
+    onLoad() {
+      console.log('com ', this.constructor.name, ' load..', this);
+    }
+
+  }
 
 </script>

@@ -45,7 +45,7 @@
       <echarts :charts.sync="charts" :boolCanvasShow.sync="boolCanvasShow" :boolImageShow.sync="boolImageShow" ></echarts>
     </view>
     <!-- filter slider -->
-    <filter-slider ></filter-slider>
+    <filter-slider></filter-slider>
   </view>
 </template>
 <script src="../scripts/performance/index.js" ></script>

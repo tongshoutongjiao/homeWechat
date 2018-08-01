@@ -106,7 +106,7 @@
 			<view>故障终端主板</view>
 			<picker bindchange="bindEndBoard" value="{{alertData.endBoard.endBoardIndex}}" range="{{alertData.endBoard.array}}">
 				<view class="picker" wx:if="{{recordId&&mainBoardFlag}}">
-					{{repairData.faultMainboard||'无'}}
+					{{repairData.faultMainboard!=null?repairData.faultMainboard:'无'}}
 				</view>
 				<view class="picker"  wx:elif="{{recordId==''&&mainBoardFlag===true}}">
 					无

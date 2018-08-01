@@ -57,7 +57,7 @@ export default class Index extends wepy.page {
     },
     'chart-complete': charts => {
       charts.forEach(chart => {
-        console.log(chart.opts.type)
+        console.log(chart.opts.type);
         if (chart.opts.type === 'line') {
           setTimeout(e => chart.scrollStart({touches: [{x: 9999}]}));
           setTimeout(e => chart.scroll({touches: [{x: 0}]}));

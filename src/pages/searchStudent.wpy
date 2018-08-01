@@ -29,7 +29,7 @@
 							      data-class-name="{{item.className}}">
 								<view class="student-info">
 									<view class="nick-photo">
-										<block wx:if="{{student.auditStatus===2}}">
+										<block wx:if="{{student.auditStatus==2}}">
 											<view class="layer">不合格</view>
 										</block>
 										<block wx:if="{{student.bulkPasteImg!==' '}}">

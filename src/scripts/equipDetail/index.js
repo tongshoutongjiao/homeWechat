@@ -147,7 +147,8 @@ export default class Index extends wepy.page {
       remark: '',// 备注,
       remarkAdress: '',// 备注地址
       latitude: '',
-      longitude: ''
+      longitude: '',
+      terminalStatus:'',// 终端使用状态
     };
 
     for (let key in defaultData) {

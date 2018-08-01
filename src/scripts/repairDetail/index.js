@@ -232,7 +232,7 @@ export default class Index extends wepy.page {
   onShow() {
     //   回显选择的globalDate中的数据 地图 条件选择
     this.echoSelectedData();
-     console.log(this.$parent.globalData);
+    console.log(this.$parent.globalData);
   }
 
   onUnload() {
@@ -240,6 +240,7 @@ export default class Index extends wepy.page {
     wx.removeStorageSync('lat');
     wx.removeStorageSync('long');
   }
+
   echoSelectedData() {
     let newData = [];
     let data = this.$parent.globalData;
@@ -369,23 +370,25 @@ export default class Index extends wepy.page {
 
     // 使用对象合并的方式 判断是否是新建维修单  equipInfoData inputValue globalData
     // 1 设备信息 2 input框输入内容 3弹出框  4 日期 5 图片 6 另一个页面的内容
-    this.alertData.submitData.faultMainboard = this.alertData.submitData.faultMainboard || this.alertData.endBoard.array[0];
-    this.alertData.submitData.terminalState = this.alertData.submitData.terminalState || this.alertData.endStatusData.endStatusIndex;
 
+    this.alertData.submitData.faultMainboard = this.alertData.submitData.faultMainboard || '';
+    this.alertData.submitData.terminalState = this.alertData.submitData.terminalState || this.alertData.endStatusData.endStatusIndex;
     // 处理图片信息
     commonMethods.handleImgUrlInfo(this);
 
+    // 处理自定义信息,将自定义中的内容放在最后一项
+    this.selectDiyInfo();
     for (let key in this.repairData) {
       if (key.includes('imgUrl')) {
         delete this.repairData[key]
       }
     }
-
-
     Object.assign(equipInfoData, this.repairData, this.inputValue, this.alertData.submitData, this.date.submitData, this.selectOptions, this.imgUrlList.submitData, {
       userName,
       userId
     });
+
+
     let res = await api.updateEquipInfo({
       method: 'POST',
       data: equipInfoData
@@ -529,8 +532,6 @@ export default class Index extends wepy.page {
     // 如果有维修记录，先渲染维修的数据，而不是默认值
     this.handleDefaultData();
     this.handleCustom();
-
-
   }
 
   handleDefaultSelect(type) {
@@ -645,5 +646,61 @@ export default class Index extends wepy.page {
       }
     });
     this.$apply();
+  }
+
+//
+  selectDiyInfo() {
+    console.log('查看提交的数据');
+
+    // 提交时，将自定义项放在最后边。
+    for (let key in this.$parent.globalData) {
+      let tempStr = '',
+        tempArray = [];
+      ['remark', 'hardware', 'handleMeasures', 'faultView', 'faultReason'].forEach(item => {
+        if (key === item) {
+          if (this.$parent.globalData[key][0].selected == true) {
+            switch (key) {
+              case 'remark':
+                tempStr = this.selectOptions.remark.split(',')[0];
+                tempArray = this.selectOptions.remark.split(',').slice(1);
+                tempArray.push(tempStr);
+                this.selectOptions.remark = tempArray.join(',');
+                tempArray = [];
+                break;
+              case 'hardware':
+                tempStr = this.selectOptions.hardwareType.split(',')[0];
+                tempArray = this.selectOptions.hardwareType.split(',').slice(1);
+                tempArray.push(tempStr);
+                this.selectOptions.hardwareType = tempArray.join(',');
+                tempArray = [];
+                break;
+              case 'handleMeasures':
+                tempStr = this.selectOptions.treatmentMeasure.split(',')[0];
+                tempArray = this.selectOptions.treatmentMeasure.split(',').slice(1);
+                tempArray.push(tempStr);
+                this.selectOptions.treatmentMeasure = tempArray.join(',');
+                tempArray = [];
+                break;
+              case 'faultView':
+                tempStr = this.selectOptions.faultPhenomenon.split(',')[0];
+                tempArray = this.selectOptions.faultPhenomenon.split(',').slice(1);
+                tempArray.push(tempStr);
+                this.selectOptions.faultPhenomenon = tempArray.join(',');
+                tempArray = [];
+                break;
+              case 'faultReason':
+                tempStr = this.selectOptions.faultCause.split(',')[0];
+                tempArray = this.selectOptions.faultCause.split(',').slice(1);
+                tempArray.push(tempStr);
+                this.selectOptions.faultCause = tempArray.join(',');
+                tempArray = [];
+                break;
+            }
+            this.$apply()
+          }
+        }
+      })
+    }
+
   }
 }

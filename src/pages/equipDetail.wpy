@@ -14,6 +14,10 @@
 				<view>{{equipmentInfo.terminalName}}</view>
 			</view>
 			<view class="unfix school-name">
+				<view>终端使用状态</view>
+				<view>{{equipmentInfo.terminalStatus=='0'?'未使用':equipmentInfo.terminalStatus=='1'?'在使用':'已丢失'}}</view>
+			</view>
+			<view class="unfix school-name">
 				<view>终端类型</view>
 				<view>{{equipmentInfo.typeName}}</view>
 			</view>

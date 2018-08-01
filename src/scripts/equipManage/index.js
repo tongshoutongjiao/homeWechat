@@ -22,6 +22,7 @@ export default class Index extends wepy.page {
     selectLength: 0,//选中维修设备的个数
     identify: 'repairMan',// repairMan 维修人员 planter 安装员 other
     terminalId: '',
+    reformatFlag:false
   };
 
   methods = {
@@ -87,6 +88,10 @@ export default class Index extends wepy.page {
     //  点击确定或者取消执行初始化操作
     clickConfirmReformat: function (e) {
       let type = e.currentTarget.dataset.type;
+      let reformatFlag=this.reformatFlag;
+      if(reformatFlag){
+        return;
+      }
       if (type === 'sure') {   //
         this.reformatEquipments();
       }
@@ -157,12 +162,10 @@ export default class Index extends wepy.page {
 
     // 初始化页面数据
     this.initData();
-    //   返回这个页面时，刷新数据
-    this.dialogFlag = true ? this.dialogFlag = false : '';
-    this.selectLength=0;
 
+    // 初始化页面样式
+    this.initPage();
 
-    this.fixFlag = false;
     this.$apply()
   }
 
@@ -272,8 +275,6 @@ export default class Index extends wepy.page {
       return item.active === true;
     });
     this.$parent.globalData.curRepairData = curData[0];
-    console.log('来呀来呀获取点击设备的终端详情号');
-    console.log(this.$parent.globalData.curRepairData);
     this.terminalId = curData[0].id;
 
     //
@@ -303,6 +304,7 @@ export default class Index extends wepy.page {
     let userName = wepy.getStorageSync('userName');
     let userId = wepy.getStorageSync('userId');
     let tempArray = [], tempStr = '';
+    this.reformatFlag=true;
     this.equipInfo.filter(function (item) {
       if (item.active === true) {
         tempArray.push(item.id)
@@ -328,6 +330,7 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
+      this.reformatFlag=false;
 
     } else {
       wx.showToast({
@@ -335,7 +338,9 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
+      this.reformatFlag=false;
     }
+    this.selectLength = 0;
     this.$apply();
   }
 
@@ -440,7 +445,7 @@ export default class Index extends wepy.page {
           break;
         case 'remark':
           dataList = [];
-          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡','线路无电','网络不稳定','设备丢失','设备停用'];
+          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡', '线路无电', '网络不稳定', '设备丢失', '设备停用'];
           data.forEach(function (item, index) {
             let obj = {};
             obj.name = item;
@@ -464,6 +469,16 @@ export default class Index extends wepy.page {
       data: {}
     });
     this.$parent.globalData.terminalTypeData = resRecord.data.result === 200 ? resRecord.data.data : '';
+  }
+
+// 初始化页面样式
+  initPage(){
+    //   返回这个页面时，刷新数据
+    this.dialogFlag = true ? this.dialogFlag = false : '';
+    this.selectLength = 0;
+    this.fixFlag = false;
+    this.confirmFlag = false;
+    this.$apply();
   }
 
 }

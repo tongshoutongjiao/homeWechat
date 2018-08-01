@@ -83,7 +83,6 @@ export default class Index extends wepy.page {
 
   // 处理自定义项中的数据
   handleCustomData() {
-
     let type = this.type,
       data = this.$parent.globalData;
     // 提交判断一下如果当前input框中的数值为空时，直接将当前自定义项中选择
