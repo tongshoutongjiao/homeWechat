@@ -9,6 +9,7 @@ export default class Index extends wepy.page {
   data = {
     curAttendName: '出入校考勤',
     schoolId: '',
+    schoolName: '',
     attendanceObj: {
       schoolId: '',// 学校id
       content: '全校',// 考勤范围
@@ -45,12 +46,16 @@ export default class Index extends wepy.page {
     },
     date: "06-04",
     nodeType: 'school4Dorm',// 判断按班级还是按宿舍楼 默认宿舍楼
+
+
+    requestFlag:false,
   };
   methods = {
-
     // 点击跳转到条件选择页面
     clickSelectOption: function (e) {
-
+      if(this.requestFlag){
+        return;
+      }
       // 判断是按出入校考勤还是宿舍考勤
       // 宿舍考勤默认选择宿舍方式
       wepy.navigateTo({
@@ -61,11 +66,16 @@ export default class Index extends wepy.page {
 
     // 点击选择日期或者考勤类型
     bindChangeStyle: function (e) {
+      if(this.requestFlag){
+        return;
+      }
+
       let bindType = e.currentTarget.dataset.bindType,
         cardRecordData = this.cardRecordData;
       let typeId = this.cardRecordData.kaoqinTypeId,
         selectedInfo = this.$parent.globalData.selectedInfo,
         dormInfo = this.$parent.globalData.dormInfo;
+
       if (bindType === 'date') {
         // 日期
         cardRecordData.attendanceDate = e.detail.value;
@@ -74,7 +84,6 @@ export default class Index extends wepy.page {
         cardRecordData.kaoqinTypeId == 1 ? this.getCardRecord(selectedInfo) : this.getDormAttendanceInfo(dormInfo);
       }
       else {
-
         // 考勤类型
         this.attendStyle.index = e.detail.value;
         cardRecordData.kaoqinTypeId = this.attendStyle.array[e.detail.value].typeId;
@@ -115,11 +124,21 @@ export default class Index extends wepy.page {
       wepy.navigateBack({
         delta: 1
       })
+    },
+
+  //
+    switchSelection:function () {
+      console.log('切换考勤方式');
+      if(this.requestFlag){
+        return;
+      }
+
     }
   };
 
   async onLoad(e) {
     this.schoolId = e.id;
+    this.schoolName = decodeURIComponent(e.name);
 
     //  获取到当前的时间日期，年月日格式 学校id
     this.handDefaultData();
@@ -140,7 +159,6 @@ export default class Index extends wepy.page {
     this.$parent.globalData = {};
     this.$apply();
   }
-
 
   initData() {
 
@@ -192,31 +210,35 @@ export default class Index extends wepy.page {
     let defaultObj = this.cardRecordData;
     defaultObj = optionObj ? Object.assign(defaultObj, optionObj) : defaultObj;
     defaultObj.attentanceDate = defaultObj.attendanceDate;
-
     console.log('获取学校考勤数据');
     console.log(defaultObj);
+    this.requestFlag=true;
     let res = await api.getCardRecord({
       method: 'POST',
       data: defaultObj
     });
     if (res.data.result === 200 && !!res.data.data[0]) {
       this.recordData = res.data.data[0];
-
+      this.requestFlag=false;
       // 保存当前页面的选择条件
       this.handleRecordPageData(defaultObj);
-    } else {
+      this.$apply()
+    }
+    else {
+      this.requestFlag=false;
       wx.showToast({
         title: '请求失败',
         icon: 'loading',
         duration: 1000
       });
       this.recordData = [];
+      this.$apply()
     }
-    this.$apply();
   }
 
 //  宿舍考勤统计
   async getDormAttendanceInfo(defaultObj) {
+
     let tempObj = {
       schoolId: this.schoolId,
       attendanceDate: this.cardRecordData.attendanceDate,
@@ -226,11 +248,13 @@ export default class Index extends wepy.page {
     tempObj = defaultObj ? Object.assign(tempObj, defaultObj) : tempObj;
     // 请求宿舍考勤信息
     this.judgeAttendanceType(tempObj);
+    this.$apply();
   }
 
 // 宿舍考勤参数处理 判断是根据宿舍楼查寝还是班级查寝  默认按照宿舍考勤
   async judgeAttendanceType(self) {
     let defaultData = {};
+    this.requestFlag=true;
     if (self.nodeType === 'school') {
       defaultData.nodeType = 'school';
       switch (self.queryType) {
@@ -277,19 +301,18 @@ export default class Index extends wepy.page {
     }
     defaultData.queryType = self.queryType;
     defaultData.attentanceDate = self.attendanceDate;
-
-
     let res = await api.getDormAttendanceInfo({
       method: 'POST',
       data: defaultData,
     });
     if (res.data.result === 200 && !!res.data.data[0]) {
       this.recordData = res.data.data[0];
-
+      this.requestFlag=false;
       // 处理当前页面选择的参数
       this.handleRecordPageData(defaultData);
     } else {
       this.recordData = [];
+      this.requestFlag=false;
     }
     this.$apply();
   }
@@ -307,6 +330,10 @@ export default class Index extends wepy.page {
     delete recordPageData.token;
     delete recordPageData.platformType;
     this.$parent.globalData.recordPageData = recordPageData;
+    console.log('查看页面需要查询的信息');
+    console.log(defaultObj);
+    console.log(this.$parent.globalData.recordPageData);
+
   }
 
   //  跳转到明细页面

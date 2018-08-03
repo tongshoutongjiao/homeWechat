@@ -41,6 +41,9 @@
   padding-left: 30rpx;
   line-height: 110rpx;
   font-size: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #575759;
 }
 .wrapper .left-part view.selected,

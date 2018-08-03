@@ -22,7 +22,7 @@ export default class Index extends wepy.page {
     selectLength: 0,//选中维修设备的个数
     identify: 'repairMan',// repairMan 维修人员 planter 安装员 other
     terminalId: '',
-    reformatFlag:false
+    reformatFlag: false
   };
 
   methods = {
@@ -55,6 +55,9 @@ export default class Index extends wepy.page {
     //  点击全选
     clickSelectOperateEquip: function (e) {
       let selectType = e.currentTarget.dataset.selectType;
+      if (this.reformatFlag) {
+        return;
+      }
       if (selectType === 'all') {
         this.selectAllFlag = !this.selectAllFlag;
         if (this.selectAllFlag) {
@@ -88,14 +91,10 @@ export default class Index extends wepy.page {
     //  点击确定或者取消执行初始化操作
     clickConfirmReformat: function (e) {
       let type = e.currentTarget.dataset.type;
-      let reformatFlag=this.reformatFlag;
-      if(reformatFlag){
-        return;
-      }
-      if (type === 'sure') {   //
-        this.reformatEquipments();
-      }
+      let reformatFlag = this.reformatFlag;
+      type === 'sure' && (this.reformatEquipments());
       this.confirmFlag = false;
+      this.$apply()
     },
 
     //  点击跳转至维修页面
@@ -107,9 +106,7 @@ export default class Index extends wepy.page {
       let userIdentify = e.currentTarget.dataset.user;
       switch (userIdentify) {
         case 'repairMan':
-
           //1 是否有维修单，有就显示，没有直接跳到新建维修单页面
-
           // 2 遍历所有的设备，获取到有选中状态设备的id
           // 3 点击某一个机台获取设备维修记录
           that.judgeOrderList(e);
@@ -304,7 +301,7 @@ export default class Index extends wepy.page {
     let userName = wepy.getStorageSync('userName');
     let userId = wepy.getStorageSync('userId');
     let tempArray = [], tempStr = '';
-    this.reformatFlag=true;
+    this.reformatFlag = true;
     this.equipInfo.filter(function (item) {
       if (item.active === true) {
         tempArray.push(item.id)
@@ -330,7 +327,10 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
-      this.reformatFlag=false;
+      setTimeout(() => {
+        this.reformatFlag = false;
+        this.$apply()
+      }, 200)
 
     } else {
       wx.showToast({
@@ -338,7 +338,10 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
-      this.reformatFlag=false;
+      setTimeout(() => {
+        this.reformatFlag = false;
+        this.$apply()
+      }, 200)
     }
     this.selectLength = 0;
     this.$apply();
@@ -472,7 +475,7 @@ export default class Index extends wepy.page {
   }
 
 // 初始化页面样式
-  initPage(){
+  initPage() {
     //   返回这个页面时，刷新数据
     this.dialogFlag = true ? this.dialogFlag = false : '';
     this.selectLength = 0;

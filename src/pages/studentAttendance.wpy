@@ -3,12 +3,12 @@
 		<view class="search-wrapper">
 			<view class="search-content" bindtap="handleSearch" data-grade-id="">
 				<image class="search-icon" src="/images/search_icon.png"></image>
-				<view class="search-title">搜索学校名字</view>
+				<view class="search-title">{{schoolName}}</view>
 			</view>
 		</view>
 		<view class="tab ">
 			<view class="specTab pl30" >
-				<picker class="select-option" data-bind-type="attend" bindchange="bindChangeStyle" value="{{attendStyle.index}}" range="{{attendStyle.array}}" range-key="{{'typeName'}}">
+				<picker class="select-option" data-bind-type="attend" bindtap="switchSelection" disabled="{{requestFlag}}" bindchange="bindChangeStyle" value="{{attendStyle.index}}" range="{{attendStyle.array}}" range-key="{{'typeName'}}">
 					<view class="picker">
 						{{attendStyle.array[attendStyle.index].typeName}}
 					</view>
@@ -17,7 +17,7 @@
 
 			</view>
 			<view class="specTab text-c" >
-				<picker class="select-option" data-bind-type="date" mode="date" value="{{cardRecordData.attendanceDate}}" bindchange="bindChangeStyle">
+				<picker class="select-option" data-bind-type="date" mode="date" disabled="{{requestFlag}}" value="{{cardRecordData.attendanceDate}}" bindchange="bindChangeStyle">
 					<view class="picker">
 						{{cardRecordData.date}}
 					</view>
@@ -40,8 +40,8 @@
 			</view>
 				<view class="title" wx:for="{{recordData}}" wx:key="{{item.kaoqinSpanId}}">
 					<view>{{item.kaoqinSpan}}</view>
-					<view data-navigate-type="in" data-span-id="{{item.kaoqinSpanId}}" data-title-text="{{attendanceObj.content}}" data-span-text="{{item.kaoqinSpan}}"  class="{{item.inCount==0?'':'blue-style'}}" bindtap="{{item.inCount==1?'':'clickNavigateToRecordPage'}}" >{{item.inCount}}</view>
-					<view data-navigate-type="out" data-span-id="{{item.kaoqinSpanId}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}"  class="{{item.outCount==0?'':'blue-style'}}" bindtap="{{item.outCount==1?'':'clickNavigateToRecordPage'}}" >{{item.outCount}}</view>
+					<view data-navigate-type="in" data-span-id="{{item.kaoqinSpanId}}" data-title-text="{{attendanceObj.content}}" data-span-text="{{item.kaoqinSpan}}"  class="{{item.inCount==0?'':'blue-style'}}" bindtap="{{item.inCount==0?'':'clickNavigateToRecordPage'}}" >{{item.inCount}}</view>
+					<view data-navigate-type="out" data-span-id="{{item.kaoqinSpanId}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}"  class="{{item.outCount==0?'':'blue-style'}}" bindtap="{{item.outCount==0?'':'clickNavigateToRecordPage'}}" >{{item.outCount}}</view>
 					<view class="{{item.noRecord==0?'':'blue-style'}}" bindtap="{{item.noRecord==0?'':'clickNavigateToRecordPage'}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}" data-navigate-type="card" data-span-id="{{item.kaoqinSpanId}}" >{{item.noRecord}}</view>
 					<view class="{{item.restCount==0?'':'blue-style'}}"  bindtap="{{item.restCount==0?'':'clickNavigateToRecordPage'}}"  data-title-text="{{attendanceObj.content}}"  data-span-text="{{item.kaoqinSpan}}"  data-navigate-type="rest" data-span-id="{{item.kaoqinSpanId}}" >{{item.restCount}}</view>
 				</view>

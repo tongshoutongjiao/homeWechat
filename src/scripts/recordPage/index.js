@@ -34,11 +34,11 @@ export default class Index extends wepy.page {
     loadingFlag: true,
     restFlag: false,
     isDormFlag: 0,
-    inOutFlag:false,
-    scrollHeight:null,
-    spanText:'',
-    titleText:'全校',
-    restTitle:''
+    inOutFlag: false,
+    scrollHeight: null,
+    spanText: '',
+    titleText: '全校',
+    restTitle: ''
   };
   methods = {
     bindChangeStyle: function (e) {
@@ -48,22 +48,15 @@ export default class Index extends wepy.page {
       data.isDorm = e.detail.value;
       this.isDormFlag = e.detail.value;
       this.recordData = [];
-
-      this.loadingFlag=true;
-
-      console.log('每次点击之后重新请求加载页面数据');
-      console.log(data);
+      this.loadingFlag = true;
       this.getAttendanceData();
       this.$apply();
     },
-
-    bindLower:function () {
+    bindLower: function () {
       let pageFlag = true;
-     this.recordData.length&&(this.getAttendanceData(pageFlag));
+      this.recordData.length && (this.getAttendanceData(pageFlag));
       this.$apply()
     }
-
-
   };
 
   async onLoad(e) {
@@ -72,11 +65,11 @@ export default class Index extends wepy.page {
     curPageData.kaoqinSpanId = e.spanId;
     this.typeId = curPageData.kaoqinTypeId;
     this.curPageData = curPageData;
-    this.spanText=e.spanText;
-    this.titleText=e.titleText;
+    this.spanText = e.spanText;
+    this.titleText = e.titleText;
 
-    if(curPageData.navigateType==='in'||curPageData.navigateType==='out'){
-      this.inOutFlag=true;
+    if (curPageData.navigateType === 'in' || curPageData.navigateType === 'out') {
+      this.inOutFlag = true;
     }
     setTimeout(e => this.initData());
     this.$apply();
@@ -91,16 +84,15 @@ export default class Index extends wepy.page {
    */
   onReachBottom() {
     console.log('上拉加载数据');
-
   }
 
   initData(e) {
 
-
+    console.log('查看考勤类型')
+    console.log(this.$parent.globalData.recordPageData);
 
     this.getAttendanceData();
     this.calculateHeight();
-
     let defaultData = {
       schoolId: '',
       gradeId: '',
@@ -113,9 +105,7 @@ export default class Index extends wepy.page {
       page: '',//当前页码
       number: ''// 每页数据条数
     };
-
     this.recordData = [];
-
   }
 
   // 获取考勤数据
@@ -123,56 +113,52 @@ export default class Index extends wepy.page {
     let data = this.curPageData;
     data.attendanceDate = data.attentanceDate;
     data.number = '20';
-    pageFlag? data.page++:data.page=0;
-    console.log('页面请求数据页面请求数据');
+    pageFlag ? data.page++ : data.page = 0;
     data.navigateType === 'rest' ? this.getRestData(data) : this.getInOutData(data);
     this.$apply();
   }
 
   // 计算scroll-view 的高度
-  calculateHeight(){
+  calculateHeight() {
     let scrollHeight;
     wx.getSystemInfo({
-      success: function(res) {
-        scrollHeight=res.windowHeight-100;
+      success: function (res) {
+        scrollHeight = res.windowHeight - 100;
       }
     });
-    this.scrollHeight=scrollHeight;
+    this.scrollHeight = scrollHeight;
     this.$apply()
   }
 
 //   获取请假数据
   async getRestData(data) {
     let resData = null;
-    this.restTitle='刷卡时间';
     data.isDorm = data.isdorm;
-
-
-    console.log(data);
+    this.restTitle='请假明细';
     wepy.setNavigationBarTitle({
       title: '请假明细' //页面标题为路由参数
     });
     this.restFlag = true;
     if (data.kaoqinTypeId === 1) {
       console.log('按照学校考勤');
-      data.nodeType='school';
+      data.nodeType = 'school';
       resData = await api.InOutRestData({
         method: 'POST',
         data: data
       })
     } else {
       console.log('按照宿舍考勤');
-      data.nodeType='school4Dorm';
+      data.isDorm=data.isdorm='1';
       resData = await api.dormRestData({
         method: 'POST',
         data: data
       });
     }
     if (resData.data.result === 200) {
-      if(resData.data.data.length){
+      if (resData.data.data.length) {
         this.recordData = this.recordData.concat(resData.data.data);
-      }else {
-        this.loadingFlag=false;
+      } else {
+        this.loadingFlag = false;
       }
 
     }
@@ -204,10 +190,18 @@ export default class Index extends wepy.page {
         data: data
       });
       if (resData.data.result === 200) {
-        this.recordData = this.recordData.concat(resData.data.data);
+        // this.recordData = this.recordData.concat(resData.data.data);
         // this.recordData=this.getMockData();
+        if (resData.data.data.length) {
+          this.recordData = this.recordData.concat(resData.data.data);
+        } else {
+          this.loadingFlag = false;
+        }
+
       }
     } else {
+
+      data.isDorm=data.isdorm='1';
       switch (data.navigateType) {
         case 'in':
           data.director = '1';
@@ -219,16 +213,17 @@ export default class Index extends wepy.page {
           data.director = '-1';
           break;
       }
+
       resData = await api.dormData({
         method: 'POST',
         data: data
       });
       if (resData.data.result === 200) {
 
-        if(resData.data.data.length){
+        if (resData.data.data.length) {
           this.recordData = this.recordData.concat(resData.data.data);
-        }else {
-          this.loadingFlag=false;
+        } else {
+          this.loadingFlag = false;
         }
 
       }

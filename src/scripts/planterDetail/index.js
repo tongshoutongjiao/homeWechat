@@ -197,10 +197,10 @@ export default class Index extends wepy.page {
       // 判断图片
       commonMethods.handleImgUrlInfo(self);
 
+      // 调整备注中自定义信息的顺序
+      this.fixRemarkInfo();
+
       // 判断用户是否点击启用状态，
-      console.log('查看终端启用状态');
-      console.log(this.selectType);
-      console.log(this.plantEquip);
       this.selectType.isActive = this.endStatus || this.plantEquip.isActive;
       this.selectType.terminalStatus = this.selectType.terminalStatus || this.plantEquip.terminalState;
       // 1 终端名称 sim卡号 安装位置
@@ -210,6 +210,7 @@ export default class Index extends wepy.page {
       // 其他的参数  this.plantEquip
 
       this.plantEquip.terminalId = this.plantEquip.id;
+
       Object.assign(defaultInfo, this.plantEquip, this.inputValue, this.selectType, this.selectOptions, this.imgUrlList.submitData, {
         userId,
         userName
@@ -310,7 +311,6 @@ export default class Index extends wepy.page {
     let data = this.$parent.globalData;
 
     // 查看获取到的安装人员
-    console.log(data);
     for (let key in data) {
       switch (key) {
         case 'repairPerson':
@@ -323,10 +323,7 @@ export default class Index extends wepy.page {
           });
           this.selectOptions.installationP = idData.join(',');
           this.selectOptions.pname = newData.join(',');
-          console.log('查看所选中的安装人员');
-          console.log(newData);
-          console.log(this.selectOptions);
-          console.log(newData.join(',').length);
+
           this.equipInfo.plantPersonSelected = newData.join(',').length > 14 ? newData.join(',').substring(0, 14) + '...' : newData.join(',');
           break;
         case 'remark':
@@ -348,9 +345,6 @@ export default class Index extends wepy.page {
   }
 
   async submitEquipInfo(defaultInfo) {
-    console.log('最终提交数据');
-    console.log(defaultInfo);
-    console.log(defaultInfo.isActive);
     let res = await api.installCurEquip({
       method: 'POST',
       data: defaultInfo
@@ -432,7 +426,6 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.pname) {
       let plantPerson = this.$parent.globalData.repairPerson;
-      console.log(defaultObj.pname);
       let personSaved = defaultObj.pname.length > 14 ? defaultObj.pname.substring(0, 14) + '...' : defaultObj.pname;
       this.equipInfo.plantPersonSelected = personSaved;
       let tempArray = defaultObj.pname.split(',');
@@ -451,7 +444,6 @@ export default class Index extends wepy.page {
       let remarkSaved = defaultObj.remark.length > 14 ? defaultObj.remark.substring(0, 14) + '...' : defaultObj.remark;
       this.equipInfo.remarkSelected = remarkSaved;
       let tempArray = defaultObj.remark.split(',');
-      console.log(remark);
       tempArray.forEach(function (item) {
         let flag = false;
         for (let i = 0; i < remark.length; i++) {
@@ -530,5 +522,32 @@ export default class Index extends wepy.page {
 
     });
     this.$apply();
+  }
+
+
+  // 调整备注中自定义信息的顺序
+  fixRemarkInfo() {
+
+
+    let data = this.$parent.globalData;
+    console.log('调整remark自定义数据的顺序');
+
+    console.log(this.$parent.globalData);
+    console.log(data);
+    console.log(this.selectOptions);
+
+    if (data.remark[0].selected === true) {
+      let first=[],last=[];
+      let tempArray = this.selectOptions.remark.split(',');
+      first=tempArray.shift();
+      last=tempArray.pop();
+      tempArray.unshift(last);
+      tempArray.push(first);
+      console.log('调整remark自定义数据的顺序');
+      console.log(tempArray.join(','));
+      this.selectOptions.remark=tempArray.join(',');
+      this.$apply();
+    }
+
   }
 }

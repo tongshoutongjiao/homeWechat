@@ -181,6 +181,8 @@
             pwd: this.password
           }
         })
+        console.log('请求数据');
+        console.log(result.data.result);
         if (result.data.result === 200) {
           wepy.setStorageSync('token', result.data.token)
           wepy.setStorageSync('userId', result.data.userId)

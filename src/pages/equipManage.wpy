@@ -109,10 +109,10 @@
 			<view class="recordTitle">近期已有维修记录</view>
 			<view class="recordForm">
 				<view class="formTitle">
-					<view class="title" >接单日期</view>
-					<view class="title"  >维修日期</view>
-					<view class="title" >维修人员</view>
-					<view class="title"  ></view>
+					<view class="title">接单日期</view>
+					<view class="title">维修日期</view>
+					<view class="title">维修人员</view>
+					<view class="title"></view>
 				</view>
 				<view class=" formTitle formContent" wx:for="{{repairList}}">
 					<view >{{item.orderTime}}</view>
