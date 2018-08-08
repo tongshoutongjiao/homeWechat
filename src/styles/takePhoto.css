@@ -82,3 +82,59 @@ button.btn-takephoto {
   font-size: 30rpx;
   margin-top: 60rpx;
 }
+
+/*弹出框*/
+.dialog .mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog .confirm {
+  position: fixed;
+  z-index: 5000;
+  box-sizing: border-box;
+  left: 30rpx;
+  right: 30rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  bottom: 30rpx;
+  font-size: 30rpx;
+  color: #181818;
+  text-align: center;
+
+}
+.dialog .confirm .title {
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 92rpx;
+}
+.dialog .confirm .content{
+  line-height: 90rpx;
+}
+.dialog .btn {
+  line-height: 80rpx;
+  font-size: 32rpx;
+  margin-top: 50rpx;
+}
+.dialog .btn .blue-style{
+  color: #358dff;
+}
+.ft{
+  float: left;
+}
+.rt{
+  float: right;
+}
+.dialog .btn view{
+  display: inline-block;
+  text-align: center;
+  background: #f7f7f7;
+  border-radius: 200rpx;
+  width: 300rpx;
+  color: #181818;
+}

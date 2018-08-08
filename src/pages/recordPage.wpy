@@ -1,0 +1,84 @@
+<template>
+	<view class="container">
+		<view class="title">
+			{{titleText}}{{spanText}}{{restTitle||'刷卡明细'}}
+		</view>
+		<block wx:if="{{typeId===3}}">
+			<view>
+				<view class="item-list bg-color">
+				<view>班级</view>
+				<view>姓名</view>
+				<view>类型</view>
+				<view>刷卡时间</view>
+			</view>
+			</view>
+				<scroll-view scroll-y="true"  style="height:{{scrollHeight}}px" class="student-wrapper" bindscrolltolower="bindLower">
+					<view class="item-list" wx:for="{{recordData}}">
+						<view>{{item.className}}</view>
+						<view>{{item.studentName}}</view>
+						<block wx:if="{{!restFlag}}">
+							<view>住宿</view>
+							<view class="card-time {{item.cardTime===''?'gray-style':''}}">{{item.cardTime||'未刷卡'}}</view>
+						</block>
+						<block wx:else>
+							<view>住宿</view>
+							<view class="card-time gray-style">已请假</view>
+						</block>
+					</view>
+					<block wx:if="{{recordData.length}}">
+					<block wx:if="{{recordData.length>10}}">
+					<view class="load">{{loadingFlag?'加载中....':'没有更多数据了'}}</view>
+					</block>
+					</block>
+					<block wx:else>
+					<view class="null-text">暂无数据</view>
+					</block>
+				</scroll-view>
+		</block>
+		<block wx:if="{{typeId===1}}">
+			<view><view class="item-list bg-color">
+					<view>班级</view>
+					<view>姓名</view>
+					<block wx:if="{{inOutFlag}}">
+						<view>类型</view>
+					</block>
+					<block wx:else>
+						<view>
+							<picker bindchange="bindChangeStyle" value="{{bindData.index}}" range="{{bindData.array}}"
+							        range-key="{{'typeName'}}">
+								<view class="picker">
+									{{bindData.array[bindData.index].typeName}}
+									<view class="down-flag"></view>
+								</view>
+							</picker>
+						</view>
+					</block>
+					<view>刷卡时间</view>
+				</view></view>
+				<scroll-view  scroll-y="true" style="height:{{scrollHeight}}px"  bindscrolltolower="bindLower"  class="student-wrapper">
+					<view class="item-list" wx:for="{{recordData}}">
+						<view>{{item.className}}</view>
+						<view>{{item.studentName}}</view>
+						<block wx:if="{{!restFlag}}">
+							<view>{{item.isdorm===0?'走读':item.isdorm===1?'住宿':'待定'}}</view>
+							<view class="card-time {{item.cardTime===''?'gray-style':''}}">{{item.cardTime||'未刷卡'}}</view>
+						</block>
+						<block wx:else>
+							<view>{{isDormFlag===0?'走读':'住宿'}}</view>
+							<view class="card-time gray-style">已请假</view>
+						</block>
+					</view>
+					<block wx:if="{{recordData.length}}">
+					<block wx:if="{{recordData.length>10}}">
+					<view class="load">{{loadingFlag?'加载中...':'没有更多数据了'}}</view>
+					</block>
+					</block>
+					<block wx:else>
+					<view class="null-text">暂无数据</view>
+					</block>
+				</scroll-view>
+		</block>
+	</view>
+</template>
+<script src="../scripts/recordPage/index.js"></script>
+<style src="../styles/recordPage/index.css"></style>

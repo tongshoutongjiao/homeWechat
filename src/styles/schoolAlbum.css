@@ -24,6 +24,10 @@
   color: rgb(24,24,24);
   font-size: 30rpx;
   margin-left: 30rpx;
+  white-space: nowrap;
+  width: 150rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .students {
@@ -62,5 +66,97 @@
 }
 
 .scroll-view {
-  height: calc(100% - 100rpx);
+  height: calc(100% - 190rpx);
+}
+
+.photo-detail{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  background: #f7f7f7;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  width: 100%;
+
+}
+.upload-img{
+  color: #ff7996;
+  display: inline-block;
+  margin-left:40rpx;
+  font-family: PingFangSC-Medium;
+}
+.upload-style{
+ color: #ffb10c;
+}
+
+/*弹出框*/
+/*维修弹出框*/
+.dialog .mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog .confirm {
+  position: fixed;
+  z-index: 5000;
+  box-sizing: border-box;
+  left: 30rpx;
+  right: 30rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  bottom: 30rpx;
+  font-size: 30rpx;
+  color: #181818;
+  text-align: center;
+
+}
+.dialog .confirm .title {
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 92rpx;
+}
+.dialog .confirm .content{
+  line-height: 90rpx;
+}
+.dialog .btn {
+  line-height: 80rpx;
+  font-size: 32rpx;
+  margin-top: 50rpx;
+}
+.dialog .btn .blue-style{
+  color: #358dff;
+}
+.ft{
+  float: left;
+}
+.rt{
+  float: right;
+}
+.dialog .btn view{
+  display: inline-block;
+  text-align: center;
+  background: #f7f7f7;
+  border-radius: 200rpx;
+  width: 300rpx;
+  color: #181818;
+}
+.null-wrapper{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.null-info{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #8E8E93;
+  font-size: 32rpx;
+  text-align: center;
 }

@@ -140,6 +140,16 @@ image {
   margin-bottom: 40rpx;
   margin-top: 50rpx;
 }
+.locationIcon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+.locationIcon image {
+  margin-bottom: 15rpx;
+}
 /* far close*/
 .far {
   position: relative;

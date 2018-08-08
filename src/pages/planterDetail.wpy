@@ -10,12 +10,14 @@
 		</view>
 		<view class="default end-sn">
 			<view>终端名称</view>
-			<input type="text" data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" placeholder="请输入终端名称" value="{{plantEquip.terminalName||''}}">
+			<input type="text" data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue"
+			       placeholder="请输入终端名称" value="{{plantEquip.terminalName||''}}">
 		</view>
 
 		<view class="default date-style">
 			<view>终端类型</view>
-			<picker bindchange="bindEndType" value="{{alertData.endType.endTypeIndex}}" range="{{alertData.endType.array}}" range-key="{{'typeName'}}">
+			<picker bindchange="bindEndType" value="{{alertData.endType.endTypeIndex}}" range="{{alertData.endType.array}}"
+			        range-key="{{'typeName'}}">
 				<view class="picker" wx:if="{{typeNameFlag}}">
 					{{typeName}}
 				</view>
@@ -28,11 +30,22 @@
 		</view>
 		<view class="default ">
 			<view>SIM卡号</view>
-			<input type="number" placeholder="请输入SIM卡号" data-input-type="simNum" bindinput="getInputValue" bindfocus="getFocusValue" value="{{plantEquip.simNum||''}}">
+			<input type="number" placeholder="请输入SIM卡号" data-input-type="simNum" bindinput="getInputValue"
+			       bindfocus="getFocusValue" value="{{plantEquip.simNum||''}}">
 		</view>
 		<view class="default ">
 			<view>安装位置</view>
-			<input type="text" placeholder="请输入安装位置" data-input-type="installAddress" bindinput="getInputValue" bindfocus="getFocusValue" value="{{plantEquip.installAddress||''}}">
+			<input type="text" placeholder="请输入安装位置" data-input-type="installAddress" bindinput="getInputValue"
+			       bindfocus="getFocusValue" value="{{plantEquip.installAddress&&plantEquip.installAddress!='null'?plantEquip.installAddress:'暂无'}}">
+		</view>
+		<view class="default ">
+			<view>地图定位</view>
+			<view style="float: right">
+				{{locationFlag?'已定位':'未定位'}}
+				<view class="locationIcon" bindtap="clickNavigateToMapPage" data-school-id="{{plantEquip.schoolId}}" data-location-flag="{{locationFlag}}" data-equip-id="{{plantEquip.id}}">
+					<image src="/images/location_icon.jpg"></image>
+				</view>
+			</view>
 		</view>
 		<view class="default date-style">
 			<view>终端使用状态</view>
@@ -49,13 +62,13 @@
 			<view>终端启用状态</view>
 			<view class="wrapper">
 				<view class="use-status" bindtap="clickSelectStatus" data-end-status="1">
-					<image wx:if="{{endStatus=='1'}}" class="all-default" src="/images/float_icon_a.png" />
+					<image wx:if="{{endStatus=='1'}}" class="all-default" src="/images/float_icon_a.png"/>
 					<image wx:else class="all-default" src="/images/float_icon_d.png"/>
 					<view>是</view>
 				</view>
 				<view class="use-status" bindtap="clickSelectStatus" data-end-status="0">
 					<image wx:if="{{endStatus=='0'}}" class="all-default" src="/images/float_icon_a.png"/>
-					<image wx:else class="all-default" src="/images/float_icon_d.png" />
+					<image wx:else class="all-default" src="/images/float_icon_d.png"/>
 					<view>否</view>
 				</view>
 			</view>
@@ -104,12 +117,14 @@
 			<view>
 				<text>远景照</text>
 				<scroll-view class="photo-wrapper" scroll-x="true">
-					<view class="far" style="display: inline-block" wx:for="{{imgUrlList.farImgUrlList}}" data-pic-type="far" bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
+					<view class="far" style="display: inline-block" wx:for="{{imgUrlList.farImgUrlList}}" data-pic-type="far"
+					      bindtap="clickOperatePhoto" data-src="{{item.url}}" data-index="{{item.index}}">
 						<image src="{{item.url}}"></image>
-						<image  class=" magnifier" src="/images/magnifier.png"></image>
+						<image class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
 
-					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="far"  wx:if="{{imgUrlList.farImgUrlList.length<2}}">
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="far"
+					      wx:if="{{imgUrlList.farImgUrlList.length<2}}">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
@@ -120,13 +135,13 @@
 				<text>近景照</text>
 				<view class="photo-wrapper">
 
-					<view class="close" wx:for="{{imgUrlList.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}" bindtap="clickOperatePhoto" data-src="{{item.url}}">
+					<view class="close" wx:for="{{imgUrlList.closeImgUrlList}}" data-pic-type="close" data-index="{{item.index}}"
+					      bindtap="clickOperatePhoto" data-src="{{item.url}}">
 						<image src="{{item.url}}"></image>
-						<image  class=" magnifier" src="/images/magnifier.png"></image>
+						<image class=" magnifier" src="/images/magnifier.png"></image>
 					</view>
-
-
-					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="close" wx:if="{{imgUrlList.closeImgUrlList.length<2}}">
+					<view class="add-icon" bindtap="clickUploadImage" data-pic-type="close"
+					      wx:if="{{imgUrlList.closeImgUrlList.length<2}}">
 						<text class="row"></text>
 						<text class="col"></text>
 					</view>
@@ -141,9 +156,11 @@
 	</view>
 	<view class="operate-img" wx:if="{{largeImgFlag}}">
 		<view class="mask" bindtap="cancelPhotoMask"></view>
-		<scroll-view class="photo-list"scroll-X="true" scroll-left="{{scrollLeft}}"  scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
-			<view class="large-img" wx:for="{{curPhotoList}}" >
-				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
+		<scroll-view class="photo-list" scroll-X="true" scroll-left="{{scrollLeft}}" scroll-with-animation="true"
+		             bindscroll="getSelectItem" bindtap="getSelectItemTest">
+			<view class="large-img" wx:for="{{curPhotoList}}">
+				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}"
+				       mode="aspectFit"></image>
 			</view>
 		</scroll-view>
 

@@ -21,6 +21,7 @@ export default class Index extends wepy.page {
     deleteIconInfo: {},
     curPhotoList: [],// 大图图片列表
     savingFlag: false,
+    locationFlag: false,// 定位信息
 
     typeList: ['planter', 'remark'],//  备注
 
@@ -41,7 +42,7 @@ export default class Index extends wepy.page {
       //  安装类型
       plantType: {
         array: ['加装', '新装', '移机', '改造'],
-        plantTypeIndex: 0
+        plantTypeIndex: null
       }
     },
     equipInfo: {},
@@ -60,7 +61,6 @@ export default class Index extends wepy.page {
   };
 
   methods = {
-
     // 安装日期
     bindStartDateChange: function (e) {
       this.date.startDate = e.detail.value;
@@ -124,7 +124,7 @@ export default class Index extends wepy.page {
     clickSelectStatus: function (e) {
       let endStatus = e.currentTarget.dataset.endStatus;
       this.endStatus = endStatus;
-      this.selectType.isActive = +endStatus;
+      this.selectType.isActive = endStatus * 1;
       this.$apply();
     },
 
@@ -194,18 +194,23 @@ export default class Index extends wepy.page {
         return;
       }
 
-      // 判读图片
+      // 判断图片
       commonMethods.handleImgUrlInfo(self);
 
+      // 调整备注中自定义信息的顺序
+      this.fixRemarkInfo();
+
       // 判断用户是否点击启用状态，
-      this.selectType.isActive = this.selectType.isActive || this.plantEquip.isLogin;
+      this.selectType.isActive = this.endStatus || this.plantEquip.isActive;
       this.selectType.terminalStatus = this.selectType.terminalStatus || this.plantEquip.terminalState;
       // 1 终端名称 sim卡号 安装位置
       // 2 是否启用 安装类型  终端类型  终端使用状态  终端安装时间
       // 3 安装人员 备注
       // 4 远景照 近景照
       // 其他的参数  this.plantEquip
+
       this.plantEquip.terminalId = this.plantEquip.id;
+
       Object.assign(defaultInfo, this.plantEquip, this.inputValue, this.selectType, this.selectOptions, this.imgUrlList.submitData, {
         userId,
         userName
@@ -217,32 +222,36 @@ export default class Index extends wepy.page {
     //  获取input框中的值
     getInputValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
-
     },
 
     //  聚焦时获取到input中的内容
     getFocusValue(e) {
       let type = e.currentTarget.dataset.inputType;
+      let value = e.detail.value;
+      value = value.replace(/(^\s*)|(\s*$)/g, '');
+
       switch (type) {
         case 'simNum':
-          this.inputValue.simNum = e.detail.value;
+          this.inputValue.simNum = value;
           break;
         case 'installAddress':
-          this.inputValue.installAddress = e.detail.value;
+          this.inputValue.installAddress = value;
           break;
         case 'terminalName':
-          this.inputValue.terminalName = e.detail.value;
+          this.inputValue.terminalName = value;
           break;
       }
 
@@ -250,9 +259,8 @@ export default class Index extends wepy.page {
 
     //   点击查看大图
     clickOperatePhoto: function (e) {
-
-      this.$apply();
       commonMethods.clickCheckImg(e, this);
+      this.$apply();
     },
     //  取消遮罩层效果
     cancelPhotoMask: function (e) {
@@ -268,6 +276,13 @@ export default class Index extends wepy.page {
     getSelectItem: function (e) {
       commonMethods.slideLargeImg(e, this);
     },
+
+    // 点击跳转地图定位页面
+    clickNavigateToMapPage: function (e) {
+      wepy.navigateTo({
+        url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
+      });
+    }
   };
 
   onLoad() {
@@ -278,7 +293,7 @@ export default class Index extends wepy.page {
   onShow() {
     console.log('show..');
     //   回显选择的globalDate中的数据
-    this.echoSelectedData()
+    this.echoSelectedData();
   }
 
   async initData(e) {
@@ -286,7 +301,7 @@ export default class Index extends wepy.page {
     this.plantEquip = data.curPlantEquip;
     this.alertData.endType.array = data.terminalTypeData;
     this.alertData.endStatusData.endStatusIndex = data.curPlantEquip.terminalState;
-    this.endStatus = this.plantEquip.isLogin;
+    this.endStatus = this.plantEquip.isActive;
     this._getEquipInfoById();
   }
 
@@ -294,6 +309,8 @@ export default class Index extends wepy.page {
     let newData = [],
       idData = [];
     let data = this.$parent.globalData;
+
+    // 查看获取到的安装人员
     for (let key in data) {
       switch (key) {
         case 'repairPerson':
@@ -306,6 +323,7 @@ export default class Index extends wepy.page {
           });
           this.selectOptions.installationP = idData.join(',');
           this.selectOptions.pname = newData.join(',');
+
           this.equipInfo.plantPersonSelected = newData.join(',').length > 14 ? newData.join(',').substring(0, 14) + '...' : newData.join(',');
           break;
         case 'remark':
@@ -318,6 +336,11 @@ export default class Index extends wepy.page {
           break;
       }
     }
+
+    // 判断是否已定位
+    let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
+    lat && long ? this.locationFlag = true : this.locationFlag = false;
+
     this.$apply();
   }
 
@@ -368,8 +391,26 @@ export default class Index extends wepy.page {
       imgurl2: '',
       imgurl3: '',
       imgurl4: '',
-
+      latitude: '',
+      longitude: '',
     };
+
+    // 添加经纬度
+    this.$parent.globalData.curPlantEquip.latitude = resData.latitude;
+    this.$parent.globalData.curPlantEquip.latitude = resData.longitude;
+
+
+    // 添加定位标识
+    if (String(resData.latitude) !== 'null' && String(resData.longitude) !== 'null') {
+      wx.setStorageSync('lat', resData.latitude);
+      wx.setStorageSync('long', resData.longitude);
+      this.locationFlag = true;
+    } else {
+      wx.removeStorageSync('lat');
+      wx.removeStorageSync('long');
+      this.locationFlag = false;
+    }
+
     for (let key in defaultObj) {
       defaultObj[key] = resData[key]
     }
@@ -385,10 +426,11 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.pname) {
       let plantPerson = this.$parent.globalData.repairPerson;
-      this.equipInfo.plantPersonSelected = defaultObj.pname;
+      let personSaved = defaultObj.pname.length > 14 ? defaultObj.pname.substring(0, 14) + '...' : defaultObj.pname;
+      this.equipInfo.plantPersonSelected = personSaved;
       let tempArray = defaultObj.pname.split(',');
       tempArray.forEach(function (item) {
-        plantPerson.forEach(function (plantP, index) {
+        plantPerson.forEach(function (plantP) {
           if (plantP.name === item) {
             plantP.selected = true;
           }
@@ -399,9 +441,9 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.remark) {
       let remark = this.$parent.globalData.remark;
-      this.equipInfo.remarkSelected = defaultObj.remark;
+      let remarkSaved = defaultObj.remark.length > 14 ? defaultObj.remark.substring(0, 14) + '...' : defaultObj.remark;
+      this.equipInfo.remarkSelected = remarkSaved;
       let tempArray = defaultObj.remark.split(',');
-      console.log(remark);
       tempArray.forEach(function (item) {
         let flag = false;
         for (let i = 0; i < remark.length; i++) {
@@ -469,8 +511,7 @@ export default class Index extends wepy.page {
     this.$apply()
   }
 
-//  回显图片添加索引
-
+  // 回显图片添加索引
   addImgIndex() {
     let farImgArray = this.imgUrlList.farImgUrlList,
       closeImgArray = this.imgUrlList.closeImgUrlList;
@@ -481,5 +522,32 @@ export default class Index extends wepy.page {
 
     });
     this.$apply();
+  }
+
+
+  // 调整备注中自定义信息的顺序
+  fixRemarkInfo() {
+
+
+    let data = this.$parent.globalData;
+    console.log('调整remark自定义数据的顺序');
+
+    console.log(this.$parent.globalData);
+    console.log(data);
+    console.log(this.selectOptions);
+
+    if (data.remark[0].selected === true) {
+      let first=[],last=[];
+      let tempArray = this.selectOptions.remark.split(',');
+      first=tempArray.shift();
+      last=tempArray.pop();
+      tempArray.unshift(last);
+      tempArray.push(first);
+      console.log('调整remark自定义数据的顺序');
+      console.log(tempArray.join(','));
+      this.selectOptions.remark=tempArray.join(',');
+      this.$apply();
+    }
+
   }
 }

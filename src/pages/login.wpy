@@ -106,8 +106,14 @@
         }
         // 判断输入内容满足登录条件时，登录按钮变蓝
         if (this.phone.length === 11 && this.password.length > 0) {
-          this.btnStatus = 'active'
+          this.btnStatus = 'active';
         } else {
+
+          this.phone.length>11? wx.showToast({
+            title:'手机号不能超过11位,请确认',
+            icon:'none'
+          }):'';
+
           this.btnStatus = ''
         }
       } else {
@@ -123,7 +129,7 @@
         }
         // 判断输入内容满足登录条件时，登录按钮变蓝
         if (this.phone.length === 11 && this.password.length > 0) {
-          this.btnStatus = 'active'
+          this.btnStatus = 'active';
         } else {
           this.btnStatus = ''
         }
@@ -175,6 +181,8 @@
             pwd: this.password
           }
         })
+        console.log('请求数据');
+        console.log(result.data.result);
         if (result.data.result === 200) {
           wepy.setStorageSync('token', result.data.token)
           wepy.setStorageSync('userId', result.data.userId)

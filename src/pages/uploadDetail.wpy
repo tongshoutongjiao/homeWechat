@@ -1,0 +1,16 @@
+<template>
+	<view class="container">
+		<view class="total">共{{studentCount}}人照片审核未通过</view>
+		<scroll-view scroll-y="true" class="school-list">
+			<view class="school" wx:for="{{schoolData}}"  wx:key="{{item.id}}" data-id="{{item.id}}" data-name="{{item.schoolName}}" bindtap="navigateToStudentManage">
+				<view class="school-name">{{item.schoolName}}</view>
+				<view class="person">{{item.auditCount}}</view>
+				<view class="icon">
+					<image src="../images/sp_icon.png"></image>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+<script src="../scripts/uploadDetail/index.js"></script>
+<style src="../styles/uploadDetail/index.css"></style>

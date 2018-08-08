@@ -1,0 +1,22 @@
+<template>
+	<view class="container">
+		<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}"  bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}"  show-location style="width: 100%; height:{{mapHeight}};"></map>
+		<view class="equipInfo">
+			<view class="downIcon" bindtap="clickCollapseBox" >
+				<image src="/images/down_icon.png"></image>
+			</view>
+			<block wx:if="{{displayStatus}}">
+				<view class="title">共{{lengthInfo.equipLength}}个设备 刷卡器{{lengthInfo.cardLength}}个 电话机{{lengthInfo.phoneLength}}个</view>
+				<view>当前终端名称:{{equipInfo.terminalName}}</view>
+				<view>终端编号:{{equipInfo.terminalNum}}</view>
+				<view>终端类型:{{equipInfo.machineType||equipInfo.typeName}}</view>
+				<view>当前设备:{{equipInfo.status=='true'?'已定位':'未定位'}}</view>
+				<block wx:if="{{equipInfo.isCurEquip}}">
+					<view class="locationFlag {{equipInfo.status=='true'?'pink-style':'blue-style'}}" bindtap="clickRelocation">{{equipInfo.status=='true'?'重新定位':'定位设备'}}</view>
+				</block>
+			</block>
+		</view>
+	</view>
+</template>
+<script src="../scripts/mapPage/index.js"></script>
+<style src="../styles/mapPage/index.css"></style>

@@ -10,7 +10,13 @@
 		</view>
 		<view class="default end-sn fixed">
 			<view>终端名称</view>
-			<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="{{repairData.terminalName}}" >
+			<block wx:if="{{repairData.terminalName}}">
+				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="{{repairData.terminalName}}" >
+			</block>
+			<block wx:else>
+				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="" >
+			</block>
+
 		</view>
 		<view class="unfix school-name">
 			<view>终端类型</view>
@@ -18,11 +24,30 @@
 		</view>
 		<view class="default fixed">
 			<view>SIM卡号</view>
-			<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="{{repairData.simNum}}" >
+			<block wx:if="{{repairData.simNum}}">
+				<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="{{repairData.simNum}}" >
+			</block>
+			<block wx:else>
+				<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="" >
+			</block>
+
 		</view>
 		<view class="default fixed">
 			<view>安装位置</view>
-			<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress}}" >
+			<block wx:if="{{repairData.installAddress}}">
+				<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress&&repairData.installAddress!='null'?repairData.installAddress:''}}" >
+			</block>
+			<block wx:else>
+				<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="" >
+			</block>
+		</view>
+		<view class="default ">
+			<view>地图定位</view>
+			<view style="float: right;">{{latFlag&&longFlag?'已定位':'未定位'}}
+				<view class="locationIcon" bindtap="clickNavigateToMapPage" data-school-id="{{repairData.schoolId}}" data-location-flag="{{latFlag&&longFlag?true:false}}" data-equip-id="{{repairData.terminalId}}">
+					<image src="/images/location_icon.jpg"></image>
+				</view>
+			</view>
 		</view>
 		<view class=" default date-style">
 			<view>接单日期</view>
@@ -75,34 +100,21 @@
 		</view>
 		<view class="default fixed ">
 			<view>故障终端程序</view>
-			<input data-input-type="faultProgram" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus  placeholder="请输入故障终端程序名称" value="{{repairData.faultProgram||''}}">
+			<input data-input-type="faultProgram" bindinput="getInputValue" bindfocus="getFocusValue"  placeholder="请输入故障终端程序名称" value="{{repairData.faultProgram&&repairData.faultProgram!='null'?repairData.faultProgram:''}}">
 		</view>
 		<view class="default date-style">
 			<view>故障终端主板</view>
 			<picker bindchange="bindEndBoard" value="{{alertData.endBoard.endBoardIndex}}" range="{{alertData.endBoard.array}}">
 				<view class="picker" wx:if="{{recordId&&mainBoardFlag}}">
-					{{repairData.faultMainboard}}
+					{{repairData.faultMainboard!=null?repairData.faultMainboard:'无'}}
+				</view>
+				<view class="picker"  wx:elif="{{recordId==''&&mainBoardFlag===true}}">
+					无
 				</view>
 				<view class="picker" wx:else>
 					{{alertData.endBoard.array[alertData.endBoard.endBoardIndex]}}
 				</view>
 			</picker>
-			<view class="right-icon"></view>
-			<view class="right-hide"></view>
-
-		</view>
-		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
-			<view>故障类型</view>
-
-			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
-			<view class="right-icon"></view>
-			<view class="right-hide"></view>
-
-		</view>
-		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
-			<view>硬件类型</view>
-
-			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -123,6 +135,24 @@
 			<view class="right-hide"></view>
 
 		</view>
+		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
+			<view>故障类型</view>
+
+			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
+			<view>硬件类型</view>
+
+			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
+			<view class="right-icon"></view>
+			<view class="right-hide"></view>
+
+		</view>
+
+
 		<view class="default date-style another-page" data-type="handleMeasures" bindtap="clickChooseOptions">
 			<view>处理措施</view>
 
@@ -177,7 +207,7 @@
 		<view class="mask" bindtap="cancelPhotoMask"></view>
 		<scroll-view class="photo-list"scroll-X="true" scroll-left="{{scrollLeft}}"  scroll-with-animation="true"  bindscroll="getSelectItem" bindtap="getSelectItemTest">
 			<view class="large-img" wx:for="{{curPhotoList}}" >
-				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFill"></image>
+				<image src="{{item.url||''}}" data-pic-type="{{item.picType}}" data-index="{{item.index}}" mode="aspectFit"></image>
 			</view>
 		</scroll-view>
 

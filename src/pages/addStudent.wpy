@@ -3,7 +3,7 @@
 
     <view class="photo">
       <view>头像</view>
-      <image src="{{studentInfo.studentImg||defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+      <image src="{{studentInfo.studentImg||defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg" />
     </view>
     <view class="class-name">
       <view>班级</view>
@@ -213,6 +213,7 @@
   <block wx:if="{{cameraFlag}}">
     <camera-com></camera-com>
   </block>
+  <view>{{tempUrl}}</view>
 
 </template>
 <script src="../scripts/addStudent/index.js"></script>

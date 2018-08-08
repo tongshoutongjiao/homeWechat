@@ -1,0 +1,106 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.bg-color {
+  background: #f7f7f7;
+}
+.ml-30 {
+  margin-left: 60rpx;
+}
+.ml-20 {
+  margin-left: 40rpx;
+}
+.pt-20 {
+  padding-top: 40rpx;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .left-part {
+  width: 33.3%;
+}
+.wrapper .right-part {
+  width: 66.6%;
+  float: right;
+  padding-left: 30rpx;
+}
+.wrapper .left-part,
+.wrapper .right-part {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+}
+.wrapper .left-part view,
+.wrapper .right-part view {
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  line-height: 110rpx;
+  font-size: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #575759;
+}
+.wrapper .left-part view.selected,
+.wrapper .right-part view.selected {
+  background: #fff;
+}
+/* 按宿舍楼筛选*/
+.dorm-attendance {
+  position: relative;
+}
+.dorm-attendance .dorm-style {
+  position: absolute;
+  top: 140rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  display: flex;
+}
+.dorm-attendance .select-condition {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  font-size: 32rpx ;
+  color: #575759 ;
+}
+.dorm-attendance .select-condition view {
+  display: inline-block;
+}
+.dorm-attendance .select-condition view.condition {
+  line-height: 70rpx;
+  width: 186rpx;
+  border: 2rpx solid #d0d0d4;
+  border-radius: 100rpx;
+  text-align: center;
+}
+.dorm-attendance .select-condition view.selected {
+  color: #fff;
+  background: #348cff;
+  border: 0rpx;
+}
+.dorm-attendance .right-part {
+  width: 33.3%;
+  height: 100%;
+}
+.dorm-attendance .middle-part {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 33.3%;
+  height: 100%;
+}
+.dorm-attendance .middle-part view {
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  line-height: 110rpx;
+  font-size: 30rpx;
+  color: #575759;
+}
+.dorm-attendance .middle-part view.selected {
+  background: #fff;
+}

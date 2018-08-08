@@ -5,7 +5,7 @@ import wepy from "wepy";
 export async function getEquipById(id) {
   let resData;
   let res = await api.getEquipInfoById({
-    methos: 'POST',
+    method: 'POST',
     data: {
       id
     }
@@ -78,8 +78,7 @@ export function getImgUrl(ret, picType, self) {
 // 点击实现上传图片功能
 
 export function uploadEquipImage(e, self) {
-  console.log(this);
-  console.dir(this.uploadImg);
+
 
   let picType = e.currentTarget.dataset.picType;
   wx.chooseImage({
@@ -187,5 +186,78 @@ export function clickCheckImg(e, self) {
 
 }
 
+// 根据学校id查询到学校的年级以及班级信息
+export async function getBussinessList(self) {
+  let list = await api.schoolBusinessList({
+    showLoading: false,
+    method: 'POST',
+    data: {
+      schoolId: self.schoolId
+    }
+  });
+  if(list.data.result===200){
+   return   list.data.schoolBusinessList;
+  }
+}
 
+
+// 批量上传学生照片
+export async function batchUploadPhoto(data,self,callback){
+  console.log('批处理学生的照片信息');
+  let tempArray=[];
+
+  for(let i=0,curItem;i<data.length;i++) {
+    curItem = data[i];
+    let rate=(i+1)/(data.length);
+    let percent=((rate.toFixed(2))*100).toFixed()+'%';
+
+    console.log('rate:',rate);
+    console.log('rate取两位小数',rate.toFixed(2));
+    console.log('percent',percent);
+
+
+
+
+    wx.showLoading({
+      title:`上传进度 `+String(percent),
+      icon: 'loading',
+      mask:true
+    });
+    let uploadRes = await api.uploadStudentPhoto({
+      filePath: curItem.imgUrl,
+      name: 'imgfile',
+      formData: {
+        studentId: curItem.studentId
+      },
+    });
+    // 如果当前图片上传成功，直接清除上传照片的数据
+    let photoRes = JSON.parse(uploadRes.data);
+    if(!photoRes.data || !photoRes.data[0]){
+      // 如果单张照片上传失败的话，保存当前照片的信息
+      tempArray.push(curItem)
+    }
+    else {
+      data.splice(i,1);
+      i--;
+      self.localPhotoNumber=data.length;
+      self.$apply();
+    }
+  }
+  if(!tempArray.length){
+    wx.hideLoading();
+    setTimeout(function(){
+      wx.showToast({
+        title: '上传成功',
+        icon: 'success',
+        duration: 1000
+      });
+    },1000)
+  }else {
+    wx.showToast({
+      title: `有${tempArray.length}张照片未上传，请重新上传`,
+      icon: 'none',
+    })
+  }
+  callback(tempArray,self)
+}
 

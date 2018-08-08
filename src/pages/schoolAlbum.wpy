@@ -1,35 +1,94 @@
 <template>
-  <view class="school-album">
-    <view class="class-picker flex">
-      <view class="flex-item">
-        <picker bindchange="handleGradeChange" range-key="gradeName" value="{{gradeActiveIndex}}" range="{{grades}}">
-          <view class="picker">{{gradeName}}</view>
-        </picker>
-        <view class="triangle-down"></view>
-      </view>
-      <view class="flex-item">
-        <picker bindchange="handleClassChange" range-key="className" value="{{classActiveIndex}}" range="{{classes}}">
-          <view class="picker">{{className}}</view>
-        </picker>
-        <view class="triangle-down"></view>
-      </view>
-    </view>
-    <scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
-      <view  wx:for="{{students}}" wx:item="item" wx:for-index="index"  wx:key="index" id="letter_{{item.label}}">
-        <view class="student-item flex"  wx:for="{{item.list}}" wx:item="item" wx:for-index="order"   wx:key="{{item.studentId}}" data-class-name="{{className}}" data-id="{{item.studentId}}" catchtap="handleNavigateTo">
-          <view class="flex-item student-info">
-            <image class="photo" src="{{item.studentImg || defaultPhoto}}?imageView2/2/w/100/h/138/q/50|imageslim"  mode="aspectFill"></image>
-            <view class="name">{{item.studentName}}</view>
-          </view>
-          <view class="flex-item">
-            <image class="icon-camera" src="{{item.studentImg ? '../asset/aupd_icon.png' : '../asset/upd_icon.png'}}"  mode="widthFix"></image>
-          </view>
-          <view class="flex-item {{item.studentImg ? 'uploaded' : 'upload'}}">{{item.studentImg ? "你已上传" : "点击上传"}}</view>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-  <letter-index></letter-index>
+
+	<view class="school-album">
+		<block wx:if="{{localPhotoNumber}}">
+			<view class="photo-detail">
+				温馨提示: 您有{{localPhotoNumber}}张照片未上传
+				<view class="upload-img" bindtap="clickUploadImg">全部上传</view>
+			</view>
+		</block>
+		<block wx:else>
+			<view class="photo-detail">
+				温馨提示:本地还没有照片,请点击对应图标拍照
+			</view>
+		</block>
+
+		<view class="class-picker flex">
+			<view class="flex-item">
+				<picker bindchange="handleGradeChange" range-key="gradeName" value="{{gradeActiveIndex}}" range="{{grades}}">
+					<view class="picker">{{gradeName}}</view>
+				</picker>
+				<view class="triangle-down"></view>
+			</view>
+			<view class="flex-item">
+				<picker bindchange="handleClassChange" range-key="className" value="{{classActiveIndex}}" range="{{classes}}">
+					<view class="picker">{{className}}</view>
+				</picker>
+				<view class="triangle-down"></view>
+			</view>
+		</view>
+		<scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
+			<block wx:if="{{students.length}}">
+				<view wx:for="{{students}}" wx:for-item="parItem" wx:for-index="index" wx:key="index" id="letter_{{parItem.label}}">
+					<view class="student-item flex" wx:for="{{parItem.list}}" wx:item="item" wx:for-index="order"
+					      wx:key="{{item.studentId}}" data-class-name="{{className}}" data-id="{{item.studentId}}"
+					      catchtap="handleNavigateTo" data-temp-url="{{item.studentImg}}"  data-upload-flag="{{item.hasLocalPhoto?'upload':'unload'}}">
+						<view class="flex-item student-info ">
+							<block wx:if="{{item.hasLocalPhoto}}">
+								<block wx:if="{{item.studentImg==null}}">
+									<image class="photo" src="{{ defaultPhoto }}"
+									       mode="aspectFill" ></image>
+								</block>
+								<block wx:else>
+									<image class="photo" src="{{item.studentImg}}"
+									       mode="aspectFill" ></image>
+								</block>
+							</block>
+							<block wx:else>
+								<block wx:if="{{item.studentImg==null}}">
+									<image class="photo" data-par-index="{{index}}" data-student-id="{{item.studentId}}" data-cur-index="{{order}}" src="{{ defaultPhoto}}"
+									       mode="aspectFill" binderror="handErrorImg"></image>
+
+								</block>
+								<block wx:else>
+									<image class="photo" data-par-index="{{index}}" data-student-id="{{item.studentId}}" data-cur-index="{{order}}" src="{{item.studentImg}}?imageView2/2/w/100/h/138/q/50|imageslim"
+									       mode="aspectFill" binderror="handErrorImg"></image>
+								</block>
+							</block>
+							<view class="name">{{item.studentName}}</view>
+						</view>
+						<view class="flex-item">
+							<image class="icon-camera" src="{{item.hasLocalPhoto? '../asset/camera_icon.png' : item.studentImg?   '../asset/aupd_icon.png' : '../asset/upd_icon.png'}}"
+							       mode="widthFix"></image>
+						</view>
+						<view class="flex-item {{item.hasLocalPhoto? 'upload-style' : item.studentImg?'uploaded': 'upload'}}">
+							{{item.hasLocalPhoto ? "点击上传" :  item.studentImg? "你已上传": "点击拍照" }}
+						</view>
+					</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="null-wrapper" >
+					<view class="null-info">暂无学生信息</view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+
+	<!--确认弹窗-->
+	<view class="dialog" wx:if="{{confirmFlag}}">
+		<view class="mask"></view>
+		<view class="confirm">
+			<view class="title">温馨提示</view>
+			<view class="content">您拍的照片已超过500张，请先上传照片</view>
+			<view class="btn">
+				<view class="ft" bindtap="clickOperatePhoto" data-type="cancel" >取消</view>
+				<view  bindtap="clickOperatePhoto" data-type="sure" class="blue-style rt">确定</view>
+			</view>
+		</view>
+	</view>
+
+	<letter-index></letter-index>
 </template>
 
 <script src="../scripts/schoolAlbum/index.js"></script>

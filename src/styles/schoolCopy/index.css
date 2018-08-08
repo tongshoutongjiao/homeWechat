@@ -1,0 +1,206 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  flex-direction: column;
+}
+/*顶部固定栏*/
+.header {
+  width: 100%;
+  z-index: 1;
+  background: #fff;
+  height: auto;
+  /* 顶部选择栏*/
+  /*中间操作栏*/
+  /*学校列表标题*/
+}
+.header .tab {
+  width: 100%;
+  margin-bottom: 23rpx;
+  padding-right: 20rpx;
+}
+.header .tab view {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 72rpx;
+}
+.header .tab .select {
+  width: 522rpx;
+  text-align: center;
+}
+.header .tab .select view {
+  position: relative;
+  display: inline-block;
+  width: 33.3%;
+  color: #8e8e93;
+}
+.header .tab .select view.on {
+  color: #181818 ;
+  font-family: "PingFangSC-Medium";
+}
+.header .tab .select view.on .bottom-bar {
+  background: #348cff;
+}
+.header .tab .select view .bottom-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 0rpx;
+  width: 20rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+  transform: translateX(-50%);
+  background: #fff;
+}
+.header .tab .show-style {
+  position: relative;
+  width: calc(100% - 522rpx);
+  text-align: center;
+  color: #358dff;
+}
+.header .tab .show-style view {
+  font-size: 28rpx;
+}
+.header .tab .show-style::before {
+  position: absolute;
+  content: '';
+  height: 30rpx;
+  display: inline-block;
+  margin-top: 25rpx;
+  left: 0rpx;
+  border-right: 5rpx solid #d0d0d4;
+}
+.header .operate {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 32rpx;
+  color: #8e8e93;
+  /*三角形*/
+  /*综合过滤*/
+}
+.header .operate .triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 6rpx solid transparent;
+  border-right: 6rpx solid transparent;
+  border-top: 10rpx solid #D0D0D4;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+}
+.header .operate .school-name {
+  display: inline-block;
+  width: 150rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.header .operate .filter-img {
+  width: 28rpx;
+  height: 28rpx;
+  align-self: center;
+  vertical-align: middle;
+}
+.header .operate .search,
+.header .operate .deleSchId {
+  vertical-align: middle;
+  margin-left: 10rpx;
+}
+.header .operate .multipleRank {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .list-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background: #f7f7f7;
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  color: #575759;
+  line-height: 100rpx;
+}
+.middle {
+  display: flex;
+  flex: 1;
+  /*scroll-wrap*/
+  /*schoolName*/
+}
+.middle .scroll-wrap {
+  box-sizing: border-box;
+  height: 100%;
+}
+.middle .school-list {
+  width: 100%;
+  height: 100%;
+}
+.middle .swiper-box {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 48rpx;
+}
+.middle .school-name-wrapper {
+  margin-bottom: 35rpx;
+  margin-top: 40rpx;
+}
+.middle .school-title-name {
+  color: #5978be;
+  font-size: 28rpx;
+  text-align: left;
+  margin-bottom: 30rpx;
+}
+.middle .detileNum {
+  display: flex;
+  font-size: 28rpx;
+  color: #8e8e93;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 25rpx;
+}
+.middle .detileNum .leftIcon {
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid #d0d0d4;
+  border-right: transparent;
+  border-top: transparent;
+}
+.middle .tips {
+  text-align: center;
+  color: #D6D6D8;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+.middle .noData {
+  font-size: 28rpx;
+  margin-top: 250rpx;
+  text-align: center;
+  color: #D6D6D8;
+}
+.bottom {
+  height: 100rpx;
+  /* 底部导航栏*/
+}
+.bottom .bottom-view {
+  display: flex;
+  justify-content: space-around;
+  z-index: 1;
+  background: #348cff;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  height: 100rpx;
+}

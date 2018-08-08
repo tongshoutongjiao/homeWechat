@@ -122,6 +122,16 @@ image {
   height: 160rpx;
   margin-right: 30rpx ;
 }
+.locationIcon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+.locationIcon image {
+  margin-bottom: 15rpx;
+}
 .mask {
   position: fixed;
   top: 0;

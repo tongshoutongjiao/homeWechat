@@ -2,6 +2,7 @@ import wepy from 'wepy';
 import api from '../api';
 import * as Toolkit from '../utils/toolkit';
 
+
 export default class Index extends wepy.page {
   components = {};
   config = {
@@ -21,6 +22,7 @@ export default class Index extends wepy.page {
     selectLength: 0,//选中维修设备的个数
     identify: 'repairMan',// repairMan 维修人员 planter 安装员 other
     terminalId: '',
+    reformatFlag: false
   };
 
   methods = {
@@ -53,6 +55,9 @@ export default class Index extends wepy.page {
     //  点击全选
     clickSelectOperateEquip: function (e) {
       let selectType = e.currentTarget.dataset.selectType;
+      if (this.reformatFlag) {
+        return;
+      }
       if (selectType === 'all') {
         this.selectAllFlag = !this.selectAllFlag;
         if (this.selectAllFlag) {
@@ -86,10 +91,10 @@ export default class Index extends wepy.page {
     //  点击确定或者取消执行初始化操作
     clickConfirmReformat: function (e) {
       let type = e.currentTarget.dataset.type;
-      if (type === 'sure') {   //
-        this.reformatEquipments();
-      }
+      let reformatFlag = this.reformatFlag;
+      type === 'sure' && (this.reformatEquipments());
       this.confirmFlag = false;
+      this.$apply()
     },
 
     //  点击跳转至维修页面
@@ -101,10 +106,9 @@ export default class Index extends wepy.page {
       let userIdentify = e.currentTarget.dataset.user;
       switch (userIdentify) {
         case 'repairMan':
-          // 是否有维修单，有就显示，没有直接跳到新建维修单页面
-
-          // 遍历所有的设备，获取到有选中状态设备的id
-          // 点击某一个机台获取设备维修记录
+          //1 是否有维修单，有就显示，没有直接跳到新建维修单页面
+          // 2 遍历所有的设备，获取到有选中状态设备的id
+          // 3 点击某一个机台获取设备维修记录
           that.judgeOrderList(e);
           break;
         case 'planter':
@@ -149,14 +153,17 @@ export default class Index extends wepy.page {
     setTimeout(e => this.initData());
 
   }
+
   onShow() {
     console.log('show..');
 
     // 初始化页面数据
     this.initData();
-    //   返回这个页面时，刷新数据
-    this.dialogFlag = true ? this.dialogFlag = false : '';
-    this.fixFlag=false;
+
+    // 初始化页面样式
+    this.initPage();
+
+    this.$apply()
   }
 
   // 跳转进入维修详情页面
@@ -165,7 +172,6 @@ export default class Index extends wepy.page {
     this.$parent.globalData.curRepairData.schoolId = this.schoolId;
 
     let str = Toolkit.jsonToParam(e.currentTarget.dataset);
-
     this.$navigate(`./repairDetail?` + str);
   }
 
@@ -176,6 +182,9 @@ export default class Index extends wepy.page {
       return item.active === true;
     });
     curEquip[0].schoolName = this.schoolName;
+
+    // 新增加的terminalId
+    curEquip[0].schoolId = this.schoolId;
 
     this.$parent.globalData.curPlantEquip = curEquip[0];
     wepy.navigateTo({
@@ -292,6 +301,7 @@ export default class Index extends wepy.page {
     let userName = wepy.getStorageSync('userName');
     let userId = wepy.getStorageSync('userId');
     let tempArray = [], tempStr = '';
+    this.reformatFlag = true;
     this.equipInfo.filter(function (item) {
       if (item.active === true) {
         tempArray.push(item.id)
@@ -317,6 +327,10 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
+      setTimeout(() => {
+        this.reformatFlag = false;
+        this.$apply()
+      }, 200)
 
     } else {
       wx.showToast({
@@ -324,7 +338,12 @@ export default class Index extends wepy.page {
         icon: 'none',
         duration: 2000
       });
+      setTimeout(() => {
+        this.reformatFlag = false;
+        this.$apply()
+      }, 200)
     }
+    this.selectLength = 0;
     this.$apply();
   }
 
@@ -429,7 +448,7 @@ export default class Index extends wepy.page {
           break;
         case 'remark':
           dataList = [];
-          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡'];
+          data = ['自定义', 'SIM卡不正常', '2天线', '3天线', '4天线', '定时器', '固定支架', '移动支架', '地埋', '无SIM卡', '线路无电', '网络不稳定', '设备丢失', '设备停用'];
           data.forEach(function (item, index) {
             let obj = {};
             obj.name = item;
@@ -448,12 +467,21 @@ export default class Index extends wepy.page {
 
 //
   async getTypeName() {
-
     let resRecord = await api.getTerminalType({
       method: 'POST',
       data: {}
     });
     this.$parent.globalData.terminalTypeData = resRecord.data.result === 200 ? resRecord.data.data : '';
+  }
+
+// 初始化页面样式
+  initPage() {
+    //   返回这个页面时，刷新数据
+    this.dialogFlag = true ? this.dialogFlag = false : '';
+    this.selectLength = 0;
+    this.fixFlag = false;
+    this.confirmFlag = false;
+    this.$apply();
   }
 
 }

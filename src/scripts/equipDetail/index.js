@@ -1,6 +1,7 @@
 import wepy from 'wepy'
 import api from '../api.js'
 import querystring from 'querystring';
+import * as Toolkit from '../utils/toolkit';
 import * as commonMethods from '../utils/commonMethods';
 
 export default class Index extends wepy.page {
@@ -12,7 +13,7 @@ export default class Index extends wepy.page {
     curPhotoList: [],
     equipID: null,
     terminalSN: null,
-
+    schoolId: '',
     deleteIconInfo: {
       deleteIndex: '',// 删除图片的索引
     },
@@ -28,7 +29,8 @@ export default class Index extends wepy.page {
     },
     inputValue: {},
     savingFlag: false,
-    remarkFlag:false
+    remarkFlag: false,
+    locationFlag: false,// 地图定位标识
   };
   methods = {
 
@@ -62,7 +64,7 @@ export default class Index extends wepy.page {
           this.inputValue.simNum = e.detail.value;
           break;
         case 'remark':
-          this.remarkFlag=true;
+          this.remarkFlag = true;
           this.inputValue.remarkAdress = e.detail.value;
           break;
       }
@@ -88,7 +90,6 @@ export default class Index extends wepy.page {
         case 'remark':
           this.inputValue.remarkAdress = e.detail.value;
           break;
-
       }
 
     },
@@ -96,16 +97,26 @@ export default class Index extends wepy.page {
     //  点击保存位置信息以及sim 信息
     clickSaveInfo(e) {
       this.saveInfo();
+    },
+
+    //   点击跳转至地图页面
+    clickNavigateToMapPage(e) {
+      console.log('终端详情页面');
+      wepy.navigateTo({
+        url: `/pages/mapPage?` + Toolkit.jsonToParam(e.currentTarget.dataset)
+      });
     }
   };
 
 
   async onLoad(e) {
     console.log('获取终端详情页面设备id');
+    console.log(e);
     let id = e.equipId;
     this.terminalSN = e.equipSn;
     this.equipID = e.equipId;
-    this.getEquipById(id);
+    this.schoolId = e.schoolId;
+    this.getEquipById(this.equipID);
   }
 
   async getEquipById(id) {
@@ -126,7 +137,7 @@ export default class Index extends wepy.page {
       installAddress: '',// 安装位置
       softVersion: '',// 软件
       imei: '',// IMEI
-      serialNum: '',//网关
+      lastIp: '',//网关
       isLogin: '',// 状态
       lastTime: '',// 最后在线
       pname: '',// 安装人员
@@ -135,6 +146,9 @@ export default class Index extends wepy.page {
       baoStrong: '',// 信号强度
       remark: '',// 备注,
       remarkAdress: '',// 备注地址
+      latitude: '',
+      longitude: '',
+      terminalStatus:'',// 终端使用状态
     };
 
     for (let key in defaultData) {
@@ -186,6 +200,18 @@ export default class Index extends wepy.page {
       })
     });
 
+
+    // 添加定位标识
+    if (String(defaultData.latitude) !== 'null' && String(defaultData.longitude) !== 'null') {
+      //
+      wx.setStorageSync('lat', defaultData.latitude);
+      wx.setStorageSync('long', defaultData.longitude);
+      this.locationFlag = true;
+    } else {
+      wx.removeStorageSync('lat');
+      wx.removeStorageSync('long');
+      this.locationFlag = false;
+    }
     this.equipmentInfo = defaultData;
     this.$apply();
   }
@@ -200,12 +226,11 @@ export default class Index extends wepy.page {
       method: 'POST',
       data: {
         id: this.equipID,
-        remarkAdress: this.remarkFlag?obj.remarkAdress :this.equipmentInfo.remarkAdress,
+        remarkAdress: this.remarkFlag ? obj.remarkAdress : this.equipmentInfo.remarkAdress,
         simNum: obj.simNum || this.equipmentInfo.simNum
       }
     });
     if (res.data.result === 200) {
-
       wepy.showToast({
         title: '保存成功',
         icon: 'success',
@@ -219,13 +244,27 @@ export default class Index extends wepy.page {
       }, 1000);
     } else {
       this.savingFlag = false;
+      // let title=res.data.message
+      // wepy.showToast({
+      //   title: '失败',
+      //   icon: 'none',
+      //   duration: 1000
+      // });
       wepy.showToast({
-        title: res.data.message,
-        icon: 'none',
+        title: '失败',
+        icon: 'loading',
         duration: 1000
       });
     }
   }
 
+  async onShow() {
+    // 获取设备信息
+    // 思路: 当前页面需要回显的数据只有一个，即设备定位的回显状态，所以将接口获取到的数据存储到localStorage中，然后如果在onShow 执行初始化函数。当另一个状态时，修改当前页面的定位状态
+    // this.getEquipById(this.equipID);
+    let lat = wx.getStorageSync('lat'), long = wx.getStorageSync('long');
+    lat && long ? this.locationFlag = true : this.locationFlag = false;
+    this.$apply();
+  }
 
 }
