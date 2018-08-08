@@ -8,7 +8,7 @@
 		</view>
 		<view class="tab ">
 			<view class="specTab pl30" >
-				<picker class="select-option" data-bind-type="attend" bindtap="switchSelection" disabled="{{requestFlag}}" bindchange="bindChangeStyle" value="{{attendStyle.index}}" range="{{attendStyle.array}}" range-key="{{'typeName'}}">
+				<picker class="select-option" data-bind-type="attend" disabled="{{requestFlag}}" bindchange="bindChangeStyle" value="{{attendStyle.index}}" range="{{attendStyle.array}}" range-key="{{'typeName'}}">
 					<view class="picker">
 						{{attendStyle.array[attendStyle.index].typeName}}
 					</view>

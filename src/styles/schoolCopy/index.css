@@ -1,39 +1,55 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  flex-direction: column;
+}
 /*顶部固定栏*/
 .header {
-  position: fixed;
   width: 100%;
   z-index: 1;
   background: #fff;
+  height: auto;
+  /* 顶部选择栏*/
+  /*中间操作栏*/
+  /*学校列表标题*/
 }
-/* 顶部选择栏*/
-.tab {
+.header .tab {
   width: 100%;
   margin-bottom: 23rpx;
   padding-right: 20rpx;
 }
-.tab view {
+.header .tab view {
   display: inline-block;
   font-size: 32rpx;
   line-height: 72rpx;
 }
-.tab .select {
+.header .tab .select {
   width: 522rpx;
   text-align: center;
 }
-.tab .select view {
+.header .tab .select view {
   position: relative;
   display: inline-block;
   width: 33.3%;
   color: #8e8e93;
 }
-.tab .select view.on {
+.header .tab .select view.on {
   color: #181818 ;
   font-family: "PingFangSC-Medium";
 }
-.tab .select view.on .bottom-bar {
+.header .tab .select view.on .bottom-bar {
   background: #348cff;
 }
-.tab .select view .bottom-bar {
+.header .tab .select view .bottom-bar {
   position: absolute;
   left: 50%;
   bottom: 0rpx;
@@ -43,16 +59,16 @@
   transform: translateX(-50%);
   background: #fff;
 }
-.tab .show-style {
+.header .tab .show-style {
   position: relative;
   width: calc(100% - 522rpx);
   text-align: center;
   color: #358dff;
 }
-.tab .show-style view {
+.header .tab .show-style view {
   font-size: 28rpx;
 }
-.tab .show-style::before {
+.header .tab .show-style::before {
   position: absolute;
   content: '';
   height: 30rpx;
@@ -61,26 +77,7 @@
   left: 0rpx;
   border-right: 5rpx solid #d0d0d4;
 }
-/*scroll-wrap*/
-.scroll-wrap {
-  box-sizing: border-box;
-  padding-bottom: 50rpx;
-  height: 100%;
-}
-.school-list {
-  height: calc(100% - 180rpx);
-  top: calc(100% - 1080rpx);
-}
-.swiper-box {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  padding-top: 156rpx;
-  padding-left: 48rpx;
-  position: absolute;
-}
-/*中间操作栏*/
-.operate {
+.header .operate {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -89,7 +86,7 @@
   /*三角形*/
   /*综合过滤*/
 }
-.operate .triangle-down {
+.header .operate .triangle-down {
   width: 0;
   height: 0;
   border-left: 6rpx solid transparent;
@@ -98,7 +95,7 @@
   margin-left: 10rpx;
   margin-top: 10rpx;
 }
-.operate .school-name {
+.header .operate .school-name {
   display: inline-block;
   width: 150rpx;
   overflow: hidden;
@@ -106,24 +103,23 @@
   white-space: nowrap;
   vertical-align: middle;
 }
-.operate .filter-img {
+.header .operate .filter-img {
   width: 28rpx;
   height: 28rpx;
   align-self: center;
   vertical-align: middle;
 }
-.operate .search,
-.operate .deleSchId {
+.header .operate .search,
+.header .operate .deleSchId {
   vertical-align: middle;
   margin-left: 10rpx;
 }
-.operate .multipleRank {
+.header .operate .multipleRank {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-/*学校列表标题*/
-.list-title {
+.header .list-title {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -134,28 +130,37 @@
   color: #575759;
   line-height: 100rpx;
 }
-/* 底部导航栏*/
-.bottom-view {
+.middle {
   display: flex;
-  justify-content: space-around;
-  z-index: 1;
-  background: #348cff;
-  height: 100rpx;
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0rpx;
-  font-size: 28rpx;
-  color: #ffffff;
+  flex: 1;
+  /*scroll-wrap*/
+  /*schoolName*/
 }
-/*schoolName*/
-.school-title-name {
+.middle .scroll-wrap {
+  box-sizing: border-box;
+  height: 100%;
+}
+.middle .school-list {
+  width: 100%;
+  height: 100%;
+}
+.middle .swiper-box {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 48rpx;
+}
+.middle .school-name-wrapper {
+  margin-bottom: 35rpx;
+  margin-top: 40rpx;
+}
+.middle .school-title-name {
   color: #5978be;
   font-size: 28rpx;
   text-align: left;
   margin-bottom: 30rpx;
 }
-.detileNum {
+.middle .detileNum {
   display: flex;
   font-size: 28rpx;
   color: #8e8e93;
@@ -163,22 +168,39 @@
   align-items: center;
   padding-right: 25rpx;
 }
-.detileNum .leftIcon {
+.middle .detileNum .leftIcon {
   width: 20rpx;
   height: 20rpx;
   border: 2rpx solid #d0d0d4;
   border-right: transparent;
   border-top: transparent;
 }
-.tips {
+.middle .tips {
   text-align: center;
   color: #D6D6D8;
   font-size: 30rpx;
   line-height: 60rpx;
 }
-.noData {
+.middle .noData {
   font-size: 28rpx;
   margin-top: 250rpx;
   text-align: center;
   color: #D6D6D8;
+}
+.bottom {
+  height: 100rpx;
+  /* 底部导航栏*/
+}
+.bottom .bottom-view {
+  display: flex;
+  justify-content: space-around;
+  z-index: 1;
+  background: #348cff;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  height: 100rpx;
 }

@@ -90,9 +90,6 @@ export default class Index extends wepy.page {
 
         // 判断用户是否切换筛选条件，如果切换，则修改默认值，否则正常执行
         if (typeId !== this.attendStyle.array[e.detail.value].typeId) {
-          console.log('测试测试');
-          console.log(this);
-          console.log(this.attendanceObj);
           this.attendanceObj.content = '全校';
           let tempObj = {
             gradeId: '',
@@ -125,15 +122,6 @@ export default class Index extends wepy.page {
         delta: 1
       })
     },
-
-  //
-    switchSelection:function () {
-      console.log('切换考勤方式');
-      if(this.requestFlag){
-        return;
-      }
-
-    }
   };
 
   async onLoad(e) {

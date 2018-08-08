@@ -6,7 +6,7 @@ import * as Toolkit from '../utils/toolkit';
 
 export default class Index extends wepy.page {
   components = {
-    // 'letter-index': LetterIndex
+     'letter-index': LetterIndex
   };
 
 
@@ -60,7 +60,7 @@ export default class Index extends wepy.page {
     this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params);
     const ret = await api.getSchoolsByUserId({data: {userId: wx.getStorageSync('userId')}});
     this.schoolSets = Toolkit.groupByFirstLetter(ret.data.data, 'schoolNameQp');
-    // this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label));
+     this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label));
     this.$apply();
   }
 

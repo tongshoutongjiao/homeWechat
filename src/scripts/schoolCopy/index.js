@@ -214,6 +214,11 @@ export default class Index extends wepy.page {
   onLoad(e) {
     this.initData(e);
   }
+  onUnload() {
+    console.log('退出页面时，清除全局变量中的数据');
+    delete this.$parent.globalData.schoolInfo;
+    this.$apply();
+  }
 
   onShow() {
     console.log('show..');
