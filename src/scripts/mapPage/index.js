@@ -92,8 +92,6 @@ export default class Index extends wepy.page {
     //   获取设备的高度和宽度
     this.getDeviceInfo();
 
-
-
     // 初始化当前设备定位信息
     this.initEquipData();
   }
@@ -112,24 +110,13 @@ export default class Index extends wepy.page {
   // 定位当前设备
   getCurLocation() {
     // 判断设备是否已定位，如果未定位，则定位当前位置，否则直接定位到设备之前的位置
-
-
     if (this.locationFlag === 'true') {
       console.log('已定位');
 
       // 已定位，则定位当前的位置
 
-
-
-
       let latitude = wx.getStorageSync('lat'),
         longitude = wx.getStorageSync('long');
-
-
-
-
-
-
 
       wx.getStorageInfo({
         success: function(res) {
@@ -146,7 +133,6 @@ export default class Index extends wepy.page {
       console.log('未定位，自动定位当前位置');
 
       // 未定位 则手动将位置定位当前位置，但不定位设备
-
       wx.getLocation({
         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
         success: (res) => {
@@ -183,14 +169,6 @@ export default class Index extends wepy.page {
 
 //  更新设备经纬度
   async updateEquipInfo() {
-
-
-    console.log('传递的经纬度参数');
-    console.log(this.equipID);
-    console.log(this.longitude);
-    console.log(this.latitude);
-
-
     let res = await api.updateEquipInfoByLocation({
       method: 'POST',
       data: {
