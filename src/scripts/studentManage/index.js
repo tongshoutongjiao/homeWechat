@@ -59,7 +59,6 @@ export default class Index extends wepy.page {
         return;
       }
       let classInfo = this.classInfo;
-
       let index = e.currentTarget.dataset.index,
         classId = e.currentTarget.dataset.classId;
       this.classInfo[index].flag = !this.classInfo[index].flag;

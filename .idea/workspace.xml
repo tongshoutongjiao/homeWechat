@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="084f339a-5f07-4a4b-880f-7ff556fc378f" name="Default" comment="">
+    <list default="true" id="ba795e19-31a9-4b8d-8f3f-ede4a82886f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.wepycache" beforeDir="false" afterPath="$PROJECT_DIR$/.wepycache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/studentManage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/studentManage.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/searchStudent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/searchStudent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/studentManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/studentManage/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,72 +26,66 @@
     <session id="-1708749391">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="json" value="3" />
+          <entry key="eslintignore" value="1" />
+          <entry key="gitignore" value="1" />
+          <entry key="js" value="7" />
+          <entry key="json" value="1" />
+          <entry key="wepycache" value="1" />
+          <entry key="wepyignore" value="1" />
+          <entry key="wpy" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JSON" value="3" />
+          <entry key="JSON" value="1" />
+          <entry key="JavaScript" value="7" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="Vue.js" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="3" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="wechatTemplate" />
-        <option value="JavaScript File" />
-        <option value="Less File" />
-        <option value="wechat template" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>animationData</find>
-      <find>boolTipsShow</find>
-      <find>timeouts</find>
-      <find>handleCustom</find>
-      <find>保存</find>
-      <find>selectOptions</find>
-      <find>来呀</find>
-      <find>confirmFlag</find>
-      <find>reformatFlag</find>
-      <find>reformatEquipments</find>
-      <find>clickSelectOperateEquip</find>
-      <find>初始化</find>
-      <find>sure</find>
-      <find>loadingFlag</find>
-      <find>加载中</find>
-      <find>conso</find>
-      <find>restTitle</find>
-      <find>recordPageData</find>
-      <find>attendanceObj</find>
-      <find>handleRecordPageData</find>
-      <find>selectType</find>
-      <find>login</find>
-      <find>getCardRecord</find>
-      <find>clickSelectOption</find>
-      <find>schoo</find>
-      <find>swiper-box</find>
-      <find>school-name</find>
-      <find>school-list</find>
-      <find>util</find>
-      <find>Toolkit</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/studentManage.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+              <folding>
+                <element signature="n#view#0;n#template#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,76 +93,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/uploadDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/uploadDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/equipTypePage.wpy" />
-        <option value="$PROJECT_DIR$/src/styles/schoolAlbum.css" />
-        <option value="$PROJECT_DIR$/src/pages/takePhoto.wpy" />
-        <option value="$PROJECT_DIR$/src/styles/equipTypePage/index.less" />
-        <option value="$PROJECT_DIR$/src/styles/recordPage/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" />
-        <option value="$PROJECT_DIR$/src/utils/commonMethods.js" />
-        <option value="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/editStuInfo.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/addStudent/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/addStudent.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/studentManage/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/classOptionPage.wpy" />
         <option value="$PROJECT_DIR$/src/pages/studentManage.wpy" />
-        <option value="$PROJECT_DIR$/src/styles/searchStudent/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/planterDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/mapPage/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/classOptionPage/index.js" />
-        <option value="$PROJECT_DIR$/src/styles/repairDetail/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/repairDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/searchStudent.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/equipDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/equipDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/performance.wpy" />
-        <option value="$PROJECT_DIR$/src/utils/toolkit.js" />
-        <option value="$PROJECT_DIR$/src/components/letter-index/letter-index.wpy" />
-        <option value="$PROJECT_DIR$/src/components/slider-filter/slider-filter.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/performance/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/equipTypePage/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/repairDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/equipManage.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/equipManage/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/planterDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/recordPage.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/recordPage/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/login.wpy" />
-        <option value="$PROJECT_DIR$/src/styles/classOptionPage/index.less" />
-        <option value="$PROJECT_DIR$/src/scripts/studentAttendance/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/studentAttendance.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/schoolCopy.wpy" />
-        <option value="$PROJECT_DIR$/src/styles/schoolCopy/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/schools.wpy" />
+        <option value="$PROJECT_DIR$/src/scripts/studentManage/index.js" />
+        <option value="$PROJECT_DIR$/src/scripts/searchStudent/index.js" />
         <option value="$PROJECT_DIR$/src/api.js" />
-        <option value="$PROJECT_DIR$/dist/components/slider-filter/slider-filter.wxss" />
-        <option value="$PROJECT_DIR$/src/scripts/schools/index.js" />
-        <option value="$PROJECT_DIR$/.vscode/settings.json" />
       </list>
     </option>
   </component>
-  <component name="JsBowerSettings">
-    <node-interpreter value="project" />
-    <bower-package value="" />
-    <bower.json value="" />
-  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
@@ -170,20 +117,17 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-72" />
-    <option name="y" value="61" />
-    <option name="width" value="1711" />
-    <option name="height" value="1018" />
+    <option name="x" value="470" />
+    <option name="y" value="13" />
+    <option name="width" value="1753" />
+    <option name="height" value="1008" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,49 +135,30 @@
               <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
               <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="HbShouldOpenHtmlAsHb" value="disabled" />
-    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/Work/homeWechat/src/pages/recordPage.wpy" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="ejs.close.delimiter" value="%&gt;" />
-    <property name="ejs.open.delimiter" value="&lt;%" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.detected.package.stylelint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
-    <property name="node.js.path.for.package.stylelint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="F:\Work\gitStore\manage-helper\node_modules\eslint" />
-    <property name="node.js.selected.package.standard" value="F:\Work\gitStore\manage-helper\node_modules\eslint" />
-    <property name="node.js.selected.package.stylelint" value="" />
-    <property name="node.js.selected.package.tslint" value="" />
-    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="node.js.selected.package.eslint" value="F:\Work\homeWechat\node_modules\eslint" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="standardjs.codestyle.accepted" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Work\homeWechat\src\images" />
-      <recent name="F:\Work\gitStore\manage-helper\src\templates" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Work\homeWechat\src\asset" />
-      <recent name="F:\Work\homeWechat\src\images" />
-      <recent name="C:\Users\Administrator\Desktop\new\gitStore\manage-helper\src\utils" />
-      <recent name="F:\Work\gitStore\manage-helper\src\utils" />
-      <recent name="F:\Work\gitStore\manage-helper\src\template" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -247,612 +172,136 @@
       </list>
     </option>
   </component>
-  <component name="StructureViewFactory">
-    <option name="AUTOSCROLL_MODE" value="false" />
-    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="084f339a-5f07-4a4b-880f-7ff556fc378f" name="Default" comment="" />
-      <created>1524535424857</created>
+      <changelist id="ba795e19-31a9-4b8d-8f3f-ede4a82886f6" name="Default Changelist" comment="" />
+      <created>1534128745493</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1524535424857</updated>
-      <workItem from="1524535426074" duration="56000" />
-      <workItem from="1524549065347" duration="20833000" />
-      <workItem from="1524615689090" duration="32162000" />
-      <workItem from="1524702528027" duration="25384000" />
-      <workItem from="1524788391304" duration="3782000" />
-      <workItem from="1524793950270" duration="476000" />
-      <workItem from="1524795172577" duration="6511000" />
-      <workItem from="1524801727560" duration="41000" />
-      <workItem from="1524801782427" duration="39000" />
-      <workItem from="1524806608776" duration="7939000" />
-      <workItem from="1524815029899" duration="15225000" />
-      <workItem from="1524831136838" duration="1205000" />
-      <workItem from="1524874465226" duration="5799000" />
-      <workItem from="1524880805254" duration="22458000" />
-      <workItem from="1525141717649" duration="2655000" />
-      <workItem from="1525163244215" duration="6090000" />
-      <workItem from="1525171495469" duration="9988000" />
-      <workItem from="1525220807784" duration="34686000" />
-      <workItem from="1525268175476" duration="11951000" />
-      <workItem from="1525300294861" duration="3131000" />
-      <workItem from="1525307635183" duration="35188000" />
-      <workItem from="1525394938303" duration="31624000" />
-      <workItem from="1525487337102" duration="901000" />
-      <workItem from="1525488289851" duration="2463000" />
-      <workItem from="1525500189598" duration="21447000" />
-      <workItem from="1525653480019" duration="38239000" />
-      <workItem from="1525739074628" duration="8646000" />
-      <workItem from="1525764649350" duration="11073000" />
-      <workItem from="1525794724896" duration="7685000" />
-      <workItem from="1525819681985" duration="2768000" />
-      <workItem from="1525826179130" duration="31785000" />
-      <workItem from="1525918014730" duration="16084000" />
-      <workItem from="1525951674677" duration="1657000" />
-      <workItem from="1525998449510" duration="1662000" />
-      <workItem from="1526009413638" duration="410000" />
-      <workItem from="1526010049453" duration="88000" />
-      <workItem from="1526010205241" duration="243000" />
-      <workItem from="1526010554002" duration="3525000" />
-      <workItem from="1526021406047" duration="2856000" />
-      <workItem from="1526027601583" duration="38000" />
-      <workItem from="1526030251718" duration="1353000" />
-      <workItem from="1526257774737" duration="24705000" />
-      <workItem from="1526344786918" duration="27644000" />
-      <workItem from="1526430207628" duration="25332000" />
-      <workItem from="1526463760911" duration="1880000" />
-      <workItem from="1526516670635" duration="27579000" />
-      <workItem from="1526603404604" duration="635000" />
-      <workItem from="1526609246951" duration="22715000" />
-      <workItem from="1526875067979" duration="8790000" />
-      <workItem from="1526948993862" duration="25494000" />
-      <workItem from="1527035065643" duration="26951000" />
-      <workItem from="1527121850087" duration="32273000" />
-      <workItem from="1527211049475" duration="19051000" />
-      <workItem from="1527469185982" duration="28623000" />
-      <workItem from="1527555581380" duration="27239000" />
-      <workItem from="1527640173312" duration="28954000" />
-      <workItem from="1527728776452" duration="20867000" />
-      <workItem from="1527815597405" duration="16155000" />
-      <workItem from="1527838343191" duration="1682000" />
-      <workItem from="1528095942576" duration="1142000" />
-      <workItem from="1528097574163" duration="9528000" />
-      <workItem from="1528158942145" duration="21008000" />
-      <workItem from="1528250410579" duration="23451000" />
-      <workItem from="1528332060287" duration="27618000" />
-      <workItem from="1528418335677" duration="28677000" />
-      <workItem from="1528504649851" duration="25783000" />
-      <workItem from="1528535405369" duration="3095000" />
-      <workItem from="1528677186293" duration="27926000" />
-      <workItem from="1528762866594" duration="25512000" />
-      <workItem from="1528794863712" duration="3950000" />
-      <workItem from="1528849664093" duration="16178000" />
-      <workItem from="1528875094378" duration="11179000" />
-      <workItem from="1528934693982" duration="13279000" />
-      <workItem from="1528955755307" duration="978000" />
-      <workItem from="1528962795045" duration="11083000" />
-      <workItem from="1529022324175" duration="1461000" />
-      <workItem from="1529025659142" duration="1146000" />
-      <workItem from="1529030843142" duration="13000" />
-      <workItem from="1529369062959" duration="21292000" />
-      <workItem from="1529454655393" duration="20072000" />
-      <workItem from="1529541580139" duration="22473000" />
-      <workItem from="1529628529743" duration="24076000" />
-      <workItem from="1529660286279" duration="2936000" />
-      <workItem from="1529887296285" duration="21763000" />
-      <workItem from="1529973437589" duration="22991000" />
-      <workItem from="1530059507209" duration="27897000" />
-      <workItem from="1530145939021" duration="30661000" />
-      <workItem from="1530231825287" duration="24761000" />
-      <workItem from="1530491737858" duration="25901000" />
-      <workItem from="1530578323633" duration="33000" />
-      <workItem from="1530578975392" duration="25588000" />
-      <workItem from="1530664508252" duration="112000" />
-      <workItem from="1530664715056" duration="44000" />
-      <workItem from="1530664809540" duration="19600000" />
-      <workItem from="1530770783601" duration="11699000" />
-      <workItem from="1530837199266" duration="14873000" />
-      <workItem from="1531096179442" duration="12546000" />
-      <workItem from="1531120657823" duration="10330000" />
-      <workItem from="1531182864883" duration="12410000" />
-      <workItem from="1531269255783" duration="9803000" />
-      <workItem from="1531288409221" duration="12108000" />
-      <workItem from="1531355364888" duration="22701000" />
-      <workItem from="1531384851111" duration="5252000" />
-      <workItem from="1531443666599" duration="6648000" />
-      <workItem from="1531453311791" duration="20608000" />
-      <workItem from="1531531750258" duration="20489000" />
-      <workItem from="1531701190997" duration="24234000" />
-      <workItem from="1531787449719" duration="13762000" />
-      <workItem from="1531874043680" duration="12675000" />
-      <workItem from="1531960843541" duration="28558000" />
-      <workItem from="1532046795268" duration="22895000" />
-      <workItem from="1532304946604" duration="30052000" />
-      <workItem from="1532391779217" duration="10951000" />
-      <workItem from="1532411486579" duration="11178000" />
-      <workItem from="1532427711007" duration="3578000" />
-      <workItem from="1532477346177" duration="34333000" />
-      <workItem from="1532565270804" duration="21230000" />
-      <workItem from="1532652286298" duration="17086000" />
-      <workItem from="1532909215964" duration="4826000" />
-      <workItem from="1532921465879" duration="11342000" />
-      <workItem from="1532996925356" duration="20989000" />
-      <workItem from="1533083668177" duration="24986000" />
-      <workItem from="1533170200019" duration="19614000" />
-      <workItem from="1533255712276" duration="20593000" />
-      <workItem from="1533290123486" duration="2787000" />
-      <workItem from="1533342774113" duration="1114000" />
-      <workItem from="1533517310402" duration="1232000" />
-      <workItem from="1533519061396" duration="997000" />
-      <workItem from="1533535363453" duration="871000" />
-      <workItem from="1533690793399" duration="2511000" />
-      <workItem from="1533710068299" duration="3376000" />
-      <workItem from="1534122650015" duration="146000" />
+      <updated>1534128745493</updated>
+      <workItem from="1534128752845" duration="416000" />
+      <workItem from="1534294141534" duration="1896000" />
+      <workItem from="1534297715774" duration="237000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1845305000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="2549000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-72" y="61" width="1711" height="1018" extended-state="0" />
+    <frame x="470" y="13" width="1753" height="1008" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.21219367" />
-      <window_info id="Structure" order="1" sideWeight="0.5027933" side_tool="true" weight="0.40496305" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12536444" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49941453" weight="0.32681242" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48046464" weight="0.32911393" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32960895" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32960895" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51953536" side_tool="true" weight="0.0" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49720672" visible="true" weight="0.1842661" />
-      <window_info id="Structure" order="1" sideWeight="0.5027933" side_tool="true" weight="0.40496305" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49941453" weight="0.32681242" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48046464" weight="0.32911393" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32960895" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32960895" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51953536" side_tool="true" weight="0.0" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/camera/camera.wpy</url>
-          <line>43</line>
-          <option name="timeStamp" value="196" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/scripts/schoolList/index.js</url>
-          <line>743</line>
-          <option name="timeStamp" value="254" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand>
-      <path>
-        <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
-        <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
-      </path>
-    </expand>
-    <select />
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/manage-helper" />
+    </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/utils/wxcharts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
+    <entry file="file://$PROJECT_DIR$/.eslintignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/wxRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/utils/toolkit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/studentManage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/letter-index/letter-index.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/slider-filter/slider-filter.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="67" column="16" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/performance/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/performance.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="44" column="35" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/equipDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="256" column="9" selection-start-line="256" selection-start-column="9" selection-end-line="256" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/equipDetail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="128" column="23" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/equipTypePage/index.js">
+    <entry file="file://$PROJECT_DIR$/.eslintrc.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/equipTypePage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/pages/repairDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="300" column="23" selection-start-line="300" selection-start-column="10" selection-end-line="300" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/repairDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="390" selection-start-line="390" selection-end-line="390" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/repairDetail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="218" column="40" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/equipManage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="273" column="55" selection-start-line="273" selection-start-column="55" selection-end-line="273" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/equipManage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/planterDetail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="155" column="9" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/planterDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="346" column="8" selection-start-line="346" selection-start-column="8" selection-end-line="346" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/recordPage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/login.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="186" column="57" lean-forward="true" selection-start-line="186" selection-start-column="57" selection-end-line="186" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/searchStudent.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recordPage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/classOptionPage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/classOptionPage/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/schoolCopy/index.css">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/studentAttendance/index.js">
+    <entry file="file://$PROJECT_DIR$/.wepycache">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.wepyignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2675">
-          <caret line="140" column="27" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
+        <state relative-caret-position="216">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/studentAttendance.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
+        <state relative-caret-position="168">
+          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/schoolCopy/index.less">
+    <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="216">
+          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/schoolCopy.wpy">
+    <entry file="file://$PROJECT_DIR$/src/scripts/searchStudent/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="-404">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
+    <entry file="file://$PROJECT_DIR$/src/pages/searchStudent.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+        <state relative-caret-position="555">
+          <caret line="125" column="43" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/commonMethods.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schoolCopy/index.js">
+    <entry file="file://$PROJECT_DIR$/src/pages/studentManage.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="213" column="13" lean-forward="true" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="13" />
+        <state relative-caret-position="24">
+          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+          <folding>
+            <element signature="n#view#0;n#template#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
+    <entry file="file://$PROJECT_DIR$/src/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/classOptionPage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schoolList/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3100">
-          <caret line="187" column="23" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="23" />
+        <state relative-caret-position="641">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="66" column="14" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project.config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wepy.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schools/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/schools.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/components/slider-filter/slider-filter.wxss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/project.config.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.vscode/settings.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
