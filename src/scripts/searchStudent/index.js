@@ -76,7 +76,9 @@ export default class Index extends wepy.page {
         studentName: e,
       }
     });
-    if (result.data.result === 200) {
+    console.log('result');
+    console.log(result);
+    if (result&&result.data.result === 200) {
       if (result.data.classList.length > 0) {
         this.empty = false;
         result.data.classList.forEach(function (item, index) {
@@ -138,7 +140,7 @@ export default class Index extends wepy.page {
         });
       }
     }
-    if (resData.data.result === 200) {
+    if (resData&&resData.data.result === 200) {
       if (resData.data.classList.length > 0) {
         this.empty = false;
         resData.data.classList.forEach(function (item, index) {

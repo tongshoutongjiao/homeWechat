@@ -46,7 +46,12 @@
                                     <block wx:if="{{it.auditStatus===2}}">
                                         <view class="layer">不合格</view>
                                     </block>
-                                    <image src="{{it.studentImg||defaultPhoto}}" mode="aspectFill"  binderror=""/>
+                                    <block wx:if="{{it.studentImg}}">
+                                        <image src="{{it.studentImg||defaultPhoto}}" mode="aspectFill"  binderror=""/>
+                                    </block>
+                                    <block wx:else>
+                                        <image src="{{defaultPhoto}}" mode="aspectFill"/>
+                                    </block>
                                 </view>
                                 <view class="nick-wrapper">
                                     <view class="nickname">
