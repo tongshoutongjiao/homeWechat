@@ -28,7 +28,7 @@
 							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{schoolId}}"
 							      data-class-name="{{item.className}}">
 								<view class="student-info">
-									<view class="nick-photo">
+									<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
 										<block wx:if="{{student.auditStatus==2}}">
 											<view class="layer">不合格</view>
 										</block>
@@ -90,7 +90,7 @@
 							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{student.schoolId}}"
 							      data-class-name="{{item.className}}">
 								<view class="student-info">
-									<view class="nick-photo">
+									<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
 										<block wx:if="{{student.bulkPasteImg!==' '}}">
 											<image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
 										</block>

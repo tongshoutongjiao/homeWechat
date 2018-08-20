@@ -42,7 +42,7 @@
                     <block wx:if="{{item.flag&&studentList}}">
                         <view class="student-list"  wx:for="{{item.studentList}}" data-class-name="{{item.className}}" data-grade-name="{{item.gradeName}}"  wx:for-item="it" data-id="{{it.studentId}}" data-school-id="{{schoolId}}"  bindtap="navigateToEditStuInfo" wx:key="{{it.studentId}}">
                             <view class="student-info">
-                                <view class="nick-photo"  >
+                                <view class="nick-photo"   style="background: #{{['ddd','eee','efefef'][index%3]}};">
                                     <block wx:if="{{it.auditStatus===2}}">
                                         <view class="layer">不合格</view>
                                     </block>

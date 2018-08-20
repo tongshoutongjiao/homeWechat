@@ -6,9 +6,11 @@ import * as commonMethods from '../utils/commonMethods';
 
 const defaultPhoto = '../asset/hp_icon.png';
 export default class Index extends wepy.page {
+
     config = {
         navigationBarTitleText: '选择班级'
     };
+
     data = {
         gradesList: [],// 年级信息
         classList: [],// 班级列表
@@ -41,7 +43,9 @@ export default class Index extends wepy.page {
             ],// 宿舍名
         }
     };
+
     events = {};
+
     methods = {
 
         // 点击年级显示对应的班级信息
@@ -81,8 +85,6 @@ export default class Index extends wepy.page {
                     idObj.schoolId = this.schoolId;
                     contentObj.layerName = dataObj.layerName;
                     console.log('查看楼层号');
-                    console.log(dataObj.layerId);
-                    console.log(idObj);
                     // 根据当前楼层号获取宿舍号
                     this.getDormNumList(idObj);
                     break;
@@ -91,7 +93,6 @@ export default class Index extends wepy.page {
                     this.idObj.dormId = dataObj.dormId;
                     this.dormInfo.nodeType = 'school4Dorm';
                     console.log('按照宿舍查询');
-                    console.log(this.dormInfo);
                     if (dataObj.dormId === 'all') {
                         console.log('4种情况可能按照学校查询，3也可能按照宿舍楼查询，2可能按照楼层查询');
                         this.judgeQueryType();
@@ -250,7 +251,7 @@ export default class Index extends wepy.page {
     }
 
     // 获取宿舍信息
-        async getDormInfo() {
+    async getDormInfo() {
         let data = this.dormData,
             resType = 'dorm';
         data.dormNumberList = [];
@@ -285,7 +286,6 @@ export default class Index extends wepy.page {
     // 判断按照宿舍考勤的查找条件
     judgeQueryType() {
         let contentObj = this.contentObj;
-        console.log(this.idObj);
         if (this.idObj.floorId === 'all') {
             console.log('按照学校查找的');
             this.idObj.gradeId = '';
@@ -345,9 +345,7 @@ export default class Index extends wepy.page {
         }
         // 按班级查寝（3：全校 2：年级 1：班级）
         if (name === 'dormInfo') {
-            console.log(selectedInfo);
             queryType = data.className !== '全部' ? '1' : idObj.gradeId !== 'all' ? '2' : '3';
-            console.log(queryType);
             selectedInfo.queryType = queryType;
             selectedInfo.nodeType = 'school';
         }
