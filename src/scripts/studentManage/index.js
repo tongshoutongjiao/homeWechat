@@ -175,10 +175,6 @@ export default class Index extends wepy.page {
       });
 
     }
-
-
-      this.handleWithStudentPhoto();
-
     this.$apply();
 
   }
@@ -223,35 +219,6 @@ export default class Index extends wepy.page {
       }, 500);
       this.$apply();
     }
-  }
-
-  //  处理年级信息
-  handleWithStudentPhoto(){
-    this.gradesList.forEach((item)=>{
-
-      item.list.length&&this.handleWithClassInfo(item.list)
-    });
-    this.$apply();
-  }
-
-  // 处理班级信息
-  handleWithClassInfo(data){
-    for(let i=0,curClass;i<data.length;i++){
-      curClass=data[i];
-      for(let key in curClass){
-       if(key==='studentList') {
-         this.handleWithPhoto(curClass[key])
-       }
-      }
-    }
-    this.$apply()
-  }
-  // 处理 学生信息
-  handleWithPhoto(data){
-    data.forEach(function (item) {
-      item.studentImg&&!item.studentImg.includes('http://img.967111.com') && (item.studentImg= null)
-    });
-    this.$apply()
   }
 
 

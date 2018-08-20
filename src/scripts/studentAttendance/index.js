@@ -145,8 +145,11 @@ export default class Index extends wepy.page {
     }
 
     onUnload() {
-        // console.log('退出页面时，清除全局变量中的数据');
-        this.$parent.globalData = {};
+         console.log('退出页面时，清除该模块中的数据');
+        this.$parent.globalData.selectInfo = {};
+        this.$parent.globalData.dormInfo = {};
+        this.$parent.globalData.recordPageData={};
+
         this.$apply();
     }
 
