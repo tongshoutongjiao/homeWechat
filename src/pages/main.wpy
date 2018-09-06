@@ -8,7 +8,7 @@
       <image src="../images/my_performance.png" class="main-icon"></image>
       <view class="icon-title">我的业绩</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="schoolList">
+    <view class="icon-list" bindtap="toPage" data-page="schoolCopy">
       <image src="../images/school_list.png" class="main-icon"></image>
       <view class="icon-title">学校列表</view>
     </view>

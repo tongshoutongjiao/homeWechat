@@ -1,0 +1,137 @@
+<template>
+	<view class="container">
+		<view class="header">
+
+			<!-- 日期切换栏-->
+			<view class="tab">
+				<view class="select">
+					<view class="{{currentTab==='0' ? 'on' : ''}}" bindtap="switchOption" data-current="0">按日
+						<view class="bottom-bar"></view>
+					</view>
+					<view class="{{currentTab==='1' ? 'on' : ''}}" bindtap="switchOption" data-current="1">按周
+						<view class="bottom-bar"></view>
+					</view>
+					<view class="{{currentTab==='2' ? 'on' : ''}}" bindtap="switchOption" data-current="2">按月
+						<view class="bottom-bar"></view>
+					</view>
+				</view>
+				<view class="show-style">
+
+					<view wx:if="{{currentTab==='0'}}">
+						<picker mode="date" value="{{selectDate.value}}" bindchange="bindDateChange">
+							<view class="picker">
+								{{selectDate.value}}
+							</view>
+						</picker>
+					</view>
+					<view wx:if="{{currentTab==='1'}}">
+
+						<picker bindchange="bindWeekChange" value="{{weekInfo.index}}" range="{{weekInfo.weekData}}"
+						        range-key="{{'name'}}">
+							<view class="picker">
+								{{weekInfo.weekData[weekInfo.index].weekName}}
+							</view>
+						</picker>
+					</view>
+					<view wx:if="{{currentTab==='2'}}">
+						<picker mode="date" value="{{selectDate.value}}" fields="month" bindchange="bindMonthChange"
+						        start="2015-09-01" end="{{initMonthDate}}">
+							<view class="picker">
+								{{monthData.value}}
+							</view>
+						</picker>
+					</view>
+				</view>
+			</view>
+
+			<!--中间操作栏-->
+			<view class="operate">
+				<!--综合排序选择器-->
+				<view class="multipleRank">
+
+					<picker bindchange="bindRankChange" value="{{rankInfo.index}}" range="{{rankInfo.rankArray}}">
+						<view class="picker">
+							{{rankInfo.rankArray[rankInfo.index]}}
+						</view>
+					</picker>
+					<view class="triangle-down"></view>
+				</view>
+				<!--搜索学校选择器-->
+				<view bindtap="{{schoolInfo.searchFlag?'navigateToSchool':''}}">
+					<view class="school-name">
+						{{schoolInfo.schoolName||'搜索学校'}}
+					</view>
+					<block wx:if="{{schoolInfo.searchFlag===true}}">
+						<icon class="search" type="search" size="14" color="#8e8e92"/>
+					</block>
+					<block wx:else>
+						<icon class="deleSchId" type="cancel" size="14" color="#8e8e92" catchtap="cleanSchool"/>
+					</block>
+				</view>
+				<!--筛选条件-->
+				<view bindtap="selectSchoolByCondition">
+					筛选
+					<image class="filter-img" src="/images/filterPic.png"></image>
+				</view>
+			</view>
+
+			<!--swiper区域title-->
+			<view class="list-title">
+				<view>学校名称</view>
+				<view>学生总人数</view>
+				<view>开通率</view>
+				<view>净增用户数</view>
+			</view>
+		</view>
+
+		<!-- 左右滑动区域-->
+
+		<view class="middle">
+			<swiper current="{{curItemIndex}}" data-cur-index="{{curItemIndex}}" class="swiper-box school-list" duration="300"
+			        bindchange="bindChange">
+
+				<block wx:for="{{3}}">
+					<swiper-item>
+						<view wx:if="{{ajaxData.userType === 5}}" class="noData not-access">暂无权限</view>
+						<view wx:if="{{schoolListData.length===0}}" class="noData">暂无数据</view>
+						<scroll-view class="scroll-wrap" scroll-y="true" bindscrolltolower="loadMoreData">
+							<view class="school-model"></view>
+							<block wx:for="{{schoolListData}}">
+								<view class="school-name-wrapper" data-id="{{item.schoolId}}" catchtap="toDetial">
+									<view class=" school-title-name" style="text-align: left">{{item.schoolName}}</view>
+									<view class="detileNum">
+										<view class="leftIcon"></view>
+										<view class="studentNum">{{item.studentNum}}</view>
+										<view class="openRate">{{item.busspsnper}}%</view>
+										<view class="addUserNum">{{item.adduserNum}}</view>
+									</view>
+								</view>
+							</block>
+							<view wx:if="{{pageData}}" class="tips">没有更多内容了</view>
+						</scroll-view>
+					</swiper-item>
+				</block>
+
+
+			</swiper>
+		</view>
+
+		<!--底部显示栏-->
+		<view class="bottom">
+			<view class="bottom-view">
+				<view class="bottom-view-item">共 {{countData.schoolNum}} 所</view>
+				<view class="bottom-view-item">{{countData.studentNum}}</view>
+				<view class="bottom-view-item">{{countData.openRate}}</view>
+				<view class="bottom-view-item">{{countData.adduserNum}}</view>
+			</view>
+
+		</view>
+
+
+		<!-- 筛选区域-->
+		<filter-slider></filter-slider>
+
+	</view>
+</template>
+<script src="../scripts/schoolCopy/index.js"></script>
+<style src="../styles/schoolCopy/index.css"></style>

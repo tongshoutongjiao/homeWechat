@@ -4,68 +4,69 @@ import querystring from 'querystring'
 let requestLength = 0;
 
 const wxRequest = async (params = {}, url) => {
-  requestLength ++ ;
-  if (true) {
-    wx.showLoading({
-      title: '加载中',
-      mask: params.mask || false,
-    })
-  }
-  if (!params.data) {
-    params.data = {}
-  }
-  params.data.platformType = 3;
-  params.data.version = '1.0.0';
-  params.data.token = encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B');
-  // params.data.userTelNum = encodeURI(wepy.getStorageSync('userTelNum')).replace(/\+/g, '%2B');
-  // params.data.userName = wepy.getStorageSync('userName');
-  params.data.preHand = 1;
-  let res = await wepy.request({
-    url: url,
-    method: params.method || 'GET',
-    data: params.data,
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
+    requestLength++;
+    if (true) {
+        wx.showLoading({
+            title: '加载中',
+            mask: params.mask || false,
+        })
     }
-  });
-  if (--requestLength <= 0) {
-    wx.hideLoading()
-  }
-  if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
-    wepy.removeStorageSync('token')
-    wepy.removeStorageSync('userId')
-    wepy.removeStorageSync('noticeTimeStamp')
-
-    let ret = await wepy.showModal({
-      title: '提示',
-      content: '您的账号已在其他设备登录，请重新登录',
-      showCancel: false
+    if (!params.data) {
+        params.data = {}
+    }
+    params.data.platformType = 3;
+    params.data.version = '1.0.0';
+    params.data.token = encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B');
+    // params.data.userTelNum = encodeURI(wepy.getStorageSync('userTelNum')).replace(/\+/g, '%2B');
+    // params.data.userName = wepy.getStorageSync('userName');
+    params.data.preHand = 1;
+    let res = await wepy.request({
+        url: url,
+        method: params.method || 'GET',
+        data: params.data,
+        header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
     });
-
-    if (ret) {
-      await wepy.redirectTo({url: 'login'});
+    if (--requestLength <= 0) {
+        wx.hideLoading()
     }
+    if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
+        wepy.removeStorageSync('token')
+        wepy.removeStorageSync('userId')
+        wepy.removeStorageSync('noticeTimeStamp')
 
-  }
-  /* if (res.data.result === 300) {
-    this.$invoke('toast', 'show', {
-      title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
-    })
-  }
-  if (res.data.result === 500) {
-    this.$invoke('toast', 'show', {
-      title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
-    })
-  } */
-  return res
+        let ret = await wepy.showModal({
+            title: '提示',
+            content: '您的账号已在其他设备登录，请重新登录',
+            showCancel: false
+        });
+
+        if (ret) {
+            await wepy.redirectTo({url: 'login'});
+        }
+
+    }
+    /* if (res.data.result === 300) {
+      this.$invoke('toast', 'show', {
+        title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
+      })
+    }
+    if (res.data.result === 500) {
+      this.$invoke('toast', 'show', {
+        title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
+      })
+    } */
+    return res
 };
-//const apiMall = 'http://192.168.5.125:8380' // 开发（晨宇）
-// const apiMall = 'http://182.92.131.35:8081' // 测试（appServer）
-//const apiMall = 'http://192.168.5.131:8380';
-       const apiMall = 'https://api.967111.com'; // 正式
-      // const apiMall = 'http://192.168.5.122:8080'; // 广越
-
-const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do')
+// const apiMall = 'http://192.168.5.133:8380'; // 开发（晨宇）
+// const apiMall = 'http://192.168.5.106:8081'; // 开发（晨宇 设备管理）
+// const apiMall = 'http://182.92.131.35:8081'; // 测试（）
+const appMail = 'http://192.168.12.168:8087'; // 亚杰（）;
+//  const apiMail = 'http://192.168.12.147:8090'; // 练莉（）;
+// //  // const apiMall = 'http://192.168.5.131:8380';
+const apiMall = 'https://api.967111.com'; // 正式
+const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do');
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
 const queryGrade = (params) => wxRequest(params, apiMall + '/manageHelper/getGradeBySchoolId.do')
 const queryClass = (params) => wxRequest(params, apiMall + '/manageHelper/getClassByGradeId.do')
@@ -118,106 +119,154 @@ const addNewStudent = params => wxRequest(params, apiMall + '/manageHelper/addSt
 const getRegionProvince = params => wxRequest(params, apiMall + '/region/listProvince.do');
 const getRegionCity = params => wxRequest(params, apiMall + '/region/listCity.do');
 const getRegionCounty = params => wxRequest(params, apiMall + '/region/listRegion.do');
-const addStudentPhoto= async (params) => {
-  wepy.showLoading({
-    title: '正在上传..',
-    mask: true
-  });
+const getEquipListBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/machine/terminalList.do');
+const getRepairRecordByTerminalId = params => wxRequest(params, apiMall + '/manageHelper/machine/terminalRepairList.do');
+const getUserIdentifyById = params => wxRequest(params, apiMall + '/manageHelper/machine/checkUserType.do');
+const getGroupPersonById = params => wxRequest(params, apiMall + '/manageHelper/machine/groupManList.do');
+const updateEquipInfo = params => wxRequest(params, apiMall + '/manageHelper/machine/updateOrInsertTerminalSer.do');
+const reformatEquipments = params => wxRequest(params, apiMall + '/manageHelper/machine/operationTerminal.do');
+const getTerminalType = params => wxRequest(params, apiMall + '/manageHelper/machine/seachTerminalType.do');
+const installCurEquip = params => wxRequest(params, apiMall + '/manageHelper/machine/installTerminal.do');
+const getEquipInfoById = params => wxRequest(params, apiMall + '/manageHelper/machine/getTerminalById.do');
+const saveEquipAddressInfo = params => wxRequest(params, apiMall + '/manageHelper/machine/updateTerminalReAdrById.do');
+const getAttendanceMethods = params => wxRequest(params, apiMall + '/manageHelper/kaoqin/listKaoqinType.do');
+const getCardRecord = params => wxRequest(params, apiMall + '/teacher/kaoqin/listKaoqinSumNew.do');
+const getDormInfo = params => wxRequest(params, apiMall + '/manageHelper/kaoqin/getAllSchoolFloorInfo.do');
+const getDormAttendanceInfo = params => wxRequest(params, apiMall + '/dorm/countDormChecking.do');
+const getDormListByFloorId = params => wxRequest(params, apiMall + '/dorm/getTeacherDormInfo.do');
+const dormRestData = params => wxRequest(params, apiMall + '/dorm/infoDormRestChecking.do');
+const InOutRestData = params => wxRequest(params, apiMall + '/teacher/kaoqin/infoSchoolRestChecking.do');
+const InOutData = params => wxRequest(params, apiMall + '/teacher/kaoqin/listGateKaoqinDetailNew.do');
+const dormData = params => wxRequest(params, apiMall + '/dorm/detailDormChecking.do');
+const searchStudentByCardOrPhone = params => wxRequest(params, apiMall + '/manageHelper/listStudentByCardOrPhone.do');
+const getEquipListInfoBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/machine/seachLonlatBySchool.do');
+const updateEquipInfoByLocation = params => wxRequest(params, apiMall + '/manageHelper/machine/updateTerminalLongLatById.do');
+const getFailedStudentList = params => wxRequest(params, apiMall + '/manageHelper/getAuditCountList.do');
+const getQRcode = params => wxRequest(params, appMail + '/manageHelper/getQRcode.do');
+const updateQRcode = params => wxRequest(params, appMail + '/manageHelper/setQRcode.do');
 
-  const defaultParams = {
-    platformType: 3,
-    version: '1.0.0',
-    preHand: 1
-  };
 
-  const ret = await wepy.uploadFile({
-    url: apiMall + '/photoGraphController/uploadPhotoToQiNiu.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
-    ...params,
-    success: function (res) {
-      console.log('upload success', res);
-    }
-  });
+const addStudentPhoto = async (params) => {
+    wepy.showLoading({
+        title: '正在上传..',
+        mask: true
+    });
 
-  wepy.hideLoading();
-  return ret;
+    const defaultParams = {
+        platformType: 3,
+        version: '1.0.0',
+        preHand: 1
+    };
+
+    const ret = await wepy.uploadFile({
+        url: apiMall + '/photoGraphController/uploadPhotoToQiNiu.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
+        ...params,
+        success: function (res) {
+            console.log('upload success', res);
+        }
+    });
+
+    wepy.hideLoading();
+    return ret;
 };
 const uploadStudentPhoto = async (params) => {
-  wepy.showLoading({
-    title: '正在上传..',
-    mask: true
-  });
 
-  const defaultParams = {
-    platformType: 3,
-    version: '1.0.0',
-    preHand: 1
-  };
+    const defaultParams = {
+        platformType: 3,
+        version: '1.0.0',
+        preHand: 1
+    };
+    console.log('上传请求函数上传请求函数')
 
-  const ret = await wepy.uploadFile({
-    url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
-    ...params,
-    success: function (res) {
-      console.log('upload success', res);
-    }
-  });
+    const ret = await wepy.uploadFile({
+        url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
+        ...params,
+        success: function (res) {
+            console.log('upload success', res);
+        }
+    });
 
 
-  wepy.hideLoading();
-  return ret;
+    return ret;
 };
 
 
 module.exports = {
-  login,
-  searchSchool,
-  queryGrade,
-  queryClass,
-  schoolBusinessList,
-  studentBusinessList,
-  businessList,
-  openProduct,
-  getSchoolBaseInfo,
-  schoolReport,
-  getBusinessDeviceInfo,
-  getWeekItem,
-  getSchoolIntegralDetails,
-  getSchoolList,
-  getCity,
-  getAfterFilterList,
-  getAreaManager,
-  getBusiManager,
-  getAfterManagerFiter,
-  logout,
-  sms,
-  findPwd,
-  getType,
-  getFilterData,
-  getBusiManagerNew,
-  getCityNew,
-  getAreaNew,
+    login,
+    searchSchool,
+    queryGrade,
+    queryClass,
+    schoolBusinessList,
+    studentBusinessList,
+    businessList,
+    openProduct,
+    getSchoolBaseInfo,
+    schoolReport,
+    getBusinessDeviceInfo,
+    getWeekItem,
+    getSchoolIntegralDetails,
+    getSchoolList,
+    getCity,
+    getAfterFilterList,
+    getAreaManager,
+    getBusiManager,
+    getAfterManagerFiter,
+    logout,
+    sms,
+    findPwd,
+    getType,
+    getFilterData,
+    getBusiManagerNew,
+    getCityNew,
+    getAreaNew,
 
-  getSchoolsByUserId,
-  getGradeBySchoolId,
-  getClassByGradeId,
-  uploadStudentPhoto,
-  getStudentsByClassId,
-  getPerformanceForEquipment,
-  getPerformanceForSchool,
-  getPerformanceForCardHoding,
-  getPerformanceForOrders,
-  getPerformanceForOrderPeoples,
-  getPerformanceForTrend,
-  getPerformanceForTrendAdd,
-  getPerformanceForTrendCut,
-  getPerformanceForTrendUp,
-  getPerformanceForApp,
-  getStudentsInfoById,
-  updateStudentsInfo,
-  searchStudentsInfoBySchoolId,
-  getlistProductSchool,
-  getRegionProvince,
-  getRegionCity,
-  getRegionCounty,
-  addNewStudent,
-  addStudentPhoto
-}
+    getSchoolsByUserId,
+    getGradeBySchoolId,
+    getClassByGradeId,
+    uploadStudentPhoto,
+    getStudentsByClassId,
+    getPerformanceForEquipment,
+    getPerformanceForSchool,
+    getPerformanceForCardHoding,
+    getPerformanceForOrders,
+    getPerformanceForOrderPeoples,
+    getPerformanceForTrend,
+    getPerformanceForTrendAdd,
+    getPerformanceForTrendCut,
+    getPerformanceForTrendUp,
+    getPerformanceForApp,
+    getStudentsInfoById,
+    updateStudentsInfo,
+    searchStudentsInfoBySchoolId,
+    getlistProductSchool,
+    getRegionProvince,
+    getRegionCity,
+    getRegionCounty,
+    addNewStudent,
+    addStudentPhoto,
+    getEquipListBySchoolId,
+    getRepairRecordByTerminalId,
+    getUserIdentifyById,
+    getGroupPersonById,
+    updateEquipInfo,
+    reformatEquipments,
+    getTerminalType,
+    installCurEquip,
+    getEquipInfoById,
+    saveEquipAddressInfo,
+    getAttendanceMethods,
+    getCardRecord,
+    getDormInfo,
+    getDormAttendanceInfo,
+    getDormListByFloorId,
+    dormRestData,
+    InOutRestData,
+    InOutData,
+    dormData,
+    searchStudentByCardOrPhone,
+    getEquipListInfoBySchoolId,
+    updateEquipInfoByLocation,
+    getFailedStudentList,
+    getQRcode,
+    updateQRcode,
+};

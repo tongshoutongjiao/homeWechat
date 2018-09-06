@@ -37,7 +37,8 @@
 				'pages/studentManage',
 				'pages/searchStudent',
 				'pages/addStudent',
-				'pages/editStuInfo'
+				'pages/editStuInfo',
+                'pages/schoolCopy'
 			],
 			window: {
 				backgroundTextStyle: 'light',
