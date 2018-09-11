@@ -329,6 +329,7 @@
       <view class="img-wrapper" bindtap="longTapSaveCode">
         <image src={{qrCodeData.qrcodeUrl}}></image>
       </view>
+      <view class="school-name tc">{{baseInfo.schoolName}}</view>
       <view class="tc">长按保存二维码</view>
       <view class="code-bottom">
         <view class="inline">结束时间</view>
@@ -337,7 +338,10 @@
           <view class="inline">
             <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
                     range="{{codeData.codeArray}}">
-              <view class="code-picker">{{qrCodeData.lastTime||'234567894'}}<image class="right-arrow" src="/images/put_icon.png"/></view>
+              <view class="code-picker">
+                <text>{{changeDate||codeData.codeArray[codeData.index].value}}</text>
+                <image class="right-arrow" src="/images/put_icon.png"/>
+              </view>
             </picker>
           </view>
         </view>

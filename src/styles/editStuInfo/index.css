@@ -7,7 +7,7 @@ page {
   box-sizing: border-box;
   padding: 0rpx 30rpx;
   font-size: 30rpx;
-  color: #575759 ;
+  color: #575759;
   line-height: 80rpx;
 }
 input {
@@ -369,7 +369,7 @@ text {
 }
 /*camera组件样式*/
 .camera-wrap {
-  height: auto;
+  height: 100%;
 }
 .camera-controls {
   display: flex;
@@ -379,3 +379,4 @@ text {
   width: 33.3%;
   text-align: center ;
 }
+/*# sourceMappingURL=index.css.map */
