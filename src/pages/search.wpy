@@ -38,16 +38,14 @@
       },
       chooseSchool(e) {
         let page_url = this.page_url;
-
         let pageInfo=getCurrentPages();
         pageInfo[pageInfo.length-2].__route__==='pages/schoolCopy'?this.handleSchoolData(e):wepy.redirectTo({
           url: `${page_url + (page_url.indexOf('?') === -1 ? '?' : '&' ) + querystring.stringify(e.target.dataset)}`
         });
-
       }
     };
     async onLoad(e) {
-      console.log(e);      
+      console.log(e);
       let {page_url = '', ...params} = e;
       page_url = unescape(page_url)
       this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)
@@ -76,6 +74,7 @@
       }
     }
 
+
     handleSchoolData(e){
       console.log('保存学校数据和学校id就可以了');
       console.log(e);
@@ -84,6 +83,7 @@
         delta: 1
       })
     }
+
   }
 </script>
 

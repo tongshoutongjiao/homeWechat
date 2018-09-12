@@ -2,46 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="789fa6aa-0a0b-403b-93c1-dbb44aea7033" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.wepycache" beforeDir="false" afterPath="$PROJECT_DIR$/.wepycache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/equipDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/equipDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/equipManage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/equipManage.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mapPage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mapPage.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/planterDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/planterDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recordPage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/recordPage.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/repairDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/repairDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main.wpy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/searchStudent.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/searchStudent.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/equipDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/equipDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/equipManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/equipManage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/equipTypePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/equipTypePage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/mapPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/mapPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/planterDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/planterDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/recordPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/recordPage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/repairDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/repairDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolList/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/studentAttendance/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/studentAttendance/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/equipManage/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/equipManage/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/equipManage/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/equipManage/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/planterDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/planterDetail/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/planterDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/planterDetail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/repairDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/repairDetail/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/repairDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/repairDetail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/search.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/search.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/search/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -73,19 +48,21 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="js" value="33" />
+          <entry key="js" value="36" />
           <entry key="less" value="7" />
           <entry key="png" value="5" />
-          <entry key="wpy" value="24" />
+          <entry key="wepycache" value="1" />
+          <entry key="wpy" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
           <entry key="Image" value="5" />
-          <entry key="JavaScript" value="33" />
+          <entry key="JavaScript" value="36" />
           <entry key="Less" value="7" />
-          <entry key="Vue.js" value="24" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Vue.js" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -110,185 +87,30 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/editStuInfo.wpy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="388" column="40" lean-forward="true" selection-start-line="388" selection-start-column="40" selection-end-line="388" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="762" column="26" selection-start-line="762" selection-start-column="26" selection-end-line="762" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-                <element signature="e#352#385#0" />
-                <element signature="e#398#440#0" />
-                <element signature="e#451#1218#0" />
-                <element signature="e#491#518#0" />
-                <element signature="e#561#699#0" />
-                <element signature="e#1231#1402#0" />
-                <element signature="e#1258#1397#0" />
-                <element signature="e#1416#9020#0" />
-                <element signature="e#1478#1754#0" />
-                <element signature="e#1822#2435#0" />
-                <element signature="e#2011#2281#0" />
-                <element signature="e#2064#2273#0" />
-                <element signature="e#2093#2263#0" />
-                <element signature="e#2293#2429#0" />
-                <element signature="e#2486#3082#0" />
-                <element signature="e#2575#3076#0" />
-                <element signature="e#2608#2718#0" />
-                <element signature="e#2727#2836#0" />
-                <element signature="e#2845#2955#0" />
-                <element signature="e#2964#3067#0" />
-                <element signature="e#3134#4005#0" />
-                <element signature="e#3351#3776#0" />
-                <element signature="e#3426#3553#0" />
-                <element signature="e#3451#3523#0" />
-                <element signature="e#3559#3768#0" />
-                <element signature="e#3782#3997#0" />
-                <element signature="e#4072#4338#0" />
-                <element signature="e#4127#4331#0" />
-                <element signature="e#4151#4218#0" />
-                <element signature="e#4227#4323#0" />
-                <element signature="e#4395#4505#0" />
-                <element signature="e#4550#5466#0" />
-                <element signature="e#4647#5458#0" />
-                <element signature="e#4676#4746#0" />
-                <element signature="e#4755#4836#0" />
-                <element signature="e#4845#4926#0" />
-                <element signature="e#4935#5016#0" />
-                <element signature="e#5025#5109#0" />
-                <element signature="e#5118#5196#0" />
-                <element signature="e#5205#5281#0" />
-                <element signature="e#5290#5368#0" />
-                <element signature="e#5377#5450#0" />
-                <element signature="e#5527#6079#0" />
-                <element signature="e#5624#6071#0" />
-                <element signature="e#5653#6062#0" />
-                <element signature="e#5750#5782#0" />
-                <element signature="e#5818#5874#0" />
-                <element signature="e#5880#6062#0" />
-                <element signature="e#5907#5984#0" />
-                <element signature="e#6144#6236#0" />
-                <element signature="e#6293#6550#0" />
-                <element signature="e#6319#6398#0" />
-                <element signature="e#6404#6487#0" />
-                <element signature="e#6591#7306#0" />
-                <element signature="e#6708#7300#0" />
-                <element signature="e#6737#6941#0" />
-                <element signature="e#6950#7292#0" />
-                <element signature="e#7351#7684#0" />
-                <element signature="e#7735#7835#0" />
-                <element signature="e#7893#8863#0" />
-                <element signature="e#8002#8857#0" />
-                <element signature="e#8031#8208#0" />
-                <element signature="e#8217#8775#0" />
-                <element signature="e#8322#8756#0" />
-                <element signature="e#8474#8744#0" />
-                <element signature="e#8601#8668#0" />
-                <element signature="e#8674#8729#0" />
-                <element signature="e#8784#8849#0" />
-                <element signature="e#8911#9016#0" />
-                <element signature="e#9045#9478#0" />
-                <element signature="e#9166#9195#0" />
-                <element signature="e#9231#9474#0" />
-                <element signature="e#9500#9955#0" />
-                <element signature="e#9614#9693#0" />
-                <element signature="e#9650#9686#0" />
-                <element signature="e#9729#9951#0" />
-                <element signature="e#9980#10458#0" />
-                <element signature="e#10095#10173#0" />
-                <element signature="e#10131#10167#0" />
-                <element signature="e#10209#10454#0" />
-                <element signature="e#10482#11838#0" />
-                <element signature="e#10748#10913#0" />
-                <element signature="e#10784#10907#0" />
-                <element signature="e#10950#11702#0" />
-                <element signature="e#10971#11050#0" />
-                <element signature="e#11059#11694#0" />
-                <element signature="e#11089#11282#0" />
-                <element signature="e#11291#11484#0" />
-                <element signature="e#11493#11686#0" />
-                <element signature="e#11708#11814#0" />
-                <element signature="e#11729#11806#0" />
-                <element signature="e#11872#13175#0" />
-                <element signature="e#11918#12016#0" />
-                <element signature="e#11979#12010#0" />
-                <element signature="e#12049#12596#0" />
-                <element signature="e#12090#12589#0" />
-                <element signature="e#12145#12564#0" />
-                <element signature="e#12157#12554#0" />
-                <element signature="e#12185#12264#0" />
-                <element signature="e#12277#12356#0" />
-                <element signature="e#12369#12448#0" />
-                <element signature="e#12461#12542#0" />
-                <element signature="e#12627#13152#0" />
-                <element signature="e#12660#12744#0" />
-                <element signature="e#12776#12860#0" />
-                <element signature="e#12892#12976#0" />
-                <element signature="e#13009#13101#0" />
-                <element signature="e#13206#15499#0" />
-                <element signature="e#13233#13254#0" />
-                <element signature="e#13302#13638#0" />
-                <element signature="e#13670#13814#0" />
-                <element signature="e#13753#13808#0" />
-                <element signature="e#13848#13885#0" />
-                <element signature="e#13990#14088#0" />
-                <element signature="e#14011#14066#0" />
-                <element signature="e#14118#14216#0" />
-                <element signature="e#14139#14194#0" />
-                <element signature="e#14291#14389#0" />
-                <element signature="e#14312#14367#0" />
-                <element signature="e#14422#14522#0" />
-                <element signature="e#14443#14500#0" />
-                <element signature="e#14616#14879#0" />
-                <element signature="e#14761#14873#0" />
-                <element signature="e#14784#14847#0" />
-                <element signature="e#14925#15000#0" />
-                <element signature="e#15036#15323#0" />
-                <element signature="e#15057#15137#0" />
-                <element signature="e#15163#15308#0" />
-                <element signature="e#15269#15299#0" />
-                <element signature="e#15329#15476#0" />
-                <element signature="e#15381#15468#0" />
-                <element signature="e#15536#16184#0" />
-                <element signature="e#15575#15658#0" />
-                <element signature="e#15611#15652#0" />
-                <element signature="e#15694#16161#0" />
-                <element signature="e#15884#16069#0" />
-                <element signature="e#16211#16877#0" />
-                <element signature="e#16376#16478#0" />
-                <element signature="e#16443#16471#0" />
-                <element signature="e#16627#16724#0" />
-                <element signature="e#16648#16702#0" />
-                <element signature="e#16742#16793#0" />
-                <element signature="e#16922#17473#0" />
-                <element signature="e#16986#17094#0" />
-                <element signature="e#17047#17088#0" />
-                <element signature="e#17297#17343#0" />
-                <element signature="e#17522#17790#0" />
-                <element signature="e#17564#17681#0" />
-                <element signature="e#17833#18076#0" />
-                <element signature="e#17973#17997#0" />
-                <element signature="e#18020#18043#0" />
-                <element signature="e#18049#18072#0" />
-                <element signature="e#18091#18370#0" />
-                <element signature="e#18161#18266#0" />
-                <element signature="e#18383#18449#0" />
-                <element signature="e#18827#19099#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/app.wpy">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="851">
+                  <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/app.wpy">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -300,8 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>滑动区域数据</find>
-      <find>toD</find>
       <find>toDetial</find>
       <find>schoolName</find>
       <find>currentTab</find>
@@ -330,6 +150,8 @@
       <find>排序</find>
       <find>fixedDeadline</find>
       <find>searchValue</find>
+      <find>defaultPhoto</find>
+      <find>二维码</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -344,10 +166,14 @@
         <option value="$PROJECT_DIR$/src/scripts/schoolList/index.js" />
         <option value="$PROJECT_DIR$/src/styles/schoolDetail/index.less" />
         <option value="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" />
-        <option value="$PROJECT_DIR$/src/api.js" />
-        <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
         <option value="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" />
+        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/search.wpy" />
+        <option value="$PROJECT_DIR$/src/api.js" />
+        <option value="$PROJECT_DIR$/.wepycache" />
+        <option value="$PROJECT_DIR$/src/app.wpy" />
       </list>
     </option>
   </component>
@@ -367,9 +193,8 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="595" />
-    <option name="y" value="21" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="220" />
     <option name="width" value="1232" />
     <option name="height" value="969" />
   </component>
@@ -398,7 +223,7 @@
               <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
               <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,18 +272,18 @@
       <workItem from="1536202801232" duration="2293000" />
       <workItem from="1536214392399" duration="2086000" />
       <workItem from="1536224248226" duration="161000" />
-      <workItem from="1536718311575" duration="611000" />
+      <workItem from="1536718311575" duration="3829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70112000" />
+    <option name="totallyTimeSpent" value="73330000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="595" y="21" width="1232" height="969" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28787878" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12367865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -471,7 +296,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5026427" side_tool="true" visible="true" weight="0.05918619" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5026427" side_tool="true" visible="true" weight="0.053452116" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -618,20 +443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="330" column="14" selection-start-line="330" selection-start-column="14" selection-end-line="330" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/schoolDetail/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -649,24 +460,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/search.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/editStuInfo.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="388" column="40" lean-forward="true" selection-start-line="388" selection-start-column="40" selection-end-line="388" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="762" column="26" selection-start-line="762" selection-start-column="26" selection-end-line="762" selection-end-column="26" />
+        <state relative-caret-position="139">
+          <caret line="751" column="45" lean-forward="true" selection-start-line="751" selection-start-column="45" selection-end-line="751" selection-end-column="45" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
             <element signature="e#352#385#0" />
@@ -821,11 +618,73 @@
             <element signature="e#17973#17997#0" />
             <element signature="e#18020#18043#0" />
             <element signature="e#18049#18072#0" />
-            <element signature="e#18091#18370#0" />
             <element signature="e#18161#18266#0" />
             <element signature="e#18383#18449#0" />
             <element signature="e#18827#19099#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/editStuInfo.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="64" lean-forward="true" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="144" column="79" selection-start-line="144" selection-start-column="79" selection-end-line="144" selection-end-column="79" />
+          <folding>
+            <element signature="n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#1;n#template#0;n#!!top" />
+            <element signature="n#view#2;n#template#0;n#!!top" />
+            <element signature="n#view#3;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#text#0;n#view#18;n#view#1;n#view#3;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#text#0;n#view#19;n#view#1;n#view#3;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#view#4;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2838">
+          <caret line="73" column="9" lean-forward="true" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+          <folding>
+            <element signature="n#view#1;n#template#0;n#!!top" />
+            <element signature="e#6294#6317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/search.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1987">
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-161">
+          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.wepycache">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
         </state>
       </provider>
     </entry>

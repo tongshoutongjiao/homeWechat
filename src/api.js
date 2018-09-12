@@ -20,32 +20,21 @@ const wxRequest = async (params = {}, url) => {
   // params.data.userTelNum = encodeURI(wepy.getStorageSync('userTelNum')).replace(/\+/g, '%2B');
   // params.data.userName = wepy.getStorageSync('userName');
   params.data.preHand = 1;
-  let res = await wepy.request({
-    url: url,
-    method: params.method || 'GET',
-    data: params.data,
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
-  });
-  if (--requestLength <= 0) {
-    wx.hideLoading()
-  }
-  if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
-    wepy.removeStorageSync('token')
-    wepy.removeStorageSync('userId')
-    wepy.removeStorageSync('noticeTimeStamp')
-
-    let ret = await wepy.showModal({
-      title: '提示',
-      content: '您的账号已在其他设备登录，请重新登录',
-      showCancel: false
+    let res = await wepy.request({
+        url: url,
+        method: params.method || 'GET',
+        data: params.data,
+        header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
     });
-
-    if (ret) {
-      await wepy.redirectTo({url: 'login'});
+    if (--requestLength <= 0) {
+        wx.hideLoading()
     }
-
+    if (res.statusCode === 401 || res.data.result === 401 || res.statusCode === 400 || res.data.result === 400) {
+        wepy.removeStorageSync('token')
+        wepy.removeStorageSync('userId')
+        wepy.removeStorageSync('noticeTimeStamp')
   }
   /* if (res.data.result === 300) {
     this.$invoke('toast', 'show', {
@@ -65,6 +54,7 @@ const apiMall = 'http://182.92.131.35:8081'; // 测试（）
 //  const appMall = 'http://192.168.12.168:8087'; // 亚杰（）;
 //  const apiMail = 'http://192.168.12.147:8090'; // 练莉（）;
 // //  // const apiMall = 'http://192.168.5.131:8380';
+
 // const apiMall = 'https://api.967111.com'; // 正式
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do');
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
@@ -152,12 +142,9 @@ const addStudentPhoto = async (params) => {
     mask: true
   });
 
-  const defaultParams = {
-    platformType: 3,
-    version: '1.0.0',
-    preHand: 1
-  };
 
+
+<<<<<<< HEAD
   const ret = await wepy.uploadFile({
     url: apiMall + '/photoGraphController/uploadPhotoToQiNiu.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
     ...params,
@@ -185,41 +172,54 @@ const uploadStudentPhoto = async (params) => {
       console.log('upload success', res);
     }
   });
-
-
   return ret;
+
 };
+const uploadStudentPhoto = async (params) => {
 
-
+    const defaultParams = {
+        platformType: 3,
+        version: '1.0.0',
+        preHand: 1
+    };
+    console.log('上传请求函数上传请求函数')
+    const ret = await wepy.uploadFile({
+        url: apiMall + '/photoGraphController/uploadStudentPhoto.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
+        ...params,
+        success: function (res) {
+            console.log('upload success', res);
+        }
+    });
+    return ret;
+};
 module.exports = {
-  login,
-  searchSchool,
-  queryGrade,
-  queryClass,
-  schoolBusinessList,
-  studentBusinessList,
-  businessList,
-  openProduct,
-  getSchoolBaseInfo,
-  schoolReport,
-  getBusinessDeviceInfo,
-  getWeekItem,
-  getSchoolIntegralDetails,
-  getSchoolList,
-  getCity,
-  getAfterFilterList,
-  getAreaManager,
-  getBusiManager,
-  getAfterManagerFiter,
-  logout,
-  sms,
-  findPwd,
-  getType,
-  getFilterData,
-  getBusiManagerNew,
-  getCityNew,
-  getAreaNew,
-
+    login,
+    searchSchool,
+    queryGrade,
+    queryClass,
+    schoolBusinessList,
+    studentBusinessList,
+    businessList,
+    openProduct,
+    getSchoolBaseInfo,
+    schoolReport,
+    getBusinessDeviceInfo,
+    getWeekItem,
+    getSchoolIntegralDetails,
+    getSchoolList,
+    getCity,
+    getAfterFilterList,
+    getAreaManager,
+    getBusiManager,
+    getAfterManagerFiter,
+    logout,
+    sms,
+    findPwd,
+    getType,
+    getFilterData,
+    getBusiManagerNew,
+    getCityNew,
+    getAreaNew,
   getSchoolsByUserId,
   getGradeBySchoolId,
   getClassByGradeId,
