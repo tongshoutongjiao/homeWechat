@@ -38,6 +38,7 @@ const wxRequest = async (params = {}, url) => {
   }
   return res
 }
+
 // const apiMall = 'http://192.168.5.133:8380'; // 开发（晨宇）
 // const apiMall = 'http://192.168.5.106:8081'; // 开发（晨宇 设备管理）
 const apiMall = 'http://182.92.131.35:8081' // 测试（）

@@ -81,7 +81,8 @@ export default class Index extends wepy.page {
       id: ''
     },
     fixedTime: null,  // 修改过的时间
-    changeDate:'关闭',
+
+    changeValue:'关闭',
     testURL: 'http://qr.api.cli.im/qr?data=https%253A%252F%252Fwww.baidu.com&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=3d9a7684e3712110675d398ca0c86070'
 
   }
@@ -507,7 +508,7 @@ export default class Index extends wepy.page {
     });
     if (res.data && res.data.result === 200) {
       this.qrCodeData = res.data;
-      this.changeDate=res.data.createTime?res.data.lastTime:'关闭';
+      this.changeValue=res.data.createTime?res.data.lastTime:'关闭';
     }
     this.$apply();
   }
@@ -534,7 +535,7 @@ export default class Index extends wepy.page {
       this.$invoke('toast', 'show', {
         title: res.data.message
       });
-      this.changeDate= '关闭';
+      this.changeValue= '关闭';
     }
     this.$apply();
   }
@@ -545,7 +546,7 @@ export default class Index extends wepy.page {
     let timeStr=new Date()*1+min*60*1000;
     let format = 'YYYY-MM-DD HH:mm:ss';
     let curDate = Toolkit.dateFormat(timeStr, format);
-    this.changeDate=curDate;
+    this.changeValue=curDate;
     this.$apply();
   }
 }

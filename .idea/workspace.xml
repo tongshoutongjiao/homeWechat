@@ -2,20 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="789fa6aa-0a0b-403b-93c1-dbb44aea7033" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.wepycache" beforeDir="false" afterPath="$PROJECT_DIR$/.wepycache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/classOptionPage/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/effectPhase/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/equipDetail/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/equipTypePage/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/mapPage/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/recordPage/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/savePhoto/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/schoolEffect/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/searchStudent/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/studentAttendance/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/uploadDetail/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/uploadImg/index.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolList/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolList/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolList/index.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/searchStudent/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/searchStudent/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,7 +35,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="11" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.274" value="1" />
@@ -44,41 +48,41 @@
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="2" />
-          <entry key="js" value="45" />
+          <entry key="css" value="4" />
+          <entry key="js" value="50" />
           <entry key="json" value="5" />
-          <entry key="less" value="8" />
+          <entry key="less" value="12" />
           <entry key="map" value="2" />
           <entry key="png" value="5" />
           <entry key="wepycache" value="1" />
-          <entry key="wpy" value="35" />
+          <entry key="wpy" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="2" />
+          <entry key="CSS" value="4" />
           <entry key="Image" value="5" />
           <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="45" />
-          <entry key="Less" value="8" />
+          <entry key="JavaScript" value="50" />
+          <entry key="Less" value="12" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SourceMap" value="1" />
-          <entry key="Vue.js" value="35" />
+          <entry key="Vue.js" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="12" />
+          <entry key="ESLintLanguageService" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="4502" />
+          <entry key="js" value="4505" />
           <entry key="json" value="9" />
           <entry key="less" value="699" />
           <entry key="wpy" value="758" />
@@ -87,7 +91,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="9" />
-          <entry key="JavaScript" value="4502" />
+          <entry key="JavaScript" value="4505" />
           <entry key="Less" value="699" />
           <entry key="Vue.js" value="758" />
         </counts>
@@ -95,17 +99,55 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="342" column="76" lean-forward="true" selection-start-line="342" selection-start-column="76" selection-end-line="342" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.47676525">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="274">
+                  <caret line="313" column="31" lean-forward="true" selection-start-line="313" selection-start-column="31" selection-end-line="313" selection-end-column="31" />
+                  <folding>
+                    <element signature="n#view#5;n#template#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/styles/searchStudent/index.less">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-483">
+                  <caret lean-forward="true" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/styles/searchStudent/index.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="384">
+                  <caret line="202" column="1" selection-start-line="202" selection-start-column="1" selection-end-line="202" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="306" column="45" lean-forward="true" selection-start-line="306" selection-start-column="45" selection-end-line="306" selection-end-column="45" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -117,7 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logdata</find>
       <find>addZ</find>
       <find>logdate</find>
       <find>device</find>
@@ -147,6 +188,7 @@
       <find>&lt;&lt;&lt;&lt;</find>
       <find>&lt;&lt;&lt;</find>
       <find>apiMall</find>
+      <find>&lt;&lt;</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -170,11 +212,12 @@
         <option value="$PROJECT_DIR$/src/app.wpy" />
         <option value="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" />
         <option value="$PROJECT_DIR$/src/styles/schoolDetail/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" />
         <option value="$PROJECT_DIR$/project.config.json" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" />
         <option value="$PROJECT_DIR$/src/api.js" />
+        <option value="$PROJECT_DIR$/src/styles/searchStudent/index.css" />
+        <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
       </list>
     </option>
   </component>
@@ -198,10 +241,10 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="689" />
-    <option name="y" value="95" />
-    <option name="width" value="766" />
-    <option name="height" value="783" />
+    <option name="x" value="-6" />
+    <option name="y" value="37" />
+    <option name="width" value="1291" />
+    <option name="height" value="951" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -211,6 +254,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,13 +271,27 @@
               <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
               <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="searchStudent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="searchStudent" type="462c0819:PsiDirectoryNode" />
+              <item name="index.less" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,16 +341,18 @@
       <workItem from="1536734592174" duration="245000" />
       <workItem from="1536735395224" duration="18000" />
       <workItem from="1536735689792" duration="427000" />
+      <workItem from="1536737014466" duration="1578000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78010000" />
+    <option name="totallyTimeSpent" value="79588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1421776" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12420719" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -529,13 +589,6 @@
     <entry file="file://$PROJECT_DIR$/src/pages/repairDetail.wpy">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schoolDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="532" column="12" selection-start-line="532" selection-start-column="12" selection-end-line="532" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/project.config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-94" />
@@ -555,17 +608,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/studentManage/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/schoolDetail/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1654">
+          <caret line="552" lean-forward="true" selection-start-line="552" selection-end-line="552" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="37" column="3" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+        <state>
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/searchStudent/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/searchStudent/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="202" column="1" selection-start-line="202" selection-start-column="1" selection-end-line="202" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="342" column="76" lean-forward="true" selection-start-line="342" selection-start-column="76" selection-end-line="342" selection-end-column="76" />
+        <state relative-caret-position="85">
+          <caret line="306" column="45" lean-forward="true" selection-start-line="306" selection-start-column="45" selection-end-line="306" selection-end-column="45" />
         </state>
       </provider>
     </entry>
