@@ -319,8 +319,38 @@
                     </view>
                 </repeat>
             </view>
+        </view>
+    </view>
 
+    <!--二维码-->
+    <view class="bar-code basic-situation" wx:if="{{currentTab==3}}">
+        <view class="teacher-code">
+            <view class="teacher-title tc">班主任进班二维码</view>
+            <view class="img-wrapper" bindtap="longTapSaveCode">
+                <image src={{qrCodeData.qrcodeUrl}}></image>
+            </view>
+            <view class="school-name tc">{{baseInfo.schoolName}}</view>
+            <view class="tc">长按保存二维码</view>
+            <view class="code-bottom">
+                <view class="inline">结束时间</view>
+                <view class=" picker-style fr">
+                    <view class="inline start-time"></view>
+                    <view class="inline">
+                        <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
+                                range="{{codeData.codeArray}}">
+                            <view class="code-picker">
+                                <text>{{changeDate||codeData.codeArray[codeData.index].value}}</text>
+                                <image class="right-arrow" src="/images/put_icon.png"/>
+                            </view>
+                        </picker>
+                    </view>
+                </view>
 
+            </view>
+        </view>
+
+    </view>
+    <toast/>
 </template>
 <script src="../scripts/schoolDetail/index.js"></script>
 <style src="../styles/schoolDetail/index.css"></style>

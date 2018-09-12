@@ -252,11 +252,7 @@ picker {
 .bar-code .teacher-code .img-wrapper {
   width: 280rpx;
   height: 280rpx;
-<<<<<<< HEAD
-  margin: 0 auto 30rpx;
-=======
   margin: 0 auto;
->>>>>>> fc19e32f74c6a219223aa1e146593f32112a88d9
   background: #8e8e93;
 }
 .bar-code .teacher-code .img-wrapper image {
@@ -264,17 +260,12 @@ picker {
   width: 100%;
   height: 100%;
 }
-<<<<<<< HEAD
-.bar-code .teacher-code picker {
-  width: auto;
-=======
 .bar-code .teacher-code .school-name {
   font-weight: bold;
 }
 .bar-code .teacher-code picker {
   width: auto;
   height: 40rpx;
->>>>>>> fc19e32f74c6a219223aa1e146593f32112a88d9
 }
 .bar-code .teacher-code .code-picker {
   width: 300rpx;
@@ -283,10 +274,7 @@ picker {
 }
 .bar-code .teacher-code .code-bottom {
   position: relative;
-<<<<<<< HEAD
-=======
   margin-top: 30rpx;
->>>>>>> fc19e32f74c6a219223aa1e146593f32112a88d9
 }
 .bar-code .teacher-code .code-bottom .end-time {
   color: #8e8e93;
