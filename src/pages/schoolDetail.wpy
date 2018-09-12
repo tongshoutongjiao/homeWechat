@@ -339,7 +339,7 @@
             <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
                     range="{{codeData.codeArray}}">
               <view class="code-picker">
-                <text>{{changeDate||codeData.codeArray[codeData.index].value}}</text>
+                <text>{{changeValue||codeData.codeArray[codeData.index].value}}</text>
                 <image class="right-arrow" src="/images/put_icon.png"/>
               </view>
             </picker>

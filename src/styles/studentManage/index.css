@@ -265,7 +265,7 @@ image {
   height: 100rpx;
   border-radius: 50%;
   background-color: #0077ff;
-  opacity: .7;
+  opacity: 0.7;
 }
 .edit view {
   position: absolute;
@@ -281,3 +281,4 @@ image {
   width: 4rpx;
   height: 48rpx;
 }
+/*# sourceMappingURL=index.css.map */

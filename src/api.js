@@ -47,16 +47,7 @@ const wxRequest = async (params = {}, url) => {
         }
 
     }
-    /* if (res.data.result === 300) {
-      this.$invoke('toast', 'show', {
-        title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
-      })
-    }
-    if (res.data.result === 500) {
-      this.$invoke('toast', 'show', {
-        title: result.data.error || result.data.msg || result.data.message || '请求参数错误'
-      })
-    } */
+
     return res
 };
 // const apiMall = 'http://192.168.5.133:8380'; // 开发（晨宇）
