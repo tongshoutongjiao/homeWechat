@@ -115,9 +115,9 @@
 					<view class="title"></view>
 				</view>
 				<view class=" formTitle formContent" wx:for="{{repairList}}">
-					<view >{{item.orderTime}}</view>
-					<view >{{item.serviceTime}}</view>
-					<view >{{item.serviceman}}</view>
+					<view >{{item.orderTime||'无'}}</view>
+					<view >{{item.serviceTime||'无'}}</view>
+					<view >{{item.serviceman||'无'}}</view>
 					<view class="fix-style" bindtap="clickFixRecord" data-record-id="{{item.recordId}}">修改</view>
 				</view>
 

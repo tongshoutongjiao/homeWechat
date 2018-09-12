@@ -98,14 +98,14 @@
 			<view class="right-hide"></view>
 		</view>
 
-		<view class="default date-style another-page" data-type="repairPerson" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="repairPerson" data-title="安装人员" bindtap="clickChooseOptions">
 			<view>安装人员</view>
 			<view class="picker">{{equipInfo.plantPersonSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="remark" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="remark" data-title="备注" bindtap="clickChooseOptions">
 			<view>备注</view>
 			<view class="picker">{{equipInfo.remarkSelected||''}}</view>
 			<view class="right-icon"></view>

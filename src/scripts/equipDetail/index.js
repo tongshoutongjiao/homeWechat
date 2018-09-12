@@ -230,6 +230,12 @@ export default class Index extends wepy.page {
         simNum: obj.simNum || this.equipmentInfo.simNum
       }
     });
+    console.log('保存信息查看结果');
+    console.log(res);
+
+
+
+
     if (res.data.result === 200) {
       wepy.showToast({
         title: '保存成功',

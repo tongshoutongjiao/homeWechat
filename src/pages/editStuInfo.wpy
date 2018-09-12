@@ -130,7 +130,7 @@
 
 		<block wx:if="{{studentInfo.qin2Flag}}">
 			<view class="input-type">
-				<view>亲情号码1</view>
+				<view>亲情号码2</view>
 				<input type="text" data-input-type="qinPhone2" type="number" placeholder="请输入手机号码" placeholder-class="placeholder-style"
 					   bindinput="searchValueInput" value="{{studentInfo.qinPhone2?studentInfo.qinPhone2:''}}">
 			</view>
@@ -168,7 +168,7 @@
 
 		<block wx:else>
 			<view class="input-type">
-				<view>亲情号码1</view>
+				<view>亲情号码2</view>
 				<input type="text" data-input-type="qinPhone2" type="number" placeholder="请输入手机号码" placeholder-class="placeholder-style"
 					   bindinput="searchValueInput">
 			</view>
@@ -179,7 +179,7 @@
 
 		<block wx:if="{{studentInfo.qin3Flag}}">
 			<view class="input-type">
-				<view>亲情号码2</view>
+				<view>亲情号码3</view>
 				<input type="text" data-input-type="qinPhone3" type="number" placeholder="请输入手机号码" placeholder-class="placeholder-style"
 					   bindinput="searchValueInput" value="{{studentInfo.qinPhone3?studentInfo.qinPhone3:''}}">
 			</view>
@@ -216,7 +216,7 @@
 		</block>
 		<block wx:else>
 			<view class="input-type">
-				<view>亲情号码2</view>
+				<view>亲情号码3</view>
 				<input type="text" data-input-type="qinPhone3" type="number" placeholder="请输入手机号码" placeholder-class="placeholder-style"
 					   bindinput="searchValueInput">
 			</view>

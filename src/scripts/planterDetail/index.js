@@ -29,7 +29,7 @@ export default class Index extends wepy.page {
 
       // 终端使用状态数据
       endStatusData: {
-        array: ['未使用', '在使用', '已丢失'],
+        array: ['未使用', '在使用', '已丢失','测试用'],
         endStatusIndex: 0,
       },
 
@@ -329,7 +329,12 @@ export default class Index extends wepy.page {
         case 'remark':
           newData = [];
           data.remark.filter(function (item) {
-            item.selected === true ? newData.push(item.customName || item.name) : '';
+
+            if(item.name==='自定义'){
+                item.selected === true ? newData.push(item.customName) : '';
+            }else {
+                item.selected === true ? newData.push(item.name) : '';
+            }
           });
           this.selectOptions.remark = newData.join(',');
           this.equipInfo.remarkSelected = newData.join(',').length > 14 ? newData.join(',').substring(0, 14) + '...' : newData.join(',');
@@ -399,7 +404,6 @@ export default class Index extends wepy.page {
     this.$parent.globalData.curPlantEquip.latitude = resData.latitude;
     this.$parent.globalData.curPlantEquip.latitude = resData.longitude;
 
-
     // 添加定位标识
     if (String(resData.latitude) !== 'null' && String(resData.longitude) !== 'null') {
       wx.setStorageSync('lat', resData.latitude);
@@ -441,9 +445,14 @@ export default class Index extends wepy.page {
     }
     if (!!defaultObj.remark) {
       let remark = this.$parent.globalData.remark;
-      let remarkSaved = defaultObj.remark.length > 14 ? defaultObj.remark.substring(0, 14) + '...' : defaultObj.remark;
-      this.equipInfo.remarkSelected = remarkSaved;
-      let tempArray = defaultObj.remark.split(',');
+      let tempStr='';
+      // 判断备注信息中有无自定义信息，如果有，删除掉自定义：
+        if( defaultObj.remark.includes('自定义:')){
+            tempStr= defaultObj.remark.replace('自定义:','');
+        }
+      let remarkSaved = tempStr.length > 14 ? tempStr.substring(0, 14) + '...' : tempStr;
+      this.equipInfo.remarkSelected = remarkSaved.replace('自定义','');
+      let tempArray = tempStr.split(',');
       tempArray.forEach(function (item) {
         let flag = false;
         for (let i = 0; i < remark.length; i++) {
@@ -505,9 +514,7 @@ export default class Index extends wepy.page {
         picType: 'far'
       })
     }
-
     this.addImgIndex();
-
     this.$apply()
   }
 
@@ -524,27 +531,14 @@ export default class Index extends wepy.page {
     this.$apply();
   }
 
-
   // 调整备注中自定义信息的顺序
   fixRemarkInfo() {
-
-
     let data = this.$parent.globalData;
-    console.log('调整remark自定义数据的顺序');
-
-    console.log(this.$parent.globalData);
-    console.log(data);
-    console.log(this.selectOptions);
-
     if (data.remark[0].selected === true) {
-      let first=[],last=[];
+      let first=[];
       let tempArray = this.selectOptions.remark.split(',');
       first=tempArray.shift();
-      last=tempArray.pop();
-      tempArray.unshift(last);
-      tempArray.push(first);
-      console.log('调整remark自定义数据的顺序');
-      console.log(tempArray.join(','));
+      tempArray.push('自定义:'+first);
       this.selectOptions.remark=tempArray.join(',');
       this.$apply();
     }

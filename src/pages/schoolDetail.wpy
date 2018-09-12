@@ -1,853 +1,357 @@
 <template>
-  <view class="tab">
-    <view class="tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" catchtap="changeItem">
-    基本信息
-     <view class="borderBtm" wx:if="{{currentTab == 0}}"></view>
+    <view class="tab">
+        <view class="tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" catchtap="changeItem">
+            基本信息
+            <view class="borderBtm" wx:if="{{currentTab == 0}}"></view>
+        </view>
+        <view class="tab-list {{currentTab == 1 ? 'on' : ''}}" data-current="1" catchtap="changeItem">
+            业务情况
+            <view class="borderBtm" wx:if="{{currentTab == 1}}"></view>
+        </view>
+        <view class="tab-list {{currentTab == 2 ? 'on' : ''}}" data-current="2" catchtap="changeItem">
+            积分详情
+            <view class="borderBtm" wx:if="{{currentTab == 2}}"></view>
+        </view>
+        <view class="tab-list {{currentTab == 3 ? 'on' : ''}}" data-current="3" catchtap="changeItem">
+            二维码
+            <view class="borderBtm" wx:if="{{currentTab == 3}}"></view>
+        </view>
     </view>
-    <view class="tab-list {{currentTab == 1 ? 'on' : ''}}" data-current="1" catchtap="changeItem">
-      业务情况
-      <view class="borderBtm" wx:if="{{currentTab == 1}}"></view>
+    <!-- 基本情况 -->
+    <view class="basic-situation" wx:if="{{currentTab == 0}}">
+        <view class="empty" hidden="{{!baseEmpty}}">暂无学校基本情况</view>
+        <view hidden="{{baseEmpty}}">
+            <view class="basic-option">
+                <text class="basic-label">集团ID</text>
+                <text class="basic-content">{{baseInfo.groupId || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">签约日期</text>
+                <text class="basic-content" hidden="{{!baseInfo.chargeTime}}">{{baseInfo.chargeTime}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">学段</text>
+                <text class="basic-content">{{baseInfo.schoolType || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">是否纳入卡库管理</text>
+                <text class="basic-content">{{baseInfo.isManager || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">白名单标志</text>
+                <text class="basic-content">{{baseInfo.isWhite || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">学校所在区域</text>
+                <text class="basic-content">{{baseInfo.region || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">短信端口号</text>
+                <text class="basic-content">{{baseInfo.msgPort || '暂无'}}</text>
+            </view>
+            <repeat for="{{baseInfo.customerManager}}" index="index1" item="item">
+                <view class="basic-option">
+                    <text class="basic-label {{index1 != 0 ? 'visibility' : ''}}">移动客户经理</text>
+                    <text class="basic-content">{{item || '暂无'}}</text>
+                </view>
+            </repeat>
+            <view class="basic-option">
+                <text class="basic-label">学校主管理员</text>
+                <text class="basic-content" hidden="{{!baseInfo.school_manager_name}}">
+                    {{baseInfo.school_manager_name}}:{{baseInfo.school_manager_phone}}
+                </text>
+                <text class="basic-content" hidden="{{baseInfo.school_manager_name}}">暂无</text>
+            </view>
+            <repeat for="{{baseInfo.marketManager}}" index="index" item="item">
+                <view class="basic-option">
+                    <text class="basic-label {{index != 0 ? 'visibility' : ''}}">公司业务经理</text>
+                    <text class="basic-content" hidden="{{!baseInfo.marketTelnum[index]}}">
+                        {{item}}:{{baseInfo.marketTelnum[index]}}
+                    </text>
+                    <text class="basic-content" hidden="{{baseInfo.marketTelnum[index]}}">暂无</text>
+                </view>
+            </repeat>
+            <repeat for="{{baseInfo.regionManager}}" index="index" item="item">
+                <view class="basic-option">
+                    <text class="basic-label {{index != 0 ? 'visibility' : ''}}">区域经理</text>
+                    <text class="basic-content">{{item || '暂无'}}</text>
+                </view>
+            </repeat>
+            <view class="basic-option">
+                <text class="basic-label">可开业务</text>
+                <text class="basic-content">{{baseInfo.business || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">班主任积分公式</text>
+                <text class="basic-content">{{baseInfo.expression1 || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">学校积分公式</text>
+                <text class="basic-content">{{baseInfo.expression2 || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">积分余额</text>
+                <text class="basic-content">{{baseInfo.accountBalance || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">业务标识</text>
+                <text class="basic-content">{{baseInfo.businesFlag || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">客户等级</text>
+                <text class="basic-content">{{baseInfo.customLevel || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">硬件类型</text>
+                <text class="basic-content">{{baseInfo.cardHardtype || '暂无'}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-label">无SIM(SIM卡全1数量)</text>
+                <text class="basic-content">{{baseInfo.noSimNum || '暂无'}}</text>
+            </view>
+            <view class="basic-footer">#含泪播种的人必须能含笑收获#</view>
+        </view>
     </view>
-    <view class="tab-list {{currentTab == 2 ? 'on' : ''}}" data-current="2" catchtap="changeItem">
-      积分详情
-      <view class="borderBtm" wx:if="{{currentTab == 2}}"></view>
+
+    <!-- 业务情况 -->
+    <view class="nav-wrapper" wx:if="{{currentTab == 1}}">
+        <view class="nav">
+            <picker class="mode-wrapper" value="{{modeIndex}}" range="{{modeArr}}" bindchange="changeMode">
+                <view class="mode">
+                    {{modeArr[modeIndex]}}
+                    <view class="triangle"></view>
+                </view>
+            </picker>
+            <picker class="picker {{modeIndex == 0 ? 'picker-active' : ''}}" mode="date" value="{{currentDate}}"
+                    start="{{startDate}}" end="{{endDate}}" bindchange="changeDate">
+                <view>
+                    {{currentDate}}
+                </view>
+            </picker>
+            <picker class="picker {{modeIndex == 1 ? 'picker-active' : ''}}" bindchange="changeWeek"
+                    value="{{weekIndex}}" range="{{pickerWeekArr}}" range-key="name">
+                <view>
+                    {{pickerWeekArr[weekIndex].str}}
+                </view>
+            </picker>
+            <picker class="picker {{modeIndex == 2 ? 'picker-active' : ''}}" mode="date" fields="month"
+                    value="{{currentMonth}}" start="{{startMonth}}" end="{{endMonth}}" bindchange="changeMonth">
+                <view>
+                    {{currentMonth}}
+                </view>
+            </picker>
+        </view>
     </view>
-  </view>
-  <!-- 基本情况 -->
-  <view class="basic-situation" wx:if="{{currentTab == 0}}">
-    <view class="empty" hidden="{{!baseEmpty}}">暂无学校基本情况</view>
-    <view hidden="{{baseEmpty}}">
-      <view class="basic-option">
-        <text class="basic-label">集团ID</text>
-        <text class="basic-content">{{baseInfo.groupId || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">签约日期</text>
-        <text class="basic-content" hidden="{{!baseInfo.chargeTime}}">{{baseInfo.chargeTime}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">学段</text>
-        <text class="basic-content">{{baseInfo.schoolType || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">是否纳入卡库管理</text>
-        <text class="basic-content">{{baseInfo.isManager || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">白名单标志</text>
-        <text class="basic-content">{{baseInfo.isWhite || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">学校所在区域</text>
-        <text class="basic-content">{{baseInfo.region || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">短信端口号</text>
-        <text class="basic-content">{{baseInfo.msgPort || '暂无'}}</text>
-      </view>
-      <repeat for="{{baseInfo.customerManager}}" index="index1" item="item">
-        <view class="basic-option">
-          <text class="basic-label {{index1 != 0 ? 'visibility' : ''}}">移动客户经理</text>
-          <text class="basic-content">{{item || '暂无'}}</text>
+    <view class="business-conditions basic-situation" wx:if="{{currentTab==1}}">
+        <view class="empty" hidden="{{!businessEmpty}}">暂无学校业务情况</view>
+        <view hidden="{{businessEmpty}}">
+            <view class="basic-option">
+                <text class="basic-content">学生总人数</text>
+                <text class="basic-label">{{business.studentsnum}}</text>
+                <text class="basic-content">持卡总人数</text>
+                <text class="basic-label">{{business.handlecardnum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content">走读总人数</text>
+                <text class="basic-label">{{business.notdormnum}}</text>
+                <text class="basic-content">住宿总人数</text>
+                <text class="basic-label">{{business.dormnum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content">开通人数</text>
+                <text class="basic-label">{{business.bussnesnum}}</text>
+                <text class="basic-content">未开通人数</text>
+                <text class="basic-label">{{business.notbussnesnum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content">净增用户数</text>
+                <text class="basic-label">{{business.addusernum}}</text>
+                <text class="basic-content">考勤人数</text>
+                <text class="basic-label">{{business.flscrdnum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content">总使用人数</text>
+                <text class="basic-label">{{business.flscrdtalknum}}</text>
+                <text class="basic-content">电话使用人数</text>
+                <text class="basic-label">{{business.talknum}}</text>
+            </view>
+            <view>
+                <view class="section-title">开通率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.busspsnperNum}}"/>
+                    <view class="progress-percent">{{business.busspsnper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">开通刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.bussflscrdperNum}}"/>
+                    <view class="progress-percent">{{business.bussflscrdper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">未开通刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.nobussflscrdperNum}}"/>
+                    <view class="progress-percent">{{business.nobussflscrdper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">总体刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.flscrdpsnperNum}}"/>
+                    <view class="progress-percent">{{business.flscrdpsnper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">开通人使用率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.bussflscrdtalkpsnperNum}}"/>
+                    <view class="progress-percent">{{business.bussflscrdtalkpsnper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">总体使用率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.flscrdtalkpsnperNum}}"/>
+                    <view class="progress-percent">{{business.flscrdtalkpsnper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">走读生考勤点刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.notdormflscrdperNum}}"/>
+                    <view class="progress-percent">{{business.notdormflscrdper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">住宿生考勤点刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.dormflscrdperNum}}"/>
+                    <view class="progress-percent">{{business.dormflscrdper}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">总考勤点刷卡率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.flscrdpsnper1Num}}"/>
+                    <view class="progress-percent">{{business.flscrdpsnper1}}</view>
+                </view>
+            </view>
+            <view>
+                <view class="section-title">电话使用率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{business.busstalkperNum}}"/>
+                    <view class="progress-percent">{{business.busstalkper}}</view>
+                </view>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content" style="width: auto;">刷卡器类设备总数</text>
+                <text class="basic-label">{{device.swipeNum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content" style="width: auto;">刷卡器类在线设备数</text>
+                <text class="basic-label">{{device.swipeOnline}}</text>
+            </view>
+            <view>
+                <view class="section-title">刷卡器类在线率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{device.swipeOnlineRateNum}}"/>
+                    <view class="progress-percent">{{device.swipeOnlineRate}}</view>
+                </view>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content" style="width: auto;">话机类设备总数</text>
+                <text class="basic-label">{{device.phoneNum}}</text>
+            </view>
+            <view class="basic-option">
+                <text class="basic-content" style="width: auto;">话机类在线设备数</text>
+                <text class="basic-label">{{device.phoneOnline}}</text>
+            </view>
+            <view>
+                <view class="section-title">话机类在线率</view>
+                <view class="body-view">
+                    <progress class="progress" stroke-width="2" activeColor="#348CFF"
+                              percent="{{device.phoneOnlineRateNum}}"/>
+                    <view class="progress-percent">{{device.phoneOnlineRate}}</view>
+                </view>
+            </view>
+            <view class="basic-footer">#含泪播种的人必须能含笑收获#</view>
         </view>
-      </repeat>
-      <view class="basic-option">
-        <text class="basic-label">学校主管理员</text>
-        <text class="basic-content" hidden="{{!baseInfo.school_manager_name}}">{{baseInfo.school_manager_name}}:{{baseInfo.school_manager_phone}}</text>
-        <text class="basic-content" hidden="{{baseInfo.school_manager_name}}">暂无</text>
-      </view>
-      <repeat for="{{baseInfo.marketManager}}" index="index" item="item">
-        <view class="basic-option">
-          <text class="basic-label {{index != 0 ? 'visibility' : ''}}">公司业务经理</text>
-          <text class="basic-content" hidden="{{!baseInfo.marketTelnum[index]}}">{{item}}:{{baseInfo.marketTelnum[index]}}</text>
-          <text class="basic-content" hidden="{{baseInfo.marketTelnum[index]}}">暂无</text>
-        </view>
-      </repeat>
-      <repeat for="{{baseInfo.regionManager}}" index="index" item="item">
-        <view class="basic-option">
-          <text class="basic-label {{index != 0 ? 'visibility' : ''}}">区域经理</text>
-          <text class="basic-content">{{item || '暂无'}}</text>
-        </view>
-      </repeat>
-      <view class="basic-option">
-        <text class="basic-label">可开业务</text>
-        <text class="basic-content">{{baseInfo.business || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">班主任积分公式</text>
-        <text class="basic-content">{{baseInfo.expression1 || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">学校积分公式</text>
-        <text class="basic-content">{{baseInfo.expression2 || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">积分余额</text>
-        <text class="basic-content">{{baseInfo.accountBalance || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">业务标识</text>
-        <text class="basic-content">{{baseInfo.businesFlag || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">客户等级</text>
-        <text class="basic-content">{{baseInfo.customLevel || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">硬件类型</text>
-        <text class="basic-content">{{baseInfo.cardHardtype || '暂无'}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-label">无SIM(SIM卡全1数量)</text>
-        <text class="basic-content">{{baseInfo.noSimNum || '暂无'}}</text>
-      </view>
-      <view class="basic-footer">#含泪播种的人必须能含笑收获#</view>
     </view>
-  </view>
-  <!-- 业务情况 -->
-  <view class="nav-wrapper" wx:if="{{currentTab == 1}}">
-    <view class="nav">
-      <picker class="mode-wrapper" value="{{modeIndex}}" range="{{modeArr}}" bindchange="changeMode">
-        <view class="mode">
-          {{modeArr[modeIndex]}}<view class="triangle"></view>
+
+    <!-- 积分详情 -->
+    <view wx:if="{{currentTab == 2}}">
+        <view class="empty" hidden="{{!integralEmpty}}">暂无学校积分详情</view>
+        <view hidden="{{integralEmpty}}">
+            <view class="search-wrapper">
+                <view class="search-content">
+                    <image class="search-icon" src="/images/search_icon.png"></image>
+                    <input class="search-title" placeholder="请输入老师的姓名或手机号" value="{{searchValue}}"
+                           bindinput="searchInput"/>
+                </view>
+                <view class="search-btn" catchtap="searchTeacher">搜索</view>
+            </view>
+            <view class="integral-title">
+                <view class="ident">身份</view>
+                <view>姓名</view>
+                <view>手机号</view>
+                <view>账户余额</view>
+            </view>
+            <view class="integral-content">
+                <repeat for="{{integralDetails}}" index="index" item="item">
+                    <view class="integral-option">
+                        <view class="ident {{item.ident ? '' : 'visibility'}}">{{item.ident}}</view>
+                        <view class="{{item.name ? '' : 'visibility'}}">{{item.name}}</view>
+                        <view>{{item.mobile}}</view>
+                        <view>{{item.balance}}</view>
+                    </view>
+                </repeat>
+            </view>
         </view>
-      </picker>
-      <picker class="picker {{modeIndex == 0 ? 'picker-active' : ''}}" mode="date" value="{{currentDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="changeDate">
-        <view>
-          {{currentDate}}
-        </view>
-      </picker>
-      <picker class="picker {{modeIndex == 1 ? 'picker-active' : ''}}" bindchange="changeWeek" value="{{weekIndex}}" range="{{pickerWeekArr}}" range-key="name">
-        <view>
-          {{pickerWeekArr[weekIndex].str}}
-        </view>
-      </picker>
-      <picker class="picker {{modeIndex == 2 ? 'picker-active' : ''}}" mode="date" fields="month" value="{{currentMonth}}" start="{{startMonth}}" end="{{endMonth}}" bindchange="changeMonth">
-        <view>
-          {{currentMonth}}
-        </view>
-      </picker>
     </view>
-  </view>
-  <view class="business-conditions basic-situation" wx:if="{{currentTab==1}}">
-    <view class="empty" hidden="{{!businessEmpty}}">暂无学校业务情况</view>
-    <view hidden="{{businessEmpty}}">
-      <view class="basic-option">
-        <text class="basic-content">学生总人数</text>
-        <text class="basic-label">{{business.studentsnum}}</text>
-        <text class="basic-content">持卡总人数</text>
-        <text class="basic-label">{{business.handlecardnum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content">走读总人数</text>
-        <text class="basic-label">{{business.notdormnum}}</text>
-        <text class="basic-content">住宿总人数</text>
-        <text class="basic-label">{{business.dormnum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content">开通人数</text>
-        <text class="basic-label">{{business.bussnesnum}}</text>
-        <text class="basic-content">未开通人数</text>
-        <text class="basic-label">{{business.notbussnesnum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content">净增用户数</text>
-        <text class="basic-label">{{business.addusernum}}</text>
-        <text class="basic-content">考勤人数</text>
-        <text class="basic-label">{{business.flscrdnum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content">总使用人数</text>
-        <text class="basic-label">{{business.flscrdtalknum}}</text>
-        <text class="basic-content">电话使用人数</text>
-        <text class="basic-label">{{business.talknum}}</text>
-      </view>
-      <view>
-        <view class="section-title">开通率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.busspsnperNum}}" />
-          <view class="progress-percent">{{business.busspsnper}}</view>
+
+    <!--二维码-->
+    <view class="bar-code basic-situation" wx:if="{{currentTab==3}}">
+        <view class="teacher-code">
+            <view class="teacher-title tc">班主任进班二维码</view>
+            <view class="img-wrapper" bindtap="longTapSaveCode">
+                <image src={{qrCodeData.qrcodeUrl}}></image>
+            </view>
+            <view class="tc">长按保存二维码</view>
+            <view class="code-bottom">
+                <view class="inline">结束时间</view>
+                <view class=" picker-style fr">
+                    <view class="inline start-time"></view>
+                    <view class="inline">
+                        <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
+                                range="{{codeData.codeArray}}">
+                            <view class="code-picker">
+                                {{qrCodeData.lastTime}}
+                                <image class="right-arrow" src="/images/put_icon.png"/>
+                            </view>
+
+                        </picker>
+                    </view>
+                </view>
+
+            </view>
         </view>
-      </view>
-      <view>
-        <view class="section-title">开通刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.bussflscrdperNum}}" />
-          <view class="progress-percent">{{business.bussflscrdper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">未开通刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.nobussflscrdperNum}}" />
-          <view class="progress-percent">{{business.nobussflscrdper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">总体刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.flscrdpsnperNum}}" />
-          <view class="progress-percent">{{business.flscrdpsnper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">开通人使用率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.bussflscrdtalkpsnperNum}}" />
-          <view class="progress-percent">{{business.bussflscrdtalkpsnper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">总体使用率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.flscrdtalkpsnperNum}}" />
-          <view class="progress-percent">{{business.flscrdtalkpsnper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">走读生考勤点刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.notdormflscrdperNum}}" />
-          <view class="progress-percent">{{business.notdormflscrdper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">住宿生考勤点刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.dormflscrdperNum}}" />
-          <view class="progress-percent">{{business.dormflscrdper}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">总考勤点刷卡率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.flscrdpsnper1Num}}" />
-          <view class="progress-percent">{{business.flscrdpsnper1}}</view>
-        </view>
-      </view>
-      <view>
-        <view class="section-title">电话使用率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{business.busstalkperNum}}" />
-          <view class="progress-percent">{{business.busstalkper}}</view>
-        </view>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content" style="width: auto;">刷卡器类设备总数</text>
-        <text class="basic-label">{{device.swipeNum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content" style="width: auto;">刷卡器类在线设备数</text>
-        <text class="basic-label">{{device.swipeOnline}}</text>
-      </view>
-      <view>
-        <view class="section-title">刷卡器类在线率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{device.swipeOnlineRateNum}}" />
-          <view class="progress-percent">{{device.swipeOnlineRate}}</view>
-        </view>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content" style="width: auto;">话机类设备总数</text>
-        <text class="basic-label">{{device.phoneNum}}</text>
-      </view>
-      <view class="basic-option">
-        <text class="basic-content" style="width: auto;">话机类在线设备数</text>
-        <text class="basic-label">{{device.phoneOnline}}</text>
-      </view>
-      <view>
-        <view class="section-title">话机类在线率</view>
-        <view class="body-view">
-          <progress class="progress" stroke-width="2" activeColor="#348CFF" percent="{{device.phoneOnlineRateNum}}" />
-          <view class="progress-percent">{{device.phoneOnlineRate}}</view>
-        </view>
-      </view>
-      <view class="basic-footer">#含泪播种的人必须能含笑收获#</view>
+
     </view>
-  </view>
-  <!-- 积分详情 -->
-  <view wx:if="{{currentTab == 2}}">
-    <view class="empty" hidden="{{!integralEmpty}}">暂无学校积分详情</view>
-    <view hidden="{{integralEmpty}}">
-      <view class="search-wrapper">
-        <view class="search-content">
-          <image class="search-icon" src="/images/search_icon.png"></image>
-          <input class="search-title" placeholder="请输入老师的姓名或手机号" value="{{searchValue}}" bindinput="searchInput"/>
-        </view>
-        <view class="search-btn" catchtap="searchTeacher">搜索</view>
-      </view>
-      <view class="integral-title">
-        <view class="ident">身份</view>
-        <view>姓名</view>
-        <view>手机号</view>
-        <view>账户余额</view>
-      </view>
-      <view class="integral-content">
-        <repeat for="{{integralDetails}}" index="index" item="item">
-          <view class="integral-option">
-            <view class="ident {{item.ident ? '' : 'visibility'}}">{{item.ident}}</view>
-            <view class="{{item.name ? '' : 'visibility'}}">{{item.name}}</view>
-            <view>{{item.mobile}}</view>
-            <view>{{item.balance}}</view>
-          </view>
-        </repeat>
-      </view>
-    </view>
-  </view>
-  <toast />
+    <toast/>
 </template>
-<script>
-  import wepy from 'wepy'
-  import api from '../api.js'
-  import Toast from 'wepy-com-toast'
-  import util from '../utils/util'
-  export default class Index extends wepy.page {
-    config = {
-      navigationBarTitleText: '学校详情',
-      onReachBottom: true,
-      onReachBottomDistance: 10
-    }
-    components = {
-      toast: Toast
-    }
-    async searchValue(e) {
-      this.searchValue = e.detail.value
-    }
-    data = {
-      currentTab: 0,
-      modeIndex: 0,
-      modeArr: ['按日', '按周', '按月'],
-      currentDate: '',
-      startDate: '',
-      endDate: '',
-      pickerWeekArr: [], // picker中range属性值
-      weekIndex: 0, // picker中value属性值
-      currentMonth: '',
-      startMonth: '',
-      endMonth: '',
-      baseInfo: {},
-      business: {},
-      device: {
-        phoneNum: 0,
-        phoneOnline: 0,
-        phoneOnlineRate: '0.00',
-        phoneOnlineRateNum: '0.00%',
-        swipeNum: 0,
-        swipeOnline: 0,
-        swipeOnlineRate: '0.00',
-        swipeOnlineRateNum: '0.00%'
-      },
-      integralDetails: [],
-      searchValue: '',
-      baseEmpty: true,
-      businessEmpty: true,
-      integralEmpty: true
-    }
-    methods = {
-      changeItem(e) {
-        if (this.currentTab === e.target.dataset.current) {
-          return false
-        } else {
-          this.currentTab = e.target.dataset.current
-        }
-        wepy.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
-        })
-      }
-    }
-    async searchInput(e) {
-      this.searchValue = e.detail.value
-    }
-    async initData() {
-      // 根据学校ID获取学校业务情况
-      var logdate
-      if (this.modeIndex === 0 || this.modeIndex === '0') {
-        logdate = this.currentDate
-      } else if (this.modeIndex === 1 || this.modeIndex === '1') {
-        logdate = this.pickerWeekArr[this.weekIndex].name.substring(0, 10)
-      } else {
-        if (this.currentMonth.toString() === this.endMonth.toString()) {
-          logdate = util.getBeforDay()
-        } else {
-          let splitMonth = this.currentMonth.split('-')
-          if (splitMonth[1].toString() === '01' || splitMonth[1].toString() === '03' || splitMonth[1].toString() === '05' || splitMonth[1].toString() === '07' || splitMonth[1].toString() === '08' || splitMonth[1].toString() === '10' || splitMonth[1].toString() === '12') {
-            logdate = this.currentMonth + '-31'
-          } else if (splitMonth[1].toString() === '04' || splitMonth[1].toString() === '06' || splitMonth[1].toString() === '09' || splitMonth[1].toString() === '11') {
-            logdate = this.currentMonth + '-30'
-          } else if (splitMonth[1].toString() === '02') {
-            if ((parseInt(splitMonth[0]) % 4 === 0) && (parseInt(splitMonth[0]) % 100 !== 0 || parseInt(splitMonth[0]) % 400 === 0)) {
-              logdate = this.currentMonth + '-29'
-            } else {
-              logdate = this.currentMonth + '-28'
-            }
-          }
-        }
-      }
-      let business = await api.schoolReport({
-        showLoading: true,
-        method: 'POST',
-        data: {
-          schoolId: this.schoolId,
-          sumType: 1,
-          reportType: parseInt(this.modeIndex) + 1,
-          logdate: logdate
-        }
-      })
-      if (business.data.result === 200) {
-        if (business.data.businessInfo === null || business.data.businessInfo === 'null') {
-          this.businessEmpty = true
-          this.business = []
-        } else {
-          this.businessEmpty = false
-          this.business = business.data.businessInfo
-          this.business.busspsnperNum = parseInt(this.business.busspsnper.substring(0, this.business.busspsnper.length - 1)) // 开通率
-          this.business.bussflscrdperNum = parseInt(this.business.bussflscrdper.substring(0, this.business.bussflscrdper.length - 1)) // 开通刷卡率
-          this.business.nobussflscrdperNum = parseInt(this.business.nobussflscrdper.substring(0, this.business.nobussflscrdper.length - 1)) // 未开通刷卡率
-          this.business.flscrdpsnperNum = parseInt(this.business.flscrdpsnper.substring(0, this.business.flscrdpsnper.length - 1)) // 总体刷卡率
-          this.business.bussflscrdtalkpsnperNum = parseInt(this.business.bussflscrdtalkpsnper.substring(0, this.business.bussflscrdtalkpsnper.length - 1)) // 开通人使用率
-          this.business.flscrdtalkpsnperNum = parseInt(this.business.flscrdtalkpsnper.substring(0, this.business.flscrdtalkpsnper.length - 1)) // 总体使用率
-          if (!this.business.notdormflscrdper || this.business.notdormflscrdper === 'null') {
-            this.business.notdormflscrdper = '0.00%'
-          }
-          this.business.notdormflscrdperNum = parseInt(this.business.notdormflscrdper.substring(0, this.business.notdormflscrdper.length - 1)) // 走读生考勤点刷卡率
-          if (!this.business.dormflscrdper || this.business.notdormflscrdper === 'null') {
-            this.business.dormflscrdper = '0.00%'
-          }
-          this.business.dormflscrdperNum = parseInt(this.business.dormflscrdper.substring(0, this.business.dormflscrdper.length - 1)) // 住宿生考勤点刷卡率
-          if (!this.business.flscrdpsnper1 || this.business.notdormflscrdper === 'null') {
-            this.business.flscrdpsnper1 = '0.00%'
-          }
-          this.business.flscrdpsnper1Num = parseInt(this.business.flscrdpsnper1.substring(0, this.business.flscrdpsnper1.length - 1)) // 总考勤点刷卡率
-          this.business.busstalkperNum = parseInt(this.business.busstalkper.substring(0, this.business.busstalkper.length - 1)) // 电话使用率
-        }
-      } else {
-        this.$invoke('toast', 'show', {
-          title: business.data.message || business.data.msg
-        })
-        this.businessEmpty = true
-      }
-      let device = await api.getBusinessDeviceInfo({
-        method: 'POST',
-        data: {
-          schoolId: this.schoolId,
-          sumType: 1,
-          reportType: parseInt(this.modeIndex) + 1,
-          logdate: logdate
-        }
-      })
-      // 先置空，判断后在赋值
-      this.device.swipeNum = 0
-      this.device.phoneNum = 0
-      this.device.phoneOnline = 0
-      this.device.swipeOnline = 0
-      this.device.swipeOnlineRate = '0.00'
-      this.device.swipeOnlineRateNum = '0.00%'
-      this.device.phoneOnlineRate = '0.00'
-      this.device.phoneOnlineRateNum = '0.00%'
-      if (device.data.swipeOnlineRate && device.data.swipeOnlineRate.toString() !== '' && device.data.swipeOnlineRate.toString() !== 'null') {
-        this.device.swipeOnlineRateNum = parseInt(device.data.swipeOnlineRate)
-        this.device.swipeOnlineRate = device.data.swipeOnlineRate + '%'
-      }
-      if (device.data.phoneOnlineRate && device.data.phoneOnlineRate.toString() !== '' && device.data.phoneOnlineRate.toString() !== 'null') {
-        this.device.phoneOnlineRateNum = parseInt(device.data.phoneOnlineRate)
-        this.device.phoneOnlineRate = device.data.phoneOnlineRate + '%'
-      }
-      if (device.data.phoneNum && device.data.phoneNum.toString() !== '' && device.data.phoneNum.toString() !== 'null') {
-        this.device.phoneNum = device.data.phoneNum
-      }
-      if (device.data.phoneOnline && device.data.phoneOnline.toString() !== '' && device.data.phoneOnline.toString() !== 'null') {
-        this.device.phoneOnline = device.data.phoneOnline
-      }
-      if (device.data.swipeNum && device.data.swipeNum.toString() !== '' && device.data.swipeNum.toString() !== 'null') {
-        this.device.swipeNum = device.data.swipeNum
-      }
-      if (device.data.swipeOnline && device.data.swipeOnline.toString() !== '' && device.data.swipeOnline.toString() !== 'null') {
-        this.device.swipeOnline = device.data.swipeOnline
-      }
-      this.$apply()
-    }
-    async onLoad(e) {
-      this.schoolId = e.id
-      this.modeIndex = parseInt(e.reportType) - 1
-      let today = new Date()
-      let myYear = today.getFullYear()
-      let myMonth = today.getMonth() + 1
-      let myDate = today.getDate()
-      if (myMonth >= 1 && myMonth <= 9) {
-        myMonth = '0' + myMonth
-      }
-      if (myDate >= 0 && myDate <= 9) {
-        myDate = '0' + myDate
-      }
-      // 当前日期
-      var currntDate = util.getBeforDay()
-      this.currentDate = currntDate
-      this.startDate = myYear - 3 + '-' + myMonth + '-' + myDate
-      this.endDate = currntDate
-      // 当前月
-      this.currentMonth = myYear + '-' + myMonth
-      this.startMonth = myYear - 3 + '-' + myMonth
-      this.endMonth = myYear + '-' + myMonth
-      // 获取周
-      let getWeekItem = await api.getWeekItem()
-      if (getWeekItem.data && getWeekItem.data.length > 0) {
-        for (var i = 0; i < getWeekItem.data.length; i++) {
-          var l = getWeekItem.data[i].name.length
-          getWeekItem.data[i].str = getWeekItem.data[i].name.substring(11, l)
-        }
-      }
-      if (this.modeIndex === 0) {
-        this.currentDate = e.logdate
-      } else if (this.modeIndex === 1) {
-        this.weekIndex = parseInt(e.logdate)
-      } else {
-        this.currentMonth = e.logdate
-      }
-      this.pickerWeekArr = getWeekItem.data
-      // 获取学校基本信息
-      let baseInfo = await api.getSchoolBaseInfo({
-        method: 'POST',
-        data: {
-          schoolId: this.schoolId
-        }
-      })
-      if (baseInfo.statusCode === 200) {
-        this.baseEmpty = false
-        if (baseInfo.data.customerManager) {
-          baseInfo.data.customerManager = baseInfo.data.customerManager.split(',') // 移动客户经理
-        }
-        if (baseInfo.data.marketManager) {
-          baseInfo.data.marketManager = baseInfo.data.marketManager.split(',') // 公司业务经理
-          baseInfo.data.marketTelnum = baseInfo.data.marketTelnum.split(',') // 公司业务经理号码
-        }
-        if (baseInfo.data.regionManager) {
-          baseInfo.data.regionManager = baseInfo.data.regionManager.split(',') // 区域经理
-        }
-        if (baseInfo.data.customLevel === null) {
-          baseInfo.data.customLevel = '无'
-        }
-        switch (baseInfo.data.customLevel.toString()) {
-          case '1':
-            baseInfo.data.customLevel = 'A'
-            break
-          case '2':
-            baseInfo.data.customLevel = 'B'
-            break
-          case '3':
-            baseInfo.data.customLevel = 'C'
-            break
-          case '4':
-            baseInfo.data.customLevel = 'D'
-            break
-        }
-        if (baseInfo.data.cardHardtype === null) {
-          baseInfo.data.cardHardtype = '无'
-        }
-        this.baseInfo = baseInfo.data
-      } else {
-        this.baseEmpty = true
-      }
-      wepy.setNavigationBarTitle({
-        title: this.baseInfo.schoolName // 页面标题为路由参数
-      })
-      this.$apply()
-      // 获取学校积分详情
-      let integralDetails = await api.getSchoolIntegralDetails({
-        showLoading: true,
-        method: 'POST',
-        data: {
-          schoolId: this.schoolId
-        }
-      })
-      if (integralDetails.data && integralDetails.data.data) {
-        this.integralEmpty = false
-        this.integralDetails = integralDetails.data.data
-      } else {
-        this.integralEmpty = true
-      }
-      this.$apply()
-      this.initData()
-    }
-    changeMode(e) {
-      if (this.modeIndex.toString() === e.detail.value) {
-        return false
-      }
-      this.modeIndex = e.detail.value
-      if (this.modeIndex === 0 || this.modeIndex === '0') {
-        this.currentDate = this.endDate
-      } else if (this.modeIndex === 1 || this.modeIndex === '1') {
-        this.weekIndex = 0
-      } else {
-        this.currentMonth = this.endMonth
-      }
-      this.initData()
-    }
-    changeDate(e) {
-      this.currentDate = e.detail.value
-      this.initData()
-    }
-    changeWeek(e) {
-      this.weekIndex = e.detail.value
-      this.initData()
-    }
-    changeMonth(e) {
-      this.currentMonth = e.detail.value
-      this.initData()
-    }
-    async searchTeacher(e) {
-      if (!util.vailNum(this.searchValue) && !util.vailChinese(this.searchValue)) {
-        this.$invoke('toast', 'show', {
-          title: '请输入正确的姓名或手机号'
-        })
-        return false
-      }
-      var data = {
-        schoolId: this.schoolId
-      }
-      if (util.vailNum(this.searchValue)) {
-        data.telNum = this.searchValue
-      } else {
-        data.teacherName = this.searchValue
-      }
-      // 获取学校积分详情
-      let integralDetails = await api.getSchoolIntegralDetails({
-        method: 'POST',
-        data: data
-      })
-      this.integralDetails = integralDetails.data.data
-      this.$apply()
-    }
-  }
-</script>
-<style>
-  /*--------------------- tab -----------------------------*/
-  .tab {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    height: 96rpx;
-    background: #FFF;
-  }
-  .tab-list {
-    width: 33.3%;
-    line-height: 92rpx;
-    color: #8E8E93;
-    font-size: 16px;
-    text-align: center;
-  }
-  .on{
-    color: #181818;
-  }
-  .borderBtm {
-    width: 10px;
-    height: 4rpx;
-    margin: 0 auto;
-    background: #348CFF;
-  }
-  /*--------------------- container -----------------------------*/
-  .basic-situation {
-    margin-top: 108rpx;
-    padding: 0 30rpx;
-    line-height: 80rpx;
-    font-size: 15px;
-  }
-  .business-conditions {
-    margin-top: 200rpx;
-  }
-  .integral-content {
-    margin-top: 372rpx;
-  }
-  .basic-option {
-    display: flex;
-    justify-content: space-between;
-  }
-  .basic-label {
-    color: #8E8E93;
-  }
-  .business-conditions .basic-label {
-    width: 40px;
-    text-align: right;
-  }
-  .basic-content {
-    color: #181818;
-  }
-  .business-conditions .basic-content {
-    width: 100px;
-  }
-  .basic-footer {
-    text-align: center;
-    color: #D0D0D4;
-    font-size: 14px;
-    line-height: 100rpx;
-  }
-  .nav-wrapper {
-    position: fixed;
-    top: 96rpx;
-    width: 100%;
-    background: #FFF;
-    z-index: 1;
-  }
-  .nav {
-    display: flex;
-    height: 92rpx;
-    justify-content: center;
-    align-items: center;
-  }
-  /*--------------------- search -----------------------------*/
-  .search-wrapper {
-    display: flex;
-    position: fixed;
-    top: 96rpx;
-    width: 100%;
-    z-index: 100;
-    background: #FFF;
-    padding: 40rpx 0;
-  }
-  .search-content {
-    display: flex;
-    width: 600rpx;
-    height: 80rpx;
-    margin: 0 30rpx;
-    border-radius: 40rpx;
-    background: #FFF;
-    box-shadow: 0 1px 10px rgba(142, 142, 147, 0.15);
-    justify-content: center;
-    align-items: center;
-  }
-  .search-icon {
-    width: 30rpx;
-    height: 30rpx;
-    margin-top: 5rpx;
-    margin-right: 10rpx;
-  }
-  .search-title {
-    width: 180px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 15px;
-    color: #8E8E93;
-  }
-  .search-btn {
-    line-height: 80rpx;
-    color: #181818;
-    font-size: 15px;
-  }
-  /*--------------------- title -----------------------------*/
-  .integral-title {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 256rpx;
-    width: 100%;
-    height: 100rpx;
-    background: #F7F7F7;
-    color: #575759;
-    font-size: 15px;
-  }
-  .integral-title view{
-    width: 25%;
-    text-align: center;
-    line-height: 100rpx;
-  }
-  .mode-wrapper {
-    position: relative;
-  }
-  .mode-wrapper::after {
-    position: absolute;
-    content: '';
-    height: 15px;
-    display: inline-block;
-    margin-top: 3px;
-    right: 0;
-    border-right: 2px solid #D0D0D4;
-  }
-  .mode {
-    display: flex;
-    color: #181818;
-    font-size: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-  .icon-down{
-    position: relative;
-    top: 4rpx;
-    width: 14rpx;
-    height: 8rpx;
-    margin-left: 20rpx;
-  }
-  picker {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-  }
-  .picker {
-    display: none;
-    color: #348CFF;
-    font-size: 14px;
-  }
-  .picker-active {
-    display: flex;
-  }
-  .body-view {
-    margin-top: -22rpx;
-    display: flex;
-    justify-content: space-between;
-  }
-  .progress {
-    width: 538rpx;
-  }
-  .progress-percent {
-    width: 120rpx;
-    height: 72rpx;
-    border: 1rpx solid #D0D0D4;
-    border-radius: 5px;
-    color: #8E8E93;
-    text-align: center;
-  }
-  .integral-option {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 80rpx;
-    color: #8E8E93;
-    font-size: 14px;
-  }
-  .integral-option view {
-    width: 25%;
-    text-align: center;
-  }
-  .triangle {
-    width: 0;
-    height: 0;
-    border-left: 8rpx solid transparent;
-    border-right: 8rpx solid transparent;
-    border-top: 16rpx solid #d0d0d4;
-    margin-left: 10rpx;
-  }
-  .integral-title .ident, .integral-option .ident {
-    width: 40%;
-  }
-  .empty {
-    position: fixed;
-    top: 446rpx;
-    width: 100%;
-    color: #D0D0D4;
-    font-size: 14px;
-    text-align: center;
-  }
-  .visibility {
-    visibility: hidden;
-  }
-  .wetoast__bd {
-    min-width: 200px;
-    min-height: 0;
-    padding: 10px;
-  }
-  .wetoast__bd__title {
-    font-size: 14px;
-  }
-</style>
+<script src="../scripts/schoolDetail/index.js"></script>
+<style src="../styles/schoolDetail/index.css"></style>
+

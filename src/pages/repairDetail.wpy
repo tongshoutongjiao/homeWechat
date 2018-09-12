@@ -11,10 +11,10 @@
 		<view class="default end-sn fixed">
 			<view>终端名称</view>
 			<block wx:if="{{repairData.terminalName}}">
-				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="{{repairData.terminalName}}" >
+				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue"  type="text" placeholder="请输入终端名称" value="{{repairData.terminalName}}" >
 			</block>
 			<block wx:else>
-				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue" auto-focus type="text" placeholder="请输入终端名称" value="" >
+				<input data-input-type="terminalName" bindinput="getInputValue" bindfocus="getFocusValue"  type="text" placeholder="请输入终端名称" value="" >
 			</block>
 
 		</view>
@@ -25,20 +25,20 @@
 		<view class="default fixed">
 			<view>SIM卡号</view>
 			<block wx:if="{{repairData.simNum}}">
-				<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="{{repairData.simNum}}" >
+				<input type="number" data-input-type="simNum" bindinput="getInputValue"  bindfocus="getFocusValue" placeholder="请输入sim卡号" value="{{repairData.simNum}}" >
 			</block>
 			<block wx:else>
-				<input type="number" data-input-type="simNum" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入sim卡号" value="" >
+				<input type="number" data-input-type="simNum" bindinput="getInputValue"  bindfocus="getFocusValue" placeholder="请输入sim卡号" value="" >
 			</block>
 
 		</view>
 		<view class="default fixed">
 			<view>安装位置</view>
 			<block wx:if="{{repairData.installAddress}}">
-				<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress&&repairData.installAddress!='null'?repairData.installAddress:''}}" >
+				<input type="text" data-input-type="installAddress" bindinput="getInputValue"  bindfocus="getFocusValue" placeholder="请输入安装位置" value="{{repairData.installAddress&&repairData.installAddress!='null'?repairData.installAddress:''}}" >
 			</block>
 			<block wx:else>
-				<input type="text" data-input-type="installAddress" bindinput="getInputValue" auto-focus bindfocus="getFocusValue" placeholder="请输入安装位置" value="" >
+				<input type="text" data-input-type="installAddress" bindinput="getInputValue"  bindfocus="getFocusValue" placeholder="请输入安装位置" value="" >
 			</block>
 		</view>
 		<view class="default ">
@@ -53,7 +53,7 @@
 			<view>接单日期</view>
 			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">
 				<view wx:if="{{recordId}}"class="picker">
-					{{date.startDate||repairData.orderTime}}
+					{{date.startDate||repairData.orderTime=='null'?'无':repairData.orderTime}}
 				</view>
 				<view wx:else class="picker">
 				 {{date.startDate||'选择开始日期'}}
@@ -76,7 +76,7 @@
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 		</view>
-		<view class="default date-style another-page" data-type="repairPerson" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="repairPerson" data-title="维修人员" bindtap="clickChooseOptions">
 			<view>维修人员</view>
 
 				<view class="picker">{{selectOptions.repairPersonSelected?selectOptions.repairPersonSelected:''}}</view>
@@ -119,7 +119,7 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultView" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="faultView" data-title="故障现象" bindtap="clickChooseOptions">
 			<view>故障现象</view>
 
 			<view class="picker">{{selectOptions.faultViewSelected||''}}</view>
@@ -127,7 +127,7 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultReason" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="faultReason" data-title="故障原因" bindtap="clickChooseOptions">
 			<view>故障原因</view>
 
 			<view class="picker">{{selectOptions.faultReasonSelected||''}}</view>
@@ -135,7 +135,7 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultType" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="faultType" data-title="故障类型" bindtap="clickChooseOptions">
 			<view>故障类型</view>
 
 			<view class="picker">{{selectOptions.faultTypeSelected?selectOptions.faultTypeSelected:''}}</view>
@@ -143,17 +143,16 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="hardware" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="hardware" data-title="硬件类型" bindtap="clickChooseOptions">
 			<view>硬件类型</view>
-
-			<view class="picker">{{selectOptions.hardwareSelected?selectOptions.hardwareSelected:''}}</view>
+			<view class="picker">{{selectOptions.hardwareSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
 		</view>
 
 
-		<view class="default date-style another-page" data-type="handleMeasures" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="handleMeasures" data-title="处理措施" bindtap="clickChooseOptions">
 			<view>处理措施</view>
 
 			<view class="picker">{{selectOptions.handleMeasuresSelected||''}}</view>
@@ -161,7 +160,7 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="remark" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="remark" data-title="备注" bindtap="clickChooseOptions">
 			<view>备注</view>
 			<view class="picker">{{selectOptions.remarkSelected||''}}</view>
 			<view class="right-icon"></view>

@@ -61,10 +61,11 @@ const wxRequest = async (params = {}, url) => {
 };
 // const apiMall = 'http://192.168.5.133:8380'; // 开发（晨宇）
 // const apiMall = 'http://192.168.5.106:8081'; // 开发（晨宇 设备管理）
-// const apiMall = 'http://182.92.131.35:8081'; // 测试（appServer）
+const apiMall = 'http://182.92.131.35:8081'; // 测试（）
+//  const appMall = 'http://192.168.12.168:8087'; // 亚杰（）;
+//  const apiMail = 'http://192.168.12.147:8090'; // 练莉（）;
 // //  // const apiMall = 'http://192.168.5.131:8380';
-const apiMall = 'https://api.967111.com'; // 正式
-//  const apiMall = 'http://192.168.5.122:8080'; // 广越
+// const apiMall = 'https://api.967111.com'; // 正式
 const login = (params) => wxRequest(params, apiMall + '/manageHelper/login.do');
 const searchSchool = (params) => wxRequest(params, apiMall + '/manageHelper/listUserSchoolByAtuh.do')
 const queryGrade = (params) => wxRequest(params, apiMall + '/manageHelper/getGradeBySchoolId.do')
@@ -141,6 +142,9 @@ const searchStudentByCardOrPhone = params => wxRequest(params, apiMall + '/manag
 const getEquipListInfoBySchoolId = params => wxRequest(params, apiMall + '/manageHelper/machine/seachLonlatBySchool.do');
 const updateEquipInfoByLocation = params => wxRequest(params, apiMall + '/manageHelper/machine/updateTerminalLongLatById.do');
 const getFailedStudentList = params => wxRequest(params, apiMall + '/manageHelper/getAuditCountList.do');
+const getQRcode = params => wxRequest(params, appMall + '/manageHelper/getQRcode.do');
+const updateQRcode = params => wxRequest(params, appMall + '/manageHelper/setQRcode.do');
+
 
 const addStudentPhoto = async (params) => {
   wepy.showLoading({
@@ -262,5 +266,7 @@ module.exports = {
   searchStudentByCardOrPhone,
   getEquipListInfoBySchoolId,
   updateEquipInfoByLocation,
-  getFailedStudentList
+  getFailedStudentList,
+  getQRcode,
+  updateQRcode,
 };

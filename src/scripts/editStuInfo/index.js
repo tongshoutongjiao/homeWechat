@@ -760,6 +760,7 @@ export default class Index extends wepy.page {
 
   async onLoad(option) {
     console.log('页面信息');
+    console.log('编辑学生信息');
     this.$invoke('camera-com', 'toggle', false);
     this.schoolId = option.schoolId;
     this.gradeName = option.gradeName;

@@ -67,7 +67,7 @@
 		}
 
 		constructor() {
-			super()
+			super();
 			this.use('requestfix');
 			this.use('promisify');
 		}

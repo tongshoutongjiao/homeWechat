@@ -114,24 +114,17 @@ export default class Index extends wepy.page {
       console.log('已定位');
 
       // 已定位，则定位当前的位置
-
       let latitude = wx.getStorageSync('lat'),
         longitude = wx.getStorageSync('long');
-
       wx.getStorageInfo({
         success: function(res) {
           console.log('获取到所有的本地数据');
           console.log(res);
         }
       });
-      console.log('经度加纬度');
-      console.log(longitude);
-      console.log(latitude);
       this.longitude = longitude;
       this.latitude = latitude;
     } else {
-      console.log('未定位，自动定位当前位置');
-
       // 未定位 则手动将位置定位当前位置，但不定位设备
       wx.getLocation({
         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
@@ -255,6 +248,7 @@ export default class Index extends wepy.page {
 
 // 处理marker的小图标  当前的-> 其他设备的。
   handleMarkerIcon(data) {
+
     // 当前的 其他设备的 1 刷卡机 2 电话机 3刷卡@电话机
     let tempData=[];
     for (let i = 0; i < data.length; i++) {
@@ -262,7 +256,6 @@ export default class Index extends wepy.page {
         curData = data[i];
       defaultObj.width = 40;
       defaultObj.height = 40;
-
       for (let key in curData) {
         switch (key) {
           case 'id':
@@ -292,7 +285,6 @@ export default class Index extends wepy.page {
       if (Number(this.equipID) === curData.id) {
         defaultObj.iconPath = '/images/dq_icon.png';
       }
-
       tempData.push(defaultObj);
       defaultObj = null;
     }
@@ -306,8 +298,8 @@ export default class Index extends wepy.page {
   initEquipData() {
     let tempData = getCurrentPages();
     let data = this.$parent.globalData.curRepairData || tempData[tempData.length - 2].data.equipmentInfo || this.$parent.globalData.curPlantEquip;
-    // 终端名称 终端类型 终端编号 是否已定位
 
+    // 终端名称 终端类型 终端编号 是否已定位
     let defaultObj = {
       terminalName: '',
       terminalNum: '',
@@ -320,6 +312,5 @@ export default class Index extends wepy.page {
     this.equipInfo.isCurEquip = true;
     this.$apply()
   }
-
 
 }

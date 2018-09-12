@@ -133,7 +133,7 @@ image {
   transform: translateX(-50%);
   width: 560rpx ;
   line-height: 80rpx;
-  background: #348cff ;
+  background: #348cff;
   border-radius: 200rpx;
   color: #fff;
   text-align: center;
@@ -199,8 +199,8 @@ image {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  width: 32rpx;
-  height: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
   bottom: 30rpx;
 }
 .magnifier {
@@ -210,3 +210,4 @@ image {
   width: 24rpx;
   height: 24rpx;
 }
+/*# sourceMappingURL=index.css.map */

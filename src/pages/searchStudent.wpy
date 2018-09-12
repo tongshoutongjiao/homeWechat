@@ -10,48 +10,50 @@
 			<block wx:if="{{!empty}}">
 				<view class="grade-list">
 					<view class="wrapper" wx:for="{{studentsList}}">
-						<view class="grade-name" bindtap="toggleStudentList" data-index="{{item.index}}">
-							<view>{{item.gradeName}}{{item.className}}</view>
-							<view class="trangle-icon">
-								<block wx:if="{{item.extendFlag}}">
-									<text class="down"></text>
-									<text class="hidePartDown"></text>
-								</block>
-								<block wx:else>
-									<text class="up"></text>
-									<text class="hidePartUp"></text>
-								</block>
+						<block wx:if="{{item.gradeName!='null'}}">
+							<view class="grade-name" bindtap="toggleStudentList" data-index="{{item.index}}">
+								<view>{{item.gradeName}}{{item.className}}</view>
+								<view class="trangle-icon">
+									<block wx:if="{{item.extendFlag}}">
+										<text class="down"></text>
+										<text class="hidePartDown"></text>
+									</block>
+									<block wx:else>
+										<text class="up"></text>
+										<text class="hidePartUp"></text>
+									</block>
+								</view>
 							</view>
-						</view>
-						<block wx:if="{{item.extendFlag}}">
-							<view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student"
-							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{schoolId}}"
-							      data-class-name="{{item.className}}">
-								<view class="student-info">
-									<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
-										<block wx:if="{{student.auditStatus==2}}">
-											<view class="layer">不合格</view>
-										</block>
-										<block wx:if="{{student.bulkPasteImg!==' '}}">
-											<image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
-										</block>
-										<block wx:else>
-											<image src="{{defaultPhoto}}" mode="aspectFill"/>
-										</block>
-									</view>
-									<view class="nick-wrapper">
-										<view class="nickname">
-											<text>{{student.studentName}}</text>
-											<text class="{{student.isdorm? 'redStyle':'blueStyle'}}">({{student.isdorm?'住校':'走读'}})</text>
-											<text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}
-											</text>
+							<block wx:if="{{item.extendFlag}}">
+								<view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student"
+									  bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{schoolId}}"
+									  data-class-name="{{item.className}}">
+									<view class="student-info">
+										<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
+											<block wx:if="{{student.auditStatus==2}}">
+												<view class="layer">不合格</view>
+											</block>
+											<block wx:if="{{student.studentImg!=' '}}">
+												<image src="{{student.studentImg}}" mode="aspectFill"/>
+											</block>
+											<block wx:else>
+												<image src="{{defaultPhoto}}" mode="aspectFill"/>
+											</block>
 										</view>
-										<view class="telNumber" wx:if="{{student.phone1!==' '}}">
-											Tel: {{student.phone1}}
+										<view class="nick-wrapper">
+											<view class="nickname">
+												<text>{{student.studentName}}</text>
+												<text class="{{student.isdorm? 'redStyle':'blueStyle'}}">({{student.isdorm?'住校':'走读'}})</text>
+												<text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}
+												</text>
+											</view>
+											<view class="telNumber" wx:if="{{student.phone1!==' '}}">
+												Tel: {{student.phone1}}
+											</view>
 										</view>
 									</view>
 								</view>
-							</view>
+							</block>
 						</block>
 					</view>
 				</view>
@@ -61,7 +63,6 @@
 			</block>
 		</block>
 		<block wx:else>
-
 			<view class="search-content card-content">
 				<image class="search-icon" src="/images/search_icon.png"></image>
 				<input class="search-title" placeholder="请输入卡号或手机号" type="number" value="" bindinput="searchValueCard"
@@ -72,46 +73,53 @@
 			<block wx:if="{{!empty}}">
 				<view class="grade-list">
 					<view class="wrapper" wx:for="{{studentsList}}">
-						<view class="grade-name" bindtap="toggleStudentList" data-index="{{item.index}}">
-							<view>{{item.classInf}}</view>
-							<view class="trangle-icon">
-								<block wx:if="{{item.extendFlag}}">
-									<text class="down"></text>
-									<text class="hidePartDown"></text>
-								</block>
-								<block wx:else>
-									<text class="up"></text>
-									<text class="hidePartUp"></text>
-								</block>
+						<block wx:if="{{item.gradeName!=null}}">
+							<view class="grade-name" bindtap="toggleStudentList" data-index="{{item.index}}">
+								<view>{{item.classInf}}</view>
+								<view class="trangle-icon">
+									<block wx:if="{{item.extendFlag}}">
+										<text class="down"></text>
+										<text class="hidePartDown"></text>
+									</block>
+									<block wx:else>
+										<text class="up"></text>
+										<text class="hidePartUp"></text>
+									</block>
+								</view>
 							</view>
-						</view>
-						<block wx:if="{{item.extendFlag}}">
-							<view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student"
-							      bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{student.schoolId}}"
-							      data-class-name="{{item.className}}">
-								<view class="student-info">
-									<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
-										<block wx:if="{{student.bulkPasteImg!==' '}}">
-											<image src="{{student.bulkPasteImg}}" mode="aspectFill"/>
-										</block>
-										<block wx:else>
-											<image src="{{defaultPhoto}}" mode="aspectFill"/>
-										</block>
-									</view>
-									<view class="nick-wrapper">
-										<view class="nickname">
-											<text>{{student.studentName}}</text>
-											<text class="{{student.isdorm? 'redStyle':'blueStyle'}}">({{student.isdorm?'住校':'走读'}})</text>
-											<text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}
-											</text>
+							<block wx:if="{{item.extendFlag}}">
+								<view class="student-list" wx:for="{{item.studentList}}" wx:for-item="student"
+									  bindtap="navigatorToEditStudentInfo" data-id="{{student.studentId}}" data-school-id="{{student.schoolId}}"
+									  data-class-name="{{item.className}}">
+									<view class="student-info">
+										<view class="nick-photo" style="background: #{{['ddd','eee','efefef'][index%3]}};">
+											<block wx:if="{{student.auditStatus==2}}">
+												<view class="layer">不合格</view>
+											</block>
+											<block wx:if="{{student.studentImg!=' '}}">
+												<image src="{{student.studentImg}}" mode="aspectFill"/>
+											</block>
+											<block wx:else>
+												<image src="{{defaultPhoto}}" mode="aspectFill"/>
+											</block>
 										</view>
-										<view class="telNumber" wx:if="{{student.phone1!==' '}}">
-											Tel: {{student.phone1}}
+										<view class="nick-wrapper">
+											<view class="nickname">
+												<text>{{student.studentName}}</text>
+												<text class="{{student.isdorm? 'redStyle':'blueStyle'}}">({{student.isdorm?'住校':'走读'}})</text>
+												<text class="{{student.openStatusName==='已开通'?'normal':'grayStyle'}}">{{student.openStatusName}}
+												</text>
+											</view>
+											<view class="telNumber" wx:if="{{student.phone1!==' '}}">
+												Tel: {{student.phone1}}
+											</view>
 										</view>
 									</view>
 								</view>
-							</view>
+							</block>
+
 						</block>
+
 					</view>
 				</view>
 			</block>

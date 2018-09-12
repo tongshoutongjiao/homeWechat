@@ -463,13 +463,6 @@ export default class Index extends wepy.page {
       }
 
     },
-
-
-
-
-
-
-
     async bindChange(e) {
       console.log('bingCHANGE', e)
       if (this.userType == '5') { return }
@@ -720,8 +713,6 @@ export default class Index extends wepy.page {
       }
       wepy.navigateTo({url: '../pages/search?page_url=/pages/schoolList&page=2&toCurrentTab=' + this.toCurrentTab + '&searchDate=' + searchDate + '&regionLevel=' + regionLevel + '&regionId=' + regionId + '&regionManager=' + regionManager + '&showDate=' + showDate})
     },
-
-
     async bindDateChange(e) {
       this.loadMore = true
       if (this.userType == '5') { return }
@@ -1479,7 +1470,7 @@ export default class Index extends wepy.page {
       this.schoolId = ''
       this.$apply()
     },
-    async loadMoreData (e) {
+    async loadMoreData () {
       let userId = wepy.getStorageSync('userId')
       let loadMoreParams = {}
       loadMoreParams.userType = this.userType

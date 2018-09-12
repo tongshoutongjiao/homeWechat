@@ -106,12 +106,15 @@ image {
   font-size: 28rpx;
   color: #575759;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .equipWrapper .detail view.blue-style {
   color: #5978be;
 }
 .equipWrapper .detail view.gray-style {
-  color: #d0d0d4 ;
+  color: #d0d0d4;
 }
 .equipWrapper .all-default {
   width: 40rpx;
@@ -125,12 +128,17 @@ image {
   padding: 46rpx 30rpx 30rpx;
   color: #575759;
   font-size: 28rpx;
+  display: flex;
 }
 .equipWrapper .location text {
   vertical-align: middle;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .equipWrapper .location text.gray-style {
-  color: #d0d0d4 ;
+  color: #d0d0d4;
 }
 .leftIcon {
   width: 20rpx;
@@ -178,7 +186,7 @@ image {
   color: #fff;
 }
 .btomView .restore view.disabled {
-  opacity: .3;
+  opacity: 0.3;
 }
 .other-style {
   display: block;
@@ -294,3 +302,4 @@ image {
 .dialog .btn view.blue-style {
   color: #358dff;
 }
+/*# sourceMappingURL=index.css.map */

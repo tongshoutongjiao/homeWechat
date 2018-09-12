@@ -104,7 +104,7 @@ export default class Index extends wepy.page {
                     this.$apply();
                     return;
                 }
-                cardRecordData.kaoqinTypeId === 1 ? this.getCardRecord(selectedInfo) : this.getDormAttendanceInfo(dormInfo);
+                // cardRecordData.kaoqinTypeId === 1 ? this.getCardRecord(selectedInfo) : this.getDormAttendanceInfo(dormInfo);
             }
             this.$apply();
         },
@@ -145,11 +145,10 @@ export default class Index extends wepy.page {
     }
 
     onUnload() {
-         console.log('退出页面时，清除该模块中的数据');
-        this.$parent.globalData.selectInfo = {};
+        console.log('退出页面时，清除该模块中的数据');
+        this.$parent.globalData.selectedInfo = {};
         this.$parent.globalData.dormInfo = {};
-        this.$parent.globalData.recordPageData={};
-
+        this.$parent.globalData.recordPageData = {};
         this.$apply();
     }
 
@@ -168,7 +167,14 @@ export default class Index extends wepy.page {
         let typeId = this.cardRecordData.kaoqinTypeId,
             selectedInfo = this.$parent.globalData.selectedInfo,
             dormInfo = this.$parent.globalData.dormInfo;
-        dormInfo && (this.attendanceObj.selectType = dormInfo.nodeType === 'school4Dorm' ? 'dorm' : 'className');
+
+
+        console.log('selectedInfo 选中的班级信息');
+        console.log(this.$parent.globalData);
+        console.log(selectedInfo);
+
+
+        dormInfo && dormInfo.nodeType && (this.attendanceObj.selectType = dormInfo.nodeType === 'school4Dorm' ? 'dorm' : 'className');
         if (typeId == '1') {
             Object.assign(this.attendanceObj, selectedInfo);
             this.getCardRecord(selectedInfo);
@@ -203,8 +209,6 @@ export default class Index extends wepy.page {
         let defaultObj = this.cardRecordData;
         defaultObj = optionObj ? Object.assign(defaultObj, optionObj) : defaultObj;
         defaultObj.attentanceDate = defaultObj.attendanceDate;
-        console.log('获取学校考勤数据');
-        console.log(defaultObj);
         this.requestFlag = true;
         let res = await api.getCardRecord({
             method: 'POST',
@@ -229,7 +233,7 @@ export default class Index extends wepy.page {
         }
     }
 
-//  宿舍考勤统计
+    // 宿舍考勤统计
     async getDormAttendanceInfo(defaultObj) {
         // 判断是按照班级查询还是宿舍查询
         let tempObj = {
@@ -244,11 +248,21 @@ export default class Index extends wepy.page {
             this.nodeType = 'school4Dorm';
             tempObj.queryType = '4';
         } else {
+
+
+            console.log('查看默认数据');
+            console.log(this.attendanceObj);
+
+
             this.nodeType = 'school';
             tempObj.queryType = '3';
         }
 
         tempObj = defaultObj ? Object.assign(tempObj, defaultObj) : tempObj;
+
+
+        console.log('查看默认的请求信息');
+        console.log(tempObj);
 
         // 请求宿舍考勤信息
         this.judgeAttendanceType(tempObj);
@@ -278,6 +292,10 @@ export default class Index extends wepy.page {
         }
         else {
             defaultData.nodeType = 'school4Dorm';
+
+            console.log('self.queryType');
+            console.log(self.queryType);
+
             switch (self.queryType) {
                 case '4':
                     // 按学校
@@ -321,7 +339,7 @@ export default class Index extends wepy.page {
         this.$apply();
     }
 
-// 点击span内容的时候，将当前页面选择的数据保存到全局变量
+    // 点击span内容的时候，将当前页面选择的数据保存到全局变量
     handleRecordPageData(defaultObj) {
         let recordPageData = {};
         recordPageData.kaoqinTypeId = this.cardRecordData.kaoqinTypeId;
@@ -334,10 +352,6 @@ export default class Index extends wepy.page {
         delete recordPageData.token;
         delete recordPageData.platformType;
         this.$parent.globalData.recordPageData = recordPageData;
-        console.log('查看页面需要查询的信息');
-        console.log(defaultObj);
-        console.log(this.$parent.globalData.recordPageData);
-
     }
 
     //  跳转到明细页面

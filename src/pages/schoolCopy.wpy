@@ -97,7 +97,7 @@
 						<scroll-view class="scroll-wrap" scroll-y="true" bindscrolltolower="loadMoreData">
 							<view class="school-model"></view>
 							<block wx:for="{{schoolListData}}">
-								<view class="school-name-wrapper">
+								<view class="school-name-wrapper" data-id="{{item.schoolId}}" catchtap="toDetial">
 									<view class=" school-title-name" style="text-align: left">{{item.schoolName}}</view>
 									<view class="detileNum">
 										<view class="leftIcon"></view>

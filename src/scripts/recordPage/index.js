@@ -67,10 +67,6 @@ export default class Index extends wepy.page {
     this.curPageData = curPageData;
     this.spanText = e.spanText;
     this.titleText = e.titleText;
-
-    if (curPageData.navigateType === 'in' || curPageData.navigateType === 'out') {
-      this.inOutFlag = true;
-    }
     setTimeout(e => this.initData());
     this.$apply();
   }

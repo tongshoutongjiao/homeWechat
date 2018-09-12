@@ -15,7 +15,7 @@
 			</view>
 			<view class="unfix school-name">
 				<view>终端使用状态</view>
-				<view>{{equipmentInfo.terminalStatus=='0'?'未使用':equipmentInfo.terminalStatus=='1'?'在使用':'已丢失'}}</view>
+				<view>{{equipmentInfo.terminalStatus=='0'?'未使用':equipmentInfo.terminalStatus=='1'?'在使用':equipmentInfo.terminalStatus=='2'?'已丢失':'测试用'}}</view>
 			</view>
 			<view class="unfix school-name">
 				<view>终端类型</view>
@@ -24,7 +24,7 @@
 			<view class="unfix simStyle">
 				<view>SIM卡号</view>
 				<input data-input-type="simNum" wx:if="{{equipmentInfo.simNum==='11111111111'}}" type="text" type="number"
-				       placeholder="请输入SIM卡号" value="{{equipmentInfo.simNum}}" auto-focus=true bindinput="getInputValue"
+				       placeholder="请输入SIM卡号" value="{{equipmentInfo.simNum}}"  bindinput="getInputValue"
 				       bindblur="getFocusValue"/>
 				<view wx:else>{{equipmentInfo.simNum||'无'}}</view>
 
@@ -123,7 +123,7 @@
 				<textarea class="remark" data-input-type="remark" maxlength=50 bindinput="getInputValue"
 				          bindblur="getFocusValue" placeholder="请输入位置备注,最多50个字"
 				          value="{{equipmentInfo.remarkAdress==='null'?'无':equipmentInfo.remarkAdress}}" auto-height=true
-				          auto-focus/>
+				          />
 			</view>
 			<view style="height:170rpx;">
 				<view class="sure-btn" bindtap="clickSaveInfo">

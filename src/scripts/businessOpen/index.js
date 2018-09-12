@@ -1,5 +1,5 @@
 import wepy from 'wepy'
-import api from '../../api.js'
+import api from '../api.js'
 import Toast from 'wepy-com-toast'
 export default class Index extends wepy.page {
     config = {
@@ -51,7 +51,22 @@ export default class Index extends wepy.page {
             }
         },
         openStudentBusiness() {
-            if (this.businessAble === true) {
+            let selectedFlag=false;
+            let studentList=this.data.studentList;
+            bk:for(let i=0,curItem;i<studentList.length;i++){
+                curItem=studentList[i];
+                console.log('当前studentInfo');
+                console.log(curItem);
+                console.log(curItem.phoneInfo);
+                for(let j=0,curInfo;j<curItem.phoneInfo.length;j++){
+                    curInfo=curItem.phoneInfo[j];
+                    if(curInfo.selected){
+                        selectedFlag=true;
+                        break bk;
+                    }
+                }
+            }
+            if (!selectedFlag&&this.businessAble === true) {
                 this.$invoke('toast', 'show', {
                     title: '请选择手机号'
                 })
@@ -183,10 +198,10 @@ export default class Index extends wepy.page {
             this.$apply()
         },
         choosePhone(e) {
-            const studentIndex = e.currentTarget.dataset.studentindex
-            const phoneIndex = e.currentTarget.dataset.phoneindex
-            const selected = this.studentList[studentIndex].phoneInfo[phoneIndex].selected
-            this.studentList[studentIndex].phoneInfo[phoneIndex].selected = !selected
+            const studentIndex = e.currentTarget.dataset.studentindex;
+            const phoneIndex = e.currentTarget.dataset.phoneindex;
+            const selected = this.studentList[studentIndex].phoneInfo[phoneIndex].selected;
+            this.studentList[studentIndex].phoneInfo[phoneIndex].selected = !selected;
             if (!selected) {
                 var maxPhone = 0
                 for (var i = 0; i < this.studentList.length; i++) {
@@ -268,10 +283,11 @@ export default class Index extends wepy.page {
             this.$apply()
         },
         bindVcode(e) {
-            this.studentList[e.currentTarget.dataset.studentindex].phoneInfo[e.currentTarget.dataset.phoneindex].vcode = e.detail.value
+            this.studentList[e.currentTarget.dataset.studentindex].phoneInfo[e.currentTarget.dataset.phoneindex].vcode = e.detail.value;
         },
         focusVode(e) {
-            this.studentList[e.currentTarget.dataset.studentindex].phoneInfo[e.currentTarget.dataset.phoneindex].selected = true
+            // this.studentList[e.currentTarget.dataset.studentindex].phoneInfo[e.currentTarget.dataset.phoneindex].selected = true;
+            this.methods.choosePhone.call(this,e);
             this.$apply()
         }
     }

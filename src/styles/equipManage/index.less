@@ -112,6 +112,9 @@ image{
       font-size: 28rpx;
       color:rgb(87,87,89);
       text-align: center;
+       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       &.blue-style{
       color: #5978be;
     }
@@ -132,8 +135,13 @@ image{
     padding:46rpx 30rpx 30rpx;
     color: #575759;
     font-size: 28rpx;
+    display: flex;
     text{
       vertical-align: middle;
+      flex: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
       &.gray-style{
         color:#d0d0d4 ;
       }
