@@ -122,7 +122,6 @@ export default class Index extends wepy.page {
 
         //  点击上传图片
         clickUploadImage: function (e) {
-            console.log('点击上传图片')
             commonMethods.uploadEquipImage(e, this);
         },
 

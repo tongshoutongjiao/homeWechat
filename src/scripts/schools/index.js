@@ -1,8 +1,8 @@
-import wepy from 'wepy'
-import querystring from 'querystring'
-import LetterIndex from '../components/letter-index/letter-index'
-import api from '../api'
-import * as Toolkit from '../utils/toolkit'
+import wepy from 'wepy';
+import querystring from 'querystring';
+import LetterIndex from '../components/letter-index/letter-index';
+import api from '../api';
+import * as Toolkit from '../utils/toolkit';
 
 export default class Index extends wepy.page {
   components = {
