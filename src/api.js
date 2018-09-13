@@ -130,6 +130,14 @@ const addStudentPhoto = async (params) => {
     title: '正在上传..',
     mask: true
   })
+  const defaultParams = {
+    platformType: 3,
+    version: '1.0.0',
+    preHand: 1
+  };
+
+
+
   const ret = await wepy.uploadFile({
     url: apiMall + '/photoGraphController/uploadPhotoToQiNiu.do?' + querystring.stringify(defaultParams) + '&token=' + encodeURI(encodeURI(wepy.getStorageSync('token')).replace(/\+/g, '%2B')),
     ...params,

@@ -3,9 +3,9 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
-		"postcss": true,
+		"postcss": false,
 		"minified": false,
-		"newFeature": true
+		"newFeature": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
