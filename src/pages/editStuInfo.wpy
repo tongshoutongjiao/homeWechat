@@ -2,7 +2,13 @@
 	<view class="container">
 		<view class="photo" >
 			<view>头像</view>
-			<image src="{{studentInfo.studentImg?studentInfo.studentImg:defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg" binderror="handErrorImg"/>
+			<block wx:if="{{studentInfo.studentImg}}">
+				<image src="{{studentInfo.studentImg}}" mode="aspectFill" bindtap="clickUploadImg" binderror="handErrorImg"/>
+			</block>
+			
+			<block wx:else>
+				<image src="{{defaultPhoto}}" bindtap="clickUploadImg"/>
+			</block>
 		</view>
 		<view class="class-name">
 			<view>班级</view>

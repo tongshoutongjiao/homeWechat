@@ -91,7 +91,7 @@
       let userId = wepy.getStorageSync('userId')
       let getTypeInfo = await api.getType({method: 'POST', data: {userId: userId}})
       wepy.setStorageSync('userType', getTypeInfo.data.userType);
-      this.getFailStudentList()
+      // this.getFailStudentList()
     }
 
     methods = {
