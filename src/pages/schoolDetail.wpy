@@ -334,7 +334,6 @@
       <view class="code-bottom">
         <view class="inline">结束时间</view>
         <view class=" picker-style fr">
-          <view class="inline start-time"></view>
           <view class="inline">
             <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
                     range="{{codeData.codeArray}}">

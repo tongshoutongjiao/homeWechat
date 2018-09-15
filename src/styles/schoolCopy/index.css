@@ -133,8 +133,6 @@ page {
 .middle {
   display: flex;
   flex: 1;
-  /*scroll-wrap*/
-  /*schoolName*/
 }
 .middle .scroll-wrap {
   box-sizing: border-box;
@@ -142,13 +140,17 @@ page {
 }
 .middle .school-list {
   width: 100%;
-  height: 100%;
 }
 .middle .swiper-box {
   display: block;
   box-sizing: border-box;
   width: 100%;
   padding-left: 48rpx;
+}
+.middle swiper{
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 .middle .school-name-wrapper {
   margin-bottom: 35rpx;
