@@ -1,6 +1,7 @@
 import wepy from 'wepy';
 import api from '../api';
 import CameraCom from '../components/camera/camera';
+import * as toolkit from '../utils/toolkit'
 
 const defaultPhoto = '../asset/hp_icon.png';
 
@@ -37,8 +38,9 @@ export default class Index extends wepy.page {
     selectClassName: '',
     showPhoto: false,
     savingFlag: false,
-    cameraFlag: false,
 
+    cameraFlag:false,
+      isIponeX:false,
 
     //  省市县三级联动
     animation: [],
@@ -765,6 +767,7 @@ export default class Index extends wepy.page {
     this.schoolId = option.schoolId;
     this.gradeName = option.gradeName;
     this.studentInfo.studentId = option.id;
+    toolkit.judgeIponeX(this);
 
     for (let key in option) {
       this.studentInfo[key] = option[key];

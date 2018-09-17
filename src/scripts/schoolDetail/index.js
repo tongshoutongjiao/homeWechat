@@ -47,27 +47,26 @@ export default class Index extends wepy.page {
         {
           id: '0',
           time: '关闭',
-          value:'关闭',
+          value: '关闭'
         },
         {
           id: '1',
           time: '1小时',
-          value:'',
-
+          value: ''
         },
         {
           id: '2',
           time: '2小时',
-          value:'',
+          value: ''
         },
         {
           id: '3',
           time: '4小时',
-          value:''
+          value: ''
         }, {
           id: '4',
           time: '一天',
-          value:''
+          value: ''
         }
       ],
       index: 0,
@@ -82,7 +81,7 @@ export default class Index extends wepy.page {
     },
     fixedTime: null,  // 修改过的时间
 
-    changeValue:'关闭',
+    changeValue: '关闭',
     testURL: 'http://qr.api.cli.im/qr?data=https%253A%252F%252Fwww.baidu.com&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=3d9a7684e3712110675d398ca0c86070'
 
   }
@@ -104,18 +103,18 @@ export default class Index extends wepy.page {
 
     // 点击修改时间
     bindCodeChange(e) {
-      let min;
-      this.codeData.index = e.detail.value;
-      let hourNum = this.codeData.codeArray[e.detail.value].time;
-      min = e.detail.value == '4' ? 24 * 60 : parseInt(hourNum) * 60;
-      this.updateQRcodeTime(min);
-      this.$apply();
+      let min
+      this.codeData.index = e.detail.value
+      let hourNum = this.codeData.codeArray[e.detail.value].time
+      min = e.detail.value == '4' ? 24 * 60 : parseInt(hourNum) * 60
+      this.updateQRcodeTime(min)
+      this.$apply()
     },
 
     // 预览保存二维码
     longTapSaveCode() {
       // console.log('长按事件');
-      let curUrl = this.qrCodeData.qrcodeUrl;
+      let curUrl = this.qrCodeData.qrcodeUrl
       curUrl && wepy.previewImage({
         current: curUrl, // 当前显示图片的http链接
         urls: [`${curUrl}`] // 需要预览的图片http链接列表
@@ -156,6 +155,10 @@ export default class Index extends wepy.page {
 
     // 获取学校设备信息,并对获取到的信息处理
     this.getSchoolDevice(logdate)
+    // 适配iponex
+    Toolkit.judgeIponeX(this)
+    // 初始化页面日期信息
+    this.formatDate()
 
     this.$apply()
   }
@@ -346,7 +349,7 @@ export default class Index extends wepy.page {
 
   // 根据月份不同，做判断
   judgeMonthDay(curMonth, year) {
-    let logdate;
+    let logdate
     switch (curMonth) {
       case '01':
       case '03':
@@ -355,7 +358,7 @@ export default class Index extends wepy.page {
       case '08':
       case '10':
       case '12':
-        logdate = this.currentMonth + '-31';
+        logdate = this.currentMonth + '-31'
         break
       case '04':
       case '06':
@@ -505,48 +508,48 @@ export default class Index extends wepy.page {
         schoolId: this.schoolId,
         schoolName: this.baseInfo.schoolName
       }
-    });
+    })
     if (res.data && res.data.result === 200) {
-      this.qrCodeData = res.data;
-      this.changeValue=res.data.createTime?res.data.lastTime:'关闭';
+      this.qrCodeData = res.data
+      this.changeValue = res.data.createTime ? res.data.lastTime : '关闭'
     }
-    this.$apply();
+    this.$apply()
   }
 
   //  更新二维码信息
   async updateQRcodeTime(min) {
     //  点击确定的时候调用信息
-    min = isNaN(min) ? 0 : min;
+    min = isNaN(min) ? 0 : min
     let res = await api.updateQRcode({
       method: 'POST',
       data: {
         minutes: min,
         id: this.qrCodeData.id
       }
-    });
+    })
     if (res.data && res.data.result === 200) {
-      console.log('查看提交成功的信息');
+      console.log('查看提交成功的信息')
       this.$invoke('toast', 'show', {
         title: res.data.message
-      });
-      this.getQRcode();
-      this.$apply();
+      })
+      this.getQRcode()
+      this.$apply()
     } else {
       this.$invoke('toast', 'show', {
         title: res.data.message
-      });
-      this.changeValue= '关闭';
+      })
+      this.changeValue = '关闭'
     }
-    this.$apply();
+    this.$apply()
   }
 
   //  修改过期时间
   fixedDeadline(min) {
     //     根据用户选择的
-    let timeStr=new Date()*1+min*60*1000;
-    let format = 'YYYY-MM-DD HH:mm:ss';
-    let curDate = Toolkit.dateFormat(timeStr, format);
-    this.changeValue=curDate;
-    this.$apply();
+    let timeStr = new Date() * 1 + min * 60 * 1000
+    let format = 'YYYY-MM-DD HH:mm:ss'
+    let curDate = Toolkit.dateFormat(timeStr, format)
+    this.changeValue = curDate
+    this.$apply()
   }
 }

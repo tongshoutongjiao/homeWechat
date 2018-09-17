@@ -1,22 +1,24 @@
 <template>
-    <view class="tab">
-        <view class="tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" catchtap="changeItem">
-            基本信息
-            <view class="borderBtm" wx:if="{{currentTab == 0}}"></view>
-        </view>
-        <view class="tab-list {{currentTab == 1 ? 'on' : ''}}" data-current="1" catchtap="changeItem">
-            业务情况
-            <view class="borderBtm" wx:if="{{currentTab == 1}}"></view>
-        </view>
-        <view class="tab-list {{currentTab == 2 ? 'on' : ''}}" data-current="2" catchtap="changeItem">
-            积分详情
-            <view class="borderBtm" wx:if="{{currentTab == 2}}"></view>
-        </view>
-        <view class="tab-list {{currentTab == 3 ? 'on' : ''}}" data-current="3" catchtap="changeItem">
-            二维码
-            <view class="borderBtm" wx:if="{{currentTab == 3}}"></view>
-        </view>
+  <import src="../templates/iponeModel.wxml">
+  <view class="tab">
+    <view class="tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" catchtap="changeItem">
+      基本信息
+      <view class="borderBtm" wx:if="{{currentTab == 0}}"></view>
     </view>
+    <view class="tab-list {{currentTab == 1 ? 'on' : ''}}" data-current="1" catchtap="changeItem">
+      业务情况
+      <view class="borderBtm" wx:if="{{currentTab == 1}}"></view>
+    </view>
+    <view class="tab-list {{currentTab == 2 ? 'on' : ''}}" data-current="2" catchtap="changeItem">
+      积分详情
+      <view class="borderBtm" wx:if="{{currentTab == 2}}"></view>
+    </view>
+    <view class="tab-list {{currentTab == 3 ? 'on' : ''}}" data-current="3" catchtap="changeItem">
+      二维码
+      <view class="borderBtm" wx:if="{{currentTab == 3}}"></view>
+    </view>
+  </view>
+
     <!-- 基本情况 -->
     <view class="basic-situation" wx:if="{{currentTab == 0}}">
         <view class="empty" hidden="{{!baseEmpty}}">暂无学校基本情况</view>
@@ -322,36 +324,38 @@
         </view>
     </view>
 
-    <!--二维码-->
-    <view class="bar-code basic-situation" wx:if="{{currentTab==3}}">
-        <view class="teacher-code">
-            <view class="teacher-title tc">班主任进班二维码</view>
-            <view class="img-wrapper" bindtap="longTapSaveCode">
-                <image src={{qrCodeData.qrcodeUrl}}></image>
-            </view>
-            <view class="school-name tc">{{baseInfo.schoolName}}</view>
-            <view class="tc">长按保存二维码</view>
-            <view class="code-bottom">
-                <view class="inline">结束时间</view>
-                <view class=" picker-style fr">
-                    <view class="inline start-time"></view>
-                    <view class="inline">
-                        <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
-                                range="{{codeData.codeArray}}">
-                            <view class="code-picker">
-                                <text>{{changeDate||codeData.codeArray[codeData.index].value}}</text>
-                                <image class="right-arrow" src="/images/put_icon.png"/>
-                            </view>
-                        </picker>
-                    </view>
-                </view>
-
-            </view>
-
+  <!--二维码-->
+  <view class="bar-code basic-situation" wx:if="{{currentTab==3}}">
+    <view class="teacher-code">
+      <view class="teacher-title tc">班主任进班二维码</view>
+      <view class="img-wrapper" bindtap="longTapSaveCode">
+        <image src={{qrCodeData.qrcodeUrl}}></image>
+      </view>
+      <view class="school-name tc">{{baseInfo.schoolName}}</view>
+      <view class="tc">长按保存二维码</view>
+      <view class="code-bottom">
+        <view class="inline">结束时间</view>
+        <view class=" picker-style fr">
+          <view class="inline">
+            <picker bindchange="bindCodeChange" range-key="time" value="{{codeData.index}}"
+                    range="{{codeData.codeArray}}">
+              <view class="code-picker">
+                <text>{{changeValue||codeData.codeArray[codeData.index].value}}</text>
+                <image class="right-arrow" src="/images/put_icon.png"/>
+              </view>
+            </picker>
+          </view>
         </view>
+      </view>
+   </view>
+  </view>
+   <toast/>
 
-    </view>
-    <toast/>
+    <!--适配iphoneX-->
+    <block wx:if="{{isIponeX}}">
+      <template is="iponeModel"></template>
+    </block>
+
 </template>
 <script src="../scripts/schoolDetail/index.js"></script>
 <style src="../styles/schoolDetail/index.css"></style>

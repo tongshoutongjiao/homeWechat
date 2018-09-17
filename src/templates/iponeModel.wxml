@@ -1,0 +1,5 @@
+
+    <template name="iponeModel">
+        <view class="ipone"></view>
+    </template>
+

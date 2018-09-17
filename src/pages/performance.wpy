@@ -1,4 +1,5 @@
 <template name="main">
+
   <view class="performance">
     <!-- header bar -->
     <view class="header-bar flex">
@@ -16,7 +17,7 @@
           <text bindtap="handleSwitchTimeout" data-id="{{item.id}}" >{{item.name}}</text>
         </view>
       </view>
-      <view class="date-picker"> 
+      <view class="date-picker">
         <picker mode="date" fields="day" value="{{logdate}}" start="{{startdate}}" end="{{enddate}}" bindchange="handleDateChange" wx:if="{{timeoutActive === 1}}">
           <view>{{logdate}}</view>
         </picker>
@@ -32,7 +33,7 @@
     <view class="tabs flex category">
       <view class="flex-item {{item.id === pageActive ? 'tab-active' : ''}}" wx:for="{{tabs}}"  wx:key="{{item.id}}">
         <text bindtap="handleSwitchTabs" data-id="{{item.id}}" >{{item.name}}</text>
-      </view> 
+      </view>
     </view>
     <!-- main -->
     <view class="no-data" wx:if="{{userType === '5'}}">暂无权限</view>

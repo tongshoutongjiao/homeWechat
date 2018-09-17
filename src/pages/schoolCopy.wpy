@@ -1,4 +1,5 @@
 <template>
+	<import src="../templates/iponeModel.wxml">
 	<view class="container">
 		<view class="header">
 
@@ -87,33 +88,33 @@
 		<!-- 左右滑动区域-->
 
 		<view class="middle">
-			<swiper current="{{curItemIndex}}" data-cur-index="{{curItemIndex}}" class="swiper-box school-list" duration="300"
-			        bindchange="bindChange">
+				<swiper  current="{{curItemIndex}}" data-cur-index="{{curItemIndex}}" class="swiper-box school-list" duration="300"
+						bindchange="bindChange">
 
-				<block wx:for="{{3}}">
-					<swiper-item>
-						<view wx:if="{{ajaxData.userType === 5}}" class="noData not-access">暂无权限</view>
-						<view wx:if="{{schoolListData.length===0}}" class="noData">暂无数据</view>
-						<scroll-view class="scroll-wrap" scroll-y="true" bindscrolltolower="loadMoreData">
-							<view class="school-model"></view>
-							<block wx:for="{{schoolListData}}">
-								<view class="school-name-wrapper" data-id="{{item.schoolId}}" catchtap="toDetial">
-									<view class=" school-title-name" style="text-align: left">{{item.schoolName}}</view>
-									<view class="detileNum">
-										<view class="leftIcon"></view>
-										<view class="studentNum">{{item.studentNum}}</view>
-										<view class="openRate">{{item.busspsnper}}%</view>
-										<view class="addUserNum">{{item.adduserNum}}</view>
+					<block wx:for="{{3}}">
+						<swiper-item>
+							<view wx:if="{{ajaxData.userType === 5}}" class="noData not-access">暂无权限</view>
+							<view wx:if="{{schoolListData.length===0}}" class="noData">暂无数据</view>
+							<scroll-view class="scroll-wrap" scroll-y="true" bindscrolltolower="loadMoreData">
+								<view class="school-model"></view>
+								<block wx:for="{{schoolListData}}">
+									<view class="school-name-wrapper" data-id="{{item.schoolId}}" catchtap="toDetial">
+										<view class=" school-title-name" style="text-align: left">{{item.schoolName}}</view>
+										<view class="detileNum">
+											<view class="leftIcon"></view>
+											<view class="studentNum">{{item.studentNum}}</view>
+											<view class="openRate">{{item.busspsnper}}%</view>
+											<view class="addUserNum">{{item.adduserNum}}</view>
+										</view>
 									</view>
-								</view>
-							</block>
-							<view wx:if="{{pageData}}" class="tips">没有更多内容了</view>
-						</scroll-view>
-					</swiper-item>
-				</block>
+								</block>
+								<view wx:if="{{pageData}}" class="tips">没有更多内容了</view>
+							</scroll-view>
+						</swiper-item>
+					</block>
 
 
-			</swiper>
+				</swiper>
 		</view>
 
 		<!--底部显示栏-->
@@ -127,10 +128,13 @@
 
 		</view>
 
-
 		<!-- 筛选区域-->
 		<filter-slider></filter-slider>
 
+         <!--适配iphoneX-->
+		<block wx:if="{{isIponeX}}">
+			<template is="iponeModel"></template>
+		</block>
 	</view>
 </template>
 <script src="../scripts/schoolCopy/index.js"></script>

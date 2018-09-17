@@ -1,4 +1,9 @@
+
 <template>
+
+
+
+  <import src="../templates/iponeModel.wxml"/>
 	<view class="header">
 		<block wx:if="{{count>0?true:false}}">
 			<view class="info-part">
@@ -12,70 +17,75 @@
 			<text>请输入卡号或者手机号搜索学生</text>
 		</view>
 	</view>
-	<view class="icon-box">
-		<view class="icon-list" bindtap="toPage" data-page="/pages/performance">
-			<image src="../images/my_performance.png" class="main-icon"></image>
-			<view class="icon-title">我的业绩</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="schoolCopy">
-			<image src="../images/school_list.png" class="main-icon"></image>
-			<view class="icon-title">学校列表</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生管理&page_url=/pages/studentManage">
-			<image src="../images/student_manage.png" class="main-icon"></image>
-			<view class="icon-title">学生管理</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="">
-			<image src="../images/school_card_disabled.png" class="main-icon"></image>
-			<view class="icon-title disabled">学校发卡</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
-			<image src="../images/business_open.png" class="main-icon"></image>
-			<view class="icon-title">业务开通</view>
-		</view>
-
-		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生考勤&page_url=/pages/studentAttendance">
-			<image src="../images/student_check.png" class="main-icon"></image>
-			<view class="icon-title">学生考勤</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=批量拍照&page_url=/pages/schoolAlbum">
-			<image src="../images/batch_photo.png" class="main-icon"></image>
-			<view class="icon-title">批量拍照</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="">
-			<image src="../images/market_rank_disabled.png" class="main-icon"></image>
-			<view class="icon-title disabled">销售排名</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="">
-			<image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
-			<view class="icon-title disabled">运维排名</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=设备管理&page_url=/pages/equipManage">
-			<image src="../images/equipment_manage.png" class="main-icon"></image>
-			<view class="icon-title">设备管理</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="">
-			<image src="../images/school_implement_disabled.png" class="main-icon"></image>
-			<view class="icon-title disabled">新校实施</view>
-		</view>
-		<view class="icon-list" bindtap="toPage" data-page="schoolCopy">
-			<image src="../images/repository_disabled.png" class="main-icon"></image>
-			<view class="icon-title disabled">知识库</view>
-		</view>
-
-	</view>
-	<view class="log-out" catchtap="logOut">
-		<image src="../images/quit_icon.png" alt="注销登录"></image>
-	</view>
-	<toast/>
+  <view class="icon-box">
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/contribution_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">贡献排名</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/performance">
+      <image src="../images/my_performance.png" class="main-icon"></image>
+      <view class="icon-title">我的业绩</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="schoolCopy">
+      <image src="../images/school_list.png" class="main-icon"></image>
+      <view class="icon-title">学校列表</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/school_card_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学校发卡</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生管理&page_url=/pages/studentManage">
+      <image src="../images/student_manage.png" class="main-icon"></image>
+      <view class="icon-title">学生管理</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/student_check_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">学生考勤</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
+      <image src="../images/business_open.png" class="main-icon"></image>
+      <view class="icon-title">业务开通</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/market_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">销售排名</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">运维排名</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/equipment_manage_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">设备管理</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=批量拍照&page_url=/pages/schoolAlbum">
+      <image src="../images/batch_photo.png" class="main-icon"></image>
+      <view class="icon-title">批量拍照</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/repository_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">知识库</view>
+    </view>
+    <view class="icon-list" bindtap="toPage" data-page="">
+      <image src="../images/school_implement_disabled.png" class="main-icon"></image>
+      <view class="icon-title disabled">新校实施</view>
+    </view>
+  </view>
+  <view class="log-out" catchtap="logOut">
+    <image src="../images/quit_icon.png" alt="注销登录"></image>
+  </view>
+  <toast />
+    <block wx:if="{{isIponeX}}">
+      <template is="iponeModel"></template>
+    </block>
 </template>
 
 <script>
   import wepy from 'wepy'
   import api from '../api.js'
   import Toast from 'wepy-com-toast'
-  import * as Toolkit from '../utils/toolkit'
 
+  import * as Toolkit from '../utils/toolkit'
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '首页'
@@ -84,19 +94,21 @@
       toast: Toast
     }
     data={
-      count:0
+      count:0,
+    isIponeX:false
     }
-
     async onLoad() {
-      let userId = wepy.getStorageSync('userId')
-      let getTypeInfo = await api.getType({method: 'POST', data: {userId: userId}})
+      let userId = wepy.getStorageSync('userId');
+      let getTypeInfo = await api.getType({method: 'POST', data: {userId: userId}});
       wepy.setStorageSync('userType', getTypeInfo.data.userType);
+        Toolkit.judgeIponeX(this);
       // this.getFailStudentList()
+      this.$apply();
     }
 
     methods = {
       toPage(e) {
-        let _page = e.currentTarget.dataset.page
+        let _page = e.currentTarget.dataset.page;
         if (_page === '') {
           this.$invoke('toast', 'show', {
             title: '敬请期待！'

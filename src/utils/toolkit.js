@@ -50,3 +50,11 @@ export function jsonToParam(json) {
   }
   return param.join('&');
 }
+
+/**
+ * 判断是否是iponeX
+ */
+export function judgeIponeX(self) {
+  console.log('lallala');
+    self.isIponeX=self.$parent.globalData.isIponeX;
+}

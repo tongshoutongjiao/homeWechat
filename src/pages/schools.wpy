@@ -1,25 +1,30 @@
 <template>
-	<view class="schools">
-		<view class="header">
-			<view class="search-input" bindtap="handleSearchSchool">
-				<image src="../images/search_icon.png" style="width: 30rpx; height: 30rpx; margin-right: 10rpx;"></image>
-				<text>请输入学校名称搜索</text>
-			</view>
-		</view>
-		<scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
-			<view class="school-list" wx:for="{{schoolSets}}" wx:item="item" wx:key="index"
-			      id="letter_{{item.label === '#' ? '' : item.label}}">
-				<view class="letter-label">{{item.label}}</view>
-				<view class="school-sets">
-					<view class="school-item" wx:for="{{item.list}}" wx:item="item" wx:key="{{item.schoolId}}"
-					      catchtap="handleChooseSchool" data-id="{{item.schoolId}}" data-name="{{item.schoolName}}">
-						<text>{{item.schoolName}}</text>
-					</view>
-				</view>
-			</view>
-		</scroll-view>
-	</view>
-	<letter-index></letter-index>
+
+  <import src="../templates/iponeModel.wxml"/>
+  <view class="schools">
+    <view class="header">
+      <view class="search-input" bindtap="handleSearchSchool" >
+        <image src="../images/search_icon.png" style="width: 30rpx; height: 30rpx; margin-right: 10rpx;"></image>
+        <text>请输入学校名称搜索</text>
+      </view>
+    </view>
+    <scroll-view scroll-y class="scroll-view" scroll-top="{{scrollTop}}">
+      <view class="school-list" wx:for="{{schoolSets}}" wx:item="item"  wx:key="index" id="letter_{{item.label === '#' ? '' : item.label}}" >
+        <view class="letter-label">{{item.label}}</view>
+        <view class="school-sets">
+          <view class="school-item" wx:for="{{item.list}}" wx:item="item"  wx:key="{{item.schoolId}}" catchtap="handleChooseSchool" data-id="{{item.schoolId}}" data-name="{{item.schoolName}}">
+            <text>{{item.schoolName}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <letter-index></letter-index>
+
+  <!--适配iphoneX-->
+  <block wx:if="{{isIponeX}}">
+    <template is="iponeModel"></template>
+  </block>
 </template>
 <script src="../scripts/schools/index.js"></script>
 <style src="../styles/schools.css"></style>

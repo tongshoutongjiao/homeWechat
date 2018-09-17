@@ -43,7 +43,7 @@ page {
   color: #8e8e93;
 }
 .header .tab .select view.on {
-  color: #181818 ;
+  color: #181818;
   font-family: "PingFangSC-Medium";
 }
 .header .tab .select view.on .bottom-bar {
@@ -133,6 +133,7 @@ page {
 .middle {
   display: flex;
   flex: 1;
+  position: relative;
   /*scroll-wrap*/
   /*schoolName*/
 }
@@ -146,6 +147,7 @@ page {
 }
 .middle .swiper-box {
   display: block;
+  position: absolute;
   box-sizing: border-box;
   width: 100%;
   padding-left: 48rpx;
@@ -197,10 +199,10 @@ page {
   z-index: 1;
   background: #348cff;
   align-items: center;
-  position: fixed;
   width: 100%;
   bottom: 0rpx;
   font-size: 28rpx;
   color: #ffffff;
   height: 100rpx;
 }
+/*# sourceMappingURL=index.css.map */

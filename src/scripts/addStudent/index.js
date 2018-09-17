@@ -1,6 +1,6 @@
 import wepy from 'wepy';
 import api from '../api';
-import toolkit from '../utils/toolkit.js'
+import * as toolkit from '../utils/toolkit'
 import CameraCom from '../components/camera/camera';
 
 const defaultPhoto = '../asset/hp_icon.png';
@@ -53,6 +53,9 @@ export default class Index extends wepy.page {
 		//  省市县三级联动
 		animation:[],
 		show: false,
+
+		// iponeX适配
+        isIponeX:false,
 
 		provinces: [],
 		citys: [],
@@ -452,8 +455,13 @@ export default class Index extends wepy.page {
 		this.schoolId = option.schoolId;
 		this.gradeName = option.gradeName;
 
+		console.log('tookit');
+		console.log(toolkit)
+        await  toolkit.judgeIponeX(this);
+
 		// 初始化页面数据
 		setTimeout(e => this.initData());
+
 	}
 
 	async initData() {
@@ -563,8 +571,6 @@ export default class Index extends wepy.page {
 
 		}
 	}
-
-
 	async saveLocalImg(url){
 		console.log('url');
 		console.log(url);
@@ -590,3 +596,4 @@ export default class Index extends wepy.page {
 
 	}
 }
+

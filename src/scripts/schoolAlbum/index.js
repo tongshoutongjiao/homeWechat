@@ -1,11 +1,11 @@
-import wepy from 'wepy';
-import querystring from 'querystring';
-import LetterIndex from '../components/letter-index/letter-index';
-import api from '../api';
-import * as Toolkit from '../utils/toolkit';
-import * as commonMethods from '../utils/commonMethods';
+import wepy from 'wepy'
+import querystring from 'querystring'
+import LetterIndex from '../components/letter-index/letter-index'
+import api from '../api'
+import * as Toolkit from '../utils/toolkit'
+import * as commonMethods from '../utils/commonMethods'
 
-const defaultPhoto = '../asset/hp_icon.png';
+const defaultPhoto = '../asset/hp_icon.png'
 export default class Index extends wepy.page {
   components = {
     'letter-index': LetterIndex
@@ -27,47 +27,49 @@ export default class Index extends wepy.page {
     studentsjson: '',
     scrollTop: 100,
     localPhotoNumber: '',
-    confirmFlag: false
+    confirmFlag: false,
+    isIponeX: false
+
   }
 
   methods = {
     async handleGradeChange(e) {
-      this.gradeActiveIndex = e.detail.value;
-      const classes = await this.getClassByGradeId(this.grades[this.gradeActiveIndex].id);
+      this.gradeActiveIndex = e.detail.value
+      const classes = await this.getClassByGradeId(this.grades[this.gradeActiveIndex].id)
       if (classes.length) {
-        this.methods.handleClassChange.call(this, {detail: {value: 0}});
+        this.methods.handleClassChange.call(this, {detail: {value: 0}})
       } else {
         this.students = []
       }
-      this.setGradeAndClassName();
-      this.scrollTop = 0;
-      this.$apply();
+      this.setGradeAndClassName()
+      this.scrollTop = 0
+      this.$apply()
     },
     async handleClassChange(e) {
-      this.classActiveIndex = e.detail.value;
-      this.getStudentsByClassId(this.classes[this.classActiveIndex].id);
-      this.setGradeAndClassName();
+      this.classActiveIndex = e.detail.value
+      this.getStudentsByClassId(this.classes[this.classActiveIndex].id)
+      this.setGradeAndClassName()
     },
     handleNavigateTo(e) {
       let uploadFlag = e.currentTarget.dataset.uploadFlag,
         studentId = e.currentTarget.dataset.id,
         tempUrl = e.currentTarget.dataset.tempUrl,
-        photoInfo = wx.getStorageSync('photoInfo');
+        photoInfo = wx.getStorageSync('photoInfo')
       if (uploadFlag === 'upload') {
         //  删除本地存储的数据，然后重新请求接口就行了
-        this.singleStudentPhoto(studentId, tempUrl, this, this.deleteLocalInfo);
+        this.singleStudentPhoto(studentId, tempUrl, this, this.deleteLocalInfo)
       } else {
         if (Number(photoInfo.length) >= 500) {
-          this.confirmFlag = true;
-          return;
+          this.confirmFlag = true
+          return
         }
         try {
-          wx.setStorageSync('puppylove_students', this.studentsjson);
+          wx.setStorageSync('puppylove_students', this.studentsjson)
           wx.navigateTo({
             url: `/pages/takePhoto?${querystring.stringify(e.currentTarget.dataset)}`
-          });
+          })
         } catch (e) {
-          throw e;
+          throw e
         }
 
       }
@@ -77,7 +79,7 @@ export default class Index extends wepy.page {
 
     // 点击上传图片
     clickUploadImg: function () {
-      let photoInfo = wx.getStorageSync('photoInfo');
+      let photoInfo = wx.getStorageSync('photoInfo')
       if (Number(photoInfo.length) !== 0) {
         commonMethods.batchUploadPhoto(photoInfo, this, this.batchPhotoCallback)
       } else {
@@ -85,191 +87,191 @@ export default class Index extends wepy.page {
           title: '本地还没有照片，请先拍照',
           icon: 'none',
           duration: 1000
-        });
-        return;
+        })
+        return
       }
     },
 
     //   点击弹窗的取消和全部上传按钮
     clickOperatePhoto: function (e) {
-      this.confirmFlag = false;
+      this.confirmFlag = false
     },
 
     //  当图片加载不出来时，显示默认头像
     handErrorImg: function (e) {
-      console.log('处理加载不粗来的图片信息');
+      console.log('处理加载不粗来的图片信息')
       let curIndex = e.currentTarget.dataset.curIndex,
         parIndex = e.currentTarget.dataset.parIndex,
-        id = e.currentTarget.dataset.studentId;
+        id = e.currentTarget.dataset.studentId
 
-      this.students[parIndex].list[curIndex].studentImg = null;
+      this.students[parIndex].list[curIndex].studentImg = null
 
-      let data = JSON.parse(this.studentsjson);
-      console.log(data);
+      let data = JSON.parse(this.studentsjson)
+      console.log(data)
 
       for (let i = 0, curInfo; i < data.length; i++) {
-        curInfo = data[i];
-        curInfo.studentId === id ? curInfo.studentImg = null : '';
+        curInfo = data[i]
+        curInfo.studentId === id ? curInfo.studentImg = null : ''
       }
 
-      console.log(data);
-      this.studentsjson = JSON.stringify(data);
-      this.$apply();
+      console.log(data)
+      this.studentsjson = JSON.stringify(data)
+      this.$apply()
     },
 
-  //   清除本地照片缓存
-    clickClearStorage:function () {
-      console.log('laall');
-       wx.removeStorageSync('photoInfo');
-       wx.showToast({
-         title:'清除成功',
-         icon:'success'
-       })
+    //   清除本地照片缓存
+    clickClearStorage: function () {
+      console.log('laall')
+      wx.removeStorageSync('photoInfo')
+      wx.showToast({
+        title: '清除成功',
+        icon: 'success'
+      })
     }
-  };
+  }
 
   events = {
     'letter-index': (e, letter) => {
       if (letter === '#') {
-        letter = '';
+        letter = ''
       }
 
-      const query = wx.createSelectorQuery();
-      query.select('.scroll-view').scrollOffset();
-      query.select('.scroll-view').boundingClientRect();
-      query.select(`#letter_${letter}`).boundingClientRect();
+      const query = wx.createSelectorQuery()
+      query.select('.scroll-view').scrollOffset()
+      query.select('.scroll-view').boundingClientRect()
+      query.select(`#letter_${letter}`).boundingClientRect()
       query.exec(([scroll, rect, dom]) => {
-        this.scrollTop = scroll.scrollTop - rect.top + dom.top;
-        this.$apply();
-      });
+        this.scrollTop = scroll.scrollTop - rect.top + dom.top
+        this.$apply()
+      })
     }
-  };
+  }
 
   async getGradeBySchoolId(id) {
-    const gradesRes = await api.getGradeBySchoolId({data: {schoolId: id}});
+    const gradesRes = await api.getGradeBySchoolId({data: {schoolId: id}})
 
-    this.grades = gradesRes.data.data;
-    this.$apply();
-    return this.grades;
+    this.grades = gradesRes.data.data
+    this.$apply()
+    return this.grades
   }
 
   async getClassByGradeId(id) {
-    const classesRes = await api.getClassByGradeId({data: {gradeId: id}});
-    this.classes = classesRes.data.data;
+    const classesRes = await api.getClassByGradeId({data: {gradeId: id}})
+    this.classes = classesRes.data.data
 
-    this.$apply();
-    return this.classes;
+    this.$apply()
+    return this.classes
   }
 
   async getStudentsByClassId(id) {
-    const studentsRes = await api.getStudentsByClassId({data: {classId: id}});
-    this.students = Toolkit.groupByFirstLetter(studentsRes.data.data, 'studentNameQp');
-    let studentsOrders = [];
+    const studentsRes = await api.getStudentsByClassId({data: {classId: id}})
+    this.students = Toolkit.groupByFirstLetter(studentsRes.data.data, 'studentNameQp')
+    let studentsOrders = []
     this.students.forEach(item => {
-      studentsOrders = studentsOrders.concat(item.list);
-    });
+      studentsOrders = studentsOrders.concat(item.list)
+    })
     // 处理图片地址不正确的学生头像信息
-    this.handleWithStudentPhotoImg();
+    this.handleWithStudentPhotoImg()
 
     // 根据班级id筛选本地已经拍过照的学生图片数据
-    this.filterLocalPhoto(studentsOrders);
+    this.filterLocalPhoto(studentsOrders)
 
-    this.studentsjson = JSON.stringify(studentsOrders);
-    this.$invoke('letter-index', 'set-indexs', this.students.map(s => s.label));
+    this.studentsjson = JSON.stringify(studentsOrders)
+    this.$invoke('letter-index', 'set-indexs', this.students.map(s => s.label))
 
     // 本地存储的照片数量
-    let photoInfo = wx.getStorageSync('photoInfo');
-    this.localPhotoNumber = photoInfo.length;
-    this.$apply();
+    let photoInfo = wx.getStorageSync('photoInfo')
+    this.localPhotoNumber = photoInfo.length
+    this.$apply()
   }
 
   //
   filterLocalPhoto(data) {
-    let photoInfo = wx.getStorageSync('photoInfo');
+    let photoInfo = wx.getStorageSync('photoInfo')
     // 获取到所有已经存储在本地的照片数据,
     // 1 遍历所有请求到的学生数据，根据这些学生的id，来判断是否给当前对象增加字段，
     if (!!photoInfo) {
       data.forEach(item => {
         photoInfo.forEach(cur => {
           if (cur.studentId === item.studentId) {
-            item.hasLocalPhoto = true;
-            item.studentImg = cur.imgUrl;
+            item.hasLocalPhoto = true
+            item.studentImg = cur.imgUrl
           }
         })
-      });
+      })
     }
-    this.$apply();
+    this.$apply()
   }
 
   setGradeAndClassName() {
     if (this.grades[this.gradeActiveIndex]) {
       this.gradeName = this.grades[this.gradeActiveIndex].gradeName
     } else {
-      this.gradeName = "";
+      this.gradeName = ''
     }
 
     if (this.classes[this.classActiveIndex]) {
-      this.className = this.classes[this.classActiveIndex].className;
+      this.className = this.classes[this.classActiveIndex].className
     } else {
-      this.className = "";
+      this.className = ''
     }
-    this.$apply();
+    this.$apply()
 
   }
 
-
   // 删除本地存储的图片,重新请求接口
   deleteLocalInfo(id, self) {
-    let photoInfo = wx.getStorageSync('photoInfo');
+    let photoInfo = wx.getStorageSync('photoInfo')
 
     photoInfo.forEach((cur, index) => {
       if (cur.studentId === id) {
-        photoInfo.splice(index, 1);
+        photoInfo.splice(index, 1)
       }
-    });
-    wx.setStorageSync('photoInfo', photoInfo);
+    })
+    wx.setStorageSync('photoInfo', photoInfo)
 
-    self.getStudentsByClassId(self.classes[self.classActiveIndex].id);
+    self.getStudentsByClassId(self.classes[self.classActiveIndex].id)
   }
 
   // 批处理照片函数
   batchPhotoCallback(array, self) {
-    console.log('处理批上传之后的图片');
-    wx.setStorageSync('photoInfo', array);
+    console.log('处理批上传之后的图片')
+    wx.setStorageSync('photoInfo', array)
 
-    self.getStudentsByClassId(self.classes[self.classActiveIndex].id);
+    self.getStudentsByClassId(self.classes[self.classActiveIndex].id)
     self.$apply()
   }
 
   async init(id) {
-    const gradesRes = id ? await this.getGradeBySchoolId(id) : [];
-    const classesRes = gradesRes[0] ? await this.getClassByGradeId(gradesRes[0].id) : [];
-    const studentsRes = classesRes[0] ? await this.getStudentsByClassId(classesRes[0].id) : [];
+    const gradesRes = id ? await this.getGradeBySchoolId(id) : []
+    const classesRes = gradesRes[0] ? await this.getClassByGradeId(gradesRes[0].id) : []
+    const studentsRes = classesRes[0] ? await this.getStudentsByClassId(classesRes[0].id) : []
     // 本地存储的照片数量
-    let photoInfo = wx.getStorageSync('photoInfo');
-    this.localPhotoNumber = photoInfo.length;
-    this.setGradeAndClassName();
+    let photoInfo = wx.getStorageSync('photoInfo')
+    this.localPhotoNumber = photoInfo.length
+    this.setGradeAndClassName()
     this.$apply()
   }
 
   async onLoad(e) {
-    console.log('load..', e);
-    // wx.removeStorageSync('photoInfo');
+    console.log('load..', e)
+
+    Toolkit.judgeIponeX(this)
     wx.setNavigationBarTitle({
       title: decodeURI(e.name)
-    });
-    this.init(e.id);
+    })
+    this.init(e.id)
   }
 
   onReady() {
-    console.log('ready..');
+    console.log('ready..')
 
   }
 
   onShow() {
-    console.log('show !');
+    console.log('show !')
     if (this.classes.length) {
-      this.getStudentsByClassId(this.classes[this.classActiveIndex].id);
+      this.getStudentsByClassId(this.classes[this.classActiveIndex].id)
     }
   }
 
@@ -279,48 +281,49 @@ export default class Index extends wepy.page {
       title: '上传中',
       icon: 'loading',
       mask: true
-    });
+    })
     const uploadRes = await api.uploadStudentPhoto({
       filePath: url,
       name: 'imgfile',
       formData: {
         studentId: id
-      },
-    });
-    const photoRes = JSON.parse(uploadRes.data);
+      }
+    })
+    const photoRes = JSON.parse(uploadRes.data)
     if (!photoRes.data || !photoRes.data[0]) {
       wx.showToast({
         title: '上传失败',
-        icon: 'none',
-      });
-      return;
+        icon: 'none'
+      })
+      return
     }
     setTimeout(function () {
-      wx.hideLoading();
+      wx.hideLoading()
       wx.showToast({
         title: '上传成功',
         icon: 'success',
         duration: 1000
-      });
-    }, 1000);
+      })
+    }, 1000)
     // 回调函数，修改当前上传照片的状态：改为已上传，同时，删除之前存储的照片，重新请求接口
-    callback(id, self);
+    callback(id, self)
   }
 
 //
   handleWithStudentPhotoImg() {
-    console.log('处理头像信息');
-    console.log(this.students);
+    console.log('处理头像信息')
+    console.log(this.students)
     this.students.forEach((item) => {
-      let tempLength = item.list.length;
+      let tempLength = item.list.length
       for (let i = 0; i < tempLength; i++) {
-        let curImg = item.list[i].studentImg;
+        let curImg = item.list[i].studentImg
         if (curImg) {
           !curImg.includes('http://img.967111.com') && (item.list[i].studentImg = null)
         }
       }
-    });
-    this.$apply();
+    })
+    this.$apply()
 
   }
 }
+

@@ -1,4 +1,6 @@
 <template>
+  <import src="../templates/iponeModel.wxml"/>
+
   <view class="container">
 
     <view class="photo">
@@ -215,6 +217,10 @@
   </block>
   <view>{{tempUrl}}</view>
 
+    <!--适配iphoneX-->
+    <block wx:if="{{isIponeX}}">
+      <template is="iponeModel"></template>
+    </block>
 </template>
 <script src="../scripts/addStudent/index.js"></script>
 <style src="../styles/addStudent/index.css"></style>

@@ -1,5 +1,5 @@
 <template>
-
+	<import src="../templates/iponeModel.wxml"/>
 	<view class="school-album">
 		<block wx:if="{{localPhotoNumber}}">
 			<view class="photo-detail">
@@ -89,6 +89,10 @@
 	</view>
 
 	<letter-index></letter-index>
+
+	<block wx:if="{{isIponeX}}">
+		<template is="iponeModel"></template>
+	</block>
 </template>
 
 <script src="../scripts/schoolAlbum/index.js"></script>

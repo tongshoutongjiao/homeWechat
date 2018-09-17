@@ -13,13 +13,28 @@
         z-index: 10;
     }
 
+    /*iponeX适配*/
+    .ipone{
+        bottom:68rpx!important;
+        height: 68rpx;
+    }
+    .ipone::after{
+        content:'';
+        position: fixed;
+        bottom:0!important;
+        height:68rpx!important;
+        width:100%;
+        background: #fff;
+    }
+
 </style>
 
 <script>
+
   import wepy from 'wepy'
   import 'wepy-async-function'
 
-  export default class extends wepy.app {
+  export default class extends wepy.app{
     config = {
       pages: [
         'pages/login',
@@ -73,7 +88,10 @@
     }
 
     onLaunch() {
-      this.checkUpdate()
+      this.checkUpdate();
+
+      //	识别iponeX
+      this.getDeviceInfo();
     }
 
     sleep(s) {
@@ -137,5 +155,18 @@
         }
       })
     }
+
+    getDeviceInfo() {
+      console.log('获取设备信息');
+      let that = this;
+      wx.getSystemInfo({
+        success: function (res) {
+          console.log(res);
+          that.globalData.isIponeX = res.model.includes('X') ? true : false;
+        }
+      })
+
+    }
   }
+
 </script>

@@ -17,7 +17,8 @@ export default class Index extends wepy.page {
     page_url: '',
     scrollTop: 0,
     schoolSets: [],
-    letterIndexs: []
+    letterIndexs: [],
+      isIponeX:false
   }
 
   methods = {
@@ -40,10 +41,10 @@ export default class Index extends wepy.page {
       if (letter === '#') {
         letter = ''
       }
-      const query = wx.createSelectorQuery()
-      query.select('.scroll-view').scrollOffset()
-      query.select('.scroll-view').boundingClientRect()
-      query.select(`#letter_${letter}`).boundingClientRect()
+      const query = wx.createSelectorQuery();
+      query.select('.scroll-view').scrollOffset();
+      query.select('.scroll-view').boundingClientRect();
+      query.select(`#letter_${letter}`).boundingClientRect();
       query.exec(([scroll, rect, dom]) => {
         this.scrollTop = scroll.scrollTop - rect.top + dom.top
         this.$apply()
@@ -57,10 +58,11 @@ export default class Index extends wepy.page {
     wx.setNavigationBarTitle({title: unescape(title)})
     page_url = unescape(page_url)
     this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)
-    const ret = await api.getSchoolsByUserId({data: {userId: wx.getStorageSync('userId')}})
-    this.schoolSets = Toolkit.groupByFirstLetter(ret.data.data, 'schoolNameQp')
-    this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label))
-    this.$apply()
+    const ret = await api.getSchoolsByUserId({data: {userId: wx.getStorageSync('userId')}});
+    this.schoolSets = Toolkit.groupByFirstLetter(ret.data.data, 'schoolNameQp');
+    this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label));
+    Toolkit.judgeIponeX(this);
+    this.$apply();
   }
 
   onReady() {

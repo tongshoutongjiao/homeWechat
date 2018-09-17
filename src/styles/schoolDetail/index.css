@@ -272,6 +272,9 @@ picker {
   text-align: center;
   position: relative;
 }
+.bar-code .teacher-code .code-picker text {
+  white-space: nowrap;
+}
 .bar-code .teacher-code .code-bottom {
   position: relative;
   margin-top: 30rpx;
@@ -290,10 +293,11 @@ picker {
   position: absolute;
   top: 30%;
   display: inline-block;
+  right: -30rpx;
   width: 30rpx;
   height: 16rpx;
-  margin-top: 10rpx;
-  margin-left: 20rpx;
+  margin-top: 8rpx;
+  margin-left: 10rpx;
   transform: rotate(90deg);
 }
 /*# sourceMappingURL=index.css.map */
