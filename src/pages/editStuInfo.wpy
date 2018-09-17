@@ -5,7 +5,7 @@
 			<block wx:if="{{studentInfo.studentImg}}">
 				<image src="{{studentInfo.studentImg}}" mode="aspectFill" bindtap="clickUploadImg" binderror="handErrorImg"/>
 			</block>
-			
+
 			<block wx:else>
 				<image src="{{defaultPhoto}}" bindtap="clickUploadImg"/>
 			</block>

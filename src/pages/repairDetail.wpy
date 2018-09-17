@@ -53,7 +53,7 @@
 			<view>接单日期</view>
 			<picker mode="date" value="{{date.startDate}}" bindchange="bindStartDateChange">
 				<view wx:if="{{recordId}}"class="picker">
-					{{date.startDate||repairData.orderTime=='null'?'无':repairData.orderTime}}
+					{{date.startDate?date.startDate:repairData.orderTime==null?'无':repairData.orderTime}}
 				</view>
 				<view wx:else class="picker">
 				 {{date.startDate||'选择开始日期'}}
@@ -67,7 +67,7 @@
 
 			<picker mode="date" value="{{date.repairDate}}" bindchange="bindRepairDateChange">
 				<view wx:if="{{recordId}}" class="picker">
-					{{date.repairDate||repairData.serviceTime}}
+					{{date.repairDate?date.repairDate:repairData.serviceTime==null?'无':repairData.serviceTime}}
 				</view>
 				<view wx:else class="picker">
 					{{date.repairDate||'选择维修日期'}}
@@ -106,7 +106,7 @@
 			<view>故障终端主板</view>
 			<picker bindchange="bindEndBoard" value="{{alertData.endBoard.endBoardIndex}}" range="{{alertData.endBoard.array}}">
 				<view class="picker" wx:if="{{recordId&&mainBoardFlag}}">
-					{{repairData.faultMainboard!=null?repairData.faultMainboard:'无'}}
+					{{repairData.faultMainboard!='null'?repairData.faultMainboard:'无'}}
 				</view>
 				<view class="picker"  wx:elif="{{recordId==''&&mainBoardFlag===true}}">
 					无

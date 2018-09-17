@@ -30,7 +30,7 @@
 						<view style="width: 20%" class="{{item.isLogin=='1'?'':'gray-style'}}">
 							<view  class=" leftIcon"></view>
 						</view>
-						<view style="width: 30%;margin-right:30rpx;" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}" data-school-id="{{schoolId}}">{{item.terminalNum}}</view>
+						<view style="width: 33%;margin-right:30rpx;" class="blue-style" bindtap="clickNavigateToEquipList" data-equip-sn="{{item.terminalNum}}" data-equip-id="{{item.id}}" data-school-id="{{schoolId}}">{{item.terminalNum}}</view>
 						<view style="width: 30%" class="{{item.isLogin=='1'?'':'gray-style'}}">{{item.typeName}}</view>
 						<view style="width: 20%" class="{{item.isLogin=='1'?'':'gray-style'}}">{{item.isLogin=='1'?'在线':'离线'}}</view>
 					</view>

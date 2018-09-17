@@ -329,6 +329,16 @@ export default class Index extends wepy.page {
             this.savingFlag = false;
             return;
         }
+
+      if (!this.alertData.submitData.faultMainboard&&String(this.repairData.faultMainboard)==='null') {
+        wx.showToast({
+          title: '请选择故障终端主板',
+          icon: 'none',
+        });
+        this.savingFlag = false;
+        return;
+      }
+
         let userName = wepy.getStorageSync('userName'),
             userId = wepy.getStorageSync('userId');
         let equipInfoData = {
