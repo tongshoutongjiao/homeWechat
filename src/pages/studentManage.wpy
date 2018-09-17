@@ -1,4 +1,5 @@
 <template>
+    <import src="../templates/iponeModel.wxml"/>
     <view class="container">
         <view class="search-wrapper">
             <view class="search-content" bindtap="handleSearch" data-grade-id="{{searchGradeId}}" data-school-id="{{schoolId}}">
@@ -67,6 +68,11 @@
             <view class="row"></view>
             <view class="col"></view>
         </view>
+
+        <!--适配iphoneX-->
+        <block wx:if="{{isIponeX}}">
+            <template is="iponeModel"></template>
+        </block>
     </view>
 </template>
 <script src="../scripts/studentManage/index.js"></script>

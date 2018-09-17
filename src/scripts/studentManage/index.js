@@ -31,6 +31,7 @@ export default class Index extends wepy.page {
     slideIndex: null,
     storageFlag: false,
     queryFlag:false,
+      isIponeX:false,
   };
   events = {};
   methods = {
@@ -244,11 +245,6 @@ export default class Index extends wepy.page {
   async onLoad(e) {
     this.schoolId = e.id;
     this.schoolName = e.name;
-    const app = getApp();
-    console.log(this.$wxapp);
-    console.log(this);
-   console.log(app);
-   this.$parent.globalData.name='zhlzhl';
     //  设置标题
     let showFlag= wepy.setStorageSync('editFlag',false);
     wx.setNavigationBarTitle({

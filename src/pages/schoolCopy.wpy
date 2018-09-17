@@ -1,4 +1,5 @@
 <template>
+	<import src="../templates/iponeModel.wxml">
 	<view class="container">
 		<view class="header">
 
@@ -130,6 +131,10 @@
 		<!-- 筛选区域-->
 		<filter-slider></filter-slider>
 
+         <!--适配iphoneX-->
+		<block wx:if="{{isIponeX}}">
+			<template is="iponeModel"></template>
+		</block>
 	</view>
 </template>
 <script src="../scripts/schoolCopy/index.js"></script>

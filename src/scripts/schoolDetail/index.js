@@ -81,6 +81,7 @@ export default class Index extends wepy.page {
             id: ''
         },
         fixedTime: null,  // 修改过的时间
+        isIponeX:false,
 
         changeValue:'关闭',
         testURL: 'http://qr.api.cli.im/qr?data=https%253A%252F%252Fwww.baidu.com&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=3d9a7684e3712110675d398ca0c86070'
@@ -164,6 +165,9 @@ export default class Index extends wepy.page {
         // 处理页面参数
         this.schoolId = e.id
         this.modeIndex = parseInt(e.reportType) - 1
+
+        // 适配iponex
+        Toolkit.judgeIponeX(this);
 
         // 初始化页面日期信息
         this.formatDate()

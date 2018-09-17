@@ -259,7 +259,7 @@ image {
 /*edit*/
 .edit {
   position: fixed;
-  bottom: 26rpx;
+  bottom: 80rpx;
   right: 44rpx;
   width: 100rpx;
   height: 100rpx;

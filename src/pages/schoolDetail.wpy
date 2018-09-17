@@ -1,4 +1,5 @@
 <template>
+  <import src="../templates/iponeModel.wxml">
   <view class="tab">
     <view class="tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" catchtap="changeItem">
       基本信息
@@ -350,6 +351,11 @@
 
   </view>
   <toast/>
+
+    <!--适配iphoneX-->
+    <block wx:if="{{isIponeX}}">
+      <template is="iponeModel"></template>
+    </block>
 </template>
 <script src="../scripts/schoolDetail/index.js"></script>
 <style src="../styles/schoolDetail/index.css"></style>

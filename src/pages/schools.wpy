@@ -1,4 +1,5 @@
 <template>
+  <import src="../templates/iponeModel.wxml"/>
   <view class="schools">
     <view class="header">
       <view class="search-input" bindtap="handleSearchSchool" >
@@ -18,6 +19,13 @@
     </scroll-view>
   </view>
   <letter-index></letter-index>
+
+  <!--适配iphoneX-->
+  <block wx:if="{{isIponeX}}">
+    <template is="iponeModel"></template>
+  </block>
+
+
 </template>
 
 <script src="../scripts/schools/index.js"></script>

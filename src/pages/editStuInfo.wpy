@@ -1,8 +1,14 @@
 <template>
+	<import src="../templates/iponeModel.wxml"/>
 	<view class="container">
 		<view class="photo" >
 			<view>头像</view>
-			<image src="{{studentInfo.studentImg?studentInfo.studentImg:defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+			<block wx:if="{{studentInfo.studentImg}}">
+				<image src="{{studentInfo.studentImg}}" mode="aspectFill" bindtap="clickUploadImg"/>
+			</block>
+			<block wx:else>
+				<image src="{{defaultPhoto}}" mode="aspectFill" bindtap="clickUploadImg"/>
+			</block>
 		</view>
 		<view class="class-name">
 			<view>班级</view>
@@ -313,6 +319,7 @@
 		</view>
 		<view class="save-info">
 			<view bindtap="clickSaveStudentInfo">保存</view>
+
 		</view>
 		<!--选择套餐类型-->
 		<view class="order-type" wx:if="{{dialogStatus}}">
@@ -381,9 +388,17 @@
 			<view class="cancel-style text-c" data-photo-type="cancel" bindtap="chooseUploadStyle"  >取消</view>
 		</view>
 	</view>
+
 	<block wx:if="cameraFlag">
 		<camera-com></camera-com>
 	</block>
+
+	<!--适配iphoneX-->
+	<block wx:if="{{isIponeX}}">
+		<template is="iponeModel"></template>
+	</block>
+
+
 
 </template>
 <script src="../scripts/editStuInfo/index.js"></script>

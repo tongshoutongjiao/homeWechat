@@ -24,8 +24,9 @@ export default class Index extends wepy.page {
     gradeActiveIndex: 0,
     studentsjson:'',
     scrollTop: 0,
+      isIponeX:false,
   }
-  
+
   methods = {
     async handleGradeChange(e){
       this.gradeActiveIndex = e.detail.value;
@@ -57,7 +58,7 @@ export default class Index extends wepy.page {
       if(letter === '#'){
         letter = '';
       }
-      
+
       const query = wx.createSelectorQuery();
       query.select('.scroll-view').scrollOffset();
       query.select('.scroll-view').boundingClientRect();
@@ -70,7 +71,7 @@ export default class Index extends wepy.page {
   }
   async getGradeBySchoolId(id) {
     const gradesRes = await api.getGradeBySchoolId({data: {schoolId: id}});
-    
+
     this.grades = gradesRes.data.data;
     this.$apply();
     return this.grades;
@@ -78,13 +79,13 @@ export default class Index extends wepy.page {
   async getClassByGradeId(id) {
     const classesRes = await api.getClassByGradeId({data: {gradeId: id}});
     this.classes = classesRes.data.data;
-    
+
     this.$apply();
     return this.classes;
   }
   async getStudentsByClassId(id) {
     const studentsRes = await api.getStudentsByClassId({data: {classId: id}});
-    
+
     this.students =  Toolkit.groupByFirstLetter(studentsRes.data.data, 'studentNameQp');
     let studentsOrders = [];
     this.students.forEach(item => {
@@ -107,7 +108,7 @@ export default class Index extends wepy.page {
       this.className = "";
     }
     this.$apply();
-      
+
   }
   async init(id) {
     const gradesRes = await this.getGradeBySchoolId(id);
@@ -117,7 +118,8 @@ export default class Index extends wepy.page {
   }
   async onLoad(e) {
     console.log('load..', e);
-    
+
+    Toolkit.judgeIponeX(this);
     wx.setNavigationBarTitle({
       title: decodeURI(e.name)
     });

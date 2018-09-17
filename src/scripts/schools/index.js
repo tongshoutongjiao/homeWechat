@@ -17,9 +17,10 @@ export default class Index extends wepy.page {
     page_url: '',
     scrollTop: 0,
     schoolSets: [],
-    letterIndexs: []
+    letterIndexs: [],
+      isIponeX:false
   }
-  
+
   methods = {
     handleSearchSchool() {
       wx.navigateTo({
@@ -40,7 +41,7 @@ export default class Index extends wepy.page {
       if(letter === '#'){
         letter = '';
       }
-      
+
       const query = wx.createSelectorQuery();
       query.select('.scroll-view').scrollOffset();
       query.select('.scroll-view').boundingClientRect();
@@ -60,8 +61,9 @@ export default class Index extends wepy.page {
     const ret = await api.getSchoolsByUserId({data: {userId: wx.getStorageSync('userId')}});
     this.schoolSets = Toolkit.groupByFirstLetter(ret.data.data, 'schoolNameQp');
     this.$invoke('letter-index', 'set-indexs', this.schoolSets.map(s => s.label));
+    Toolkit.judgeIponeX(this);
     this.$apply();
-  
+
   }
   onReady() {
     console.log('ready..');

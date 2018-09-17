@@ -1,4 +1,5 @@
 <template>
+  <import src="../templates/iponeModel.wxml"/>
   <view class="school-album">
     <view class="class-picker flex">
       <view class="flex-item">
@@ -30,6 +31,9 @@
     </scroll-view>
   </view>
   <letter-index></letter-index>
+  <block wx:if="{{isIponeX}}">
+    <template is="iponeModel"></template>
+  </block>
 </template>
 
 <script src="../scripts/schoolAlbum/index.js"></script>

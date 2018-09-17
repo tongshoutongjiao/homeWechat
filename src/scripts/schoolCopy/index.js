@@ -55,7 +55,9 @@ export default class Index extends wepy.page {
       adduserNum: ''
     },// 底部统计数据
     schoolListData: [],
-    pageData: false
+    pageData: false,
+      isIponeX:false,
+
   }
 
   events = {
@@ -228,7 +230,8 @@ export default class Index extends wepy.page {
   }
 
   onLoad(e) {
-    this.initData(e)
+    this.initData(e);
+      Toolkit.judgeIponeX(this);
   }
 
   onUnload() {

@@ -1,4 +1,5 @@
 <template>
+  <import src="../templates/iponeModel.wxml"/>
   <view class="search-wrapper">
     <view class="search-content" bindtap="handleSearch">
       <image class="search-icon" src="/images/search_icon.png"></image>
@@ -88,7 +89,7 @@
       </repeat>
     </view>
   </view>
-  <view hidden="{{isClass || empty}}" class="footer">
+  <view hidden="{{isClass || empty}}" class="footer" style="{{isIponeX?'bottom:68rpx':'bottom:0rpx'}}">
     <view class="footer-left" catchtap="chooseAllClass">
       <!-- wx:if 是否选择显示不同图标 -->
       <image wx:if="{{selectAllClass}}" class="all-default" src="/images/float_icon_a.png"></image>
@@ -104,7 +105,7 @@
       </view>
     </picker>
   </view>
-  <view hidden="{{!isClass || empty}}" class="footer">
+  <view hidden="{{!isClass || empty}}" class="footer" style="{{isIponeX?'bottom:68rpx':'bottom:0rpx'}}">
     <view class="footer-left" catchtap="chooseAllPhone">
       <!-- wx:if 是否选择显示不同图标 -->
       <image wx:if="{{selectAllPhone}}" class="all-default" src="/images/float_icon_a.png"></image>
@@ -121,12 +122,18 @@
     </picker>
   </view>
   <toast />
+
+  <!--适配iphoneX-->
+  <block wx:if="{{isIponeX}}">
+    <template is="iponeModel"></template>
+  </block>
 </template>
 
 <script>
   import wepy from 'wepy'
   import api from '../api.js'
   import Toast from 'wepy-com-toast'
+  import * as toolkit from '../utils/toolkit';
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '业务开通'
@@ -161,7 +168,8 @@
       // 开通业务类型
       businessIndex: 0,
       businessType: [],
-      businessAble: true
+      businessAble: true,
+      isIponeX:false
     }
     methods = {
       handleSearch() {
@@ -406,6 +414,7 @@
         this.schoolId = e.id
         this.schoolName = decodeURI(e.name)
       }
+        toolkit.judgeIponeX(this);
       if (this.schoolId !== undefined && this.schoolId !== '') {
         let garde = await api.queryGrade({
           method: 'POST',
@@ -481,6 +490,7 @@
         }
         this.$apply()
       }
+
     }
     async onUnload() {
       //let pageInstance = getCurrentPages().length

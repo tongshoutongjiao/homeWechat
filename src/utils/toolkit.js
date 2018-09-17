@@ -4,7 +4,7 @@ export function groupByFirstLetter(list, groupKey){
   if(Object.prototype.toString.call(list) !== "[object Array]"){
     list = []
   };
-  
+
   if(typeof groupKey !== 'string'){
     return [];
   }
@@ -48,4 +48,12 @@ export function jsonToParam(json) {
     param.push(i + '=' + (typeof json[i] === 'object' ? JSON.stringify(json[i]) : json[i]));
   }
   return param.join('&');
+}
+
+/**
+ * 判断是否是iponeX
+ */
+export function judgeIponeX(self) {
+  console.log('lallala');
+    self.isIponeX=self.$parent.globalData.isIponeX;
 }
