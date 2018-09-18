@@ -38,8 +38,8 @@
       <image src="../images/student_manage.png" class="main-icon"></image>
       <view class="icon-title">学生管理</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/student_check_disabled.png" class="main-icon"></image>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=学生考勤&page_url=/pages/studentAttendance">
+      <image src="../images/student_check.png" class="main-icon"></image>
       <view class="icon-title disabled">学生考勤</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=业务开通&page_url=/pages/businessOpen">
@@ -54,8 +54,8 @@
       <image src="../images/maintain_rank_disabled.png" class="main-icon"></image>
       <view class="icon-title disabled">运维排名</view>
     </view>
-    <view class="icon-list" bindtap="toPage" data-page="">
-      <image src="../images/equipment_manage_disabled.png" class="main-icon"></image>
+    <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=设备管理&page_url=/pages/equipManage">
+      <image src="../images/equipment_manage.png" class="main-icon"></image>
       <view class="icon-title disabled">设备管理</view>
     </view>
     <view class="icon-list" bindtap="toPage" data-page="/pages/schools?title=批量拍照&page_url=/pages/schoolAlbum">

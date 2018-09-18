@@ -67,7 +67,7 @@
   box-sizing: border-box;
   padding-left: 30rpx;
   font-size: 32rpx ;
-  color: #575759 ;
+  color: #575759;
 }
 .dorm-attendance .select-condition view {
   display: inline-block;
@@ -104,3 +104,4 @@
 .dorm-attendance .middle-part view.selected {
   background: #fff;
 }
+/*# sourceMappingURL=index.css.map */

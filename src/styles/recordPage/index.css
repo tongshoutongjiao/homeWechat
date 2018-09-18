@@ -25,10 +25,11 @@ page {
 .item-list view {
   width: 25%;
   text-align: center;
-  color: #575759 ;
+  color: #575759;
   font-size: 28rpx;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .item-list .gray-style {
   color: #d0d0d4;
@@ -63,3 +64,4 @@ page {
   color: #8e8e93;
   margin-top: 300rpx;
 }
+/*# sourceMappingURL=index.css.map */

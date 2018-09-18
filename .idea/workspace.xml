@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="789fa6aa-0a0b-403b-93c1-dbb44aea7033" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles/addStudent/index.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/templates/iponeModel.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.wepycache" beforeDir="false" afterPath="$PROJECT_DIR$/.wepycache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/addStudent.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addStudent.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businessOpen.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businessOpen.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/main.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/performance.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/performance.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schools.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schools.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/studentManage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/studentManage.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/addStudent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/addStudent/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/schools/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schools/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/studentManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/studentManage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/addStudent/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/addStudent/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/addStudent/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/addStudent/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolCopy/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolCopy/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/toolkit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/toolkit.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -55,7 +18,7 @@
     <session id="1271740367">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -82,7 +45,7 @@
           <entry key="map" value="2" />
           <entry key="png" value="5" />
           <entry key="wepycache" value="2" />
-          <entry key="wpy" value="67" />
+          <entry key="wpy" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -94,7 +57,7 @@
           <entry key="Less" value="12" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SourceMap" value="1" />
-          <entry key="Vue.js" value="67" />
+          <entry key="Vue.js" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -126,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-545">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -142,11 +105,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.wepycache">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -170,84 +129,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/scripts/schoolAlbum/index.js">
+        <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="167" column="86" lean-forward="true" selection-start-line="167" selection-start-column="86" selection-end-line="167" selection-end-column="86" />
+            <state relative-caret-position="230">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
-                <element signature="e#367#404#0" />
-                <element signature="e#417#462#0" />
-                <element signature="e#473#747#0" />
-                <element signature="e#871#3641#0" />
-                <element signature="e#904#1281#0" />
-                <element signature="e#1069#1151#0" />
-                <element signature="e#1157#1193#0" />
-                <element signature="e#1314#1475#0" />
-                <element signature="e#1501#2286#0" />
-                <element signature="e#1748#1872#0" />
-                <element signature="e#1878#2259#0" />
-                <element signature="e#1925#1989#0" />
-                <element signature="e#2002#2209#0" />
-                <element signature="e#2098#2197#0" />
-                <element signature="e#2220#2250#0" />
-                <element signature="e#2335#2677#0" />
-                <element signature="e#2433#2523#0" />
-                <element signature="e#2529#2671#0" />
-                <element signature="e#2552#2645#0" />
-                <element signature="e#2740#2779#0" />
-                <element signature="e#2838#3428#0" />
-                <element signature="e#3224#3327#0" />
-                <element signature="e#3481#3637#0" />
-                <element signature="e#3573#3630#0" />
-                <element signature="e#3655#4118#0" />
-                <element signature="e#3692#4114#0" />
-                <element signature="e#3720#3750#0" />
-                <element signature="e#4010#4106#0" />
-                <element signature="e#4152#4316#0" />
-                <element signature="e#4348#4514#0" />
-                <element signature="e#4941#5005#0" />
-                <element signature="e#5452#5859#0" />
-                <element signature="e#5510#5531#0" />
-                <element signature="e#5601#5836#0" />
-                <element signature="e#5630#5828#0" />
-                <element signature="e#5665#5819#0" />
-                <element signature="e#5715#5809#0" />
-                <element signature="e#5932#6007#0" />
-                <element signature="e#6013#6047#0" />
-                <element signature="e#6094#6171#0" />
-                <element signature="e#6177#6211#0" />
-                <element signature="e#6301#6604#0" />
-                <element signature="e#6394#6479#0" />
-                <element signature="e#6428#6473#0" />
-                <element signature="e#6653#6879#0" />
-                <element signature="e#6898#7322#0" />
-                <element signature="e#7342#7612#0" />
-                <element signature="e#7547#7585#0" />
-                <element signature="e#7626#7660#0" />
-                <element signature="e#7673#7815#0" />
-                <element signature="e#7731#7811#0" />
-                <element signature="e#7897#8580#0" />
-                <element signature="e#7918#7985#0" />
-                <element signature="e#8039#8139#0" />
-                <element signature="e#8101#8132#0" />
-                <element signature="e#8236#8333#0" />
-                <element signature="e#8257#8311#0" />
-                <element signature="e#8361#8494#0" />
-                <element signature="e#8406#8486#0" />
-                <element signature="e#8615#9005#0" />
-                <element signature="e#8712#8979#0" />
-                <element signature="e#8798#8973#0" />
-                <element signature="e#8866#8965#0" />
+                <element signature="n#view#2;n#template#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -326,7 +214,6 @@
         <option value="$PROJECT_DIR$/src/scripts/businessOpen/index.js" />
         <option value="$PROJECT_DIR$/src/pages/businessOpen.wpy" />
         <option value="$PROJECT_DIR$/src/pages/editStuInfo.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
         <option value="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" />
         <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
         <option value="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" />
@@ -339,6 +226,7 @@
         <option value="$PROJECT_DIR$/src/scripts/addStudent/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" />
+        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
       </list>
     </option>
   </component>
@@ -361,9 +249,9 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="306" />
-    <option name="y" value="73" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="125" />
+    <option name="y" value="29" />
     <option name="width" value="1528" />
     <option name="height" value="976" />
   </component>
@@ -457,18 +345,17 @@
       <workItem from="1536737014466" duration="7631000" />
       <workItem from="1536803989359" duration="22854000" />
       <workItem from="1536971723205" duration="27000" />
-      <workItem from="1537174169925" duration="2481000" />
+      <workItem from="1537174169925" duration="3688000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111003000" />
+    <option name="totallyTimeSpent" value="112210000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="306" y="73" width="1528" height="976" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25134772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19714588" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -480,8 +367,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49460918" visible="true" weight="0.15158924" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5053908" side_tool="true" visible="true" weight="0.15158924" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4947146" visible="true" weight="0.13808464" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50528544" side_tool="true" visible="true" weight="0.13808464" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -848,20 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="80" column="11" lean-forward="true" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-          <folding>
-            <element signature="n#view#2;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#image#0;n#view#0;n#view#2;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#view#3;n#template#0;n#!!top" />
-            <element signature="n#view#4;n#template#0;n#!!top" />
-            <element signature="e#3676#3699#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/performance.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-292" />
@@ -950,7 +823,7 @@
     <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-545">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -975,11 +848,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.wepycache">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -988,27 +857,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="363" column="57" selection-start-line="363" selection-start-column="57" selection-end-line="363" selection-end-column="57" />
-          <folding>
-            <element signature="e#12375#12828#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/schoolAlbum/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="167" column="86" lean-forward="true" selection-start-line="167" selection-start-column="86" selection-end-line="167" selection-end-column="86" />
+        <state relative-caret-position="342">
+          <caret line="179" column="42" lean-forward="true" selection-start-line="179" selection-start-column="42" selection-end-line="179" selection-end-column="42" />
           <folding>
             <element signature="e#367#404#0" />
             <element signature="e#417#462#0" />
@@ -1073,6 +925,33 @@
             <element signature="e#8712#8979#0" />
             <element signature="e#8798#8973#0" />
             <element signature="e#8866#8965#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="363" column="57" selection-start-line="363" selection-start-column="57" selection-end-line="363" selection-end-column="57" />
+          <folding>
+            <element signature="e#12375#12828#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <folding>
+            <element signature="n#view#2;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>
