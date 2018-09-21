@@ -54,7 +54,7 @@ export default class Index extends wepy.page {
 
   async onLoad(e) {
     console.log('load..')
-    let {title = '选择学校', page_url = '', ...params} = e
+    let {title = '选择学校', page_url = '', ...params} = e;
     wx.setNavigationBarTitle({title: unescape(title)})
     page_url = unescape(page_url)
     this.page_url = page_url + (page_url.indexOf('?') === -1 ? '?' : '&') + querystring.stringify(params)

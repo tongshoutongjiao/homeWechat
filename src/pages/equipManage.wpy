@@ -83,7 +83,7 @@
 		</view>
 
 		<view class="btomView other-style" wx:if="{{identify==='other'}}" >
-			<view class="select-all" bindtap="clickSelectOperateEquip"  data-select-type="all">
+			<view class="select-all" @tap="clickSelectOperateEquip"  data-select-type="all">
 				<block wx:if="{{selectAllFlag}}">
 					<image class="all-default" src="/images/float_icon_a.png"/>
 				</block>
@@ -93,7 +93,7 @@
 
 				<text >全选</text>
 			</view>
-			<view class="format" bindtap="clickSelectOperateEquip" data-select-type="format">
+			<view class="format" @tap="clickSelectOperateEquip" data-select-type="format">
 				<image class="reformat"   src="/images/reformat_icon.png"/>
 				<text >初始化</text>
 			</view>

@@ -1,6 +1,5 @@
 import wepy from 'wepy';
 import api from '../api';
-
 import * as Toolkit from '../utils/toolkit';
 
 const defaultPhoto = '../asset/hp_icon.png';

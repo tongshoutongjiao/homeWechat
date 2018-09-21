@@ -34,6 +34,11 @@
   import wepy from 'wepy'
   import 'wepy-async-function'
 
+  import { setStore } from 'wepy-redux'
+  import configStore from './store'
+  const store = configStore();
+   setStore(store);
+ console.log(store);
   export default class extends wepy.app{
     config = {
       pages: [

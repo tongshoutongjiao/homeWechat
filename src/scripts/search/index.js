@@ -1,6 +1,6 @@
 
 import wepy from 'wepy'
-import api from '../api.js'
+import api from '../api'
 import querystring from 'querystring'
 export default class Index extends wepy.page {
     config = {

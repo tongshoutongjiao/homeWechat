@@ -119,18 +119,18 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultView" data-title="故障现象" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="faultPhenomenon" data-title="故障现象" bindtap="clickChooseOptions">
 			<view>故障现象</view>
 
-			<view class="picker">{{selectOptions.faultViewSelected||''}}</view>
+			<view class="picker">{{selectOptions.faultPhenomenonSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="faultReason" data-title="故障原因" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="faultCause" data-title="故障原因" bindtap="clickChooseOptions">
 			<view>故障原因</view>
 
-			<view class="picker">{{selectOptions.faultReasonSelected||''}}</view>
+			<view class="picker">{{selectOptions.faultCauseSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
@@ -143,19 +143,19 @@
 			<view class="right-hide"></view>
 
 		</view>
-		<view class="default date-style another-page" data-type="hardware" data-title="硬件类型" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="hardwareType" data-title="硬件类型" bindtap="clickChooseOptions">
 			<view>硬件类型</view>
-			<view class="picker">{{selectOptions.hardwareSelected||''}}</view>
+			<view class="picker">{{selectOptions.hardwareTypeSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
 		</view>
 
 
-		<view class="default date-style another-page" data-type="handleMeasures" data-title="处理措施" bindtap="clickChooseOptions">
+		<view class="default date-style another-page" data-type="treatmentMeasure" data-title="处理措施" bindtap="clickChooseOptions">
 			<view>处理措施</view>
 
-			<view class="picker">{{selectOptions.handleMeasuresSelected||''}}</view>
+			<view class="picker">{{selectOptions.treatmentMeasureSelected||''}}</view>
 			<view class="right-icon"></view>
 			<view class="right-hide"></view>
 
