@@ -2,30 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="789fa6aa-0a0b-403b-93c1-dbb44aea7033" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/actions/counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/types/counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/types/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/addStudent/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/iponeModel.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.wepycache" beforeDir="false" afterPath="$PROJECT_DIR$/.wepycache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/equipManage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/equipManage.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/addStudent.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addStudent.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businessOpen.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businessOpen.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/editStuInfo.wpy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/main.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/repairDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/repairDetail.wpy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/equipManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/equipManage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/repairDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/repairDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/performance.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/performance.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolCopy.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schoolDetail.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schools.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schools.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/studentManage.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/studentManage.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/addStudent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/addStudent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/businessOpen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolCopy/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/schools/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/schools/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/search/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/studentManage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/studentManage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/addStudent/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/addStudent/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/addStudent/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/addStudent/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/editStuInfo/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolCopy/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolCopy/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolCopy/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/schoolDetail/index.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/studentManage/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/studentManage/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/toolkit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/toolkit.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,7 +55,7 @@
     <session id="1271740367">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="14" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -67,7 +82,7 @@
           <entry key="map" value="2" />
           <entry key="png" value="5" />
           <entry key="wepycache" value="2" />
-          <entry key="wpy" value="68" />
+          <entry key="wpy" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -79,7 +94,7 @@
           <entry key="Less" value="12" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SourceMap" value="1" />
-          <entry key="Vue.js" value="68" />
+          <entry key="Vue.js" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -104,89 +119,141 @@
         </counts>
       </usages-collector>
     </session>
-    <session id="-1708749391">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts">
-        <counts>
-          <entry key="ESLintLanguageService" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="2382" />
-          <entry key="wpy" value="151" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="2382" />
-          <entry key="Vue.js" value="151" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="49" />
-          <entry key="json" value="1" />
-          <entry key="less" value="1" />
-          <entry key="wpy" value="12" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="49" />
-          <entry key="Less" value="1" />
-          <entry key="Vue.js" value="12" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.37911138">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pages/equipTypePage.wpy">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="683">
-                  <caret line="45" column="44" lean-forward="true" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/scripts/equipTypePage/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="851">
-                  <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/scripts/equipTypePage/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-545">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3995">
+              <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.wepycache">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="250" selection-start-line="250" selection-end-line="250" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="363" column="57" selection-start-line="363" selection-start-column="57" selection-end-line="363" selection-end-column="57" />
+              <folding>
+                <element signature="e#12375#12828#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/editStuInfo/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scripts/schoolAlbum/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="167" column="86" lean-forward="true" selection-start-line="167" selection-start-column="86" selection-end-line="167" selection-end-column="86" />
+              <folding>
+                <element signature="e#367#404#0" />
+                <element signature="e#417#462#0" />
+                <element signature="e#473#747#0" />
+                <element signature="e#871#3641#0" />
+                <element signature="e#904#1281#0" />
+                <element signature="e#1069#1151#0" />
+                <element signature="e#1157#1193#0" />
+                <element signature="e#1314#1475#0" />
+                <element signature="e#1501#2286#0" />
+                <element signature="e#1748#1872#0" />
+                <element signature="e#1878#2259#0" />
+                <element signature="e#1925#1989#0" />
+                <element signature="e#2002#2209#0" />
+                <element signature="e#2098#2197#0" />
+                <element signature="e#2220#2250#0" />
+                <element signature="e#2335#2677#0" />
+                <element signature="e#2433#2523#0" />
+                <element signature="e#2529#2671#0" />
+                <element signature="e#2552#2645#0" />
+                <element signature="e#2740#2779#0" />
+                <element signature="e#2838#3428#0" />
+                <element signature="e#3224#3327#0" />
+                <element signature="e#3481#3637#0" />
+                <element signature="e#3573#3630#0" />
+                <element signature="e#3655#4118#0" />
+                <element signature="e#3692#4114#0" />
+                <element signature="e#3720#3750#0" />
+                <element signature="e#4010#4106#0" />
+                <element signature="e#4152#4316#0" />
+                <element signature="e#4348#4514#0" />
+                <element signature="e#4941#5005#0" />
+                <element signature="e#5452#5859#0" />
+                <element signature="e#5510#5531#0" />
+                <element signature="e#5601#5836#0" />
+                <element signature="e#5630#5828#0" />
+                <element signature="e#5665#5819#0" />
+                <element signature="e#5715#5809#0" />
+                <element signature="e#5932#6007#0" />
+                <element signature="e#6013#6047#0" />
+                <element signature="e#6094#6171#0" />
+                <element signature="e#6177#6211#0" />
+                <element signature="e#6301#6604#0" />
+                <element signature="e#6394#6479#0" />
+                <element signature="e#6428#6473#0" />
+                <element signature="e#6653#6879#0" />
+                <element signature="e#6898#7322#0" />
+                <element signature="e#7342#7612#0" />
+                <element signature="e#7547#7585#0" />
+                <element signature="e#7626#7660#0" />
+                <element signature="e#7673#7815#0" />
+                <element signature="e#7731#7811#0" />
+                <element signature="e#7897#8580#0" />
+                <element signature="e#7918#7985#0" />
+                <element signature="e#8039#8139#0" />
+                <element signature="e#8101#8132#0" />
+                <element signature="e#8236#8333#0" />
+                <element signature="e#8257#8311#0" />
+                <element signature="e#8361#8494#0" />
+                <element signature="e#8406#8486#0" />
+                <element signature="e#8615#9005#0" />
+                <element signature="e#8712#8979#0" />
+                <element signature="e#8798#8973#0" />
+                <element signature="e#8866#8965#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -198,12 +265,26 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>ima</find>
+      <find>style</find>
+      <find>updateQRcodeTime</find>
+      <find>toast</find>
+      <find>weekIndex</find>
+      <find>modeIndex</find>
+      <find>获取周信息</find>
+      <find>获取周</find>
+      <find>排序</find>
+      <find>fixedDeadline</find>
+      <find>searchValue</find>
+      <find>head</find>
+      <find>二维码</find>
       <find>&lt;&lt;&lt;&lt;</find>
       <find>&lt;&lt;&lt;</find>
       <find>apiMall</find>
       <find>querystring</find>
       <find>uploadImg</find>
       <find>clickUploadImage</find>
+      <find>console</find>
       <find>getSchoolsByUserId</find>
       <find>defaultPhoto</find>
       <find>faultMainboard</find>
@@ -214,20 +295,6 @@
       <find>&lt;&lt;</find>
       <find>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</find>
       <find>HEAD</find>
-      <find>handleMove</find>
-      <find>handleSearchSchool</find>
-      <find>test</find>
-      <find>console</find>
-      <find>clickChooseOptions</find>
-      <find>tem</find>
-      <find>temp</find>
-      <find>echoSelectedData</find>
-      <find>faultReasonSelected</find>
-      <find>Selected</find>
-      <find>tempData</find>
-      <find>handleSelectData</find>
-      <find>_handleSelectData</find>
-      <find>hardware</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -248,35 +315,30 @@
         <option value="$PROJECT_DIR$/src/styles/schoolDetail/index.less" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/styles/searchStudent/index.css" />
+        <option value="$PROJECT_DIR$/src/scripts/equipManage/index.js" />
         <option value="$PROJECT_DIR$/project.config.json" />
         <option value="$PROJECT_DIR$/src/scripts/searchStudent/index.js" />
         <option value="$PROJECT_DIR$/src/pages/search.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/equipManage.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/repairDetail.wpy" />
+        <option value="$PROJECT_DIR$/src/scripts/repairDetail/index.js" />
+        <option value="$PROJECT_DIR$/src/utils/toolkit.js" />
         <option value="$PROJECT_DIR$/src/scripts/businessOpen/index.js" />
         <option value="$PROJECT_DIR$/src/pages/businessOpen.wpy" />
         <option value="$PROJECT_DIR$/src/pages/editStuInfo.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
         <option value="$PROJECT_DIR$/src/pages/schoolAlbum.wpy" />
         <option value="$PROJECT_DIR$/src/pages/schoolDetail.wpy" />
         <option value="$PROJECT_DIR$/src/scripts/schoolDetail/index.js" />
         <option value="$PROJECT_DIR$/src/pages/schools.wpy" />
+        <option value="$PROJECT_DIR$/src/scripts/schools/index.js" />
+        <option value="$PROJECT_DIR$/src/api.js" />
+        <option value="$PROJECT_DIR$/src/app.wpy" />
         <option value="$PROJECT_DIR$/.wepycache" />
+        <option value="$PROJECT_DIR$/src/scripts/studentManage/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/addStudent/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/editStuInfo/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/schoolAlbum/index.js" />
-        <option value="$PROJECT_DIR$/src/styles/studentManage/index.less" />
-        <option value="$PROJECT_DIR$/src/scripts/search/index.js" />
-        <option value="$PROJECT_DIR$/src/scripts/studentManage/index.js" />
-        <option value="$PROJECT_DIR$/src/utils/toolkit.js" />
-        <option value="$PROJECT_DIR$/src/scripts/schools/index.js" />
-        <option value="$PROJECT_DIR$/src/app.wpy" />
-        <option value="$PROJECT_DIR$/src/api.js" />
-        <option value="$PROJECT_DIR$/src/pages/main.wpy" />
-        <option value="$PROJECT_DIR$/src/store/actions/counter.js" />
-        <option value="$PROJECT_DIR$/src/pages/equipManage.wpy" />
-        <option value="$PROJECT_DIR$/src/store/types/counter.js" />
-        <option value="$PROJECT_DIR$/src/scripts/equipManage/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/repairDetail.wpy" />
-        <option value="$PROJECT_DIR$/src/scripts/repairDetail/index.js" />
-        <option value="$PROJECT_DIR$/src/store/reducers/counter.js" />
       </list>
     </option>
   </component>
@@ -299,11 +361,11 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-167" />
-    <option name="y" value="14" />
-    <option name="width" value="1360" />
-    <option name="height" value="909" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="306" />
+    <option name="y" value="73" />
+    <option name="width" value="1528" />
+    <option name="height" value="976" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -313,23 +375,35 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="homeWechat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="homeWechat" type="462c0819:PsiDirectoryNode" />
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manage-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manage-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -343,11 +417,6 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Work\homeWechat\src" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -388,21 +457,18 @@
       <workItem from="1536737014466" duration="7631000" />
       <workItem from="1536803989359" duration="22854000" />
       <workItem from="1536971723205" duration="27000" />
-      <workItem from="1537174169925" duration="3688000" />
-      <workItem from="1537239083934" duration="14350000" />
-      <workItem from="1537317276221" duration="1093000" />
-      <workItem from="1537496196380" duration="22642000" />
+      <workItem from="1537174169925" duration="2481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150295000" />
+    <option name="totallyTimeSpent" value="111003000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="306" y="73" width="1528" height="976" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20190275" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25134772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -414,31 +480,29 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49275362" weight="0.033613447" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5072464" side_tool="true" weight="0.033613447" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49460918" visible="true" weight="0.15158924" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5053908" side_tool="true" visible="true" weight="0.15158924" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18972331" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12367865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993188" weight="0.32850778" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49735728" weight="0.15756035" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993188" weight="0.32954547" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49735728" weight="0.32850778" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49275362" visible="true" weight="0.033613447" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5072464" side_tool="true" visible="true" weight="0.033613447" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5026427" side_tool="true" visible="true" weight="0.053452116" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -488,6 +552,83 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/images/put_icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/images/phone_icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/images/phone.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asset/upd_icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/planterDetail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="45" column="67" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recordPage.wpy">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mapPage.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="68" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/equipDetail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="146" column="52" selection-start-line="146" selection-start-column="47" selection-end-line="146" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/schoolCopy/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6187">
+          <caret line="272" column="4" selection-start-line="272" selection-start-column="4" selection-end-line="272" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/schoolCopy.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/uploadDetail.wpy">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/schoolDetail/index.css.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles/schoolDetail/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="272" column="16" selection-start-line="272" selection-start-column="16" selection-end-line="272" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/schoolList/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/project.config.json" />
+    <entry file="file://$PROJECT_DIR$/src/styles/studentManage/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/searchStudent/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -526,6 +667,13 @@
     <entry file="file://$PROJECT_DIR$/wepy.config.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/search.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -550,6 +698,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/equipManage.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/equipManage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="452" column="29" selection-start-line="452" selection-start-column="29" selection-end-line="452" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/repairDetail/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+          <folding>
+            <element signature="e#215#259#0" />
+            <element signature="e#272#1376#0" />
+            <element signature="e#354#400#0" />
+            <element signature="e#585#964#0" />
+            <element signature="e#638#741#0" />
+            <element signature="e#780#926#0" />
+            <element signature="e#986#1089#0" />
+            <element signature="e#1453#1580#0" />
+            <element signature="e#1642#1773#0" />
+            <element signature="e#1838#2037#0" />
+            <element signature="e#2093#2314#0" />
+            <element signature="e#2383#4055#0" />
+            <element signature="e#2450#4045#0" />
+            <element signature="e#2482#2687#0" />
+            <element signature="e#2535#2658#0" />
+            <element signature="e#2704#2913#0" />
+            <element signature="e#2761#2884#0" />
+            <element signature="e#2930#3135#0" />
+            <element signature="e#2983#3106#0" />
+            <element signature="e#3152#3358#0" />
+            <element signature="e#3206#3329#0" />
+            <element signature="e#3375#3583#0" />
+            <element signature="e#3431#3554#0" />
+            <element signature="e#3600#3811#0" />
+            <element signature="e#3659#3782#0" />
+            <element signature="e#3828#4031#0" />
+            <element signature="e#3879#4002#0" />
+            <element signature="e#4116#4180#0" />
+            <element signature="e#4243#4304#0" />
+            <element signature="e#4365#4415#0" />
+            <element signature="e#4474#4533#0" />
+            <element signature="e#4593#4653#0" />
+            <element signature="e#4719#5377#0" />
+            <element signature="e#4754#4793#0" />
+            <element signature="e#5030#5237#0" />
+            <element signature="e#5061#5156#0" />
+            <element signature="e#5431#6120#0" />
+            <element signature="e#5601#6110#0" />
+            <element signature="e#5633#5726#0" />
+            <element signature="e#5743#5852#0" />
+            <element signature="e#5869#5974#0" />
+            <element signature="e#5991#6096#0" />
+            <element signature="e#6176#6865#0" />
+            <element signature="e#6345#6854#0" />
+            <element signature="e#6377#6470#0" />
+            <element signature="e#6487#6596#0" />
+            <element signature="e#6613#6718#0" />
+            <element signature="e#6735#6840#0" />
+            <element signature="e#6935#7078#0" />
+            <element signature="e#6965#7066#0" />
+            <element signature="e#7102#7212#0" />
+            <element signature="e#7227#7354#0" />
+            <element signature="e#7371#7474#0" />
+            <element signature="e#7499#11280#0" />
+            <element signature="e#7650#11223#0" />
+            <element signature="e#7664#11213#0" />
+            <element signature="e#7695#8215#0" />
+            <element signature="e#7811#7967#0" />
+            <element signature="e#7865#7945#0" />
+            <element signature="e#8232#8695#0" />
+            <element signature="e#8336#8457#0" />
+            <element signature="e#8712#9216#0" />
+            <element signature="e#8849#8970#0" />
+            <element signature="e#9233#9689#0" />
+            <element signature="e#9343#9445#0" />
+            <element signature="e#9706#10203#0" />
+            <element signature="e#9826#9947#0" />
+            <element signature="e#10220#10701#0" />
+            <element signature="e#10330#10451#0" />
+            <element signature="e#10718#11199#0" />
+            <element signature="e#10832#10953#0" />
+            <element signature="e#11452#11531#0" />
+            <element signature="e#11697#11776#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/repairDetail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1334">
+          <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -561,6 +812,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="56" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#view#1;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#picker-view-column#0;n#picker-view#0;n#view#0;n#view#1;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#picker-view-column#1;n#picker-view#0;n#view#0;n#view#1;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#picker-view-column#2;n#picker-view#0;n#view#0;n#view#1;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#view#2;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -568,6 +826,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="438" column="28" lean-forward="true" selection-start-line="438" selection-start-column="28" selection-end-line="438" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#1043#11133#0" />
+            <element signature="e#11332#14208#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -585,6 +848,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="80" column="11" lean-forward="true" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
+          <folding>
+            <element signature="n#view#2;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#image#0;n#view#0;n#view#2;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#view#3;n#template#0;n#!!top" />
+            <element signature="n#view#4;n#template#0;n#!!top" />
+            <element signature="e#3676#3699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/performance.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-292" />
@@ -594,6 +871,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#block#1;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#template#0;n#!!top" />
+            <element signature="n#block#0;n#template#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -604,17 +889,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/schools/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/schools.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/schoolDetail.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="351" column="11" lean-forward="true" selection-start-line="351" selection-start-column="11" selection-end-line="351" selection-end-column="11" />
+          <folding>
+            <element signature="n#view#0;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#view#0;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#0;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#2;n#view#0;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#3;n#view#0;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#2;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#3;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#4;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#5;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#6;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#repeat#0;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#repeat#0;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#7;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#text#1;n#view#7;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#repeat#1;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#repeat#1;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#text#1;n#view#0;n#repeat#1;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#repeat#2;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#0;n#repeat#2;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#8;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#9;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#10;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#11;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#12;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#13;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#14;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#15;n#view#1;n#view#2;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#3;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#4;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#5;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+            <element signature="n#view#1;n#view#0;n#view#5;n#view#0;n#view#6;n#view#1;n#import#0;n#view#0;n#view#0;n#template#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schoolAlbum/index.js">
+    <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="179" column="42" lean-forward="true" selection-start-line="179" selection-start-column="42" selection-end-line="179" selection-end-column="42" />
+        <state relative-caret-position="-545">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="161" column="24" lean-forward="true" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+          <folding>
+            <element signature="e#544#567#0" expanded="true" />
+            <element signature="e#655#1730#0" />
+            <element signature="e#670#1424#0" />
+            <element signature="e#3095#3362#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3995">
+          <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.wepycache">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="250" selection-start-line="250" selection-end-line="250" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="363" column="57" selection-start-line="363" selection-start-column="57" selection-end-line="363" selection-end-column="57" />
+          <folding>
+            <element signature="e#12375#12828#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -625,285 +1005,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/studentManage/index.less">
+    <entry file="file://$PROJECT_DIR$/src/scripts/schoolAlbum/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/studentManage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="46" lean-forward="true" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/studentManage.wpy">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/search/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/addStudent/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.wepycache">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/querystring/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/utils/toolkit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/letter-index/letter-index.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="64" column="25" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/toolkit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/schools/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+        <state relative-caret-position="112">
+          <caret line="167" column="86" lean-forward="true" selection-start-line="167" selection-start-column="86" selection-end-line="167" selection-end-column="86" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#367#404#0" />
+            <element signature="e#417#462#0" />
+            <element signature="e#473#747#0" />
+            <element signature="e#871#3641#0" />
+            <element signature="e#904#1281#0" />
+            <element signature="e#1069#1151#0" />
+            <element signature="e#1157#1193#0" />
+            <element signature="e#1314#1475#0" />
+            <element signature="e#1501#2286#0" />
+            <element signature="e#1748#1872#0" />
+            <element signature="e#1878#2259#0" />
+            <element signature="e#1925#1989#0" />
+            <element signature="e#2002#2209#0" />
+            <element signature="e#2098#2197#0" />
+            <element signature="e#2220#2250#0" />
+            <element signature="e#2335#2677#0" />
+            <element signature="e#2433#2523#0" />
+            <element signature="e#2529#2671#0" />
+            <element signature="e#2552#2645#0" />
+            <element signature="e#2740#2779#0" />
+            <element signature="e#2838#3428#0" />
+            <element signature="e#3224#3327#0" />
+            <element signature="e#3481#3637#0" />
+            <element signature="e#3573#3630#0" />
+            <element signature="e#3655#4118#0" />
+            <element signature="e#3692#4114#0" />
+            <element signature="e#3720#3750#0" />
+            <element signature="e#4010#4106#0" />
+            <element signature="e#4152#4316#0" />
+            <element signature="e#4348#4514#0" />
+            <element signature="e#4941#5005#0" />
+            <element signature="e#5452#5859#0" />
+            <element signature="e#5510#5531#0" />
+            <element signature="e#5601#5836#0" />
+            <element signature="e#5630#5828#0" />
+            <element signature="e#5665#5819#0" />
+            <element signature="e#5715#5809#0" />
+            <element signature="e#5932#6007#0" />
+            <element signature="e#6013#6047#0" />
+            <element signature="e#6094#6171#0" />
+            <element signature="e#6177#6211#0" />
+            <element signature="e#6301#6604#0" />
+            <element signature="e#6394#6479#0" />
+            <element signature="e#6428#6473#0" />
+            <element signature="e#6653#6879#0" />
+            <element signature="e#6898#7322#0" />
+            <element signature="e#7342#7612#0" />
+            <element signature="e#7547#7585#0" />
+            <element signature="e#7626#7660#0" />
+            <element signature="e#7673#7815#0" />
+            <element signature="e#7731#7811#0" />
+            <element signature="e#7897#8580#0" />
+            <element signature="e#7918#7985#0" />
+            <element signature="e#8039#8139#0" />
+            <element signature="e#8101#8132#0" />
+            <element signature="e#8236#8333#0" />
+            <element signature="e#8257#8311#0" />
+            <element signature="e#8361#8494#0" />
+            <element signature="e#8406#8486#0" />
+            <element signature="e#8615#9005#0" />
+            <element signature="e#8712#8979#0" />
+            <element signature="e#8798#8973#0" />
+            <element signature="e#8866#8965#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/schools.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#image#0;n#view#0;n#view#0;n#view#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="e#532#555#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/store/types/counter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/main.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="236" column="12" lean-forward="true" selection-start-line="236" selection-start-column="12" selection-end-line="236" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/types/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/types/counter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/repairDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#585#964#0" />
-            <element signature="e#780#926#0" />
-            <element signature="e#986#1089#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/repairDetail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="194" column="27" selection-start-line="194" selection-start-column="27" selection-end-line="194" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/equipManage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="412" column="30" lean-forward="true" selection-start-line="412" selection-start-column="30" selection-end-line="412" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#1177#1765#0" />
-            <element signature="e#1823#2761#0" />
-            <element signature="e#2827#3027#0" />
-            <element signature="e#3090#3622#0" />
-            <element signature="e#3677#3867#0" />
-            <element signature="e#8190#8296#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/equipManage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="148" column="39" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
-          <folding>
-            <element signature="n#view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#0;n#view#0;n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#1;n#view#0;n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#1;n#view#0;n#block#0;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#1;n#scroll-view#0;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#0;n#view#0;n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#1;n#view#0;n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#2;n#view#2;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#0;n#view#0;n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#1;n#view#0;n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#2;n#view#3;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#4;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#0;n#view#0;n#view#4;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#block#1;n#view#0;n#view#4;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#4;n#view#0;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#2;n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#0;n#view#2;n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#2;n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#3;n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#4;n#view#1;n#view#1;n#template#0;n#!!top" />
-            <element signature="n#view#2;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#2;n#template#0;n#!!top" />
-            <element signature="n#view#1;n#view#1;n#view#2;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/counter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="102" column="12" lean-forward="true" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <element signature="n#!!block;n#getStaticData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/counter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/equipTypePage.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="45" column="44" lean-forward="true" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/equipTypePage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
         </state>
       </provider>
     </entry>
